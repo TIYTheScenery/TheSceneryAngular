@@ -7,63 +7,68 @@
     <script src='assets/js/scripts.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css' rel='stylesheet'>
     <link href='assets/css/styles.css' rel='stylesheet'>
+    <link href='assets/css/login.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
   <body ng-app="">
-    <header class="no-log-header">
+    <header class="header no-log-header">
       <div class="scenery-logo"></div>
-      <div class="login-btn">Log In</div>
-      <div class="sign-up-btn">Sign Up</div>
+      <a href=""><div class="btn login-btn">Log In</div></a>
+      <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
     </header>
-    <header class="logged-header">
+    <header class="header logged-header">
+      <div class="header-user-portrait"></div>
       <div class="header-user-wrapper">
-        <div class="header-user-portrait"></div>
         <div class="header-user-greeting">Hi AngularUserName</div>
         <a href=""><div class="header-user-profile">My Profile</div></a>
       </div>
-      <div class="logout-btn">Log Out</div>
+      <a href=""><div class="btn logout-btn">Log Out</div></a>
     </header>
 
     <ng-view>
     </ng-view>
 
-    <div class="login-modal-wrapper">
-      <div class="login-box">
-        Welcome to The Scenery
-        <div class="login-input-wrapper">
-          <div class="login-label-wrapper">
+    <div class="modal-wrapper" id="log-in-modal">
+      <div class="modal-box">
+        <div class="modal-welcome">
+          Welcome to The Scenery
+        </div>
+        <div class="modal-user-input-wrapper">
+          <div class="modal-label-wrapper">
             <label>Email: </label>
             <label>Password: </label>
           </div>
-          <div class="login-input-wrapper">
-            <input class="login-input" id="user-email">
-            <input class="login-input" id="user-password">
+          <div class="modal-input-wrapper">
+            <input class="modal-input" id="user-email">
+            <input class="modal-input" id="user-password">
           </div>
-          <div class="login-button-holder">
-            <a href=""><div class="btn login-btn">Log In</div></a>
+          <div class="modal-button-holder">
+            <a href=""><div class="btn modal-login-btn">Log In</div></a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="sign-up-modal-wrapper">
-      <div class="sign-up-box">
-        Welcome to The Scenery
-        <div class="sign-up-input-wrapper">
-          <div class="sign-up-label-wrapper">
+    <div class="modal-wrapper" id="sign-up-modal">
+      <div class="modal-box">
+        <div class="modal-welcome">
+          Welcome to The Scenery
+        </div>
+        <div class="modal-user-input-wrapper">
+          <div class="modal-label-wrapper">
             <label>Email: </label>
             <label>Password: </label>
             <label>Display Name: </label>
           </div>
-          <div class="sign-up-input-wrapper">
-            <input class="sign-up-input" id="user-email">
-            <input class="sign-up-input" id="user-password">
-            <input class="sign-up-input" id="user-display-name">
+          <div class="modal-input-wrapper">
+            <input class="modal-input" id="user-email">
+            <input class="modal-input" id="user-password">
+            <input class="modal-input" id="user-display-name">
           </div>
-          <div class="sign-up-button-holder">
-            <a href=""><div class="btn sign-up-btn">Submit</div></a>
-            <a href=""><div class="btn facebook-login-btn">facebook</div></a>
+          <div class="modal-button-holder">
+            <a href=""><div class="btn modal-sign-up-btn">Submit</div></a>
+            <a href=""><div class="btn modal-facebook-btn">facebook</div></a>
           </div>
         </div>
       </div>

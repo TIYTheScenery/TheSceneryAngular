@@ -1,0 +1,110 @@
+.header {
+  background: #eee;
+  padding: 2em;
+  border-bottom: 1px solid #ddd; }
+
+.scenery-logo,
+.header-user-portrait {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: black;
+  vertical-align: middle; }
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  border: 1px solid #999;
+  border-radius: 3px;
+  vertical-align: middle; }
+
+a {
+  text-decoration: none;
+  color: black; }
+
+.login-btn,
+.sign-up-btn,
+.logout-btn {
+  float: right;
+  margin-right: 25px; }
+
+.header-user-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 35px; }
+
+.header-user-greeting {
+  font-size: 18px;
+  padding-bottom: 5px; }
+
+.header-user-profile {
+  text-decoration: underline;
+  color: #666; }
+
+.logged-header {
+  display: none; }
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none; }
+
+.modal-box {
+  background: #ccc;
+  width: 650px;
+  height: 270px;
+  margin: 200px auto 0 auto;
+  padding: 40px;
+  border-radius: 5px;
+  border: 1px solid #bbb; }
+
+.modal-welcome {
+  font-size: 26px;
+  text-align: center; }
+
+.modal-user-input-wrapper {
+  margin-top: 60px; }
+
+.modal-label-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 115px;
+  margin-right: 15px; }
+  .modal-label-wrapper label {
+    display: block;
+    margin: 5px 0;
+    line-height: 1.5; }
+
+.modal-input-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 15px; }
+  .modal-input-wrapper input {
+    font-size: 14px;
+    margin: 5px 0;
+    display: block;
+    width: 250px; }
+
+.modal-button-holder {
+  width: 50%;
+  margin: auto;
+  margin-top: 65px; }
+
+.modal-facebook-btn {
+  float: right;
+  background: blue;
+  color: white; }
+
+.modal-login-btn {
+  display: block;
+  padding-left: 17px;
+  width: 50px;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=login.css.map */

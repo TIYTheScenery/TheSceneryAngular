@@ -11,6 +11,18 @@
   </head>
 
   <body ng-app="">
+    <header class="no-log-header">
+      <div class="scenery-logo"></div>
+      <div class="login-btn">Log In</div>
+      <div class="sign-up-btn">Sign Up</div>
+    </header>
+    <header class="logged-header">
+      <div class="header-user-wrapper">
+        <div class="header-user-portrait"></div>
+        <div class="header-user-greeting">Hi AngularUserName</div>
+        <a href=""><div class="header-user-profile">My Profile</div></a>
+      </div>
+    </header>
 
     <ng-view>
     </ng-view>

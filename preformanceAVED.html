@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TheSceneryapp">
+<head>
+  <meta charset="UTF-8">
+  <title>The Scenery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+  <script src="assets/js/perfAVEDcontroller.js"></script>
+  <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
+</head>
+
+<body ng-controller="perfAVEDcont">
+
+    {{message}}<br>
+
+  <div class="btn" ng-click="toggle('ADD')">Add</div>
+  <div class="btn" ng-click="toggle('VIEW')">View</div>
+  <div class="btn" ng-click="toggle('EDIT')">Edit</div>
+
+  <div class ="add" ng-hide="tAdd">
+    This is visible only when the user is initially adding a performance.
+  </div>
+
+  <div class ="view" ng-hide="tView">
+    this is visible only when the user is just viewing the performance listing.
+  </div>
+
+  <div class="edit" ng-hide="tEdit">
+    this is visible only when the user is editing an already created performance listing.
+  </div>
+
+</body>
+</html>

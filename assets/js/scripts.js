@@ -9,6 +9,12 @@ $(function () {
     $('#sign-up-modal').addClass('showing');
   });
 
+  $('.modal-login-btn, .modal-sign-up-btn, .modal-facebook-btn').on('click', function () {
+    $('.no-log-header').addClass('hidden');
+    $('.logged-header').addClass('showing');
+    $('#log-in-modal, #sign-up-modal').removeClass('showing');
+  });
+
   $('.modal-wrapper').on('click', function () {
     $('#log-in-modal, #sign-up-modal').removeClass('showing');
   });

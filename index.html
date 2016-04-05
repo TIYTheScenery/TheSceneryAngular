@@ -64,8 +64,8 @@
               <label>Display Name: </label>
             </div>
             <div class="modal-input-wrapper">
-              <input class="modal-input" id="user-email">
-              <input class="modal-input" id="user-password">
+              <input class="modal-input" id="sign-user-email">
+              <input class="modal-input" id="sign-user-password">
               <input class="modal-input" id="confirm-user-password">
               <input class="modal-input" id="user-display-name">
             </div>
@@ -73,13 +73,13 @@
               <p>Are you involved in live performance?</p>
               <div class="switch">
                 <form class="modal-radio">
-                  <input type="radio" value="yes"> Yes
-                  <input type="radio" value="no"> No
+                  <input type="radio"  name = "blue" value="true" id = "radioyes"> Yes
+                  <input type="radio"  name = "blue" checked = "checked" value="false" id = "radiono"> No
                 </form>
               </div>
             </div>
             <div class="modal-button-holder">
-              <a href=""><div class="btn modal-sign-up-btn">Submit</div></a>
+              <a href=""><div class="btn modal-sign-up-btn" ng-click="createauthenticate()">Submit</div></a>
               <a href=""><div class="btn modal-facebook-btn">facebook</div></a>
             </div>
           </div>

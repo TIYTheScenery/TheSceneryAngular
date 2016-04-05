@@ -5,12 +5,13 @@
   <title>The Scenery</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+  <script src="assets/js/app.js"></script>
   <script src="assets/js/perfAVEDcontroller.js"></script>
   <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
 </head>
 
 <body ng-controller="perfAVEDcont">
-
+<div class="killme" ng-hide="true">
     {{message}}<br>
 
   <div class="btn" ng-click="toggle('ADD')">Add</div>
@@ -28,6 +29,37 @@
   <div class="edit" ng-hide="tEdit">
     this is visible only when the user is editing an already created performance listing.
   </div>
+</div><!--end kill me-->
+
+<div calss="heroImgContainer">
+  <img src="assets/images/lesmis-2.jpg" class ="heroImg">
+  <div class ="heroImgWordsContainer">
+    COMPANYNAME presents <br> PERFORMANCENAME
+  </div>
+</div>
+
+<div class="preformanceInfoContainer">
+  <div class="authorized">
+    <!--if user is on the authorized user list for any company involved in this production then, display an option to edit this prodcution-->
+  </div>
+
+  <div class="preformanceDescription">
+    Jean Valjean, after spending nineteen years in jail and in the galleys for stealing a loaf of bread and for several attempts to escape, is finally released, but his past keeps haunting him. At Digne, he is repeatedly refused shelter for the night. Only the saintly bishop, Monseigneur Myriel, welcomes him. Valjean repays his host's hospitality by stealing his silverware. When the police bring him back, the bishop protects his errant guest by pretending that the silverware is a gift. With a pious lie, he convinces them that the convict has promised to reform. After one more theft, Jean Valjean does indeed repent. Under the name of M. Madeleine he starts a factory and brings prosperity to the town of Montreuil.
+  </div>
+
+  <span class="leftCol">
+    THIS IS THE GENRE<br>
+    THIS IS THE TRAILER
+  </span>
+
+  <span class="rightCol">
+    THIS IS THE TAGS<br>
+    THIS IS THE PRODUCTION IMAGES
+  </span>
+
+</div>
+
+
 
 </body>
 </html>

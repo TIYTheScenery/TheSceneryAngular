@@ -33,7 +33,6 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
 //   console.log(response);
 // });
 
-
     $http.post("http://infinite-reef-76606.herokuapp.com/login", user_info).then(function successCallback(response){
       console.log(response);
     }, function errorCallback(response){

@@ -1,6 +1,8 @@
 TheSceneryapp.controller('login-cont', function($scope, $http){
   console.log("WAAAGH");
   $scope.message2="bestmattever";
+  $scope.userinfo
+
 
   $scope.authenticate = function(){
     var email = $('#user-email').val()
@@ -72,7 +74,9 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
 
     $.ajax(settings).done(function (response) {
      console.log(response);
+     $scope.userinfo=response;
+     console.log($scope.userinfo);
     });
   }//end authenticate
-
+  console.log($scope.userinfo);
 });//end login controller

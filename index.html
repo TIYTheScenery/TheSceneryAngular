@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
     <script src='assets/js/app.js'></script>
+    <script src='assets/js/login-controller.js'></script>
     <script src='assets/js/scripts.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css' rel='stylesheet'>
     <link href='assets/css/styles.css' rel='stylesheet'>
@@ -12,79 +13,84 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
-  <body ng-app="">
-    <header class="header no-log-header">
-      <div class="scenery-logo"></div>
-      <a href=""><div class="btn login-btn">Log In</div></a>
-      <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
-    </header>
-    <header class="header logged-header">
-      <div class="header-user-portrait"></div>
-      <div class="header-user-wrapper">
-        <div class="header-user-greeting">Hi AngularUserName</div>
-        <a href=""><div class="header-user-profile">My Profile</div></a>
+  <body ng-app="TheSceneryapp">
+
+    <div ng-controller="login-cont">
+      <header class="header no-log-header">
+        <div class="scenery-logo"></div>
+        <a href=""><div class="btn login-btn">Log In</div></a>
+        <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
+      </header>
+      <header class="header logged-header">
+        <div class="header-user-portrait"></div>
+        <div class="header-user-wrapper">
+          <div class="header-user-greeting">Hi AngularUserName</div>
+          <a href=""><div class="header-user-profile">My Profile</div></a>
+        </div>
+        <a href=""><div class="btn logout-btn">Log Out</div></a>
+      </header>
+
+      <div class="modal-wrapper" id="log-in-modal">
+        <div class="modal-box">
+          <div class="modal-welcome">
+            Welcome to The Scenery
+          </div>
+          <div class="modal-user-input-wrapper">
+            <div class="modal-label-wrapper">
+              <label>Email: </label>
+              <label>Password: </label>
+            </div>
+            <div class="modal-input-wrapper">
+              <input class="modal-input" id="user-email">
+              <input class="modal-input" id="user-password">
+            </div>
+            <div class="modal-button-holder">
+              <a href=""><div class="btn modal-login-btn" ng-click="authenticate()">Log In</div></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <a href=""><div class="btn logout-btn">Log Out</div></a>
-    </header>
+
+      <div class="modal-wrapper" id="sign-up-modal">
+        <div class="modal-box">
+          <div class="modal-welcome">
+            Welcome to The Scenery
+          </div>
+          <div class="modal-user-input-wrapper">
+            <div class="modal-label-wrapper">
+              <label>Email: </label>
+              <label>Password: </label>
+              <label>Comfirm Password: </label>
+              <label>Display Name: </label>
+            </div>
+            <div class="modal-input-wrapper">
+              <input class="modal-input" id="user-email">
+              <input class="modal-input" id="user-password">
+              <input class="modal-input" id="confirm-user-password">
+              <input class="modal-input" id="user-display-name">
+            </div>
+            <div class="modal-radio-container">
+              <p>Are you involved in live performance?</p>
+              <div class="switch">
+                <form class="modal-radio">
+                  <input type="radio" value="yes"> Yes
+                  <input type="radio" value="no"> No
+                </form>
+              </div>
+            </div>
+            <div class="modal-button-holder">
+              <a href=""><div class="btn modal-sign-up-btn">Submit</div></a>
+              <a href=""><div class="btn modal-facebook-btn">facebook</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <ng-view>
     </ng-view>
 
-    <div class="modal-wrapper" id="log-in-modal">
-      <div class="modal-box">
-        <div class="modal-welcome">
-          Welcome to The Scenery
-        </div>
-        <div class="modal-user-input-wrapper">
-          <div class="modal-label-wrapper">
-            <label>Email: </label>
-            <label>Password: </label>
-          </div>
-          <div class="modal-input-wrapper">
-            <input class="modal-input" id="user-email">
-            <input class="modal-input" id="user-password">
-          </div>
-          <div class="modal-button-holder">
-            <a href=""><div class="btn modal-login-btn">Log In</div></a>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="modal-wrapper" id="sign-up-modal">
-      <div class="modal-box">
-        <div class="modal-welcome">
-          Welcome to The Scenery
-        </div>
-        <div class="modal-user-input-wrapper">
-          <div class="modal-label-wrapper">
-            <label>Email: </label>
-            <label>Password: </label>
-            <label>Comfirm Password: </label>
-            <label>Display Name: </label>
-          </div>
-          <div class="modal-input-wrapper">
-            <input class="modal-input" id="user-email">
-            <input class="modal-input" id="user-password">
-            <input class="modal-input" id="confirm-user-password">
-            <input class="modal-input" id="user-display-name">
-          </div>
-          <div class="modal-radio-container">
-            <p>Are you involved in live performance?</p>
-            <div class="switch">
-              <form class="modal-radio">
-                <input type="radio" value="yes"> Yes
-                <input type="radio" value="no"> No
-              </form>
-            </div>
-          </div>
-          <div class="modal-button-holder">
-            <a href=""><div class="btn modal-sign-up-btn">Submit</div></a>
-            <a href=""><div class="btn modal-facebook-btn">facebook</div></a>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </body>
 

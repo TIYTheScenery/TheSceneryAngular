@@ -1,4 +1,4 @@
-var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute']);
+
 
 TheSceneryapp.controller('perfAVEDcont', function($scope){
   console.log("this works!");

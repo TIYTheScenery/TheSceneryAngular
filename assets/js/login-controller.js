@@ -4,11 +4,20 @@ var dynamicJSON = function(params) {
     jsonString += '"' + params[1] + '": "' + JSON.parse(localStorage.getItem('user')).user_info.login_token + '"}';
     return jsonString;
   }
-  $("div[name=" + params[1] + "]").children('input').each( function(){
-    jsonString += '"' + this.name + '": "' + this.value + '",'
+  $("div[name=" + params[1] + "]").find('input').each( function(){
+    if(this.name != '' && this.value != ''){
+      if(this.type == "radio"){
+        if(this.checked){
+          jsonString += '"' + this.name + '": "' + this.value + '",';
+        }
+      } else {
+        jsonString += '"' + this.name + '": "' + this.value + '",';
+      }
+    }
   });
-  return jsonString.slice(0, -1) + "}";
+  return jsonString.slice(0, -1) + '}';
 }
+
 
 TheSceneryapp.controller('login-cont', function($scope, $http){
   console.log("WAAAGH");
@@ -28,16 +37,6 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
   });
 
   $scope.authenticate = function(){
-    // console.log(email);
-    // console.log(password);
-
-    // var user_info ={
-    //   "user_info": {
-    //     "email": "test@test.com",
-    //     "password": "monkey"
-    //     }
-    //   };
-
 
     //========this is for calling the function. =========
     var settings = {
@@ -69,61 +68,25 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
        $scope.$apply();
        setTimeout(myFunction, 5);
      }//end else
-
-     var performance = '"performance": {"owner_id": "1","company_id": "1","name": "butts big play 2: the buttest","description": "Everyone dies","trailer_link": "www.youtube.com","ticket_link": "www.eventbrite.com"}'
-      //  },
-      //  "user_info": {
-      //    "login_token":  response.user_info.login_token
-      //  }
-    //  );
-
-
-     var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/performances",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-       //  "postman-token": "c0af38ff-9fa4-3d8e-2eac-56f40df3d861"
-      },
-      "processData": false,
-      "data": "{" + performance + "," + dynamicJSON(["user_info", "login_token"]) + "}"
-      //"data": "{\n \"user_info\": {\n \"email\": \"test@test.com\",\n  \"password\": \"monkey\"\n    }\n}"
-      //"{\n \"user_info\": {\n \"login_token\": \""+ response.user_info.login_token +", \"description\": \"Theyre from mars. and the collect garbage.\", \"name\": \"garbagemen from mars\"}\n}"
-       };
-
-       console.log(performance);
-
-     $.ajax(settings).done(function (data) {
-       console.log(data);
-
-
-
-    });//end ajax.
-
-
-   });//end ajax call
+    });//end ajax call
 
 
 
    function myFunction() {
+     thing = JSON.parse(localStorage.getItem('user'));
+     console.log("thing");
+     console.log(thing);
 
-   thing = JSON.parse(localStorage.getItem('user'));
-   console.log("thing");
-   console.log(thing);
+     console.log("not thing");
+     $scope.gUserInfo = JSON.parse(localStorage.getItem('user'));
+     console.log($scope.gUserInfo);
 
-   console.log("not thing");
-   $scope.gUserInfo = JSON.parse(localStorage.getItem('user'));
-   console.log($scope.gUserInfo);
+     console.log("{\n \"user_info\": {\n \"login_token\": \""+ $scope.gUserInfo.user_info.login_token +"}\n}");
 
-   console.log("{\n \"user_info\": {\n \"login_token\": \""+ $scope.gUserInfo.user_info.login_token +"}\n}");
-
-   $('.no-log-header').addClass('hidden');
-   $('.logged-header').addClass('showing');
-   $('#log-in-modal, #sign-up-modal').removeClass('showing');
- }//end myfunction
+     $('.no-log-header').addClass('hidden');
+     $('.logged-header').addClass('showing');
+     $('#log-in-modal, #sign-up-modal').removeClass('showing');
+    }//end myfunction
 
 
 // console.log("we're into things");
@@ -142,19 +105,20 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
   }//end authenticate
 
   $scope.createUser = function(){
-    var email = $('#sign-user-email').val();
+    // var email = $('#sign-user-email').val();
     var password = $('#sign-user-password').val();
     var password2 = $("#confirm-user-password").val();
-    var displayname = $('#user-display-name').val();
-    var professional = $('input:radio:checked[name=blue]').val();
-    if(professional)
-    {
-      professional = true;
-    }
-    else
-    {
-      professional = false;
-    }
+    // var displayname = $('#user-display-name').val();
+    // var professional = $('input:radio:checked[name=is_professional]').val();
+    // if(professional)
+    // {
+    //   professional = true;
+    // }
+    // else
+    // {
+    //   professional = false;
+    // }
+    // console.log(dynamicJSON(["user_info", "user-info-create"]))
 
     if(password === password2)//if the password fields match...
     {
@@ -168,11 +132,11 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
          "cache-control": "no-cache"
        },
        "processData": false,
-      "data": "{\n \"user_info\": {\n   \"email\": \""+email+"\",\n   \"password\": \""+password+"\",\n   \"is_professional\": "+professional+",\n   \"display_name\": \""+displayname+"\"\n }\n}"
+      "data": "{" + dynamicJSON(["user_info", "user-info-create"]) + "}"
         };
 
       $.ajax(settings).done(function (response) {
-       //console.log(response);
+       console.log(response);
       });
 
       $('.no-log-header').addClass('hidden');

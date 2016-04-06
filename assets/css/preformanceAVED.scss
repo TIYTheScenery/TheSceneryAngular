@@ -43,7 +43,7 @@ a{
   text-align:center;
   margin-left: 30%;
 }
-.preformanceInfoContainer{
+.performanceInfoContainer{
   // display: inline-block;
   // margin-top: 15px;
   // margin-left: 10%;
@@ -55,19 +55,29 @@ a{
   padding: 10px;
 }
 
-.preformanceDescription{
+.performanceDescription{
   padding: 10px 60px;
+}
+
+.edit-performanceDescription{
+  display: block;
+  width: 90%;
+  max-width: 90%;
+  font-size: 14px;
+  height: 150px;
+  max-height: 150px;
+  margin: auto;
 }
 .rightCol{
   display: inline-block;
   margin: 15px;
-  margin-right: 20%;
+  margin-right: 10%;
   float: right;
 }
 .leftCol{
   display: inline-block;
   margin: 15px;
-  margin-left: 20%;
+  margin-left: 10%;
   // float: left;
 }
 
@@ -77,8 +87,15 @@ a{
   font-size: 18px;
   margin: 25px 0 15px 0;
 }
+.AVED-tags{
+  padding-left: 0;
+}
 
-
+.edit-AVED-genre{
+  border: 1px solid #999;
+  width: 125px;
+  height: 20px;
+}
 
 .AVED-trailer-link,
 .AVED-prod-images,
@@ -104,10 +121,45 @@ a{
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
 }
 
+.AVED-trailer-link{
+  width: 100px;
+}
+
+.AVED-prod-images{
+  width: 170px;
+}
+
+.AVED-upload-img{
+  display: inline-block;
+  text-align: center;
+  width: 75px;
+  padding: 13px 0;
+  background: #333;
+  color: white;
+  margin-right: 5px;
+}
+
+.edit-AVED-trailer-link-input{
+  font-size: 14px;
+  width: 250px;
+}
+
+.edit-AVED-tags-input{
+  font-size: 14px;
+  width: 250px;
+}
+
 .AVED-ticket-btn{
   width: 20%;
   text-align: center;
   margin: 25px auto;
+}
+
+.AVED-ticket-link{
+  display: block;
+  font-size: 14px;
+  width: 350px;
+  margin: auto;
 }
 
 .AVED-label{

@@ -53,9 +53,9 @@
               <label>Email: </label>
               <label>Password: </label>
             </div>
-            <div class="modal-input-wrapper">
-              <input class="modal-input" id="user-email">
-              <input class="modal-input" id="user-password">
+            <div class="modal-input-wrapper" name="user-info-login">
+              <input class="modal-input" id="user-email" name="email">
+              <input class="modal-input" id="user-password" name="password">
             </div>
             <div class="modal-button-holder">
               <a href=""><div class="btn modal-login-btn" ng-click="authenticate()">Log In</div></a>
@@ -69,7 +69,7 @@
           <div class="modal-welcome">
             Welcome to The Scenery
           </div>
-          <div class="modal-user-input-wrapper">
+          <div class="modal-user-input-wrapper" name="user-info-create">
             <div class="modal-label-wrapper">
               <label>Email: </label>
               <label>Password: </label>
@@ -77,20 +77,20 @@
               <label>Display Name: </label>
             </div>
             <div class="modal-input-wrapper">
-              <input class="modal-input" id="sign-user-email">
-              <input class="modal-input" id="sign-user-password">
+              <input class="modal-input" name="email" id="sign-user-email">
+              <input class="modal-input" name="password" id="sign-user-password">
               <input class="modal-input" id="confirm-user-password">
-              <input class="modal-input" id="user-display-name">
+              <input class="modal-input" name="display_name" id="user-display-name">
             </div>
             <div class="modal-radio-container">
               <p>Are you involved in live performance?</p>
               <div class="switch">
                 <form class="modal-radio">
-                  <input type="radio"  name = "blue" value="true" id = "radioyes"> Yes
-                  <input type="radio"  name = "blue" checked = "checked" value="false" id = "radiono"> No
+                  <input type="radio"  name="is_professional" value="true" id = "radioyes"> Yes
+                  <input type="radio"  name="is_professional" checked = "checked" value="false" id = "radiono"> No
                 </form>
               </div>
-            </div>
+              </div>
             <div class="modal-button-holder">
               <a href=""><div class="btn modal-sign-up-btn" ng-click="createUser()">Submit</div></a>
               <a href=""><div class="btn modal-facebook-btn">facebook</div></a>

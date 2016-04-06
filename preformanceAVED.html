@@ -6,6 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
   <link href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css' rel='stylesheet'>
+  <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/perfAVEDcontroller.js"></script>
   <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
@@ -63,7 +64,7 @@
     Jean Valjean, after spending nineteen years in jail and in the galleys for stealing a loaf of bread and for several attempts to escape, is finally released, but his past keeps haunting him. At Digne, he is repeatedly refused shelter for the night. Only the saintly bishop, Monseigneur Myriel, welcomes him. Valjean repays his host's hospitality by stealing his silverware. When the police bring him back, the bishop protects his errant guest by pretending that the silverware is a gift. With a pious lie, he convinces them that the convict has promised to reform. After one more theft, Jean Valjean does indeed repent. Under the name of M. Madeleine he starts a factory and brings prosperity to the town of Montreuil.
   </div>
 
-  <textarea class="edit-performanceDescription" ng-hide="tAdd"></textarea>
+  <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
 
   <div class="leftCol">
     <div class="AVED-genre" ng-hide="tView">
@@ -209,6 +210,11 @@
       <div class="new-showtime-clone-wrapper">
       </div>
     </div>
+    <a href="">
+      <div class="btn AVED-submit-button" ng-click="addperformance()">
+        Submit
+      </div>
+    </a>
   </div>
 
 </div>

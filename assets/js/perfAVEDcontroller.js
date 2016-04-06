@@ -3,9 +3,9 @@
 TheSceneryapp.controller('perfAVEDcont', function($scope){
   console.log("this works!");
   $scope.message = "you are now working with angular";
-  $scope.tAdd;
-  $scope.tEdit;
-  $scope.tView;
+  $scope.tAdd=true;
+  $scope.tEdit=true;
+  $scope.tView=false;
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();
@@ -42,7 +42,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
 
     var performance = JSON.stringify({
     "performance": {
-      "owner_id": $('.hero-img-creator-dropdown option:selected').text(),
+      "owner_id": JSON.parse(localStorage.getItem('user')).user_info.id,
       "company_id": "1",
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
@@ -59,12 +59,28 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
      }]
     },
     "user_info": {
-      "login_token":  "butts"//response.user_info.login_token
+      "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token      //"butts"      //response.user_info.login_token
     }
 
     });
     console.log(performance);
 
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/performances",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": performance
+       };
+
+      $.ajax(settings).done(function (data) {
+       console.log(data);
+      });//end ajax.
 
   }//End addperformance
 

@@ -1,3 +1,4 @@
+
 var dynamicJSON = function(params) {
   jsonString = '"' + params[0] + '":{';
   if(params[1] == "login_token"){
@@ -20,6 +21,8 @@ var dynamicJSON = function(params) {
 
 
 TheSceneryapp.controller('login-cont', function($scope, $http){
+  
+
   console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;

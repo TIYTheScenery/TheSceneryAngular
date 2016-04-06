@@ -1,6 +1,7 @@
 <div ng-controller="perfAVEDcont">
+  <div ng-controller="login-cont">
   <div class="killme" ng-hide="false">
-      {{message}}<br>
+      <!-- {{message}}<br> -->
 
     <div class="btn" ng-click="toggle('ADD')">Add</div>
     <div class="btn" ng-click="toggle('VIEW')">View</div>
@@ -17,12 +18,12 @@
     <div class="edit" ng-hide="tEdit">
       this is visible only when the user is editing an already created performance listing.
     </div>
-  </div><!--end kill me-->
+  </div>
 
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> PERFORMANCENAME
+      COMPANYNAME presents <br> PERFORMANCENAME{{message2}}
     </div>
     <a href="">
       <div class="new-hero-image" ng-hide="tAdd">
@@ -36,7 +37,7 @@
         <option>Professional ID</option>
       </select>
       <span> presents </span><br>
-      <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name">
+      <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
     </div>
   </div>
 
@@ -69,7 +70,7 @@
       </a>
       <div class="edit-AVED-trailer-link" ng-hide="tAdd">
         Trailer Link:
-        <input class="edit-AVED-trailer-link-input" id="trailer-link">
+        <input class="edit-AVED-trailer-link-input" id="trailer-link" name="trailer_link">
       </div>
     </div>
 
@@ -108,7 +109,7 @@
           Buy Tickets!!
         </div>
       </a>
-      <input class="AVED-ticket-link" id="ticket-link" placeholder="Place Ticket Link Here" ng-hide="tAdd">
+      <input class="AVED-ticket-link" id="ticket-link" name="ticket_link" placeholder="Place Ticket Link Here" ng-hide="tAdd">
     </div>
 
     <div class="evt-times" ng-hide="tView">
@@ -202,5 +203,6 @@
       </a>
     </div>
 
+  </div>
   </div>
 </div>

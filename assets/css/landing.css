@@ -41,7 +41,8 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  left: 0; }
+  left: 0;
+  background: #ddd; }
 
 .column-4 {
   width: 25%;

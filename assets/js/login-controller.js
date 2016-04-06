@@ -21,7 +21,7 @@ var dynamicJSON = function(params) {
 
 
 TheSceneryapp.controller('login-cont', function($scope, $http){
-  
+
 
   console.log("WAAAGH");
   $scope.message2="bestmattever";
@@ -68,7 +68,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      }
      else
      {
-       $scope.$apply();
+
        setTimeout(myFunction, 5);
      }//end else
     });//end ajax call
@@ -89,6 +89,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      $('.no-log-header').addClass('hidden');
      $('.logged-header').addClass('showing');
      $('#log-in-modal, #sign-up-modal').removeClass('showing');
+     $scope.$apply();
     }//end myfunction
 
 

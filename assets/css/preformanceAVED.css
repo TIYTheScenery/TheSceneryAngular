@@ -36,6 +36,9 @@ a {
   background: #aaa;
   padding: 10px; }
 
+.preformanceDescription {
+  padding: 10px 60px; }
+
 .rightCol {
   display: inline-block;
   margin: 15px;

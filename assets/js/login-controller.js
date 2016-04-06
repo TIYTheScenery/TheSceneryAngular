@@ -59,29 +59,30 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      }
      else
      {
+       $scope.$apply();
        setTimeout(myFunction, 5);
      }//end else
 
-     var performance = {
- "performance": {
-   "owner_id": "1",
-   "company_id": "1",
-   "name": "Macbeth",
-   "description": "Everyone dies",
-   "trailer_link": "www.youtube.com",
-   "ticket_link": "www.eventbrite.com"
- },
- "user_info": {
-   "login_token": '\"response.user_info.login_token\"'
- }
+     var performance = JSON.stringify({
+     "performance": {
+       "owner_id": "1",
+       "company_id": "1",
+       "name": "butts big play: the buttest",
+       "description": "Everyone dies",
+       "trailer_link": "www.youtube.com",
+       "ticket_link": "www.eventbrite.com"
+     },
+     "user_info": {
+       "login_token":  "butts"//response.user_info.login_token
+     }
 
-}
+   });
 
 
      var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/performances/create",
+      "url": "http://infinite-reef-76606.herokuapp.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -93,6 +94,8 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
       //"data": "{\n \"user_info\": {\n \"email\": \"test@test.com\",\n  \"password\": \"monkey\"\n    }\n}"
       //"{\n \"user_info\": {\n \"login_token\": \""+ response.user_info.login_token +", \"description\": \"Theyre from mars. and the collect garbage.\", \"name\": \"garbagemen from mars\"}\n}"
        };
+
+       console.log(performance);
 
      $.ajax(settings).done(function (data) {
        console.log(data);

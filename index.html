@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 
-  <body ng-app="TheSceneryapp">
+  <body ng-app="TheSceneryapp" ng-cloak>
 
     <div ng-controller="login-cont">
       <header class="header no-log-header">
@@ -25,7 +25,7 @@
       <header class="header logged-header">
         <div class="header-user-portrait"></div>
         <div class="header-user-wrapper">
-          <div class="header-user-greeting" ng-model="gUserInfo">Hi {{gUserInfo.user_info.display_name}}</div>
+          <div class="header-user-greeting" ng-cloak>Hi {{gUserInfo.user_info.display_name}}</div>
           <a href=""><div class="header-user-profile">My Profile</div></a>
         </div>
         <a href=""><div class="btn logout-btn">Log Out</div></a>

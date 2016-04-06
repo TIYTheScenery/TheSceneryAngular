@@ -7,10 +7,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
   <link href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
   <script src="assets/js/app.js"></script>
+
+  <script src="assets/js/pickadate.js-3.5.6/lib/picker.js"></script>
+  <script src="assets/js/pickadate.js-3.5.6/lib/legacy.js"></script>
+  <script src="assets/js/pickadate.js-3.5.6/lib/picker.date.js"></script>
+  <script src="assets/js/pickadate.js-3.5.6/lib/picker.time.js"></script>
+  <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.css" rel="stylesheet">
+  <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.date.css" rel="stylesheet">
+  <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.time.css" rel="stylesheet">
+
   <script src="assets/js/perfAVEDcontroller.js"></script>
   <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 </head>
 
 <body ng-controller="perfAVEDcont">
@@ -189,9 +200,9 @@
     <div class="new-showtime-wrapper">
       <div class="new-showtime-info-wrapper">
         <div class="date-time-location-wrapper">
-          <input class="new-showtime-date-input" id="showtime-date" placeholder="Show Date">
-          <input class="new-showtime-time-input" id="showtime-time" placeholder="Show Time">
-          <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex: 123 Example Rd">
+          <input class="new-showtime-date-input" id="showtime-date" placeholder="Date">
+          <input class="new-showtime-time-input" id="showtime-time" placeholder="Time">
+          <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
           <input class="new-showtime-city-state-input" id="showtime-city-state" placeholder="City, State">
           <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
         </div>

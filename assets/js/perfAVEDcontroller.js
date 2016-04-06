@@ -7,6 +7,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
   $scope.tEdit;
   $scope.tView;
 
+  $('#showtime-date').pickadate();
+  $('#showtime-time').pickatime();
+
 
   $scope.toggle = function(turnOn){
     console.log('were in the toggle function');
@@ -32,8 +35,10 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
 
   $scope.addperformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
-    // console.log($('#ticket-link').val())
-
+    // console.log($('#showtime-city-state').val())
+    var temp = $('#showtime-city-state').val().split(', ');
+    var city = temp[0];
+    var state = temp[1];
 
     var performance = JSON.stringify({
     "performance": {
@@ -42,7 +47,16 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
-      "ticket_link": $('#ticket-link').val()
+      "ticket_link": $('#ticket-link').val(),
+      "show_times_attributes": [
+     {
+       "begin_time": $('#showtime-time').val(),
+       "address": $('#showtime-address').val(),
+       "city": city,
+       "state": state,
+       "zip_code": $('#showtime-zip').val(),
+       "date": $('#showtime-date').val()
+     }]
     },
     "user_info": {
       "login_token":  "butts"//response.user_info.login_token

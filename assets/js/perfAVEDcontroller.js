@@ -1,11 +1,13 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope){
+
   console.log("this works!");
   $scope.message = "you are now working with angular";
   $scope.tAdd=true;
   $scope.tEdit=true;
   $scope.tView=false;
+
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();
@@ -33,6 +35,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
     }
   }//end scope.toggle
 
+var person = JSON.parse(localStorage.getItem('user'));
+//localStorage.setItem("user", JSON.stringify(person));
+
+console.log(person);
+
   $scope.addperformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
     // console.log($('#showtime-city-state').val())
@@ -40,9 +47,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
     var city = temp[0];
     var state = temp[1];
 
+    var token = person.user_info.login_token;
+    var ownerID = person.user_info.id;
+
     var performance = JSON.stringify({
     "performance": {
-      "owner_id": "1", //JSON.parse(localStorage.getItem('user')).user_info.id,
+      "owner_id": ownerID,
       "company_id": "1",
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
@@ -57,14 +67,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
        "zip_code": $('#showtime-zip').val(),
        "date": $('#showtime-date').val()
      }],
-     "genre_perfromances_attributes":[
+     "genre_performances_attributes":[
        {
          "genre_id": $(".edit-AVED-genre").val()
        }
      ]
     },
     "user_info": {
-      "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token      //"butts"      //response.user_info.login_token
+      "login_token": token  //"butts"      //response.user_info.login_token
     }
 
     });

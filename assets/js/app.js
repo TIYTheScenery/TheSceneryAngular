@@ -8,6 +8,9 @@ var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute']);
         .when('/performance', {
             templateUrl : 'partials/performanceAVED.html'
         })
+        .when('/userprofile', {
+            templateUrl : 'partials/userprofile.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

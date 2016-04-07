@@ -53,8 +53,12 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
        "cache-control": "no-cache"
      },
      "processData": false,
-     "data": "{" + dynamicJSON(["user_info", "user-info-login"]) + "}"
+     "data": "{" + dynamicJSON(["user_info", "login_token"]) + "}"
     };
+
+    $.ajax(settings).done(function (response) {
+     console.log(response);
+    });
 
     $scope.gUserInfo = "";
     $scope.userinfo = "";

@@ -144,7 +144,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     // {
     //   professional = false;
     // }
-    console.log(dynamicJSON(["user_info", "user-info-create"]))
+    // console.log(dynamicJSON(["user_info", "user-info-create"]))
 
     if(password === password2)//if the password fields match...
     {
@@ -172,7 +172,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     }
     else//if they dont
     {
-      alert("yo, your passwords dont match. they need to match. you drunk bruh?");
+      alert("Your passwords do not match, please try again.");
     }
 
 

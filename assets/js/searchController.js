@@ -24,7 +24,11 @@ $scope.searchDB = function()
 
   $.ajax(settings).done(function (response) {
    console.log(response);
-   //$scope.userinfo = response;
+   console.log(response.performances);
+   $('li').remove();
+   for (var i=0; i<response.performances.length; i++){
+     $('.performance-show-container').append("<li><a href=''><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+   }
   });//end ajax call
 
   $('.landing-header-text').css({"margin-top": "10px", "margin-bottom": "25px", "transition-duration": "1s"});
@@ -35,6 +39,8 @@ $scope.searchDB = function()
   // $('.performance-show-wrapper').removeClass('hidden');
   $('.performance-show-wrapper').fadeIn(1000);
   $('.landing-wrapper').css({"padding-bottom": "0px"});
+  $('.landing-search').val("");
+  $('.genre-search').prop('selectedIndex',0);
 
 }//end searchDB
 

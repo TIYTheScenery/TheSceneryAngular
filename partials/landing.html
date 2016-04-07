@@ -1,0 +1,45 @@
+<section class="landing-wrapper">
+  <header class="landing-header">
+    <img src="">
+    <h1>The Scenery</h1>
+    <h5>Mettle. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man. Reptil. Avengers Assemble. This is where youll find all the big-time action, major storylines and iconic Spider-Man magic youd come to expect from the Wall-Crawler.</h5>
+  </header>
+
+  <div class="landing-input-wrapper" ng-controller="searchController">
+    {{messsage3}}
+    <input class="landing-search name-search" id="searchName" placeholder="Performance Name">
+    <input class="landing-search location-search" id="searchLocation" placeholder="City, State">
+    <select class="genre-search" id="searchGenre">
+      <option selected disabled>Genre</option>
+      <option value="1">Theare</option>
+      <option value ="2">Improv</option>
+      <option value ="3">Dance</option>
+      <option value ="4">Film</option>
+    </select>
+    <a href=""><div class="landing-search-btn" id="landingSearchBtn" ng-click="searchDB()">Search</div></a>
+  </div>
+
+  <footer class="landing-footer">
+    <div class="column-4">
+      <a href=""><div class="footer-box">
+        This is a box
+      </div></a>
+    </div>
+    <div class="column-4">
+      <a href=""><div class="footer-box">
+        This is a box
+      </div></a>
+    </div>
+    <div class="column-4">
+      <a href=""><div class="footer-box">
+        This is a box
+      </div></a>
+    </div>
+    <div class="column-4">
+      <a href=""><div class="footer-box">
+        This is a box
+      </div></a>
+    </div>
+  </footer>
+
+</section>

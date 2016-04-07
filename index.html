@@ -3,16 +3,111 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
     <script src='assets/js/app.js'></script>
+    <script src='assets/js/login-controller.js'></script>
     <script src='assets/js/scripts.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css' rel='stylesheet'>
+    <link href='assets/css/landing.css' rel='stylesheet'>
     <link href='assets/css/styles.css' rel='stylesheet'>
+    <link href='assets/css/login.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="assets/js/pickadate.js-3.5.6/lib/picker.js"></script>
+    <script src="assets/js/pickadate.js-3.5.6/lib/legacy.js"></script>
+    <script src="assets/js/pickadate.js-3.5.6/lib/picker.date.js"></script>
+    <script src="assets/js/pickadate.js-3.5.6/lib/picker.time.js"></script>
+    <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.css" rel="stylesheet">
+    <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.date.css" rel="stylesheet">
+    <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.time.css" rel="stylesheet">
+
+    <script src="assets/js/perfAVEDcontroller.js"></script>
+    <script src="assets/js/searchController.js"></script>
+    <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
   </head>
 
-  <body ng-app="">
+  <body ng-app="TheSceneryapp" ng-cloak>
+
+    <div ng-controller="login-cont">
+      <header class="header no-log-header">
+        <!-- {{message2}} -->
+        <a href ="#/performance"><div class="scenery-logo"></div></a>
+        <a href=""><div class="btn login-btn">Log In</div></a>
+        <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
+      </header>
+      <header class="header logged-header">
+
+        <a href ="#/performance"><div class="header-user-portrait"></div></a>
+
+        <div class="header-user-wrapper">
+          <div class="header-user-greeting" ng-cloak>Hi {{gUserInfo.user_info.display_name}}</div>
+          <a href=""><div class="header-user-profile">My Profile</div></a>
+        </div>
+        <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
+      </header>
+
+      <div class="modal-wrapper" id="log-in-modal">
+        <div class="modal-box">
+          <div class="modal-welcome">
+            Welcome to The Scenery
+          </div>
+          <div class="modal-user-input-wrapper">
+            <div class="modal-label-wrapper">
+              <label>Email: </label>
+              <label>Password: </label>
+            </div>
+            <div class="modal-input-wrapper" name="user-info-login">
+              <input class="modal-input" type="email" id="user-email" name="email">
+              <input class="modal-input" type="password" id="user-password" name="password">
+            </div>
+            <div class="modal-button-holder">
+              <a href=""><div class="btn modal-login-btn" ng-click="authenticate()">Log In</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-wrapper" id="sign-up-modal">
+        <div class="modal-box">
+          <div class="modal-welcome">
+            Welcome to The Scenery
+          </div>
+          <div class="modal-user-input-wrapper" name="user-info-create">
+            <div class="modal-label-wrapper">
+              <label>Email: </label>
+              <label>Password: </label>
+              <label>Comfirm Password: </label>
+              <label>Display Name: </label>
+            </div>
+            <div class="modal-input-wrapper">
+              <input class="modal-input" type="email" name="email" id="sign-user-email">
+              <input class="modal-input" type="password" name="password" id="sign-user-password">
+              <input class="modal-input" type="password" id="confirm-user-password">
+              <input class="modal-input" name="display_name" id="user-display-name">
+            </div>
+            <div class="modal-radio-container">
+              <p>Are you involved in live performance?</p>
+              <div class="switch">
+                <form class="modal-radio">
+                  <input type="radio"  name="is_professional" value="true" id = "radioyes"> Yes
+                  <input type="radio"  name="is_professional" checked = "checked" value="false" id = "radiono"> No
+                </form>
+              </div>
+              </div>
+            <div class="modal-button-holder">
+              <a href=""><div class="btn modal-sign-up-btn" ng-click="createUser()">Submit</div></a>
+              <a href=""><div class="btn modal-facebook-btn">facebook</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <ng-view>
     </ng-view>
 
+
+
   </body>
+
+</html>

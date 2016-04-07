@@ -29,7 +29,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
   $scope.gUserInfo;
   var thing;
 
-  localStorage.setItem('user', "{}");
+  //localStorage.setItem('user', "{}");
 
   $('.login-btn').on('click', function () {
     $('#log-in-modal').addClass('showing');

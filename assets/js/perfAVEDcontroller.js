@@ -42,7 +42,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
 
     var performance = JSON.stringify({
     "performance": {
-      "owner_id": JSON.parse(localStorage.getItem('user')).user_info.id,
+      "owner_id": "1", //JSON.parse(localStorage.getItem('user')).user_info.id,
       "company_id": "1",
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),

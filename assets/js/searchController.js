@@ -23,11 +23,11 @@ $scope.searchDB = function()
     };
 
   $.ajax(settings).done(function (response) {
-   console.log(response);
-   console.log(response.performances);
+  //  console.log(response);
+  //  console.log(response.performances);
    $('li').remove();
    for (var i=0; i<response.performances.length; i++){
-     $('.performance-show-container').append("<li><a href=''><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+     $('.performance-show-container').append("<li><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
    }
   });//end ajax call
 

@@ -141,11 +141,20 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
 
       $.ajax(settings).done(function (response) {
        console.log(response);
-      });
 
-      $('.no-log-header').addClass('hidden');
-      $('.logged-header').addClass('showing');
-      $('#log-in-modal, #sign-up-modal').removeClass('showing');
+       $scope.userinfo=response;
+
+       if($scope.userinfo.success === false)
+       {
+         alert(response.errors);
+       }
+       else{
+
+       $('.no-log-header').addClass('hidden');
+       $('.logged-header').addClass('showing');
+       $('#log-in-modal, #sign-up-modal').removeClass('showing');
+       }
+      });
 
     }
     else//if they dont

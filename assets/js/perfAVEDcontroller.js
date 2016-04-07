@@ -56,7 +56,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
        "state": state,
        "zip_code": $('#showtime-zip').val(),
        "date": $('#showtime-date').val()
-     }]
+     }],
+     "genre_perfromances_attributes":[
+       {
+         "genre_id": $(".edit-AVED-genre").val()
+       }
+     ]
     },
     "user_info": {
       "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token      //"butts"      //response.user_info.login_token

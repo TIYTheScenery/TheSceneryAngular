@@ -34,6 +34,7 @@ $scope.searchDB = function()
   $('.landing-footer').fadeOut(1000);
   // $('.performance-show-wrapper').removeClass('hidden');
   $('.performance-show-wrapper').fadeIn(1000);
+  $('.landing-wrapper').css({"padding-bottom": "0px"});
 
 }//end searchDB
 

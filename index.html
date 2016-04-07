@@ -43,7 +43,7 @@
           <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
           <a href=""><div class="header-user-profile">My Profile</div></a>
         </div>
-        <a href=""><div class="btn logout-btn">Log Out</div></a>
+        <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
       </header>
 
       <div class="modal-wrapper" id="log-in-modal">
@@ -57,8 +57,8 @@
               <label>Password: </label>
             </div>
             <div class="modal-input-wrapper" name="user-info-login">
-              <input class="modal-input" id="user-email" name="email">
-              <input class="modal-input" id="user-password" name="password">
+              <input class="modal-input" type="email" id="user-email" name="email">
+              <input class="modal-input" type="password" id="user-password" name="password">
             </div>
             <div class="modal-button-holder">
               <a href=""><div class="btn modal-login-btn" ng-click="authenticate()">Log In</div></a>
@@ -80,9 +80,9 @@
               <label>Display Name: </label>
             </div>
             <div class="modal-input-wrapper">
-              <input class="modal-input" name="email" id="sign-user-email">
-              <input class="modal-input" name="password" id="sign-user-password">
-              <input class="modal-input" id="confirm-user-password">
+              <input class="modal-input" type="email" name="email" id="sign-user-email">
+              <input class="modal-input" type="password" name="password" id="sign-user-password">
+              <input class="modal-input" type="password" id="confirm-user-password">
               <input class="modal-input" name="display_name" id="user-display-name">
             </div>
             <div class="modal-radio-container">

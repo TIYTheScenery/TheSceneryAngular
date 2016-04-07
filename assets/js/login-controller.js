@@ -5,7 +5,7 @@ var dynamicJSON = function(params) {
     jsonString += '"' + params[1] + '": "' + JSON.parse(localStorage.getItem('user')).user_info.login_token + '"}';
     return jsonString;
   }
-  $("div[name=" + params[1] + "]").find('input').each( function(){
+  $("div[name=" + params[1] + "] :input").each( function(){
     if(this.name != '' && this.value != ''){
       if(this.type == "radio"){
         if(this.checked){
@@ -39,6 +39,32 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     $('#sign-up-modal').addClass('showing');
   });
 
+  $scope.logout = function(){
+    $('.no-log-header').removeClass('hidden');
+    $('.logged-header').removeClass('showing');
+
+    var settings = {
+     "async": true,
+     "crossDomain": true,
+     "url": "http://infinite-reef-76606.herokuapp.com/logout",
+     "method": "POST",
+     "headers": {
+       "content-type": "application/json",
+       "cache-control": "no-cache"
+     },
+     "processData": false,
+     "data": "{" + dynamicJSON(["user_info", "login_token"]) + "}"
+    };
+
+    $.ajax(settings).done(function (response) {
+     console.log(response);
+    });
+
+    $scope.gUserInfo = "";
+    $scope.userinfo = "";
+    localStorage.removeItem('user');
+  }//end logout
+
   $scope.authenticate = function(){
 
     //========this is for calling the function. =========
@@ -53,7 +79,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      },
      "processData": false,
      "data": "{" + dynamicJSON(["user_info", "user-info-login"]) + "}"
-      };
+    };
 
     $.ajax(settings).done(function (response) {
      //console.log(response);
@@ -150,7 +176,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     }
     else//if they dont
     {
-      alert("yo, your passwords dont match. they need to match. you drunk bruh?");
+      alert("Your passwords do not match, please try again.");
     }
 
 

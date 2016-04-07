@@ -4,7 +4,7 @@ var dynamicJSON = function(params) {
     jsonString += '"' + params[1] + '": "' + JSON.parse(localStorage.getItem('user')).user_info.login_token + '"}';
     return jsonString;
   }
-  $("div[name=" + params[1] + "]").find('input').each( function(){
+  $("div[name=" + params[1] + "] :input").each( function(){
     if(this.name != '' && this.value != ''){
       if(this.type == "radio"){
         if(this.checked){
@@ -118,36 +118,36 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     // {
     //   professional = false;
     // }
-    // console.log(dynamicJSON(["user_info", "user-info-create"]))
+    console.log(dynamicJSON(["user_info", "user-info-create"]))
 
-    if(password === password2)//if the password fields match...
-    {
-      var settings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "http://infinite-reef-76606.herokuapp.com/users",
-       "method": "POST",
-       "headers": {
-         "content-type": "application/json",
-         "cache-control": "no-cache"
-       },
-       "processData": false,
-      "data": "{" + dynamicJSON(["user_info", "user-info-create"]) + "}"
-        };
-
-      $.ajax(settings).done(function (response) {
-       console.log(response);
-      });
-
-      $('.no-log-header').addClass('hidden');
-      $('.logged-header').addClass('showing');
-      $('#log-in-modal, #sign-up-modal').removeClass('showing');
-
-    }
-    else//if they dont
-    {
-      alert("yo, your passwords dont match. they need to match. you drunk bruh?");
-    }
+    // if(password === password2)//if the password fields match...
+    // {
+    //   var settings = {
+    //    "async": true,
+    //    "crossDomain": true,
+    //    "url": "http://infinite-reef-76606.herokuapp.com/users",
+    //    "method": "POST",
+    //    "headers": {
+    //      "content-type": "application/json",
+    //      "cache-control": "no-cache"
+    //    },
+    //    "processData": false,
+    //   "data": "{" + dynamicJSON(["user_info", "user-info-create"]) + "}"
+    //     };
+    //
+    //   $.ajax(settings).done(function (response) {
+    //    console.log(response);
+    //   });
+    //
+    //   $('.no-log-header').addClass('hidden');
+    //   $('.logged-header').addClass('showing');
+    //   $('#log-in-modal, #sign-up-modal').removeClass('showing');
+    //
+    // }
+    // else//if they dont
+    // {
+    //   alert("yo, your passwords dont match. they need to match. you drunk bruh?");
+    // }
 
 
   }//end createauthenticate

@@ -59,8 +59,11 @@
       <div class="AVED-genre" ng-hide="tAdd">
         Genre:
         <select class="edit-AVED-genre" ng-hide="tAdd">
-          <option selected disabled>Pick A Genre</option>
-          <option>pull here</option>
+          <option selected disabled>Genre</option>
+          <option value="1">Theare</option>
+          <option value ="2">Improv</option>
+          <option value ="3">Dance</option>
+          <option value ="4">Film</option>
         </select>
       </div>
       <a href="">
@@ -168,11 +171,12 @@
         </label>
         <a href="">
           <span class="create-new-showtime">
-            New Show Time <i class="fa fa-plus-circle"></i>
+            New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow()"></i></a>
           </span>
         </a>
       </div>
       <div class="new-showtime-wrapper">
+        <!--THIS STARTS THE SHOWTIME-->
         <div class="new-showtime-info-wrapper">
           <div class="date-time-location-wrapper">
             <input class="new-showtime-date-input" id="showtime-date" placeholder="Date">
@@ -184,18 +188,49 @@
           <div>
             Cast:
           </div>
-          <div class="new-cast-member-wrapper">
-            <input class="new-cast-member-name" placeholder="Performer Name">
-            <span> As </span>
-            <input class="new-cast-member-position" placeholder="Position/Title">
-            <a href="">
-              <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
-            </a>
+          <div class ="all-cast-members">
+            <div class="new-cast-member-wrapper">
+              <input class="new-cast-member-name" placeholder="Performer Name">
+              <span> As </span>
+              <input class="new-cast-member-position" placeholder="Position/Title">
+            </div>
           </div>
+          <!-- <a href=""> -->
+            <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
+          <!-- </a> -->
         </div>
-        <div class="new-showtime-clone-wrapper">
+        <div class="newShowtimes">
+
         </div>
-      </div>
+        <!--THIS ENDS THE SHOWTIME -->
+        <div class="Invisible-Showtime-wrapper" id="1" ng-hide="true">
+          <div class="new-showtime-info-wrapper">
+            <div class="date-time-location-wrapper">
+              <input class="new-showtime-date-input" id="showtime-date" placeholder="Date">
+              <input class="new-showtime-time-input" id="showtime-time" placeholder="Time">
+              <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
+              <input class="new-showtime-city-state-input" id="showtime-city-state" placeholder="City, State">
+              <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
+            </div>
+            <div>
+              Cast:
+            </div>
+            <div class ="all-cast-members">
+              <div class="new-cast-member-wrapper">
+                <input class="new-cast-member-name" placeholder="Performer Name">
+                <span> As </span>
+                <input class="new-cast-member-position" placeholder="Position/Title">
+              </div>
+            </div>
+            <!-- <a href=""> -->
+              <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
+            <!-- </a> -->
+
+          </div>
+        </div><!--end invisible showtime-->
+      </div><!--end all the showtimes-->
+
+
       <a href="">
         <div class="btn AVED-submit-button" ng-click="addperformance()">
           Submit

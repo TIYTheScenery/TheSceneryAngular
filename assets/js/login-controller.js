@@ -159,7 +159,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
     }
     else//if they dont
     {
-      alert("yo, your passwords dont match. they need to match. you drunk bruh?");
+      alert("Your passwords do not match, please try again.");
     }
 
 

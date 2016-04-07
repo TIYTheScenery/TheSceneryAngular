@@ -94,5 +94,70 @@ console.log(person);
 
   }//End addperformance
 
+  $scope.addNewShow = function(){
+    console.log("we're in add showtimes");
+    var theParent = $(".new-showtime-wrapper");
+    var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
+    //var theClone = section.clone(true);
+    // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
+
+    theParent.append(section.wrap('<p/>').parent().html());
+    section.unwrap();
+  //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
+  }//end addnewshow
+
+
+  //ng-click="addCastMember($event)"
+  // $scope.addCastMember = function($event){
+  //
+  //   $(function){
+  //
+  //   console.log("we're in the newcast");
+  //   console.log($event.currentTarget);
+  //
+  //   // var parent = $($event.currentTarget).parent().parent().siblings(".all-cast-members");
+  //   var parent = $($event.currentTarget).closest(".new-showtime-info-wrapper").find(".all-cast-members");
+  //
+  //   var section = $(".Invisible-Showtime-wrapper").find(".new-cast-member-wrapper").last();
+  //   //var clone = section.clone(true);
+  //
+  //   console.log("parent:");
+  //   console.log(parent);
+  //   console.log("section:");
+  //   console.log(section);
+  //   // console.log("clone:");
+  //   // console.log(clone);
+  //
+  //   parent.append(section.wrap('<p/>').parent().html());
+  //   section.unwrap();
+  //
+  // }//end jquery function
+
+    // $(function(){
+    $(".edit-AVED-event-times-wrapper").on("click", ".add-performer", function(){
+
+    console.log("we're in the newcast");
+    console.log(this);
+
+    // var parent = $($event.currentTarget).parent().parent().siblings(".all-cast-members");
+    var parent = $(this).closest(".new-showtime-info-wrapper").find(".all-cast-members");
+
+    var section = $(".Invisible-Showtime-wrapper").find(".new-cast-member-wrapper").last();
+    //var clone = section.clone(true);
+
+    console.log("parent:");
+    console.log(parent);
+    console.log("section:");
+    console.log(section);
+    // console.log("clone:");
+    // console.log(clone);
+
+    parent.append(section.wrap('<p/>').parent().html());
+    section.unwrap();
+
+    });
+
+
+  // });//end jquery function
 
 });

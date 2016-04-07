@@ -43,12 +43,34 @@ console.log(person);
   $scope.addperformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
     // console.log($('#showtime-city-state').val())
-    var temp = $('#showtime-city-state').val().split(', ');
-    var city = temp[0];
-    var state = temp[1];
+
 
     var token = person.user_info.login_token;
     var ownerID = person.user_info.id;
+
+    var allShowsJSON;
+
+
+    var allShows = $(".new-showtime-wrapper").children(".new-showtime-info-wrapper");
+    for(var i; i<allShows.length;i++)
+    {
+      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0};
+
+      showTemplate.begin_time = allShows[i].find("#showtime-time").val();
+      showTemplate.address = allShows[i].find("#showtime-address").val();
+
+      var temp = allShows[i].find('#showtime-city-state').val().split(', ');
+      showTemplate.city = temp[0];
+      showTemplate.state = temp[1];
+
+      showTemplate.zip_code = allShows[i].find('#showtime-zip').val();
+      showTemplate.date = allShows[i].find('#showtime-date').val();
+
+      allShowsJSON.push(showTemplate);
+    }
+
+    console.log("all shows");
+    console.log(allShows);
 
     var performance = JSON.stringify({
     "performance": {
@@ -88,9 +110,9 @@ console.log(person);
       "data": performance
        };
 
-      $.ajax(settings).done(function (data) {
-       console.log(data);
-      });//end ajax.
+      //.$.ajax(settings).done(function (data) {
+       //console.log(data);
+      //});//end ajax.
 
   }//End addperformance
 

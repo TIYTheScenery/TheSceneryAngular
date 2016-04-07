@@ -22,6 +22,7 @@
     <link href ="assets/js/pickadate.js-3.5.6/lib/themes/default.time.css" rel="stylesheet">
 
     <script src="assets/js/perfAVEDcontroller.js"></script>
+    <script src="assets/js/searchController.js"></script>
     <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
   </head>
 
@@ -30,12 +31,14 @@
     <div ng-controller="login-cont">
       <header class="header no-log-header">
         <!-- {{message2}} -->
-        <div class="scenery-logo"></div>
+        <a href ="#/performance"><div class="scenery-logo"></div></a>
         <a href=""><div class="btn login-btn">Log In</div></a>
         <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
       </header>
       <header class="header logged-header">
-        <div class="header-user-portrait"></div>
+
+        <a href ="#/performance"><div class="header-user-portrait"></div></a>
+
         <div class="header-user-wrapper">
           <div class="header-user-greeting" ng-cloak>Hi {{gUserInfo.user_info.display_name}}</div>
           <a href=""><div class="header-user-profile">My Profile</div></a>

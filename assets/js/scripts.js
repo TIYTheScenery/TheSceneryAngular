@@ -22,12 +22,12 @@ $(function () {
 
 
 
-  // $('.modal-wrapper').on('click', function () {
-  //   $('#log-in-modal, #sign-up-modal').removeClass('showing');
-  // });
-  //
-  // $('.modal-box').click(function (e) {
-  //   e.stopPropagation();
-  // });
+  $('.modal-wrapper').on('click', function () {
+    $('#log-in-modal, #sign-up-modal').removeClass('showing');
+  });
+
+  $('.modal-box').click(function (e) {
+    e.stopPropagation();
+  });
 
 });

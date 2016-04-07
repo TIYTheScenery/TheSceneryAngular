@@ -5,17 +5,18 @@
     <h5>Mettle. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man. Reptil. Avengers Assemble. This is where youll find all the big-time action, major storylines and iconic Spider-Man magic youd come to expect from the Wall-Crawler.</h5>
   </header>
 
-  <div class="landing-input-wrapper">
-    <input class="landing-search name-search" placeholder="Performance Name">
-    <input class="landing-search location-search" placeholder="City, State">
-    <select class="genre-search">
+  <div class="landing-input-wrapper" ng-controller="searchController">
+    {{messsage3}}
+    <input class="landing-search name-search" id="searchName" placeholder="Performance Name">
+    <input class="landing-search location-search" id="searchLocation" placeholder="City, State">
+    <select class="genre-search" id="searchGenre">
       <option selected disabled>Genre</option>
-      <option>Vertical</option>
-      <option>Hopscotch</option>
-      <option>Matt's a punk</option>
-      <option>Bring me chocolate</option>
+      <option value="1">Theare</option>
+      <option value ="2">Improv</option>
+      <option value ="3">Dance</option>
+      <option value ="4">Film</option>
     </select>
-    <a href="#/performance"><div class="landing-search-btn">Search</div></a>
+    <a href=""><div class="landing-search-btn" id="landingSearchBtn" ng-click="searchDB()">Search</div></a>
   </div>
 
   <footer class="landing-footer">

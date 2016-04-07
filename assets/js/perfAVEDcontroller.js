@@ -48,29 +48,55 @@ console.log(person);
     var token = person.user_info.login_token;
     var ownerID = person.user_info.id;
 
-    var allShowsJSON;
+    var allShowsJSON=[];
 
 
     var allShows = $(".new-showtime-wrapper").children(".new-showtime-info-wrapper");
-    for(var i; i<allShows.length;i++)
+
+    for(var i=0; i<allShows.length;i++)
     {
       var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0};
 
-      showTemplate.begin_time = allShows[i].find("#showtime-time").val();
-      showTemplate.address = allShows[i].find("#showtime-address").val();
+      showTemplate.begin_time = $(allShows[i]).find("#showtime-time").val();
+      showTemplate.address = $(allShows[i]).find("#showtime-address").val();
 
-      var temp = allShows[i].find('#showtime-city-state').val().split(', ');
+      var temp = $(allShows[i]).find('#showtime-city-state').val().split(', ');
       showTemplate.city = temp[0];
       showTemplate.state = temp[1];
 
-      showTemplate.zip_code = allShows[i].find('#showtime-zip').val();
-      showTemplate.date = allShows[i].find('#showtime-date').val();
+      showTemplate.zip_code = $(allShows[i]).find('#showtime-zip').val();
+      showTemplate.date = $(allShows[i]).find('#showtime-date').val();
 
+      console.log(showTemplate);
       allShowsJSON.push(showTemplate);
     }
 
-    console.log("all shows");
-    console.log(allShows);
+    console.log("all shows JSON");
+    console.log(allShowsJSON);
+
+    // var performance = JSON.stringify({
+    // "performance": {
+    //   "owner_id": ownerID,
+    //   "company_id": "1",
+    //   "name": $('#performance-name').val(),
+    //   "description": $('#perf-desc').val(),
+    //   "trailer_link": $('#trailer-link').val(),
+    //   "ticket_link": $('#ticket-link').val(),
+    //   "show_times_attributes": [
+    //  {
+    //    "begin_time": $('#showtime-time').val(),
+    //    "address": $('#showtime-address').val(),
+    //    "city": city,
+    //    "state": state,
+    //    "zip_code": $('#showtime-zip').val(),
+    //    "date": $('#showtime-date').val()
+    //  }]
+    // },
+    // "user_info": {
+    //   "login_token": token  //"butts"      //response.user_info.login_token
+    // }
+    //
+    // });
 
     var performance = JSON.stringify({
     "performance": {
@@ -80,26 +106,20 @@ console.log(person);
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
       "ticket_link": $('#ticket-link').val(),
-      "show_times_attributes": [
-     {
-       "begin_time": $('#showtime-time').val(),
-       "address": $('#showtime-address').val(),
-       "city": city,
-       "state": state,
-       "zip_code": $('#showtime-zip').val(),
-       "date": $('#showtime-date').val()
-     }],
-     "genre_performances_attributes":[
+      "genre_performances_attributes":[
        {
          "genre_id": $(".edit-AVED-genre").val()
        }
-     ]
+     ],
+      "show_times_attributes": allShowsJSON
     },
     "user_info": {
       "login_token": token  //"butts"      //response.user_info.login_token
     }
 
     });
+
+
     console.log(performance);
 
     var settings = {
@@ -115,9 +135,9 @@ console.log(person);
       "data": performance
        };
 
-      //.$.ajax(settings).done(function (data) {
-       //console.log(data);
-      //});//end ajax.
+      $.ajax(settings).done(function (data) {
+      console.log(data);
+      });//end ajax.
 
   }//End addperformance
 

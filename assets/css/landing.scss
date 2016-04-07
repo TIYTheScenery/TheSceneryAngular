@@ -76,3 +76,35 @@
   padding: 10px;
   border: 1px solid purple;
 }
+
+.performance-show-wrapper{
+  width: 90%;
+  margin: auto;
+  background: #aaa;
+  padding: 5px;
+}
+
+.hidden{
+  display: none;
+}
+
+.performance-box{
+  width: 125px;
+  height: 125px;
+  background: #ccc;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.box{
+  font-size: 14px;
+  text-align: center;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.box-performance-name{
+  margin-top: 31px;
+}

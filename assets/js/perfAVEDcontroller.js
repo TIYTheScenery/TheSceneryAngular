@@ -66,7 +66,12 @@ console.log(person);
        "state": state,
        "zip_code": $('#showtime-zip').val(),
        "date": $('#showtime-date').val()
-     }]
+     }],
+     "genre_performances_attributes":[
+       {
+         "genre_id": $(".edit-AVED-genre").val()
+       }
+     ]
     },
     "user_info": {
       "login_token": token  //"butts"      //response.user_info.login_token

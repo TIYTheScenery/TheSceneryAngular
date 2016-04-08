@@ -1,13 +1,13 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData){
-
   console.log("this works!");
   $scope.message = "you are now working with angular";
   $scope.tAdd=true;
   $scope.tEdit=true;
   $scope.tView=false;
-
+  $scope.thisPerformance = ourData.borrowData("searchResults");
+  console.log($scope.thisPerformance);
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();

@@ -15,7 +15,7 @@
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> PERFORMANCENAME
+      COMPANYNAME presents <br> {{thisPerformance.name}}
     </div>
     <a href="">
       <div class="new-hero-image" ng-hide="borrowData(tAdd)">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="performanceDescription" ng-hide="tView">
-      Jean Valjean, after spending nineteen years in jail and in the galleys for stealing a loaf of bread and for several attempts to escape, is finally released, but his past keeps haunting him. At Digne, he is repeatedly refused shelter for the night. Only the saintly bishop, Monseigneur Myriel, welcomes him. Valjean repays his host's hospitality by stealing his silverware. When the police bring him back, the bishop protects his errant guest by pretending that the silverware is a gift. With a pious lie, he convinces them that the convict has promised to reform. After one more theft, Jean Valjean does indeed repent. Under the name of M. Madeleine he starts a factory and brings prosperity to the town of Montreuil.
+      {{thisPerformance.description}}
     </div>
 
     <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
@@ -58,7 +58,7 @@
           <option value ="4">Film</option>
         </select>
       </div>
-      <a href="">
+      <a href="{{thisPerformance.trailer_link}}">
         <div class="AVED-trailer-link" ng-hide="tView">
           View Trailers
         </div>
@@ -99,7 +99,7 @@
     </div>
 
     <div class="AVED-tickets">
-      <a href="">
+      <a href="{{thisPerformance.ticket_link}}">
         <div class="AVED-ticket-btn" ng-hide="tView">
           Buy Tickets!!
         </div>

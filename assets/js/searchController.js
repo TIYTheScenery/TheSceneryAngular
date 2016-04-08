@@ -46,7 +46,7 @@ $scope.searchDB = function()
    $('li').remove();
    //replace ahref
    for (var i=0; i<response.performances.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
    }
 
    ourData.shareData("searchResults", response.performances);
@@ -62,9 +62,14 @@ $scope.searchDB = function()
   {
     clickedPerformance = $(this).attr("id");
 
-    console.log(ourData.borrowData("searchResults")[clickedPerformance]);
+    // console.log(ourData.borrowData("searchResults")[clickedPerformance]);
 
-    console.log($(this).attr("id"));
+    var clickedthing = ourData.borrowData("searchResults")[clickedPerformance];
+
+    ourData.shareData("searchResults", clickedthing);
+    // console.log(ourData.borrowData("searchResults"));
+
+    // console.log($(this).attr("id"));
   }));
 
   $('.landing-header-text').css({"margin-top": "10px", "margin-bottom": "25px", "transition-duration": "1s"});

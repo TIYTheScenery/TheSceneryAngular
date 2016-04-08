@@ -18,6 +18,17 @@
   margin-top: -20px;
 }
 
+.edit-profile-btn{
+  position: absolute;
+  font-size: 15px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  padding: 7px;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
 .user-header-displayname{
   display: block;
 }
@@ -39,22 +50,22 @@
 }
 
 .user-image-wrapper{
-  width: 40%;
-  max-width: 190px;
-  height: 190px;
+  width: 130px;
+  height: 130px;
   display: inline-block;
   background: #444;
   margin-right: -4px;
 }
 .add-user-image-wrapper{
-  width: 40%;
-  max-width: 190px;
-  height: 110px;
+  width: 130px;
+  height: 130px;
   display: inline-block;
   margin-right: -4px;
   vertical-align: top;
   text-align: center;
-  padding-top:80px;
+  div{
+    margin-top: 50px;
+  }
 }
 
 .user-name-title-wrapper{
@@ -82,6 +93,7 @@
 }
 
 .user-social-links-wrapper{
+  text-align: center;
   width: 60%;
   margin: 20px auto 30px auto;
   font-size: 20px;
@@ -124,6 +136,13 @@
 
 .user-profile-input{
   display: block;
+  width: 90%;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.user-name-title-spacer{
+  padding: 0 0 0 20px;
 }
 
 .edit-social-link{
@@ -149,4 +168,15 @@
   width: 90%;
   margin: auto;
   margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.submit-profile-edits-button{
+  font-size: 15px;
+  background: #888;
+  background-image: linear-gradient(to bottom right, #ccc, #888);
+  padding: 7px 0 7px 30px;
+  border-radius: 3px;
+  width: 60px;
+  margin: 20px auto 0 auto;
 }

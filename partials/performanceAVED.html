@@ -1,32 +1,24 @@
 <div ng-controller="perfAVEDcont">
   <div ng-controller="login-cont">
-  <div class="killme" ng-hide="false">
-      <!-- {{message}}<br> -->
 
-    <div class="btn" ng-click="toggle('ADD')">Add</div>
-    <div class="btn" ng-click="toggle('VIEW')">View</div>
-    <div class="btn" ng-click="toggle('EDIT')">Edit</div>
+    <div class="killme" ng-hide="false">
+        <!-- {{message}}<br> -->
 
-    <div class ="add" ng-hide="tAdd">
-      This is visible only when the user is initially adding a performance.
+    <div ng-hide="isLogged()">
+      <div class="btn" ng-click="toggle('ADD')">Add</div>
+      <!-- <div class="btn" ng-click="toggle('VIEW')">View</div> -->
+      <!-- <div class="btn" ng-click="toggle('EDIT')">Edit</div> -->
     </div>
 
-    <div class ="view" ng-hide="tView">
-      this is visible only when the user is just viewing the performance listing.
     </div>
-
-    <div class="edit" ng-hide="tEdit">
-      this is visible only when the user is editing an already created performance listing.
-    </div>
-  </div>
 
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> PERFORMANCENAME{{message2}}
+      COMPANYNAME presents <br> PERFORMANCENAME
     </div>
     <a href="">
-      <div class="new-hero-image" ng-hide="tAdd">
+      <div class="new-hero-image" ng-hide="borrowData(tAdd)">
         Add New Hero Image
       </div>
     </a>

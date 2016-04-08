@@ -19,14 +19,12 @@ var dynamicJSON = function(params) {
   return jsonString.slice(0, -1) + '}';
 }
 
-
-TheSceneryapp.controller('login-cont', function($scope, $http){
-
+TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
   console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;
-  $scope.gUserInfo;
+  $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
   var thing;
 
   //localStorage.setItem('user', "{}");
@@ -38,6 +36,32 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
   $('.sign-up-btn').on('click', function () {
     $('#sign-up-modal').addClass('showing');
   });
+
+
+  $scope.isLogged = function()
+  {
+    //var data = JSON.parse(localStorage.getItem('user'));
+    //data.user_info.login_token
+    var derp = null;
+    if ($scope.gUserInfo === null)//if we DONT have a login token for this person, then return false.
+    {
+      return true;
+      $scope.$apply();
+    }
+    else
+    {
+      return false;
+      $scope.$apply();
+    }
+  }//end islogged
+
+
+//this if statment keeps the user logged in regardless of refresh.
+  if(!$scope.isLogged())
+  {
+    $('.no-log-header').addClass('hidden');
+    $('.logged-header').addClass('showing');
+  }
 
   $scope.logout = function(){
     $('.no-log-header').removeClass('hidden');
@@ -94,11 +118,9 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      }
      else
      {
-
        setTimeout(myFunction, 5);
      }//end else
     });//end ajax call
-
 
 
    function myFunction() {
@@ -117,19 +139,6 @@ TheSceneryapp.controller('login-cont', function($scope, $http){
      $('#log-in-modal, #sign-up-modal').removeClass('showing');
      $scope.$apply();
     }//end myfunction
-
-
-// console.log("we're into things");
-// console.log("not thing again");
-// console.log($scope.gUserInfo.user_info.display_name);
-// console.log("thing again");
-// console.log(thing);
-
-    // $http.post("http://infinite-reef-76606.herokuapp.com/login", user_info).then(function successCallback(response){
-    //   console.log(response);
-    // }, function errorCallback(response){
-    //   console.log(response);
-    // });
 
 
   }//end authenticate

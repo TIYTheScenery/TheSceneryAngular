@@ -29,12 +29,15 @@
   <body ng-app="TheSceneryapp" ng-cloak>
 
     <div ng-controller="login-cont">
+
       <header class="header no-log-header">
         <!-- {{message2}} -->
+
         <a href ="#/performance"><div class="scenery-logo"></div></a>
         <a href=""><div class="btn login-btn">Log In</div></a>
         <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
       </header>
+
       <header class="header logged-header">
 
         <a href ="#/performance"><div class="header-user-portrait"></div></a>
@@ -43,6 +46,7 @@
           <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
           <a href=""><div class="header-user-profile">My Profile</div></a>
         </div>
+
         <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
       </header>
 

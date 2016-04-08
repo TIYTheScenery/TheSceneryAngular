@@ -1,6 +1,12 @@
 
-TheSceneryapp.controller('searchController', function($scope, $http){
-$scope.message3 ="GO!";
+
+TheSceneryapp.controller('searchController', function($scope, $http, ourData){
+$scope.message3 ="GO!"
+
+//confirm that the ourdata service works.
+// console.log(ourData.borrowData("userInfo"));
+// ourData.shareData("userInfo","something else");
+// console.log(ourData.borrowData("userInfo"));
 
 
 $scope.searchDB = function()

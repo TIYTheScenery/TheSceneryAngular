@@ -1,6 +1,6 @@
 
 
-TheSceneryapp.controller('perfAVEDcont', function($scope){
+TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData){
 
   console.log("this works!");
   $scope.message = "you are now working with angular";
@@ -12,26 +12,46 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();
 
+  $scope.isLogged = function()
+  {
+    var data = JSON.parse(localStorage.getItem('user'));
+    //data.user_info.login_token
+    var derp = null;
+    if (data === null)//if we DONT have a login token for this person, then return false.
+    {
+      return true;
+      $scope.$apply();
+    }
+    else
+    {
+      return false;
+      $scope.$apply();
+    }
+  }//end islogged
+
+
 
   $scope.toggle = function(turnOn){
-    console.log('were in the toggle function');
     if(turnOn === 'ADD')
     {
-      $scope.tAdd = false; //its false because we're using ngHide in the html.
-      $scope.tEdit = true;
-      $scope.tView = true;
+      $scope.tAdd=false;
+      $scope.tEdit=true;
+      $scope.tView=true;
+      // $scope.$apply();
     }
     else if(turnOn === 'EDIT')
     {
-      $scope.tEdit = false;
-      $scope.tView = true;
-      $scope.tAdd = true;
+      $scope.tAdd=true;
+      $scope.tEdit=false;
+      $scope.tView=true;
+      // $scope.$apply();
     }
     else//if we're not editing, and we're not adding, we must be viewing...
     {
-      $scope.tEdit = true;
-      $scope.tView = false;
-      $scope.tAdd = true;
+      $scope.tAdd=true;
+      $scope.tEdit=true;
+      $scope.tView=false;
+      // $scope.$apply();
     }
   }//end scope.toggle
 

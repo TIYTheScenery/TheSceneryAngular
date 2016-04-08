@@ -1,0 +1,182 @@
+.user-profile-header{
+  text-align: center;
+  font-size: 50px;
+  background: #888;
+  background-image: linear-gradient(to bottom right, #888, #aaa);
+  padding: 35px 0;
+  margin-bottom: 45px;
+}
+
+.to-search-btn{
+  position: absolute;
+  font-size: 15px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  padding: 7px;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-top: -20px;
+}
+
+.edit-profile-btn{
+  position: absolute;
+  font-size: 15px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  padding: 7px;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.user-header-displayname{
+  display: block;
+}
+
+.user-header-professional{
+  font-size: 35px;
+}
+
+.user-profile-info-wrapper{
+  width: 80%;
+  margin: auto;
+}
+
+.user-main-info-wrapper{
+  width: 57%;
+  display: inline-block;
+  border: 1px solid #666;
+  margin-right: 2%;
+}
+
+.user-image-wrapper{
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  background: #444;
+  margin-right: -4px;
+}
+.add-user-image-wrapper{
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  margin-right: -4px;
+  vertical-align: top;
+  text-align: center;
+  div{
+    margin-top: 50px;
+  }
+}
+
+.user-name-title-wrapper{
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 15px;
+}
+
+.display-user-name{
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.display-user-titles{
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.user-side-info-wrapper{
+  width: 39%;
+  display: inline-block;
+  border: 1px solid #666;
+  vertical-align: top;
+}
+
+.user-social-links-wrapper{
+  text-align: center;
+  width: 60%;
+  margin: 20px auto 30px auto;
+  font-size: 20px;
+  a div{
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 50%;
+    background: #333;
+    color: white;
+    margin: 0 5px;
+  }
+}
+
+.user-youtube-link{
+  padding: 5px 7px;
+}
+
+.user-twitter-link{
+  padding: 5px 6px;
+}
+
+.user-facebook-link{
+  padding: 5px 10px;
+}
+
+.user-instagram-link{
+  padding: 5px 7px;
+}
+
+.side-info-display-name{
+  text-align: center;
+  font-size: 22px;
+}
+
+.side-info-user-description{
+  font-size: 16px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.user-profile-input{
+  display: block;
+  width: 90%;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.user-name-title-spacer{
+  padding: 0 0 0 20px;
+}
+
+.edit-social-link{
+  display: block;
+  font-size: 15px;
+  width: 100%;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.edit-user-description{
+  display: block;
+  width: 90%;
+  max-width: 90%;
+  margin: auto;
+  font-size: 15px;
+  line-height: 1.2;
+  height: 120px;
+  max-height: 120px;
+}
+
+.edit-user-description-label{
+  width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.submit-profile-edits-button{
+  font-size: 15px;
+  background: #888;
+  background-image: linear-gradient(to bottom right, #ccc, #888);
+  padding: 7px 0 7px 30px;
+  border-radius: 3px;
+  width: 60px;
+  margin: 20px auto 0 auto;
+}

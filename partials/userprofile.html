@@ -1,0 +1,83 @@
+<section class="user-profile-wrapper" ng-controller="profileCont">
+  <header class="user-profile-header">
+    <a href="#/">
+      <div class="to-search-btn">
+        Back To Search
+      </div>
+    </a>
+    <a href="">
+      <div class="edit-profile-btn" ng-click="show = !show; edituser()" ng-hide="show">
+        Edit Profile
+      </div>
+    </a>
+    <a href="">
+      <div class="edit-profile-btn" ng-click="show = !show" ng-show="show">
+        View Profile
+      </div>
+    </a>
+    <div class="user-header-txt-wrapper">
+      <label class="user-header-displayname">Display Name</label>
+      <label class="user-header-professional">Professional</label>
+    </div>
+  </header>
+  <div class="user-profile-info-wrapper">
+    <div class="user-main-info-wrapper">
+      <div class="user-image-wrapper" ng-hide="show">
+        <img src="" class="user-profile-image">
+      </div>
+      <a href="">
+        <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
+          <div>
+            Add Image
+          </div>
+        </div>
+      </a>
+      <div class="user-name-title-wrapper">
+        <div class="user-name-title-spacer">
+          <div class="display-user-name" ng-hide="show">First Name Last Name</div>
+          <input class="user-profile-input edit-display-user-name" placeholder="First Name Last Name" id="user-name" ng-show="show">
+          <div class="display-user-titles" ng-hide="show">User Titles</div>
+          <input class="user-profile-input edit-display-user-titles" placeholder="Add Titles Here" id="user-titles" ng-show="show">
+          <div class="display-user-creation-date">Member Since: Date.</div>
+        </div>
+      </div>
+    </div>
+    <div class="user-side-info-wrapper">
+      <div class="user-social-links-wrapper">
+        <input class="edit-social-link" id="edit-youtube" placeholder="Add youtube link" ng-show="show">
+        <input class="edit-social-link" id="edit-twitter" placeholder="Add twitter link" ng-show="show">
+        <input class="edit-social-link" id="edit-facebook" placeholder="Add facebook link" ng-show="show">
+        <input class="edit-social-link" id="edit-instagram" placeholder="Add instagram link" ng-show="show">
+        <a href="">
+          <div class="user-youtube-link" ng-hide="show">
+            <i class="fa fa-youtube"></i>
+          </div>
+        </a>
+        <a href="">
+          <div class="user-twitter-link" ng-hide="show">
+            <i class="fa fa-twitter"></i>
+          </div>
+        </a>
+        <a href="">
+          <div class="user-facebook-link" ng-hide="show">
+            <i class="fa fa-facebook"></i>
+          </div>
+        </a>
+        <a href="">
+          <div class="user-instagram-link" ng-hide="show">
+            <i class="fa fa-instagram"></i>
+          </div>
+        </a>
+      </div>
+      <div class="side-info-display-name">
+        Display Name
+      </div>
+      <div class="side-info-user-description" ng-hide="show">THIS IS THE DESCRIPTION OF MY CRAAAAAZY NEW PERSON!!!!!</div>
+      <div class="edit-user-description-label" ng-show="show">
+        Add Description:
+      </div>
+      <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
+    </div>
+    <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
+  </div>
+</section>

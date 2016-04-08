@@ -47,7 +47,10 @@ TheSceneryapp.service("ourData", function(){
         .when('/performance', {
             templateUrl : 'partials/performanceAVED.html'
         })
-        // .otherwise({
-        //     redirectTo: '/'
-        // });
+        .when('/userprofile', {
+            templateUrl : 'partials/userprofile.html'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
   });

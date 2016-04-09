@@ -59,6 +59,10 @@ a {
   margin: 15px;
   margin-left: 10%; }
 
+.AVED-event {
+  border: 1px solid #888;
+  background: #bbb; }
+
 .AVED-genre,
 .AVED-tags {
   padding: 5px 10px;
@@ -69,7 +73,6 @@ a {
   padding-left: 0; }
 
 .edit-AVED-genre {
-  border: 1px solid #999;
   width: 125px;
   height: 20px; }
 
@@ -79,7 +82,6 @@ a {
   padding: 5px 10px;
   font-size: 18px;
   background: #bbb;
-  border: 1px solid #999;
   border-radius: 5px;
   margin: 10px 0; }
 
@@ -128,22 +130,18 @@ a {
   font-size: 22px;
   margin-top: 45px; }
 
-.drop-down-icon,
 .event-info {
-  padding: 10px 0;
   display: inline-block;
-  width: 10%;
-  font-size: 18px;
-  border: 1px solid #777; }
+  font-size: 18px; }
 
 .drop-down-icon {
-  text-align: center;
-  margin-right: -3px; }
+  display: inline-block;
+  font-size: 18px;
+  padding: 5px 10px 5px 0; }
 
-.event-info {
-  text-align: center;
-  width: 90%;
-  border-left: none; }
+.drop-down-wrapper {
+  border-bottom: 1px solid #888;
+  width: 100%; }
 
 .evt-times,
 .reviews {
@@ -158,15 +156,12 @@ a {
 
 .event-wrapper {
   text-align: left;
-  width: 75%;
-  margin: auto; }
+  padding: 10px 20px; }
 
 .event-adv {
   padding: 5px;
   width: 97%;
-  text-align: left;
-  border: 1px solid #777;
-  border-top: none; }
+  text-align: left; }
 
 .cast-wrapper {
   width: 50%;

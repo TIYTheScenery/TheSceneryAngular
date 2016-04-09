@@ -81,6 +81,11 @@ a{
   // float: left;
 }
 
+.AVED-event{
+  border: 1px solid #888;
+  background: #bbb;
+}
+
 .AVED-genre,
 .AVED-tags{
   padding: 5px 10px;
@@ -92,7 +97,6 @@ a{
 }
 
 .edit-AVED-genre{
-  border: 1px solid #999;
   width: 125px;
   height: 20px;
 }
@@ -109,7 +113,6 @@ a{
   font-size: 18px;
   background: #bbb;
   // background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
   border-radius: 5px;
   margin: 10px 0;
 }
@@ -168,24 +171,20 @@ a{
   margin-top: 45px;
 }
 
-.drop-down-icon,
 .event-info{
-  padding: 10px 0;
   display: inline-block;
-  width: 10%;
   font-size: 18px;
-  border: 1px solid #777;
 }
 
 .drop-down-icon{
-  text-align: center;
-  margin-right: -3px;
+  display: inline-block;
+  font-size: 18px;
+  padding: 5px 10px 5px 0;
 }
 
-.event-info{
-  text-align: center;
-  width:90%;
-  border-left: none;
+.drop-down-wrapper{
+  border-bottom: 1px solid #888;
+  width: 100%;
 }
 
 .evt-times,
@@ -202,17 +201,14 @@ a{
 
 .event-wrapper{
   text-align: left;
-  width: 75%;
+  padding: 10px 20px;
   // border: 1px solid green;
-  margin: auto;
 }
 
 .event-adv{
   padding: 5px;
   width: 97%;
   text-align: left;
-  border: 1px solid #777;
-  border-top: none;
 }
 
 .cast-wrapper{

@@ -18,7 +18,7 @@
       COMPANYNAME presents <br> {{thisPerformance.name}}
     </div>
     <a href="">
-      <div class="new-hero-image" ng-hide="borrowData(tAdd)">
+      <div class="new-hero-image" ng-hide="tAdd">
         Add New Hero Image
       </div>
     </a>
@@ -48,7 +48,7 @@
 
     <div class="leftCol">
       <div class="AVED-genre" ng-hide="tView">
-        Genre: genre here.
+        Genre: {{thisPerformance.genre_id[0].category}}.
       </div>
       <div class="edit-genre-wrapper" ng-hide="tAdd">
         Genre:
@@ -60,7 +60,7 @@
           <option value ="4">Film</option>
         </select>
       </div>
-      <a href="{{thisPerformance.trailer_link}}">
+      <a href="http://{{thisPerformance.trailer_link}}">
         <div class="AVED-trailer-link" ng-hide="tView">
           View Trailers
         </div>
@@ -111,15 +111,16 @@
 
     <div class="evt-times" ng-hide="tView">
       <label class="AVED-label">Event Times</label>
-      <ul class="AVED-events-holder">
-        <li class="AVED-event">  <!--ADD ng-repeat!!!-->
+
+      <ul class="AVED-events-holder" ng-repeat="show in thisPerformance.show_times">
+        <li class="AVED-event">
           <div class="event-wrapper">
             <div class="drop-down-wrapper">
               <div class="drop-down-icon">
                 <i class="fa fa-arrow-right"></i>
-              </div><!--
-              --><div class="event-info">
-                Date, Time, Location.
+              </div>
+              <div class="event-info">
+              {{show.begin_time | date : "h:mma"}} on {{show.date | date : fullDate}}, at {{show.address}} {{show.city}}, {{show.state}}.
               </div>
             </div>
             <div class="event-adv">
@@ -136,9 +137,10 @@
               </div>
             </div>
           </div>
-        </li>
-      </ul>
-    </div>
+        </li><br><br>
+      </ul><!-- end the ng-repeat in AVED-events-holder-->
+
+    </div><!--end event times view container-->
 
     <div class="reviews" ng-hide="tView">
       <label class="AVED-label">Reviews</label>

@@ -57,7 +57,8 @@ a {
 
 .AVED-event {
   border: 1px solid #888;
-  background: #bbb; }
+  background: #bbb;
+  width: 100%; }
 
 .AVED-genre,
 .AVED-tags {

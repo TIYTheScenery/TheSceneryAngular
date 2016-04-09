@@ -3,6 +3,7 @@ var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute']);
 TheSceneryapp.service("ourData", function(){
   var userInfo="I GOT IT!";
   var searchResults;
+  var viewingPerf;
   var tAdd=true;
   var tEdit=true;
   var tView=false;
@@ -11,6 +12,8 @@ TheSceneryapp.service("ourData", function(){
     borrowData: function(thing){
       if(thing==="userInfo")
       {return userInfo;}
+      else if(thing === "viewingPerf")
+      {return viewingPerf;}
       else if(thing==="searchResults")
       {return searchResults;}
       else if(thing==="tAdd")
@@ -20,11 +23,13 @@ TheSceneryapp.service("ourData", function(){
       else if(thing==="tView")
       {return tView;}
       else
-      {console.log("we're not holding onto that info...");}
+      {console.log("we cant return that info...");}
     },//end borrowData
     shareData: function(thing, what){
       if(thing==="userInfo")
       {userInfo = what;}
+      else if(thing === "viewingPerf")
+      {viewingPerf = what;}
       else if(thing === "searchResults")
       {searchResults = what;}
       else if(thing==="tAdd")
@@ -34,7 +39,7 @@ TheSceneryapp.service("ourData", function(){
       else if(thing==="tView")
       {tView = what;}
       else
-      {console.log("we're not holding onto that info...");}
+      {console.log("we dont know what that is...");}
       // userInfo = what;
     }//sendData
 

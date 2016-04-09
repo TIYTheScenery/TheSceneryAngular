@@ -125,7 +125,7 @@ console.log(person);
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/performances",
+      "url": "https://infinite-reef-76606.herokuapp.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

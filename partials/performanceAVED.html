@@ -42,13 +42,15 @@
       {{thisPerformance.description}}
     </div>
 
+    <label class="edit-perf-desc-label" ng-hide="tAdd">Performance Description:</label>
+
     <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
 
     <div class="leftCol">
       <div class="AVED-genre" ng-hide="tView">
         Genre: genre here.
       </div>
-      <div class="AVED-genre" ng-hide="tAdd">
+      <div class="edit-genre-wrapper" ng-hide="tAdd">
         Genre:
         <select class="edit-AVED-genre" ng-hide="tAdd">
           <option selected disabled>Genre</option>

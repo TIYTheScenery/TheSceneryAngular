@@ -44,7 +44,7 @@ a{
   font-size: 40px;
   width: 50%;
   margin: auto;
-  margin-top: -200px;
+  margin-top: -300px;
   position: absolute;
   text-align:center;
   margin-left: 27%;
@@ -65,15 +65,6 @@ a{
   padding: 10px 60px;
 }
 
-.edit-performanceDescription{
-  display: block;
-  width: 90%;
-  max-width: 90%;
-  font-size: 14px;
-  height: 150px;
-  max-height: 150px;
-  margin: auto;
-}
 .rightCol{
   display: inline-block;
   margin: 15px;
@@ -100,11 +91,6 @@ a{
 }
 .AVED-tags{
   padding-left: 0;
-}
-
-.edit-AVED-genre{
-  width: 125px;
-  height: 20px;
 }
 
 .AVED-trailer-link,
@@ -146,16 +132,6 @@ a{
   background: #333;
   color: white;
   margin-right: 5px;
-}
-
-.edit-AVED-trailer-link-input{
-  font-size: 14px;
-  width: 250px;
-}
-
-.edit-AVED-tags-input{
-  font-size: 14px;
-  width: 250px;
 }
 
 .AVED-ticket-btn{
@@ -299,4 +275,46 @@ a{
   font-size: 17px;
   display: inline-block;
   vertical-align: top;
+}
+
+
+
+// EDIT PAGE
+
+.edit-AVED-genre{
+  width: 125px;
+  height: 20px;
+}
+
+.edit-performanceDescription{
+  display: block;
+  width: 90%;
+  max-width: 90%;
+  font-size: 14px;
+  height: 150px;
+  max-height: 150px;
+  margin: auto;
+}
+
+.edit-perf-desc-label{
+  display: block;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 5%;
+}
+
+.edit-AVED-trailer-link-input{
+  font-size: 14px;
+  width: 250px;
+}
+
+.edit-AVED-tags-input{
+  font-size: 14px;
+  width: 250px;
+}
+
+.hero-img-performance-name{
+  width: 300px;
+  font-size: 16px;
 }

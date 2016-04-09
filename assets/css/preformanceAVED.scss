@@ -211,8 +211,11 @@ a{
   text-align: left;
 }
 
+.event-cast{
+  margin-bottom: 10px;
+}
+
 .cast-wrapper{
-  width: 50%;
   display: inline-block;
   margin-right: -6px;
   label{
@@ -221,16 +224,17 @@ a{
 }
 
 .google-map{
-  width: 50%;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background: #444;
-  display: inline-block;
+  display: block;
+  margin: auto;
   vertical-align: top;
 }
 
 .AVED-review-wrapper{
   // border: 1px solid purple;
-  width: 75%;
+  width: 90%;
   margin: auto;
   text-align: left;
 }
@@ -244,17 +248,26 @@ a{
 
 .review-img{
   height: 75px;
-  width: 20%;
+  width: 75px;
   border: 1px solid #ccc;
   background: #555;
   display: inline-block;
-  float: left;
+  vertical-align: top;
+}
+
+.review-text{
+  margin-top: 10px;
+  padding-left: 1px;
 }
 
 .new-review{
   width: 77%;
   font-size: 18px;
   height: 140px;
+}
+
+.AVED-review{
+  display: block;
 }
 
 .submit-review-btn{
@@ -271,8 +284,13 @@ a{
 
 .review-wrapper{
   margin-top: 30px;
+  min-height: 90px;
+  padding: 10px;
 }
 
-.review-name{
-  margin: 30px 0 40px 95px;
+.rnd-wrap{
+  padding: 5px;
+  font-size: 17px;
+  display: inline-block;
+  vertical-align: top;
 }

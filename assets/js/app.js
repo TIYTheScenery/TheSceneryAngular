@@ -55,6 +55,9 @@ TheSceneryapp.service("ourData", function(){
         .when('/userprofile', {
             templateUrl : 'partials/userprofile.html'
         })
+        .when('/company', {
+            templateUrl : 'partials/company.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

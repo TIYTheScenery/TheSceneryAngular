@@ -1,0 +1,57 @@
+.action-buttons {
+  padding: 10px 0;
+  padding-left: 50px; }
+
+.action {
+  display: inline-block;
+  margin-right: 50px;
+  vertical-align: top; }
+  .action:last-child {
+    float: right;
+    margin-right: 100px; }
+
+.company-btn {
+  padding: 5px 10px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  border: 1px solid #999;
+  border-radius: 3px;
+  vertical-align: top; }
+
+.delete-company-btn {
+  background: red;
+  background-image: linear-gradient(to bottom right, red, #c80000);
+  font-weight: bold; }
+  .delete-company-btn:hover {
+    background-image: linear-gradient(to bottom right, #c80000, red);
+    color: #ccc; }
+
+.company-header {
+  border-bottom: #999;
+  position: relative; }
+
+.company-hero-image {
+  background: #666;
+  height: 350px;
+  width: 100%; }
+
+.company-name-type-wrapper {
+  position: absolute;
+  text-align: center;
+  margin-top: -250px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-left: 30%;
+  padding: 10px; }
+
+.company-name {
+  font-size: 60px;
+  color: #eee;
+  margin-bottom: 15px; }
+
+.company-type {
+  font-size: 30px;
+  color: #eee;
+  margin-top: 15px; }
+
+/*# sourceMappingURL=company.css.map */

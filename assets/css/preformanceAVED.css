@@ -14,6 +14,9 @@ a {
   text-decoration: none;
   color: black; }
 
+.heroImgContainer {
+  position: relative; }
+
 .heroImg {
   width: 100%;
   height: 350px;
@@ -25,10 +28,12 @@ a {
   padding: 10px;
   color: white;
   font-size: 40px;
+  width: 50%;
+  margin: auto;
+  margin-top: -200px;
   position: absolute;
-  top: 15%;
   text-align: center;
-  margin-left: 30%; }
+  margin-left: 27%; }
 
 .performanceInfoContainer {
   width: 80%;

@@ -118,6 +118,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
      }
      else
      {
+       $(".modal-input").val("");
        setTimeout(myFunction, 5);
      }//end else
     });//end ajax call

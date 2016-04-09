@@ -78,7 +78,7 @@ $scope.searchDB = function()
   // $('.landing-footer').css({"display": "none"});
   $('.landing-footer').fadeOut(1000);
   // $('.performance-show-wrapper').removeClass('hidden');
-  $('.performance-show-wrapper').fadeIn(1000);
+  $('.performance-show-wrapper').fadeIn(2000);
   $('.landing-wrapper').css({"padding-bottom": "0px"});
   $('.landing-search').val("");
   $('.genre-search').prop('selectedIndex',0);

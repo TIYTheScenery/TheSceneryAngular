@@ -6,8 +6,22 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData){
   $scope.tAdd=true;
   $scope.tEdit=true;
   $scope.tView=false;
-  $scope.thisPerformance = ourData.borrowData("searchResults");
-  console.log($scope.thisPerformance);
+  var thisPerformanceID = ourData.borrowData("searchResults").id;//gets the performance id from the data service
+  $scope.performanceTimes;
+  $scope.thisPerformance;
+
+  $http.get('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+    ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
+
+    console.log("performance in the service:")
+    console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
+
+    $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
+
+
+  },function(){console.log("performance get failed...");
+});//end http call.
+
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();

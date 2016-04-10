@@ -100,8 +100,12 @@
 }
 
 .company-url{
+  padding: 5px 10px;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  border: 1px solid #999;
+  border-radius: 3px;
   font-size: 18px;
-  text-decoration: underline;
 }
 
 .media{

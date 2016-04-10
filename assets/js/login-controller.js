@@ -19,13 +19,21 @@ var dynamicJSON = function(params) {
   return jsonString.slice(0, -1) + '}';
 }
 
-TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
+TheSceneryapp.filter('login-cont', ['$sce', function ($sce) {
+        return function(url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+    }]);
+
+TheSceneryapp.controller('login-cont', function($scope, $http, $window, $interval, $sce, ourData){
 
   console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;
   $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
   var thing;
+
+  $scope.oauth = 'https://www.facebook.com/v2.5/dialog/oauth?client_id=1100219983355110&redirect_uri=http://localhost:3000/auth/facebook';
 
   //localStorage.setItem('user', "{}");
 
@@ -36,6 +44,27 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
   $('.sign-up-btn').on('click', function () {
     $('#sign-up-modal').addClass('showing');
   });
+
+  $scope.facebook_login = function(){
+    $scope.oauthURL = $sce.trustAsResourceUrl($scope.oauth);
+    console.log( $scope.oauth );
+    console.log( $scope.oauthURL );
+    var Popup = $window.open($scope.oauth, 'Facebook Login', 'width=500,height=400');
+    // $window.popup = Popup;
+    // Popup.addEventListener('message', function(event) {
+    //   // IMPORTANT: Check the origin of the data!
+    //   if (~event.origin.indexOf('localhost:4000')) {
+    //       // The data has been sent from your site
+    //       // The data sent with postMessage is stored in event.data
+    //       console.log(event.data);
+    //   } else {
+    //       // The data hasn't been sent from your site!
+    //       // Be careful! Do not use it.
+    //       console.log('bad things')
+    //       return;
+    //   }
+    // });
+  }//end facebook_login
 
 
   $scope.isLogged = function()

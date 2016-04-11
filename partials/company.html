@@ -1,7 +1,7 @@
 <section class="company-wrapper" ng-controller="companyCont">
-  <nav class="action-buttons">
+  <nav class="action-buttons" ng-hide="create">
     <div class="action">
-      <a href="">
+      <a href="#/performance">
         <div class="create-performance-btn company-btn">
           Create Performance
         </div>
@@ -14,6 +14,24 @@
         </div>
       </a>
     </div>
+    <div class="action">
+      <a href="">
+        <div class="authorize-company-users company-btn" ng-click="authorize = !authorize">
+          Add Authorized Users
+        </div>
+      </a>
+    </div>
+
+
+    <div class="action">
+      <a href="">
+        <div class="authorize-company-users company-btn" ng-click="create = !create">
+          Create Tester
+        </div>
+      </a>
+    </div>
+
+
     <div class="action" ng-hide="show" ng-click="show = !show; editcompany()">
       <a href="">
         <div class="edit-company-btn company-btn">
@@ -30,59 +48,119 @@
     </div>
   </nav>
   <header class="company-header">
+    <!-- Edit Company Hero Image -->
+    <a href=""><div class="edit-company-hero-image" ng-show="show">Edit Company Banner</div></a>
+    <!-- Create Company Hero Image -->
+    <a href=""><div class="create-company-hero-image" ng-show="create">Add Company Banner</div></a>
+    <!-- Display Company Hero Image -->
     <img src="" class="company-hero-image">
     <div class="company-name-type-wrapper">
-      <div class="company-name" ng-hide="show">Company Name</div>
+      <!-- Display Company Name -->
+      <div class="company-name" ng-hide="show || create">Company Name</div>
+      <!-- Edit Company Name -->
       <input class="edit-company-name" placeholder="edit company name" ng-show="show">
-      <div class="company-type" ng-hide="show">Company & Venue</div>
+      <!-- Create Company Name -->
+      <input class="create-company-name" placeholder="add company name" ng-show="create">
+      <!-- Display Company Type -->
+      <div class="company-type" ng-hide="show || create">Company & Venue</div>
+      <!-- Edit Company Type -->
       <select class="edit-company-type"  ng-show="show">
+        <option selected disabled>Company Type</option>
+        <option>Company</option>
+        <option>Company & Venue</option>
+      </select>
+      <!-- Create Company Type -->
+      <select class="create-company-type"  ng-show="create">
         <option selected disabled>Company Type</option>
         <option>Company</option>
         <option>Company & Venue</option>
       </select>
     </div>
   </header>
-  <div class="company-location" ng-hide="show">123 Example St. Durham, NC 27703</div>
-  <input class="edit-company-location" placeholder="Edit Company Location: Address City, State Zip" ng-show="show">
+  <!-- Display company profile picture -->
+  <div class="company-profile-pic" ng-hide="show || create">
+    <img src="">
+  </div>
+  <!-- Edit company profile picture -->
+  <a href=""><div class="company-profile-pic edit-company-profile-pic" ng-show="show">Edit Profile Picture</div></a>
+  <!-- Create company profile picture -->
+  <a href=""><div class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture</div></a>
+  <!-- Display company location -->
+  <div class="company-location" ng-hide="show || create">123 Example St. Durham, NC 27703</div>
+
+  <div class="company-location-input-wrapper">
+
+    <!-- Edit company location -->
+    <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="show">
+    <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="show">
+    <select class="company-location-input edit-company-location-state" ng-show="show">
+      <option selected disabled>Pick A State</option>
+      <option>NC</option>
+    </select>
+    <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="show">
+
+    <!-- Create company location -->
+    <input class="company-location-input create-company-location-address" placeholder="Company Address" ng-show="create">
+    <input class="company-location-input create-company-location-city" placeholder="Company City" ng-show="create">
+    <select class="company-location-input create-company-location-state" ng-show="create">
+      <option selected disabled>Pick A State</option>
+      <option>NC</option>
+    </select>
+    <input class="company-location-input create-company-location-zip" placeholder="Company Zip Code" ng-show="create">
+  </div>
+
   <div class="company-details-wrapper">
-    <div class="company-description" ng-hide="show">Enter your company description here.</div>
+    <!-- Display Company Description -->
+    <div class="company-description" ng-hide="show || create">Enter your company description here.</div>
+    <!-- Edit Company Description -->
     <div class="edit-company-description-label" ng-show="show">Edit Company Description</div>
     <textarea class="edit-company-description" ng-show="show"></textarea>
+    <!-- Create Company Description -->
+    <div class="create-company-description-label" ng-show="create">Add Company Description</div>
+    <textarea class="create-company-description" ng-show="create"></textarea>
     <div class="company-social">
+      <!-- Display Company Website Button -->
       <div class="company-website">
         <a href="">
-          <div class="company-url" ng-hide="show">Visit Our Website</div>
+          <div class="company-url" ng-hide="show || create">Visit Our Website</div>
         </a>
       </div>
       <div class="company-media-wrapper">
+        <!-- Edit Company Media -->
         <input class="edit-company-media edit-company-url" placeholder="edit company url" ng-show="show">
         <input class="edit-company-media edit-company-youtube" placeholder="edit youtube link" ng-show="show">
         <input class="edit-company-media edit-company-twitter" placeholder="edit twitter link" ng-show="show">
         <input class="edit-company-media edit-company-facebook" placeholder="edit facebook link" ng-show="show">
         <input class="edit-company-media edit-company-instagram" placeholder="edit instagram link" ng-show="show">
-
-        <div class="company-media-youtube" ng-hide="show">
+        <!-- Create Company Media -->
+        <input class="create-company-media create-company-url" placeholder="add company url" ng-show="create">
+        <input class="create-company-media create-company-youtube" placeholder="add youtube link" ng-show="create">
+        <input class="create-company-media create-company-twitter" placeholder="add twitter link" ng-show="create">
+        <input class="create-company-media create-company-facebook" placeholder="add facebook link" ng-show="create">
+        <input class="create-company-media create-company-instagram" placeholder="add instagram link" ng-show="create">
+        <!-- Display Company Media -->
+        <div class="company-media-youtube" ng-hide="show || create">
           <a href="">
             <div class="media media-youtube">
               <i class="fa fa-youtube"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-twitter" ng-hide="show">
+        <div class="company-media-twitter" ng-hide="show || create">
           <a href="">
             <div class="media media-twitter">
               <i class="fa fa-twitter"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-facebook" ng-hide="show">
+        <div class="company-media-facebook" ng-hide="show || create">
           <a href="">
             <div class="media media-facebook">
               <i class="fa fa-facebook"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-instagram" ng-hide="show">
+        <div class="company-media-instagram" ng-hide="show || create">
           <a href="">
             <div class="media media-instagram">
               <i class="fa fa-instagram"></i>
@@ -92,7 +170,7 @@
       </div> <!--end media wrapper-->
     </div> <!--end company social-->
   </div> <!--end company detail wrapper-->
-
+  <!-- Company Save Edits Button -->
   <div class="company-save-btn-wrapper" ng-show="show">
     <a href="">
       <div class="company-save-btn" ng-click="show = !show; savecompany()">
@@ -100,7 +178,15 @@
       </div>
     </a>
   </div>
-  <div class="O-p-R-wrapper" ng-hide="show">  <!--Wrapper for opportunities, performances, and reviews-->
+  <!-- Company Save Create Button -->
+  <div class="company-create-btn-wrapper" ng-show="create">
+    <a href="">
+      <div class="company-create-btn" ng-click="create = !create; createcompany()">
+        Submit
+      </div>
+    </a>
+  </div>
+  <div class="O-p-R-wrapper" ng-hide="show || create">  <!--Wrapper for opportunities, performances, and reviews-->
     <div class="opportunities-wrapper">
       <div class="opportunities-label">
         Opportunities:
@@ -127,19 +213,38 @@
     </div>
     <div class="company-performances-wrapper">
       <div class="company-performances-label">
-        Performances:
+        Upcoming Performances:
       </div>
-      <div class="company-performance">
-        <a href='#/performance'>
-          <div class='company-performance-box'>
-            <div class='company-box-performance-name'>
-              Performance Name
+      <div class="insert-upcoming-performance">
+        <!-- <div class="company-performance">
+          <a href='#/performance'>
+            <div class='company-performance-box'>
+              <div class='company-box-performance-name'>
+                Performance Name
+              </div>
+              <div class='company-box-company-name'>
+                Company Name
+              </div>
             </div>
-            <div class='company-box-company-name'>
-              Company Name
+          </a>
+        </div> -->
+      </div>
+      <div class="company-performances-label past-performances-label">
+        Past Performances:
+      </div>
+      <div class="insert-past-performance">
+        <!-- <div class="company-performance">
+          <a href='#/performance'>
+            <div class='company-performance-box'>
+              <div class='company-box-performance-name'>
+                Performance Name
+              </div>
+              <div class='company-box-company-name'>
+                Company Name
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div> -->
       </div>
     </div>
     <div class="company-reviews-holder">
@@ -155,6 +260,15 @@
           </div>
           <div class="company-review-text">Review Text</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="authorize-user-modal-wrapper" ng-show="authorize">
+    <div class="authorize-user-modal-box">
+      Input Authorized Users by
+      <div class="authorize-user-modal-input-holder">
+        <input class="authorize-user-modal-input">
       </div>
     </div>
   </div>

@@ -1,8 +1,6 @@
-
-
 TheSceneryapp.controller('searchController', function($scope, $http, ourData){
 $scope.message3 ="GO!"
-
+  window.onload = genrePull('searchGenre', $('.landing-search-genre-wrapper'));
 
 // $('li').on("click", function(){
 //   console.log("inside click");

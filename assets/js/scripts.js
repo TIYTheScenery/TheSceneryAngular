@@ -31,3 +31,31 @@ $(function () {
   });
 
 });
+
+var genrePull = function(name, container){
+  var settings = {
+   "async": true,
+   "crossDomain": true,
+   "url": "http://infinite-reef-76606.herokuapp.com/genres",
+   "method": "GET",
+   "headers": {
+     "content-type": "application/json",
+     "cache-control": "no-cache"
+   },
+   "processData": false,
+    };
+
+  var select = "";
+  $.ajax(settings).done(function (response) {
+    select = $('<select class="'+ name + '" id="' + name + '"></select>');
+    $.each(response["genres"], function(){
+      var option = $('<option></option>');
+      option.attr('value', this["id"]);
+      option.text(this["category"]);
+      select.append(option);
+
+    });
+    container.append(select)
+  });//end ajax call
+
+}

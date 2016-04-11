@@ -137,7 +137,8 @@
   font-size: 15px;
   line-height: 1.2;
   height: 120px;
-  max-height: 120px; }
+  max-height: 120px;
+  margin-bottom: 15px; }
 
 .edit-user-description-label {
   width: 90%;
@@ -152,6 +153,6 @@
   padding: 7px 0 7px 30px;
   border-radius: 3px;
   width: 60px;
-  margin: 20px auto 0 auto; }
+  margin: 20px auto 25px auto; }
 
 /*# sourceMappingURL=userprofile.css.map */

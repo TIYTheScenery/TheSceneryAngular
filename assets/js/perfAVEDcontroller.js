@@ -117,7 +117,7 @@ $scope.updatePerformance = function(){
 
   for(var i=0; i<allEditedShows.length;i++)
   {
-    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+    var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
 
     //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
     var thisShowID;
@@ -130,14 +130,15 @@ $scope.updatePerformance = function(){
       thisShowID= allShowIDs[i];
     }
 
-    //these lines check to see if the checkbox for delete is checked.
-    if($(allEditedShows[i]).find(".deleteCheck").attr("checked") === true)
+    if($(allEditedShows[i]).find(".deleteCheck").is(':checked') === true)
     {
-      console.log(".re-addshowtime not found in allShows[i]");
-      showTemplate._destroy= true;
+      console.log(allEditedShows[i]);
+      //console.log(".re-addshowtime not found in allShows[i]");
+      showTemplate._destroy = true;
     }
     else
     {
+      console.log("alleditedshows["+i+"]");
       //do nothing because the default is false.
     }
 
@@ -149,42 +150,15 @@ $scope.updatePerformance = function(){
     showTemplate.state = temp[1];
     showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip').val();
     showTemplate.show_date = $(allEditedShows[i]).find('#showtime-date').val();
+    showTemplate.id = thisShowID;
 
-    console.log(showTemplate);
+    //console.log(showTemplate);
     allEditedShowsJSON.push(showTemplate);
   }//end the build shows for
 
   console.log("all shows JSON");
   console.log(allEditedShows.length);
   console.log(allEditedShowsJSON);
-
-//THIS CODE ATTEMPTS TO FIND OLD SHOW IDS THAT ARE NOT PART OF THE NEW LIST OF OLD SHOWS.
-//IT THEN ADDS THEM TO AN ARRAY TO BE DELETED LATER.
-//ITS MIDNIGHT ON SUNDAY. IVE BEEN HERE SINCE 1:30pm. I'M NOT FINISHING IT.
-  // var showsToDelete=[];
-  // for(var j=0;j<allEditedShows.length;j++)
-  // {
-  //   var found;
-  //   for(var h=0;h<allShowIds.length;h++)
-  //   {
-  //     if(allEditedShows[j].id === allShowsIds[h])
-  //     {
-  //       found = false;
-  //     }
-  //     else
-  //     {
-  //       found =true; //
-  //     }
-  //   }
-  //   if(found)
-  //   {
-  //     //do nothing because the id was found.
-  //   }
-  //   else
-  //   {
-  //       showsToDelete.push(some damn thing.);
-  //   }
-  // }
 
   var performance = JSON.stringify({
   "performance": {
@@ -246,12 +220,10 @@ $scope.updatePerformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
     // console.log($('#showtime-city-state').val())
 
-
     var token = person.user_info.login_token;
     var ownerID = person.user_info.id;
 
     var allShowsJSON=[];
-
 
     var allShows = $(".new-showtime-wrapper").children(".new-showtime-info-wrapper");
 
@@ -289,30 +261,6 @@ $scope.updatePerformance = function(){
     console.log("all shows JSON");
     console.log(allShowsJSON);
 
-    // var performance = JSON.stringify({
-    // "performance": {
-    //   "owner_id": ownerID,
-    //   "company_id": "1",
-    //   "name": $('#performance-name').val(),
-    //   "description": $('#perf-desc').val(),
-    //   "trailer_link": $('#trailer-link').val(),
-    //   "ticket_link": $('#ticket-link').val(),
-    //   "show_times_attributes": [
-    //  {
-    //    "begin_time": $('#showtime-time').val(),
-    //    "address": $('#showtime-address').val(),
-    //    "city": city,
-    //    "state": state,
-    //    "zip_code": $('#showtime-zip').val(),
-    //    "date": $('#showtime-date').val()
-    //  }]
-    // },
-    // "user_info": {
-    //   "login_token": token  //"butts"      //response.user_info.login_token
-    // }
-    //
-    // });
-
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
@@ -329,11 +277,10 @@ $scope.updatePerformance = function(){
       "show_times_attributes": allShowsJSON
     },
     "user_info": {
-      "login_token": token  //"butts"      //response.user_info.login_token
+      "login_token": token //response.user_info.login_token
     }
 
     });
-
 
     console.log(performance);
 
@@ -347,12 +294,12 @@ $scope.updatePerformance = function(){
         "cache-control": "no-cache"
       },
       "processData": false,
-      "data": JSON.stringify(performance)
+      "data": performance
        };
 
-      // $.ajax(settings).done(function (data) {
-      // console.log(data);
-      // });//end ajax.
+      $.ajax(settings).done(function (data) {
+      console.log(data);
+      });//end ajax.
 
   }//End addperformance
 
@@ -380,42 +327,6 @@ $scope.updatePerformance = function(){
       //do nothing. user decided not to delete.
     }
   }//end deletePerformance
-
-// //this removes a showtime in the add
-//   $(".edit-AVED-event-times-wrapper").on("click", ".deleteCheck", function(){
-//     //console.log("we're in the remove new");
-//     var toRemove = $(this).parent().parent().parent();
-//     // toRemove.remove();
-//     // console.log(toRemove);
-//     $(this).css("color","black").html("<input type='checkbox' class='deleteCheck'><i class='fa fa-times'></i>").append("Submit changes to delete, click again to keep.").addClass("re-addShowtime");
-//     toRemove.css("background","red");
-//   });
-//
-//   //this removes a showtime in the edit
-//   $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
-//     //console.log("were in the remove edit");
-//     var toRemove = $(this).parent().parent().parent();
-//     // toRemove.remove();
-//     //console.log(toRemove);
-//     $(this).css("color","black").html("<input type='checkbox' class='deleteCheck'><i class='fa fa-times'></i>").append("Submit changes to delete, click again to keep.").addClass("re-addShowtime").removeClass("removeShowtime");
-//     toRemove.css("background","red");
-//   });
-//
-//   //this allows the user to click on the showtime again, to UNdelete it, in the edit
-//   $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
-//     var toReAdd = $(this).parent().parent().parent();
-//     $(this).css("color", "red").removeClass("re-addShowtime").addClass("removeShowtime").html("<i class='fa fa-trash'></i>").append("Delete This Showtime");
-//     toReAdd.css("background","#DDDDDD");
-//   });//end click to re-add showtime in the edit
-//
-// //this allows the user to click on the showtime again, to UNdelete it, in the add
-//   $(".edit-AVED-event-times-wrapper").on("click", ".deleteCheck", function(){
-//     var toReAdd = $(this).parent().parent().parent();
-//     $(this).css("color", "red").removeClass("re-addShowtime").addClass("removeShowtime").html("<i class='fa fa-trash'></i>").append("Delete This Showtime");
-//     toReAdd.css("background","#DDDDDD");
-//   });//end click to re-add showtime in the edit
-
-
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
@@ -468,8 +379,6 @@ $scope.updatePerformance = function(){
     console.log(parent);
     console.log("section:");
     console.log(section);
-    // console.log("clone:");
-    // console.log(clone);
 
     parent.append(section.wrap('<p/>').parent().html());
     section.unwrap();

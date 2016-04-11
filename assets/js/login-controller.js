@@ -70,7 +70,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "http://infinite-reef-76606.herokuapp.com/logout",
+     "url": "https://infinite-reef-76606.herokuapp.com/logout",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -95,7 +95,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "http://infinite-reef-76606.herokuapp.com/login",
+     "url": "https://infinite-reef-76606.herokuapp.com/login",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -165,7 +165,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
       var settings = {
        "async": true,
        "crossDomain": true,
-       "url": "http://infinite-reef-76606.herokuapp.com/users",
+       "url": "https://infinite-reef-76606.herokuapp.com/users",
        "method": "POST",
        "headers": {
          "content-type": "application/json",

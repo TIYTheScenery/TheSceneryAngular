@@ -66,7 +66,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
     var firstname = names[0];
     var lastname = names[1];
 
-    var updatedUser = {
+    var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
       "first_name": firstname,
@@ -81,7 +81,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
       "display_name": $scope.currentuser.user_info.display_name,
       "is_professional": $scope.currentuser.user_info.is_professional
       }
-    }
+    });
     console.log("sending this user info");
     console.log(updatedUser);
 
@@ -106,7 +106,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://infinite-reef-76606.herokuapp.com/users/"+$scope.currentuser.user_info.id,
+        "url": "http://localhost:3000/users/", //+$scope.currentuser.user_info.id,
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",

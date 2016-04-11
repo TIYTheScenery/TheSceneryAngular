@@ -1,34 +1,3 @@
-var genrePull = function(name, container){
-  var settings = {
-   "async": true,
-   "crossDomain": true,
-   "url": "http://infinite-reef-76606.herokuapp.com/genres",
-   "method": "GET",
-   "headers": {
-     "content-type": "application/json",
-     "cache-control": "no-cache"
-   },
-   "processData": false,
-    };
-
-  var select = "";
-  $.ajax(settings).done(function (response) {
-    select = $('<select class="'+ name + '" id="' + name + '"></select>');
-    console.log(response);
-    $.each(response["genres"], function(){
-      var option = $('<option></option>');
-      console.log(this["id"]);
-      option.attr('value', this["id"]);
-      option.text(this["category"]);
-      select.append(option);
-
-    });
-    container.append(select)
-    console.log(select);
-  });//end ajax call
-
-}
-
 TheSceneryapp.controller('searchController', function($scope, $http, ourData){
 $scope.message3 ="GO!"
   window.onload = genrePull('searchGenre', $('.landing-search-genre-wrapper'));

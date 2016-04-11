@@ -117,6 +117,8 @@ $scope.updatePerformance = function(){
 
   for(var i=0; i<allEditedShows.length;i++)
   {
+    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+
     //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
     var thisShowID;
     if(allShowIDs[i]=== undefined)
@@ -128,7 +130,16 @@ $scope.updatePerformance = function(){
       thisShowID= allShowIDs[i];
     }
 
-    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0, 'id': thisShowID};
+    //these lines check to see if the checkbox for delete is checked.
+    if($(allEditedShows[i]).find(".deleteCheck").attr("checked") === true)
+    {
+      console.log(".re-addshowtime not found in allShows[i]");
+      showTemplate._destroy= true;
+    }
+    else
+    {
+      //do nothing because the default is false.
+    }
 
     showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time").val();
     showTemplate.address = $(allEditedShows[i]).find("#showtime-address").val();
@@ -137,7 +148,7 @@ $scope.updatePerformance = function(){
     showTemplate.city = temp[0];
     showTemplate.state = temp[1];
     showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip').val();
-    showTemplate.date = $(allEditedShows[i]).find('#showtime-date').val();
+    showTemplate.show_date = $(allEditedShows[i]).find('#showtime-date').val();
 
     console.log(showTemplate);
     allEditedShowsJSON.push(showTemplate);
@@ -246,7 +257,17 @@ $scope.updatePerformance = function(){
 
     for(var i=0; i<allShows.length;i++)
     {
-      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0};
+      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+
+      if($(allShows[i]).find(".deleteCheck").is(':checked') === true)
+      {
+        console.log(".re-addshowtime not found in allShows[i]");
+        showTemplate._destroy= true;
+      }
+      else
+      {
+        //do nothing because the default is false.
+      }
 
       showTemplate.begin_time = $(allShows[i]).find("#showtime-time").val();
       showTemplate.address = $(allShows[i]).find("#showtime-address").val();
@@ -259,7 +280,7 @@ $scope.updatePerformance = function(){
       showTemplate.state = temp[1];
 
       showTemplate.zip_code = $(allShows[i]).find('#showtime-zip').val();
-      showTemplate.date = $(allShows[i]).find('#showtime-date').val();
+      showTemplate.show_date = $(allShows[i]).find('#showtime-date').val();
 
       console.log(showTemplate);
       allShowsJSON.push(showTemplate);
@@ -326,12 +347,12 @@ $scope.updatePerformance = function(){
         "cache-control": "no-cache"
       },
       "processData": false,
-      "data": performance
+      "data": JSON.stringify(performance)
        };
 
-      $.ajax(settings).done(function (data) {
-      console.log(data);
-      });//end ajax.
+      // $.ajax(settings).done(function (data) {
+      // console.log(data);
+      // });//end ajax.
 
   }//End addperformance
 
@@ -360,23 +381,41 @@ $scope.updatePerformance = function(){
     }
   }//end deletePerformance
 
-//this removes a showtime in the add
-  $(".edit-AVED-event-times-wrapper").on("click", ".removeShowtime", function(){
-    //console.log("we're in the remove new");
-    var toRemove = $(this).parent().parent();
-    toRemove.remove();
-    // console.log(toRemove);
-    // toRemove.css("background","red");
-  });
+// //this removes a showtime in the add
+//   $(".edit-AVED-event-times-wrapper").on("click", ".deleteCheck", function(){
+//     //console.log("we're in the remove new");
+//     var toRemove = $(this).parent().parent().parent();
+//     // toRemove.remove();
+//     // console.log(toRemove);
+//     $(this).css("color","black").html("<input type='checkbox' class='deleteCheck'><i class='fa fa-times'></i>").append("Submit changes to delete, click again to keep.").addClass("re-addShowtime");
+//     toRemove.css("background","red");
+//   });
+//
+//   //this removes a showtime in the edit
+//   $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
+//     //console.log("were in the remove edit");
+//     var toRemove = $(this).parent().parent().parent();
+//     // toRemove.remove();
+//     //console.log(toRemove);
+//     $(this).css("color","black").html("<input type='checkbox' class='deleteCheck'><i class='fa fa-times'></i>").append("Submit changes to delete, click again to keep.").addClass("re-addShowtime").removeClass("removeShowtime");
+//     toRemove.css("background","red");
+//   });
+//
+//   //this allows the user to click on the showtime again, to UNdelete it, in the edit
+//   $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
+//     var toReAdd = $(this).parent().parent().parent();
+//     $(this).css("color", "red").removeClass("re-addShowtime").addClass("removeShowtime").html("<i class='fa fa-trash'></i>").append("Delete This Showtime");
+//     toReAdd.css("background","#DDDDDD");
+//   });//end click to re-add showtime in the edit
+//
+// //this allows the user to click on the showtime again, to UNdelete it, in the add
+//   $(".edit-AVED-event-times-wrapper").on("click", ".deleteCheck", function(){
+//     var toReAdd = $(this).parent().parent().parent();
+//     $(this).css("color", "red").removeClass("re-addShowtime").addClass("removeShowtime").html("<i class='fa fa-trash'></i>").append("Delete This Showtime");
+//     toReAdd.css("background","#DDDDDD");
+//   });//end click to re-add showtime in the edit
 
-  //this removes a showtime in the edit
-  $(".edit-AVED-event-times-wrapper-edit").on("click", ".removeShowtime", function(){
-    //console.log("were in the remove edit");
-    var toRemove = $(this).parent().parent();
-    toRemove.remove();
-    //console.log(toRemove);
-    // toRemove.css("background","red");
-  });
+
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");

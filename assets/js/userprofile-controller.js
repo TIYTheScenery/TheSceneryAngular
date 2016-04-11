@@ -134,11 +134,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
       var settings = {
         "async": true,
         "crossDomain": true,
-<<<<<<< HEAD
-        "url": "http://localhost:3000/users/", //+$scope.currentuser.user_info.id,
-=======
         "url": "http://infinite-reef-76606.herokuapp.com/users",
->>>>>>> development
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",

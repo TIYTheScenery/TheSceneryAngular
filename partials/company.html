@@ -1,7 +1,7 @@
 <section class="company-wrapper" ng-controller="companyCont">
   <nav class="action-buttons">
     <div class="action">
-      <a href="">
+      <a href="#/performance">
         <div class="create-performance-btn company-btn">
           Create Performance
         </div>
@@ -11,6 +11,13 @@
       <a href="">
         <div class="create-opportunity-btn company-btn">
           Create Opportunity
+        </div>
+      </a>
+    </div>
+    <div class="action">
+      <a href="">
+        <div class="authorize-company-users company-btn" ng-click="authorize = !authorize">
+          Add Authorized Users
         </div>
       </a>
     </div>
@@ -30,6 +37,7 @@
     </div>
   </nav>
   <header class="company-header">
+    <a href=""><div class="edit-company-hero-image" ng-show="show">Edit Company Banner</div></a>
     <img src="" class="company-hero-image">
     <div class="company-name-type-wrapper">
       <div class="company-name" ng-hide="show">Company Name</div>
@@ -42,8 +50,28 @@
       </select>
     </div>
   </header>
+  <div class="company-profile-pic" ng-hide="show">
+    <img src="">
+  </div>
+  <a href=""><div class="company-profile-pic edit-company-profile-pic" ng-show="show">Add Profile Picture</div></a>
   <div class="company-location" ng-hide="show">123 Example St. Durham, NC 27703</div>
-  <input class="edit-company-location" placeholder="Edit Company Location: Address City, State Zip" ng-show="show">
+
+  <div class="company-location-input-wrapper">
+    <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="show">
+    <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="show">
+    <select class="company-location-input edit-company-location-state" ng-show="show">
+      <option selected disabled>Pick A State</option>
+      <option>NC</option>
+    </select>
+    <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="show">
+  </div>
+
+
+
+
+  <!-- <input class="edit-company-location" placeholder="Edit Company Location: Address. City, State Zip" ng-show="show"> -->
+
+
   <div class="company-details-wrapper">
     <div class="company-description" ng-hide="show">Enter your company description here.</div>
     <div class="edit-company-description-label" ng-show="show">Edit Company Description</div>
@@ -155,6 +183,15 @@
           </div>
           <div class="company-review-text">Review Text</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="authorize-user-modal-wrapper" ng-show="authorize">
+    <div class="authorize-user-modal-box">
+      Input Authorized Users by
+      <div class="authorize-user-modal-input-holder">
+        <input class="authorize-user-modal-input">
       </div>
     </div>
   </div>

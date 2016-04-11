@@ -186,11 +186,25 @@
 .edit-company-type {
   font-size: 16px; }
 
-.edit-company-location {
+.company-location-input-wrapper {
+  width: 70%;
+  margin: 45px auto 15px auto; }
+
+.edit-company-location-address {
+  width: 35%;
   font-size: 16px;
-  display: block;
-  width: 30%;
-  margin: 20px auto; }
+  margin-right: 15px; }
+
+.edit-company-location-city {
+  width: 25%;
+  font-size: 16px;
+  margin-right: 15px; }
+
+.edit-company-location-state {
+  margin-right: 15px; }
+
+.edit-company-location-zip {
+  font-size: 16px; }
 
 .edit-company-description-label {
   font-size: 18px;
@@ -224,5 +238,21 @@
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 30px; }
+
+.edit-company-hero-image {
+  position: absolute;
+  margin: 40px 0 0 40px;
+  background: #ccc;
+  padding: 5px;
+  border-radius: 5px; }
+
+.company-profile-pic {
+  position: absolute;
+  height: 175px;
+  width: 175px;
+  background: #444;
+  margin-top: -150px;
+  margin-left: 175px;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=company.css.map */

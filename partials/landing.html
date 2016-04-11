@@ -2,20 +2,22 @@
   <header class="landing-header">
     <img src="">
     <h1 class="landing-header-text">The Scenery{{messsage3}}</h1>
-    <h5 class="landing-header-desc">The world is your oyster because all of the entertainment in your area is now available with a few flurries of your fingers on the keys. Search below to be in the know in your area.<br>If you want to participate in the scene, then sign up, mark yourself as a professional, and put yourself out there as a potential collaborator.<br>If you are a professional that produces work and you want the world to know about it then sign up and create a Performance that will be instantly searchable.</h5>
+    <h5 class="landing-header-desc">The world is your oyster because all of the entertainment in your area is now available with a few flurries of your fingers on the keys. Search below to be in the know in your area.If you want to participate in the scene, then sign up, mark yourself as a professional, and put yourself out there as a potential collaborator.If you are a professional that produces work and you want the world to know about it then sign up and create a Performance that will be instantly searchable.</h5>
   </header>
 
   <div class="landing-input-wrapper">
 
     <input class="landing-search name-search" id="searchName" placeholder="Performance Name">
     <input class="landing-search location-search" id="searchLocation" placeholder="City, State">
-    <select class="genre-search" id="searchGenre">
-      <option selected disabled>Genre</option>
-      <option value="1">Theare</option>
-      <option value ="2">Improv</option>
-      <option value ="3">Dance</option>
-      <option value ="4">Film</option>
-    </select>
+    <span class="landing-search-genre-wrapper">
+      <!-- <select class="genre-search" id="searchGenre">
+        <option selected disabled>Genre</option>
+        <option value="1">Theare</option>
+        <option value ="2">Improv</option>
+        <option value ="3">Dance</option>
+        <option value ="4">Film</option>
+      </select> -->
+    </span>
     <a href=""><div class="landing-search-btn" id="landingSearchBtn" ng-click="searchDB()">Search</div></a>
   </div>
 
@@ -44,7 +46,7 @@
     </div>
     <div class="column-4">
       <a href=""><div class="footer-box">
-        Popular Performances In Your Area
+        Popular Performances Near You
       </div></a>
     </div>
     <div class="column-4">

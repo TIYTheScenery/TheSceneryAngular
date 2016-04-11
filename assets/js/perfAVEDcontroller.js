@@ -102,14 +102,21 @@ $scope.updatePerformance = function(){
   var allShowIDs=[];
   for(var k=0;k<$scope.thisPerformance.show_times.length;k++)
   {
+    console.log("show in this performance:");
+    console.log($scope.thisPerformance.show_times[k]);
     allShowIDs.push($scope.thisPerformance.show_times[k].id);//this grabs the indivigual showtime ids and puts them into an array.
   }
 
+  console.log("number of shows previously in this performance:")
+  console.log(allShowIDs.length);
+
   var allEditedShows = $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper");
+
+  console.log("the number of all edited shows:")
+  console.log(allEditedShows.length);
 
   for(var i=0; i<allEditedShows.length;i++)
   {
-
     //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
     var thisShowID;
     if(allShowIDs[i]=== undefined)
@@ -123,25 +130,50 @@ $scope.updatePerformance = function(){
 
     var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0, 'id': thisShowID};
 
-    showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time-edit").val();
-    showTemplate.address = $(allEditedShows[i]).find("#showtime-address-edit").val();
-
-    // console.log("we get this far");
+    showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time").val();
+    showTemplate.address = $(allEditedShows[i]).find("#showtime-address").val();
     // console.log(allEditedShows[i]);
-
-    var temp = $(allEditedShows[i]).find('#showtime-city-state-edit').val().split(', ');
+    var temp = $(allEditedShows[i]).find('#showtime-city-state').val().split(', ');
     showTemplate.city = temp[0];
     showTemplate.state = temp[1];
-
-    showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip-edit').val();
-    showTemplate.date = $(allEditedShows[i]).find('#showtime-date-edit').val();
+    showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip').val();
+    showTemplate.date = $(allEditedShows[i]).find('#showtime-date').val();
 
     console.log(showTemplate);
     allEditedShowsJSON.push(showTemplate);
-  }
+  }//end the build shows for
 
   console.log("all shows JSON");
+  console.log(allEditedShows.length);
   console.log(allEditedShowsJSON);
+
+//THIS CODE ATTEMPTS TO FIND OLD SHOW IDS THAT ARE NOT PART OF THE NEW LIST OF OLD SHOWS.
+//IT THEN ADDS THEM TO AN ARRAY TO BE DELETED LATER.
+//ITS MIDNIGHT ON SUNDAY. IVE BEEN HERE SINCE 1:30pm. I'M NOT FINISHING IT.
+  // var showsToDelete=[];
+  // for(var j=0;j<allEditedShows.length;j++)
+  // {
+  //   var found;
+  //   for(var h=0;h<allShowIds.length;h++)
+  //   {
+  //     if(allEditedShows[j].id === allShowsIds[h])
+  //     {
+  //       found = false;
+  //     }
+  //     else
+  //     {
+  //       found =true; //
+  //     }
+  //   }
+  //   if(found)
+  //   {
+  //     //do nothing because the id was found.
+  //   }
+  //   else
+  //   {
+  //       showsToDelete.push(some damn thing.);
+  //   }
+  // }
 
   var performance = JSON.stringify({
   "performance": {
@@ -328,7 +360,23 @@ $scope.updatePerformance = function(){
     }
   }//end deletePerformance
 
+//this removes a showtime in the add
+  $(".edit-AVED-event-times-wrapper").on("click", ".removeShowtime", function(){
+    //console.log("we're in the remove new");
+    var toRemove = $(this).parent().parent();
+    toRemove.remove();
+    // console.log(toRemove);
+    // toRemove.css("background","red");
+  });
 
+  //this removes a showtime in the edit
+  $(".edit-AVED-event-times-wrapper-edit").on("click", ".removeShowtime", function(){
+    //console.log("were in the remove edit");
+    var toRemove = $(this).parent().parent();
+    toRemove.remove();
+    //console.log(toRemove);
+    // toRemove.css("background","red");
+  });
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
@@ -341,6 +389,12 @@ $scope.updatePerformance = function(){
       var theParent = $(".EDIT-showtime-wrapper");
     }
     var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
+
+    if(where === 2)
+    {// if this is an edit and not an add we change the class of the clone so that when we scrape the page during the edit update, we can find the right thing.
+      console.log("changing classes...");
+      section.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
+    }
     //var theClone = section.clone(true);
     // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
 

@@ -6,9 +6,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   // Populate the page with the first company in the database
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
-    console.log(data);
+  $http.get('http://infinite-reef-76606.herokuapp.com/companies/2').then(function(data){
+    // console.log(data);
     console.log(data.data.company);
+    $(".company-name").text(data.data.company.name);
+    $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
+    $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
+    $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
+    $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
+    $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    $(".company-description").text(data.data.company.description);
   });
 
 
@@ -20,7 +27,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $scope.editcompany = function(){
     $(".edit-company-name").val($(".company-name").text());
     $(".edit-company-location").val($(".company-location").text());
-    $(".edit-company-url").val($(".company-url").text());
+    $(".edit-company-url").val($(".company-url").parent().attr("href"));
     $(".edit-company-youtube").val($(".media-youtube").parent().attr("href"));
     $(".edit-company-twitter").val($(".media-twitter").parent().attr("href"));
     $(".edit-company-facebook").val($(".media-facebook").parent().attr("href"));
@@ -75,7 +82,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $(".edit-company-name").val("");
     $(".company-location").text($(".edit-company-location").val());
     $(".edit-company-location").val("");
-    $(".company-url").text($(".edit-company-url").val());
+    $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
     $(".edit-company-url").val("");
     $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
     $(".edit-company-youtube").val("");

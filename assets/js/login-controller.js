@@ -50,20 +50,20 @@ TheSceneryapp.controller('login-cont', function($scope, $http, $window, $interva
     console.log( $scope.oauth );
     console.log( $scope.oauthURL );
     var Popup = $window.open($scope.oauth, 'Facebook Login', 'width=500,height=400');
-    // $window.popup = Popup;
-    // Popup.addEventListener('message', function(event) {
-    //   // IMPORTANT: Check the origin of the data!
-    //   if (~event.origin.indexOf('localhost:4000')) {
-    //       // The data has been sent from your site
-    //       // The data sent with postMessage is stored in event.data
-    //       console.log(event.data);
-    //   } else {
-    //       // The data hasn't been sent from your site!
-    //       // Be careful! Do not use it.
-    //       console.log('bad things')
-    //       return;
-    //   }
-    // });
+    $window.popup = Popup;
+    Popup.addEventListener('message', function(event) {
+      // IMPORTANT: Check the origin of the data!
+      if (event.origin.indexOf('localhost:3000')) {
+          // The data has been sent from your site
+          // The data sent with postMessage is stored in event.data
+          console.log(event.data);
+      } else {
+          // The data hasn't been sent from your site!
+          // Be careful! Do not use it.
+          console.log('bad things')
+          return;
+      }
+    });
   }//end facebook_login
 
 

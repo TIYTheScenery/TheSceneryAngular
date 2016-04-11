@@ -112,6 +112,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
     // console.log("sending this user info");
     // console.log(updatedUser);
 
+
     $(".display-user-name").text($(".edit-display-user-name").val());
     $(".edit-display-user-name").val("");
     $(".display-user-titles").text($(".edit-display-user-titles").val());

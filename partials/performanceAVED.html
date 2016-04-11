@@ -1,35 +1,43 @@
 <div ng-controller="perfAVEDcont">
-  <div ng-controller="login-cont">
-  <div class="killme" ng-hide="false">
-      <!-- {{message}}<br> -->
 
-    <div class="btn" ng-click="toggle('ADD')">Add</div>
-    <div class="btn" ng-click="toggle('VIEW')">View</div>
-    <div class="btn" ng-click="toggle('EDIT')">Edit</div>
+    <div class="killme" ng-hide="false">
+        <!-- {{message}}<br> -->
 
-    <div class ="add" ng-hide="tAdd">
-      This is visible only when the user is initially adding a performance.
+    <div ng-hide="isLogged()">
+      <a href="">
+        <div class="btn" ng-click="toggle('ADD')">
+          Add&nbsp;<i class="fa fa-plus-square-o fa-2x"></i>
+        </div>
+      </a>
+      <!-- <div class="btn" ng-click="toggle('VIEW')">View</div> -->
+      <a href="">
+        <div class="btn" ng-click="toggle('EDIT')">
+          EDIT&nbsp;<i class="fa fa-pencil-square fa-2x"></i>
+        </div>
+      </a>
+      <a href ="">
+        <div class="btn" ng-click="deletePerformance()">
+          Delete Performance&nbsp;<i class="fa fa-trash fa-2x"></i></i>
+        </div>
+      </a>
+      </div><!--end islogged button bank-->
+
+
+
     </div>
-
-    <div class ="view" ng-hide="tView">
-      this is visible only when the user is just viewing the performance listing.
-    </div>
-
-    <div class="edit" ng-hide="tEdit">
-      this is visible only when the user is editing an already created performance listing.
-    </div>
-  </div>
-
+<!--THIS IS FOR VIEWING THE HERO IMAGE AND INFO-->
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> PERFORMANCENAME{{message2}}
+      COMPANYNAME presents <br> {{thisPerformance.name}}
     </div>
-    <a href="">
+    <!--this ends the viewing-->
+    <!-- <a href="">
       <div class="new-hero-image" ng-hide="tAdd">
         Add New Hero Image
       </div>
-    </a>
+    </a> -->
+<!--THIS IS FOR ADDING THE HERO IMAGE AND INFO-->
     <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tAdd">
       <select class="hero-img-creator-dropdown">
         <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
@@ -40,51 +48,123 @@
       <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
     </div>
   </div>
+  <!--this ends the adding-->
+
+<!--THIS IS FOR EDITING THE HERO IMAGE AND INFO-->
+  <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tEdit">
+    <select class="hero-img-creator-dropdown-edit">
+      <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
+      <option>Company Name</option>
+      <option>Professional ID</option>
+    </select>
+    <span> presents </span><br>
+    <input class="hero-img-performance-name" id="performance-name-edit" placeholder="Performance Name" name="name" value="{{thisPerformance.name}}">
+  </div>
+  <!--this ends the editing-->
+
 
   <div class="performanceInfoContainer">
     <div class="authorized">
       <!--if user is on the authorized user list for any company involved in this production then, display an option to edit this prodcution-->
     </div>
 
+<!--THIS IS FOR VIEWING PERFORMANCE DESCRIPTIONS-->
     <div class="performanceDescription" ng-hide="tView">
-      Jean Valjean, after spending nineteen years in jail and in the galleys for stealing a loaf of bread and for several attempts to escape, is finally released, but his past keeps haunting him. At Digne, he is repeatedly refused shelter for the night. Only the saintly bishop, Monseigneur Myriel, welcomes him. Valjean repays his host's hospitality by stealing his silverware. When the police bring him back, the bishop protects his errant guest by pretending that the silverware is a gift. With a pious lie, he convinces them that the convict has promised to reform. After one more theft, Jean Valjean does indeed repent. Under the name of M. Madeleine he starts a factory and brings prosperity to the town of Montreuil.
+      {{thisPerformance.description}}
     </div>
+    <!--end viewing-->
+
+<!--THIS IS FOR ADDING PERFORMANCE DESCRIPTIONS-->
+    <label class="edit-perf-desc-label" ng-hide="tAdd">Performance Description:</label>
 
     <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
+    <!--end adding-->
+
+<!--THIS IS FOR EDITING PERFORMANCE DESCRIPTIONS-->
+    <label class="edit-perf-desc-label" ng-hide="tEdit">Performance Description:</label>
+
+    <textarea class="edit-performanceDescription" id="perf-desc-edit" ng-hide="tEdit">{{thisPerformance.description}}</textarea>
+    <!--end editing-->
+
 
     <div class="leftCol">
+<!--THIS IS FOR VIEWING PERFORMANCE GENRES-->
       <div class="AVED-genre" ng-hide="tView">
-        Genre: genre here.
+        Genre: {{thisPerformance.genre_id[0].category}}.
       </div>
-      <div class="AVED-genre" ng-hide="tAdd">
+      <!--this ends viewing-->
+
+<!--THIS BEGINS ADDING GENREs-->
+      <div class="edit-genre-wrapper" ng-hide="tAdd">
         Genre:
         <select class="edit-AVED-genre" ng-hide="tAdd">
           <option selected disabled>Genre</option>
-          <option value="1">Theare</option>
+          <option value="1">Theatre</option>
           <option value ="2">Improv</option>
           <option value ="3">Dance</option>
           <option value ="4">Film</option>
         </select>
       </div>
-      <a href="">
+      <!--this ends adding-->
+
+<!--THIS BEGINS EDITING GENRES-->
+      <div class="edit-genre-wrapper" ng-hide="tEdit">
+        Genre:
+        <select class="edit-AVED-genre-edit" ng-hide="tEdit">
+          <option selected disabled>Genre</option>
+          <option value="1">Theatre</option>
+          <option value ="2">Improv</option>
+          <option value ="3">Dance</option>
+          <option value ="4">Film</option>
+        </select>
+      </div>
+      <!--this ends editing-->
+
+<!--THIS BEGINS VIEWING THE TRAILER LINK-->
+      <a href="http://{{thisPerformance.trailer_link}}">
         <div class="AVED-trailer-link" ng-hide="tView">
           View Trailers
         </div>
       </a>
+      <!--end view-->
+
+<!--THIS BEGINS ADDING A TRAILER LINK-->
       <div class="edit-AVED-trailer-link" ng-hide="tAdd">
         Trailer Link:
         <input class="edit-AVED-trailer-link-input" id="trailer-link" name="trailer_link">
       </div>
-    </div>
+      <!--this ends adding-->
+
+<!--THIS BEGINS EDITING TRAILER LINK-->
+      <div class="edit-AVED-trailer-link" ng-hide="tEdit">
+        Trailer Link:
+        <input class="edit-AVED-trailer-link-input" id="trailer-link-edit" name="trailer_link" value="{{thisPerformance.trailer_link}}">
+      </div>
+      <!--end editing-->
+
+    </div><!--ends left col-->
 
     <div class="rightCol">
+<!--THIS BEGINS VIEWING TAGS-->
       <div class="AVED-tags" ng-hide="tView">
         Tags: tags here
       </div>
+      <!--ends viewing-->
+
+<!--THIS BEGINS ADDING TAGS-->
       <div class="edit-AVED-tags" ng-hide="tAdd">
         Tags: <input class="edit-AVED-tags-input" id="tags">
       </div>
       <a href="">
+      <!--this ends adding-->
+<!--THIS BEGINS EDITING TAGS-->
+      <div class="edit-AVED-tags" ng-hide="tEdit">
+        Tags: <input class="edit-AVED-tags-input" id="tags-edit">
+      </div>
+      <a href="">
+      <!--this ends editing-->
+
+<!--THIS BEGINS ADDING PRODUCTION IMAGES-->
         <div class="AVED-prod-images" ng-hide="tView">
           View Prodution Images
         </div>
@@ -104,27 +184,42 @@
           Upload Production Images
         </div>
       </a>
-    </div>
+      <!--this ends adding-->
+    </div><!--ends right col-->
 
+<!--BEGINS VIEWING TICKET LINK-->
     <div class="AVED-tickets">
-      <a href="">
+      <a href="http://{{thisPerformance.ticket_link}}">
         <div class="AVED-ticket-btn" ng-hide="tView">
           Buy Tickets!!
         </div>
       </a>
+      <!--ends viewing-->
+
+<!--BEGINS ADDING TICKET LINK-->
       <input class="AVED-ticket-link" id="ticket-link" name="ticket_link" placeholder="Place Ticket Link Here" ng-hide="tAdd">
     </div>
+    <!--ends adding-->
 
+<!--BEGINS EDITING TICKET LINK-->
+    <input class="AVED-ticket-link" id="ticket-link-edit" name="ticket_link" placeholder="Place Ticket Link Here" value="{{thisPerformance.ticket_link}}" ng-hide="tEdit">
+  </div>
+  <!--ends editing-->
+
+<!--BEGINS VIEWING SHOWTIMES-------------------------------------------------->
     <div class="evt-times" ng-hide="tView">
       <label class="AVED-label">Event Times</label>
-      <ul class="AVED-events-holder">
-        <li class="AVED-event">  <!--ADD ng-repeat!!!-->
+
+      <ul class="AVED-events-holder" ng-repeat="show in thisPerformance.show_times">
+        <li class="AVED-event">
           <div class="event-wrapper">
-            <div class="drop-down-icon">
-              <i class="fa fa-arrow-right"></i>
-            </div><!--
-            --><div class="event-info">
-              Date, Time, Location.
+            <div class="drop-down-wrapper">
+              <div class="drop-down-icon">
+                <i class="fa fa-arrow-right"></i>
+              </div>
+              <div class="event-info">
+              {{show.begin_time | date : "h:mma"}} on {{show.date | date : fullDate}}, at {{show.address}} {{show.city}}, {{show.state}}.
+              </div>
             </div>
             <div class="event-adv">
               <div class="cast-wrapper">
@@ -140,10 +235,57 @@
               </div>
             </div>
           </div>
-        </li>
-      </ul>
-    </div>
+        </li><br><br>
+      </ul><!-- end the ng-repeat in AVED-events-holder-->
 
+    </div><!--end event times view container-->
+    <!--end the viewing-->
+
+<!--BEGIN EDITING THE SHOW TIMES----------------------------------------------->
+<div class="edit-AVED-event-times-wrapper" ng-hide="tEdit" >
+  <div class="edit-AVED-event-times-header">
+    <label>
+      Event Times
+    </label>
+    <a href="">
+      <span class="create-new-showtime">
+        New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(2)"></i></a>
+      </span>
+    </a>
+  </div>
+  <div class="EDIT-showtime-wrapper">
+    <!--THIS STARTS THE SHOWTIME-->
+    <div class="EDIT-showtime-info-wrapper" ng-repeat="show in thisPerformance.show_times">
+      <div class="date-time-location-wrapper-EDIT">
+        <input class="EDIT-showtime-date-input" id="showtime-date-edit" placeholder="Date" value="{{show.date | date : fullDate}}">
+        <input class="EDIT-showtime-time-input" id="showtime-time-edit" placeholder="Time" value="{{show.begin_time | date : 'h:mma'}}">
+        <input class="EDIT-showtime-address-input" id="showtime-address-edit" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
+        <input class="EDIT-showtime-city-state-input" id="showtime-city-state-edit" placeholder="City, State" value="{{show.city}}, {{show.state}}">
+        <input class="EDIT-showtime-zip-input" id="showtime-zip-edit" placeholder="Zip Code" value="{{show.zip_code}}">
+      </div>
+      <div>
+        Cast:
+      </div>
+      <div class ="all-cast-members">
+        <div class="new-cast-member-wrapper">
+          <input class="new-cast-member-name" placeholder="Performer Name">
+          <span> As </span>
+          <input class="new-cast-member-position" placeholder="Position/Title">
+        </div>
+      </div>
+      <!-- <a href=""> -->
+        <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
+      <!-- </a> -->
+    </div>
+    <div class="newShowtimes">
+
+    </div>
+    <!--THIS ENDS THE SHOWTIME -->
+  </div>
+</div>
+    <!--end the edit-->
+
+<!--BEGIN VIEWING REVIEWS-->
     <div class="reviews" ng-hide="tView">
       <label class="AVED-label">Reviews</label>
       <div class="AVED-review-wrapper">
@@ -156,14 +298,19 @@
           <li class="AVED-review">  <!--ADD ng-repeat!!!-->
             <div class="review-wrapper">
               <div class="review-img"><img src=""></div>
-              <div class="review-name">Name of reviewer:</div>
+              <div class="rnd-wrap">
+                <div class="review-name">Name of reviewer:</div>
+                <div class="review-date">Date of review:</div>
+              </div>
               <div class="review-text">Review Text</div>
             </div>
           </li>
         </ul>
       </div>
     </div>
+    <!--end the viewing-->
 
+<!--BEGIN ADDING SHOWTIMES--------------------------------------------------->
     <div class="edit-AVED-event-times-wrapper" ng-hide="tAdd">
       <div class="edit-AVED-event-times-header">
         <label>
@@ -171,7 +318,7 @@
         </label>
         <a href="">
           <span class="create-new-showtime">
-            New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow()"></i></a>
+            New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(1)"></i></a>
           </span>
         </a>
       </div>
@@ -185,9 +332,9 @@
             <input class="new-showtime-city-state-input" id="showtime-city-state" placeholder="City, State">
             <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
           </div>
-          <div>
-            Cast:
-          </div>
+            <div>
+              Cast:
+            </div>
           <div class ="all-cast-members">
             <div class="new-cast-member-wrapper">
               <input class="new-cast-member-name" placeholder="Performer Name">
@@ -195,13 +342,12 @@
               <input class="new-cast-member-position" placeholder="Position/Title">
             </div>
           </div>
-          <!-- <a href=""> -->
+          <a href="">
             <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
-          <!-- </a> -->
+          </a>
         </div>
-        <div class="newShowtimes">
+      </div><!--Just added REMOVE IF BROKEN-->
 
-        </div>
         <!--THIS ENDS THE SHOWTIME -->
         <div class="Invisible-Showtime-wrapper" id="1" ng-hide="true">
           <div class="new-showtime-info-wrapper">
@@ -223,20 +369,40 @@
               </div>
             </div>
             <!-- <a href=""> -->
-              <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
+              <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i>
+              </span>
             <!-- </a> -->
 
           </div>
         </div><!--end invisible showtime-->
       </div><!--end all the showtimes-->
+    <!--end the showtimes ADD-->
 
 
       <a href="">
-        <div class="btn AVED-submit-button" ng-click="addperformance()">
-          Submit
+        <div class="btn AVED-submit-button" ng-click="addperformance()" ng-hide="tAdd">
+          Create Performance
         </div>
       </a>
-    </div>
+      <a href="">
+        <div class="btn AVED-submit-button" ng-click="toggle(VIEW)" ng-hide="tAdd">
+          Dont Create
+        </div>
+      </a>
+
+      <a href="">
+        <div class="btn AVED-submit-button" ng-click="updatePerformance(); toggle(VIEW)" ng-hide="tEdit">
+          Update Performance
+        </div>
+      </a>
+      <a href="">
+        <div class="btn AVED-submit-button" ng-click="toggle(VIEW)" ng-hide="tEdit">
+          Discard Changes
+        </div>
+      </a>
+
+
+    </div><!-- does this end the controller?-->
 
   </div>
   </div>

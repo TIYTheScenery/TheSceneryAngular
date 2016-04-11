@@ -1,7 +1,6 @@
 
 
-TheSceneryapp.controller('perfAVEDcont', function($scope){
-
+TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
   console.log("this works!");
   $scope.message = "you are now working with angular";
   $scope.tAdd=true;
@@ -9,29 +8,81 @@ TheSceneryapp.controller('perfAVEDcont', function($scope){
   $scope.tView=false;
 
 
+  console.log("id from local storage:");
+  console.log(JSON.parse(localStorage.getItem('perfID')));
+
+  //gets the performance ID from localstorage
+  var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
+
+  //var thisPerformanceID = ourData.borrowData("searchResults").id;//gets the performance id from the data service
+
+  $scope.performanceTimes;
+  $scope.thisPerformance;
+
+//this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
+  $http.get('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+    ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
+    console.log("performance in the service:")
+    console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
+
+    $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
+
+    //sets the default for the genre dropdown menu when editing
+    var lastinarray = $scope.thisPerformance.genre_id.length-1;
+    var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+    // lastinarray = lastinarray.genre_id;
+    // console.log("defaultGenre:")
+    // console.log(defaultGenre);
+    $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
+
+    //sets the default for the creator dropdown menu when editing
+    var creator = $scope.thisPerformance.owner_id;
+    $(".hero-img-creator-dropdown-edit option").last().attr("selected", true);
+
+  },function(){console.log("performance get failed...");
+});//end http call.
+
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();
 
+  $scope.isLogged = function()
+  {
+    var data = JSON.parse(localStorage.getItem('user'));
+    //data.user_info.login_token
+    var derp = null;
+    if (data === null)//if we DONT have a login token for this person, then return false.
+    {
+      return true;//this returns true despite a user not being logged in because it is primarily used with ng-hide.
+      $scope.$apply();
+    }
+    else
+    {
+      return false;//same deal here.
+      $scope.$apply();
+    }
+  }//end islogged
 
   $scope.toggle = function(turnOn){
-    console.log('were in the toggle function');
     if(turnOn === 'ADD')
     {
-      $scope.tAdd = false; //its false because we're using ngHide in the html.
-      $scope.tEdit = true;
-      $scope.tView = true;
+      $scope.tAdd=false;
+      $scope.tEdit=true;
+      $scope.tView=true;
+      // $scope.$apply();
     }
     else if(turnOn === 'EDIT')
     {
-      $scope.tEdit = false;
-      $scope.tView = true;
-      $scope.tAdd = true;
+      $scope.tAdd=true;
+      $scope.tEdit=false;
+      $scope.tView=true;
+      // $scope.$apply();
     }
     else//if we're not editing, and we're not adding, we must be viewing...
     {
-      $scope.tEdit = true;
-      $scope.tView = false;
-      $scope.tAdd = true;
+      $scope.tAdd=true;
+      $scope.tEdit=true;
+      $scope.tView=false;
+      // $scope.$apply();
     }
   }//end scope.toggle
 
@@ -39,6 +90,114 @@ var person = JSON.parse(localStorage.getItem('user'));
 //localStorage.setItem("user", JSON.stringify(person));
 
 console.log(person);
+
+$scope.updatePerformance = function(){
+
+  var token = person.user_info.login_token;
+  var ownerID = person.user_info.id;
+
+  var allEditedShowsJSON=[];
+
+  //the next 6 lines gets all the known show ids for this performance and puts them in an array for use later.
+  var allShowIDs=[];
+  for(var k=0;k<$scope.thisPerformance.show_times.length;k++)
+  {
+    allShowIDs.push($scope.thisPerformance.show_times[k].id);//this grabs the indivigual showtime ids and puts them into an array.
+  }
+
+  var allEditedShows = $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper");
+
+  for(var i=0; i<allEditedShows.length;i++)
+  {
+
+    //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
+    var thisShowID;
+    if(allShowIDs[i]=== undefined)
+    {
+       thisShowID = '';
+    }
+    else
+    {
+      thisShowID= allShowIDs[i];
+    }
+
+    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0, 'id': thisShowID};
+
+    showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time-edit").val();
+    showTemplate.address = $(allEditedShows[i]).find("#showtime-address-edit").val();
+
+    // console.log("we get this far");
+    // console.log(allEditedShows[i]);
+
+    var temp = $(allEditedShows[i]).find('#showtime-city-state-edit').val().split(', ');
+    showTemplate.city = temp[0];
+    showTemplate.state = temp[1];
+
+    showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip-edit').val();
+    showTemplate.date = $(allEditedShows[i]).find('#showtime-date-edit').val();
+
+    console.log(showTemplate);
+    allEditedShowsJSON.push(showTemplate);
+  }
+
+  console.log("all shows JSON");
+  console.log(allEditedShowsJSON);
+
+  var performance = JSON.stringify({
+  "performance": {
+    "id": thisPerformanceID,
+    "owner_id": ownerID,
+    "company_id": "1",
+    "name": $('#performance-name-edit').val(),
+    "description": $('#perf-desc-edit').val(),
+    "trailer_link": $('#trailer-link-edit').val(),
+    "ticket_link": $('#ticket-link-edit').val(),
+    "genre_performances_attributes":[
+     {
+       "genre_id": $(".edit-AVED-genre-edit").val()
+     }
+   ],
+    "show_times_attributes": allEditedShowsJSON
+  },
+  "user_info": {
+    "login_token": token  //"butts"      //response.user_info.login_token
+    }
+  });
+
+  console.log(performance);
+
+//MODIFIED ANGULAR CALL
+// $http({ method: 'PUT', url: 'http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, data: performance});
+
+//AJAX CALL
+  // var settings = {
+  //   "async": true,
+  //   "crossDomain": true,
+  //   "url": "https://infinite-reef-76606.herokuapp.com/performances",
+  //   "method": "PATCH",
+  //   "headers": {
+  //     "content-type": "application/json",
+  //     "cache-control": "no-cache"
+  //   },
+  //   "processData": false,
+  //   "data": performance
+  //    };
+  //
+  //   $.ajax(settings).done(function (data) {
+  //   console.log(data);
+  //   });//end ajax.
+
+
+//THIS IS THE ANGULAR CALL
+  $http.put('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, performance).then(function(data){
+    console.log("performance updated!");
+    console.log(data);
+  },function(){console.log("performance update failed...");
+});//end http call.
+
+  $scope.thisPerformance = performance;
+
+}//end updatePerformance
 
   $scope.addperformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
@@ -59,6 +218,9 @@ console.log(person);
 
       showTemplate.begin_time = $(allShows[i]).find("#showtime-time").val();
       showTemplate.address = $(allShows[i]).find("#showtime-address").val();
+
+      console.log("we get this far");
+      console.log(allShows[i]);
 
       var temp = $(allShows[i]).find('#showtime-city-state').val().split(', ');
       showTemplate.city = temp[0];
@@ -141,46 +303,63 @@ console.log(person);
 
   }//End addperformance
 
-  $scope.addNewShow = function(){
+  $scope.deletePerformance = function()
+  {
+    //prompt user for certianty.
+    var doit = confirm("THE SHOW MUST GO ON! Proceeding will completley delete this Perofrmance and all of its show times. Are you sure?");
+
+    if(doit)
+    {
+      //confirm delete, delete performance, go back to landing page.
+      alert("Performance deleted. The show will go on... just... at another time.")
+
+      //THIS IS THE ANGULAR CALL
+        $http.delete('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+          console.log("performance DELETED!");
+          console.log(data);
+        },function(){console.log("performance delete failed...");
+      });//end http call.
+
+      $window.location.href = "/";
+    }
+    else
+    {
+      //do nothing. user decided not to delete.
+    }
+  }//end deletePerformance
+
+
+
+  $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
-    var theParent = $(".new-showtime-wrapper");
+    if(where===1)
+    {
+      var theParent = $(".new-showtime-wrapper");
+    }
+    else if(where === 2)
+    {
+      var theParent = $(".EDIT-showtime-wrapper");
+    }
     var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
     //var theClone = section.clone(true);
     // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
 
-    theParent.append(section.wrap('<p/>').parent().html());
-    section.unwrap();
+    if(where === 1)//1 is for adding a showtime while initilally creating.
+    {
+      theParent.append(section.wrap('<p/>').parent().html());
+      section.unwrap();
+    }
+    else if(where === 2)//2 is for adding a showtime while editing..
+    {
+      theParent.append(section.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
+      section.unwrap();
+    }
+    else{console.log("I dont understand where im supposed to put the new showtime...");}
+
   //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
   }//end addnewshow
 
-
-  //ng-click="addCastMember($event)"
-  // $scope.addCastMember = function($event){
-  //
-  //   $(function){
-  //
-  //   console.log("we're in the newcast");
-  //   console.log($event.currentTarget);
-  //
-  //   // var parent = $($event.currentTarget).parent().parent().siblings(".all-cast-members");
-  //   var parent = $($event.currentTarget).closest(".new-showtime-info-wrapper").find(".all-cast-members");
-  //
-  //   var section = $(".Invisible-Showtime-wrapper").find(".new-cast-member-wrapper").last();
-  //   //var clone = section.clone(true);
-  //
-  //   console.log("parent:");
-  //   console.log(parent);
-  //   console.log("section:");
-  //   console.log(section);
-  //   // console.log("clone:");
-  //   // console.log(clone);
-  //
-  //   parent.append(section.wrap('<p/>').parent().html());
-  //   section.unwrap();
-  //
-  // }//end jquery function
-
-    // $(function(){
+//THE FOLLOWING CODE ADDS A NEW CAST MEMBER.
     $(".edit-AVED-event-times-wrapper").on("click", ".add-performer", function(){
 
     console.log("we're in the newcast");
@@ -202,7 +381,7 @@ console.log(person);
     parent.append(section.wrap('<p/>').parent().html());
     section.unwrap();
 
-    });
+  });//end adding new cast member
 
 
   // });//end jquery function

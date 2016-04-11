@@ -1,0 +1,161 @@
+<section class="company-wrapper" ng-controller="companyCont">
+  <nav class="action-buttons">
+    <div class="action">
+      <a href="">
+        <div class="create-performance-btn company-btn">
+          Create Performance
+        </div>
+      </a>
+    </div>
+    <div class="action">
+      <a href="">
+        <div class="create-opportunity-btn company-btn">
+          Create Opportunity
+        </div>
+      </a>
+    </div>
+    <div class="action" ng-hide="show" ng-click="show = !show; editcompany()">
+      <a href="">
+        <div class="edit-company-btn company-btn">
+          Edit Company
+        </div>
+      </a>
+    </div>
+    <div class="action">
+      <a href="">
+        <div class="delete-company-btn company-btn">
+          Delete Company
+        </div>
+      </a>
+    </div>
+  </nav>
+  <header class="company-header">
+    <img src="" class="company-hero-image">
+    <div class="company-name-type-wrapper">
+      <div class="company-name" ng-hide="show">Company Name</div>
+      <input class="edit-company-name" placeholder="edit company name" ng-show="show">
+      <div class="company-type" ng-hide="show">Company & Venue</div>
+      <select class="edit-company-type"  ng-show="show">
+        <option selected disabled>Company Type</option>
+        <option>Company</option>
+        <option>Company & Venue</option>
+      </select>
+    </div>
+  </header>
+  <div class="company-location" ng-hide="show">123 Example St. Durham, NC 27703</div>
+  <input class="edit-company-location" placeholder="Edit Company Location: Address City, State Zip" ng-show="show">
+  <div class="company-details-wrapper">
+    <div class="company-description" ng-hide="show">Like a sci fi Lone Wolf & Cub, the new Cable series is packed with action, adventure, humor and everything else an X-Men fan could ask for. The Odd Couple of the Marvel Universe, Cable is a soldier from the future, fighting for peace today while Deadpool is the wisecracking, gun-for-hire by-product of the military’s Weapon X program. Sparks fly when this oddest of all couples kicks butts and takes names throughout the Marvel Universe. Traveling back and forth through time, Cable recently traveled back to the future with a special purpose: Protect a mutant baby who could be mutantkind’s savior.</div>
+    <div class="edit-company-description-label" ng-show="show">Edit Company Description</div>
+    <textarea class="edit-company-description" ng-show="show"></textarea>
+    <div class="company-social">
+      <div class="company-website">
+        <a href="">
+          <div class="company-url" ng-hide="show">Visit Our Website</div>
+        </a>
+      </div>
+      <div class="company-media-wrapper">
+        <input class="edit-company-media edit-company-url" placeholder="edit company url" ng-show="show">
+        <input class="edit-company-media edit-company-youtube" placeholder="edit youtube link" ng-show="show">
+        <input class="edit-company-media edit-company-twitter" placeholder="edit twitter link" ng-show="show">
+        <input class="edit-company-media edit-company-facebook" placeholder="edit facebook link" ng-show="show">
+        <input class="edit-company-media edit-company-instagram" placeholder="edit instagram link" ng-show="show">
+
+        <div class="company-media-youtube" ng-hide="show">
+          <a href="">
+            <div class="media media-youtube">
+              <i class="fa fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <div class="company-media-twitter" ng-hide="show">
+          <a href="">
+            <div class="media media-twitter">
+              <i class="fa fa-twitter"></i>
+            </div>
+          </a>
+        </div>
+        <div class="company-media-facebook" ng-hide="show">
+          <a href="">
+            <div class="media media-facebook">
+              <i class="fa fa-facebook"></i>
+            </div>
+          </a>
+        </div>
+        <div class="company-media-instagram" ng-hide="show">
+          <a href="">
+            <div class="media media-instagram">
+              <i class="fa fa-instagram"></i>
+            </div>
+          </a>
+        </div> <!--end instagram-->
+      </div> <!--end media wrapper-->
+    </div> <!--end company social-->
+  </div> <!--end company detail wrapper-->
+
+  <div class="company-save-btn-wrapper" ng-show="show">
+    <a href="">
+      <div class="company-save-btn" ng-click="show = !show; savecompany()">
+        Save
+      </div>
+    </a>
+  </div>
+  <div class="O-p-R-wrapper" ng-hide="show">  <!--Wrapper for opportunities, performances, and reviews-->
+    <div class="opportunities-wrapper">
+      <div class="opportunities-label">
+        Opportunities:
+      </div>
+      <div class="company-opportunity">
+        <div class="company-opportunity-poster-image-wrapper">
+          <img src="">
+        </div>
+        <div class="company-ndt-wrapper">  <!--wrap the name date and opportunity title for easy styling-->
+          <div class="company-opportunity-poster-name">
+            name of poster
+          </div>
+          <div class="company-opportunity-date-posted">
+            date posted
+          </div>
+          <div class="company-opportunity-title">
+            name of the opportunity
+          </div>
+        </div>
+        <div class="company-opportunity-description">
+          But her wit, charm and intelligence just may help her survive through another day. In a city of Marvels, Jessica Jones never found her niche. The very first appearance of Spider-Man. What do you get when you ask the question, What if Spider-Man had a daughter.
+        </div>
+      </div>
+    </div>
+    <div class="company-performances-wrapper">
+      <div class="company-performances-label">
+        Performances:
+      </div>
+      <div class="company-performance">
+        <a href='#/performance'>
+          <div class='company-performance-box'>
+            <div class='company-box-performance-name'>
+              Performance Name
+            </div>
+            <div class='company-box-company-name'>
+              Company Name
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="company-reviews-holder">
+      <div class="company-reviews-label">
+        Reviews:
+      </div>
+      <div class="company-review">  <!--ADD ng-repeat!!!-->
+        <div class="company-review-wrapper">
+          <div class="company-review-img"><img src=""></div>
+          <div class="company-rnd-wrap">
+            <div class="company-review-name">Name of reviewer:</div>
+            <div class="company-review-date">Date of review:</div>
+          </div>
+          <div class="company-review-text">Review Text</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

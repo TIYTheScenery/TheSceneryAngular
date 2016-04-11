@@ -3,10 +3,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   var person = JSON.parse(localStorage.getItem('user'));
   var token = person.user_info.login_token;
   var ownerID = person.user_info.id;
+  // var companyid = JSON.parse(localStorage.getItem('companyid'));
 
   // Populate the page with the first company in the database
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/2').then(function(data){
+  $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
     // console.log(data);
     console.log(data.data.company);
     $(".company-name").text(data.data.company.name);
@@ -16,6 +17,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
     $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
     $(".company-description").text(data.data.company.description);
+
+    console.log(data.data.company.upcoming_performances);
+
+    for (var i=0; i<data.data.company.upcoming_performances.length; i++){
+      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+    }
+
+    for (var i=0; i<data.data.company.past_performances.length; i++){
+      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+    }
 
     localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
   });
@@ -84,9 +95,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   $scope.savecompany = function(){
 
+    var companyid = JSON.parse(localStorage.getItem('companyid'));
+
     var editcompany = JSON.stringify({
       "company": {
-        "id": JSON.parse(localStorage.getItem('companyid'),
+        "id": companyid,
         "user_id": ownerID,
         "name": $(".edit-company-name").val(),
         "description": $(".edit-company-description").val(),
@@ -105,51 +118,41 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       }
     });
 
-    //AJAX CALL
-      // var settings = {
-      //   "async": true,
-      //   "crossDomain": true,
-      //   "url": "http://infinite-reef-76606.herokuapp.com/companies",
-      //   "method": "PATCH",
-      //   "headers": {
-      //     "content-type": "application/json",
-      //     "cache-control": "no-cache"
-      //   },
-      //   "processData": false,
-      //   "data": editcompany
-      //    };
-      //
-      //   $.ajax(settings).done(function (data) {
-      //     console.log("Updated Company");
-      //     console.log(data);
-      //   });//end ajax.
+    // AJAX CALL
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
+        "method": "PATCH",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        "processData": false,
+        "data": editcompany
+         };
+
+        $.ajax(settings).done(function (data) {
+          console.log("Updated Company");
+          console.log(data);
+        });//end ajax.
+
+        $(".company-name").text($(".edit-company-name").val());
+        $(".edit-company-name").val("");
+        $(".company-location").text($(".edit-company-location").val());
+        $(".edit-company-location").val("");
+        $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
+        $(".edit-company-url").val("");
+        $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
+        $(".edit-company-youtube").val("");
+        $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
+        $(".edit-company-twitter").val("");
+        $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
+        $(".edit-company-facebook").val("");
+        $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
+        $(".edit-company-instagram").val("");
+        $(".company-description").text($(".edit-company-description").val());
+        $(".edit-company-description").val("");
+
   }//End Save Company
 });
-
-
-
-
-
-
-
-
-
-
-
-
-// $(".company-name").text($(".edit-company-name").val());
-// $(".edit-company-name").val("");
-// $(".company-location").text($(".edit-company-location").val());
-// $(".edit-company-location").val("");
-// $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
-// $(".edit-company-url").val("");
-// $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
-// $(".edit-company-youtube").val("");
-// $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
-// $(".edit-company-twitter").val("");
-// $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
-// $(".edit-company-facebook").val("");
-// $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
-// $(".edit-company-instagram").val("");
-// $(".company-description").text($(".edit-company-description").val());
-// $(".edit-company-description").val("");

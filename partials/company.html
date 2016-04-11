@@ -56,13 +56,13 @@
     <img src="" class="company-hero-image">
     <div class="company-name-type-wrapper">
       <!-- Display Company Name -->
-      <div class="company-name" ng-hide="show; create">Company Name</div>
+      <div class="company-name" ng-hide="show || create">Company Name</div>
       <!-- Edit Company Name -->
       <input class="edit-company-name" placeholder="edit company name" ng-show="show">
       <!-- Create Company Name -->
       <input class="create-company-name" placeholder="add company name" ng-show="create">
       <!-- Display Company Type -->
-      <div class="company-type" ng-hide="show; create">Company & Venue</div>
+      <div class="company-type" ng-hide="show || create">Company & Venue</div>
       <!-- Edit Company Type -->
       <select class="edit-company-type"  ng-show="show">
         <option selected disabled>Company Type</option>
@@ -78,7 +78,7 @@
     </div>
   </header>
   <!-- Display company profile picture -->
-  <div class="company-profile-pic" ng-hide="show; create">
+  <div class="company-profile-pic" ng-hide="show || create">
     <img src="">
   </div>
   <!-- Edit company profile picture -->
@@ -86,7 +86,7 @@
   <!-- Create company profile picture -->
   <a href=""><div class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture</div></a>
   <!-- Display company location -->
-  <div class="company-location" ng-hide="show; create">123 Example St. Durham, NC 27703</div>
+  <div class="company-location" ng-hide="show || create">123 Example St. Durham, NC 27703</div>
 
   <div class="company-location-input-wrapper">
 
@@ -111,7 +111,7 @@
 
   <div class="company-details-wrapper">
     <!-- Display Company Description -->
-    <div class="company-description" ng-hide="show; create">Enter your company description here.</div>
+    <div class="company-description" ng-hide="show || create">Enter your company description here.</div>
     <!-- Edit Company Description -->
     <div class="edit-company-description-label" ng-show="show">Edit Company Description</div>
     <textarea class="edit-company-description" ng-show="show"></textarea>
@@ -122,7 +122,7 @@
       <!-- Display Company Website Button -->
       <div class="company-website">
         <a href="">
-          <div class="company-url" ng-hide="show; create">Visit Our Website</div>
+          <div class="company-url" ng-hide="show || create">Visit Our Website</div>
         </a>
       </div>
       <div class="company-media-wrapper">
@@ -139,28 +139,28 @@
         <input class="create-company-media create-company-facebook" placeholder="add facebook link" ng-show="create">
         <input class="create-company-media create-company-instagram" placeholder="add instagram link" ng-show="create">
         <!-- Display Company Media -->
-        <div class="company-media-youtube" ng-hide="show; create">
+        <div class="company-media-youtube" ng-hide="show || create">
           <a href="">
             <div class="media media-youtube">
               <i class="fa fa-youtube"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-twitter" ng-hide="show; create">
+        <div class="company-media-twitter" ng-hide="show || create">
           <a href="">
             <div class="media media-twitter">
               <i class="fa fa-twitter"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-facebook" ng-hide="show; create">
+        <div class="company-media-facebook" ng-hide="show || create">
           <a href="">
             <div class="media media-facebook">
               <i class="fa fa-facebook"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-instagram" ng-hide="show; create">
+        <div class="company-media-instagram" ng-hide="show || create">
           <a href="">
             <div class="media media-instagram">
               <i class="fa fa-instagram"></i>
@@ -186,7 +186,7 @@
       </div>
     </a>
   </div>
-  <div class="O-p-R-wrapper" ng-hide="show; create">  <!--Wrapper for opportunities, performances, and reviews-->
+  <div class="O-p-R-wrapper" ng-hide="show || create">  <!--Wrapper for opportunities, performances, and reviews-->
     <div class="opportunities-wrapper">
       <div class="opportunities-label">
         Opportunities:
@@ -213,19 +213,38 @@
     </div>
     <div class="company-performances-wrapper">
       <div class="company-performances-label">
-        Performances:
+        Upcoming Performances:
       </div>
-      <div class="company-performance">
-        <a href='#/performance'>
-          <div class='company-performance-box'>
-            <div class='company-box-performance-name'>
-              Performance Name
+      <div class="insert-upcoming-performance">
+        <!-- <div class="company-performance">
+          <a href='#/performance'>
+            <div class='company-performance-box'>
+              <div class='company-box-performance-name'>
+                Performance Name
+              </div>
+              <div class='company-box-company-name'>
+                Company Name
+              </div>
             </div>
-            <div class='company-box-company-name'>
-              Company Name
+          </a>
+        </div> -->
+      </div>
+      <div class="company-performances-label">
+        Past Performances:
+      </div>
+      <div class="insert-past-performance">
+        <!-- <div class="company-performance">
+          <a href='#/performance'>
+            <div class='company-performance-box'>
+              <div class='company-box-performance-name'>
+                Performance Name
+              </div>
+              <div class='company-box-company-name'>
+                Company Name
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div> -->
       </div>
     </div>
     <div class="company-reviews-holder">

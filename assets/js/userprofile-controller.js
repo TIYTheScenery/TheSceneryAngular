@@ -1,7 +1,7 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
-  console.log("current user");
-  console.log($scope.currentuser);
+  console.log("Original User");
+  console.log($scope.currentuser.user_info);
 
   // If there is no logged in user reroute to homepage
 
@@ -23,8 +23,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
     $(".user-social-links-wrapper").css("display", "none");
   }
 
-  $scope.isProfessional = function()
-  {
+  $scope.isProfessional = function(){
     return $scope.currentuser.user_info.is_professional
   }
 
@@ -36,14 +35,38 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
 
   // If a user has titles display them.
 
-  // if ($scope.currentuser.user_info.titles != null){
-  // $(".display-user-titles").text()
-  // }
+  // console.log($scope.currentuser.user_info.titles.length);
+
+  if ($scope.currentuser.user_info.titles.length != 0){
+      $(".display-user-titles").text($scope.currentuser.user_info.titles[$scope.currentuser.user_info.titles.length - 1].title);
+  }
 
   // If a user has a description display it.
 
   if ($scope.currentuser.user_info.description != null){
     $(".side-info-user-description").text($scope.currentuser.user_info.description);
+  }
+
+  // Display user created at date
+
+  $(".display-user-creation-date").text("Member since: " + $scope.currentuser.user_info.created_at);
+
+  //Display user social links if they exist.
+
+  if ($scope.currentuser.user_info.youtube_link != null){
+    $(".user-youtube-link").parent().attr("href", $scope.currentuser.user_info.youtube_link);
+  }
+
+  if ($scope.currentuser.user_info.twitter_link != null){
+    $(".user-twitter-link").parent().attr("href", $scope.currentuser.user_info.twitter_link);
+  }
+
+  if ($scope.currentuser.user_info.facebook_link != null){
+    $(".user-facebook-link").parent().attr("href", $scope.currentuser.user_info.facebook_link);
+  }
+
+  if ($scope.currentuser.user_info.instagram_link != null){
+    $(".user-instagram-link").parent().attr("href", $scope.currentuser.user_info.instagram_link);
   }
 
   // Port view variables into edit containers
@@ -66,7 +89,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
     var firstname = names[0];
     var lastname = names[1];
 
-    var updatedUser = {
+    var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
       "first_name": firstname,
@@ -79,11 +102,15 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
       "email": $scope.currentuser.user_info.email,
       "id": $scope.currentuser.user_info.id,
       "display_name": $scope.currentuser.user_info.display_name,
-      "is_professional": $scope.currentuser.user_info.is_professional
+      "is_professional": $scope.currentuser.user_info.is_professional,
+      "titles_attributes": [
+	       { "id": "",
+           "title": $("#user-titles").val()}
+       ]
       }
-    }
-    console.log("sending this user info");
-    console.log(updatedUser);
+    });
+    // console.log("sending this user info");
+    // console.log(updatedUser);
 
     $(".display-user-name").text($(".edit-display-user-name").val());
     $(".edit-display-user-name").val("");
@@ -100,13 +127,13 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
     $(".side-info-user-description").text($("#user-desc").val());
     $("#user-desc").val("");
 
-    console.log($scope.currentuser.user_info.id);
+    // console.log($scope.currentuser.user_info.id);
 
     //AJAX CALL
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://infinite-reef-76606.herokuapp.com/users/"+$scope.currentuser.user_info.id,
+        "url": "http://infinite-reef-76606.herokuapp.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -117,7 +144,10 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
          };
 
         $.ajax(settings).done(function (data) {
-        console.log(data);
+          console.log("Updated User");
+          console.log(data);
+          localStorage.setItem("user", JSON.stringify(data));
+
         });//end ajax.
 
 

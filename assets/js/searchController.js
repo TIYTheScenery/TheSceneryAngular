@@ -1,6 +1,6 @@
 TheSceneryapp.controller('searchController', function($scope, $http, ourData){
 $scope.message3 ="GO!"
-  window.onload = genrePull('searchGenre', $('.landing-search-genre-wrapper'));
+  window.onload = genrePull('genre-search', $('.landing-search-genre-wrapper'));
 
 // $('li').on("click", function(){
 //   console.log("inside click");
@@ -20,7 +20,7 @@ $scope.searchDB = function()
   console.log("searching!");
   var searchName = $('#searchName').val();
   var searchLocation =$('#searchLocation').val();
-  var searchGenre =$('#searchGenre').val();
+  var searchGenre =$('#genre-search').val();
 
   var settings = {
    "async": true,
@@ -74,16 +74,20 @@ $scope.searchDB = function()
     // console.log($(this).attr("id"));
   }));
 
-  $('.landing-header-text').css({"margin-top": "10px", "margin-bottom": "25px", "transition-duration": "1s"});
-  // $('.landing-header-desc').css({"margin-bottom": "20px", "transition-duration": "1s"});
-  $('.landing-header-desc').fadeOut(750).css({"margin-bottom": "-50px", "color": "#ddd", "transition-duration": "1s"});
-  // $('.landing-footer').css({"display": "none"});
-  $('.landing-footer').fadeOut(1000);
-  // $('.performance-show-wrapper').removeClass('hidden');
-  $('.performance-show-wrapper').fadeIn(2000);
-  $('.landing-wrapper').css({"padding-bottom": "0px"});
-  $('.landing-search').val("");
-  $('.genre-search').prop('selectedIndex',0);
+  // $('.landing-header-text').css({"margin-top": "10px", "margin-bottom": "25px", "transition-duration": "1s"});
+  // // $('.landing-header-desc').css({"margin-bottom": "20px", "transition-duration": "1s"});
+  // $('.landing-header-desc').fadeOut(750).css({"margin-bottom": "-50px", "color": "#ddd", "transition-duration": "1s"});
+  // // $('.landing-footer').css({"display": "none"});
+  // $('.landing-footer').fadeOut(1000);
+  // // $('.performance-show-wrapper').removeClass('hidden');
+  $('.performance-show-wrapper').fadeIn(1000);
+  // $('.landing-wrapper').css({"padding-bottom": "0px"});
+  // $('.landing-search').val("");
+  // $('.genre-search').prop('selectedIndex',0);
+
+  $(".landing-input-wrapper").css({"padding-bottom": "2%", "transition-duration": "1s"});
+  $(".landing-header-desc").fadeOut(1000)
+  //.css({"transform": "perspecitve(50px);","transition-duration": "1s"})
 
 }//end searchDB
 

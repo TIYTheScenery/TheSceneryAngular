@@ -22,6 +22,9 @@ input:-ms-input-placeholder {
   margin-right: 4%;
   vertical-align: middle; }
 
+html {
+  background: #5b192d; }
+
 .landingColMid {
   font-size: 40px;
   float: left;
@@ -97,6 +100,7 @@ input:-ms-input-placeholder {
     margin-bottom: 20px; }
 
 .landing-footer {
+  position: fixed;
   display: inline-block;
   width: 100%;
   bottom: 0;
@@ -123,11 +127,11 @@ input:-ms-input-placeholder {
   border: 1px solid #333; }
 
 .performance-show-wrapper {
-  width: 90%;
-  margin: auto;
-  background: #aaa;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 5px;
-  background: #5b192d; }
+  background: #5b192d;
+  text-align: center; }
 
 .hidden {
   display: none; }

@@ -3,9 +3,16 @@
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
   console.log("this works!");
   $scope.message = "you are now working with angular";
-  $scope.tAdd=true;
-  $scope.tEdit=true;
-  $scope.tView=false;
+
+  //use these for defaulting to view when you get on this page.
+  // $scope.tAdd=true;
+  // $scope.tEdit=true;
+  // $scope.tView=false;
+
+  //these poll ourdata for what the view should be on this page: view, edit, or add.
+  $scope.tAdd=ourData.borrowData("tAdd");
+  $scope.tEdit=ourData.borrowData("tEdit");
+  $scope.tView=ourData.borrowData("tView");
 
 
   console.log("id from local storage:");

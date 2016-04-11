@@ -37,7 +37,9 @@ color: $inputPlaceholder;
   vertical-align:middle;
   // margin-bottom: 20px;
 }
-
+html{
+  background: darken($curtainBG, 10%);
+}
 .landingColMid{
   font-size: 40px;
   float: left;
@@ -123,7 +125,7 @@ color: $inputPlaceholder;
 }
 
 .landing-footer{
-  // position: fixed
+  position: fixed;
   display: inline-block;
   width: 100%;
   bottom: 0;
@@ -153,11 +155,11 @@ color: $inputPlaceholder;
 }
 
 .performance-show-wrapper{
-  width: 90%;
-  margin: auto;
-  background: #aaa;
+  width: 100%;
+  margin-bottom: 20px;
   padding: 5px;
   background: darken($curtainBG, 10%);
+  text-align: center;
 }
 
 .hidden{

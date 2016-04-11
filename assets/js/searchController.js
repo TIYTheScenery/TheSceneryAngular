@@ -66,7 +66,11 @@ $scope.searchDB = function()
 
     var clickedthing = ourData.borrowData("searchResults")[clickedPerformance];
 
-    ourData.shareData("searchResults", clickedthing);
+    ourData.shareData("searchResults", clickedthing);//puts the clicked result into ourdata
+
+    //puts the clicked result's id into local storage
+    localStorage.setItem("perfID", JSON.stringify(ourData.borrowData("searchResults").id));
+
     // console.log(ourData.borrowData("searchResults"));
 
     // console.log($(this).attr("id"));
@@ -74,7 +78,7 @@ $scope.searchDB = function()
 
   $('.landing-header-text').css({"margin-top": "10px", "margin-bottom": "25px", "transition-duration": "1s"});
   // $('.landing-header-desc').css({"margin-bottom": "20px", "transition-duration": "1s"});
-  $('.landing-header-desc').fadeOut(1000).css({"margin-bottom": "-50px", "color": "#ddd", "transition-duration": "1s"});
+  $('.landing-header-desc').fadeOut(750).css({"margin-bottom": "-50px", "color": "#ddd", "transition-duration": "1s"});
   // $('.landing-footer').css({"display": "none"});
   $('.landing-footer').fadeOut(1000);
   // $('.performance-show-wrapper').removeClass('hidden');

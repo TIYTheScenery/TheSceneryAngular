@@ -56,8 +56,8 @@
 
 .company-location {
   font-size: 20px;
-  width: 300px;
-  margin: 10px auto; }
+  text-align: center;
+  margin: 27px 0 10px 0; }
 
 .company-details-wrapper {
   width: 90%;
@@ -125,6 +125,9 @@
   margin: 10px auto 20px auto;
   border-radius: 5px; }
 
+.company-performances-label {
+  margin-top: -15px; }
+
 .company-opportunity {
   background: #bbb;
   width: 90%;
@@ -160,9 +163,12 @@
   border-radius: 5px;
   background: #bbb;
   width: 90%;
-  margin: auto;
+  margin: 15px auto;
   border: 1px solid #999;
   padding: 45px 10px 45px 10px; }
+
+.past-performances-label {
+  margin: 0 auto; }
 
 .company-performance-box {
   font-size: 20px;
@@ -178,51 +184,94 @@
   background: #bbb;
   padding: 10px; }
 
-.edit-company-name {
+.edit-company-name,
+.create-company-name {
   width: 90%;
   font-size: 16px;
   margin-bottom: 10px; }
 
-.edit-company-type {
+.edit-company-type,
+.create-company-type {
   font-size: 16px; }
 
-.edit-company-location {
-  font-size: 16px;
-  display: block;
-  width: 30%;
-  margin: 20px auto; }
+.company-location-input-wrapper {
+  width: 70%;
+  margin: 45px auto 15px auto; }
 
-.edit-company-description-label {
+.edit-company-location-address,
+.create-company-location-address {
+  width: 35%;
+  font-size: 16px;
+  margin-right: 15px; }
+
+.edit-company-location-city
+.create-company-location-city {
+  width: 25%;
+  font-size: 16px;
+  margin-right: 15px; }
+
+.edit-company-location-state,
+.create-company-location-state {
+  margin-right: 15px; }
+
+.edit-company-location-zip,
+.create-company-location-zip {
+  font-size: 16px; }
+
+.edit-company-description-label,
+.create-company-description-label {
   font-size: 18px;
   margin: 25px 0 10px 0; }
 
-.edit-company-description {
+.edit-company-description,
+.create-company-description {
   width: 100%;
   max-width: 100%;
   height: 100px;
   max-height: 100px;
   font-size: 17px; }
 
-.edit-company-media {
+.edit-company-media,
+.create-company-media {
   vertical-align: top;
   display: block;
   width: 250%;
   font-size: 16px;
   margin-bottom: 10px; }
-  .edit-company-media:first-child {
+  .edit-company-media:first-child,
+  .create-company-media:first-child {
     margin-top: 50px; }
 
-.company-save-btn-wrapper {
+.company-save-btn-wrapper,
+.company-create-btn-wrapper {
   width: 100px;
   margin: auto; }
 
-.company-save-btn {
-  padding: 5px 10px 5px 35px;
+.company-save-btn,
+.company-create-btn {
+  padding: 5px 10px 5px 30px;
   background: #aaa;
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
   border: 1px solid #999;
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 30px; }
+
+.edit-company-hero-image,
+.create-company-hero-image {
+  position: absolute;
+  margin: 40px 0 0 40px;
+  background: #ccc;
+  padding: 5px;
+  border-radius: 5px; }
+
+.company-profile-pic {
+  position: absolute;
+  height: 175px;
+  width: 175px;
+  background: #444;
+  margin-top: -150px;
+  margin-left: 175px;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=company.css.map */

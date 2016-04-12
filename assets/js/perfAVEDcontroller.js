@@ -3,9 +3,17 @@
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
   console.log("this works!");
   $scope.message = "you are now working with angular";
-  $scope.tAdd=true;
-  $scope.tEdit=true;
-  $scope.tView=false;
+  var perfcompid = JSON.parse(localStorage.getItem('companyid'));
+
+  //use these for defaulting to view when you get on this page.
+  // $scope.tAdd=true;
+  // $scope.tEdit=true;
+  // $scope.tView=false;
+
+  //these poll ourdata for what the view should be on this page: view, edit, or add.
+  $scope.tAdd=ourData.borrowData("tAdd");
+  $scope.tEdit=ourData.borrowData("tEdit");
+  $scope.tView=ourData.borrowData("tView");
 
 
   console.log("id from local storage:");
@@ -20,7 +28,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.thisPerformance;
 
 //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('https://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
     console.log("performance in the service:")
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
@@ -117,6 +125,8 @@ $scope.updatePerformance = function(){
 
   for(var i=0; i<allEditedShows.length;i++)
   {
+    var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+
     //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
     var thisShowID;
     if(allShowIDs[i]=== undefined)
@@ -128,7 +138,17 @@ $scope.updatePerformance = function(){
       thisShowID= allShowIDs[i];
     }
 
-    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0, 'id': thisShowID};
+    if($(allEditedShows[i]).find(".deleteCheck").is(':checked') === true)
+    {
+      console.log(allEditedShows[i]);
+      //console.log(".re-addshowtime not found in allShows[i]");
+      showTemplate._destroy = true;
+    }
+    else
+    {
+      console.log("alleditedshows["+i+"]");
+      //do nothing because the default is false.
+    }
 
     showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time").val();
     showTemplate.address = $(allEditedShows[i]).find("#showtime-address").val();
@@ -137,9 +157,10 @@ $scope.updatePerformance = function(){
     showTemplate.city = temp[0];
     showTemplate.state = temp[1];
     showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip').val();
-    showTemplate.date = $(allEditedShows[i]).find('#showtime-date').val();
+    showTemplate.show_date = $(allEditedShows[i]).find('#showtime-date').val();
+    showTemplate.id = thisShowID;
 
-    console.log(showTemplate);
+    //console.log(showTemplate);
     allEditedShowsJSON.push(showTemplate);
   }//end the build shows for
 
@@ -147,39 +168,11 @@ $scope.updatePerformance = function(){
   console.log(allEditedShows.length);
   console.log(allEditedShowsJSON);
 
-//THIS CODE ATTEMPTS TO FIND OLD SHOW IDS THAT ARE NOT PART OF THE NEW LIST OF OLD SHOWS.
-//IT THEN ADDS THEM TO AN ARRAY TO BE DELETED LATER.
-//ITS MIDNIGHT ON SUNDAY. IVE BEEN HERE SINCE 1:30pm. I'M NOT FINISHING IT.
-  // var showsToDelete=[];
-  // for(var j=0;j<allEditedShows.length;j++)
-  // {
-  //   var found;
-  //   for(var h=0;h<allShowIds.length;h++)
-  //   {
-  //     if(allEditedShows[j].id === allShowsIds[h])
-  //     {
-  //       found = false;
-  //     }
-  //     else
-  //     {
-  //       found =true; //
-  //     }
-  //   }
-  //   if(found)
-  //   {
-  //     //do nothing because the id was found.
-  //   }
-  //   else
-  //   {
-  //       showsToDelete.push(some damn thing.);
-  //   }
-  // }
-
   var performance = JSON.stringify({
   "performance": {
     "id": thisPerformanceID,
     "owner_id": ownerID,
-    "company_id": "1",
+    "company_id": perfcompid,
     "name": $('#performance-name-edit').val(),
     "description": $('#perf-desc-edit').val(),
     "trailer_link": $('#trailer-link-edit').val(),
@@ -199,13 +192,13 @@ $scope.updatePerformance = function(){
   console.log(performance);
 
 //MODIFIED ANGULAR CALL
-// $http({ method: 'PUT', url: 'https://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, data: performance});
+// $http({ method: 'PUT', url: 'https://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
 
 //AJAX CALL
   // var settings = {
   //   "async": true,
   //   "crossDomain": true,
-  //   "url": "https://infinite-reef-76606.herokuapp.com/performances",
+  //   "url": "https://api.the-scenery.com/performances",
   //   "method": "PATCH",
   //   "headers": {
   //     "content-type": "application/json",
@@ -221,7 +214,7 @@ $scope.updatePerformance = function(){
 
 
 //THIS IS THE ANGULAR CALL
-  $http.put('https://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, performance).then(function(data){
+  $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
     console.log("performance updated!");
     console.log(data);
   },function(){console.log("performance update failed...");
@@ -235,18 +228,26 @@ $scope.updatePerformance = function(){
     // console.log($('.hero-img-creator-dropdown option:selected').text());
     // console.log($('#showtime-city-state').val())
 
-
     var token = person.user_info.login_token;
     var ownerID = person.user_info.id;
 
     var allShowsJSON=[];
 
-
     var allShows = $(".new-showtime-wrapper").children(".new-showtime-info-wrapper");
 
     for(var i=0; i<allShows.length;i++)
     {
-      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "date":0};
+      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+
+      if($(allShows[i]).find(".deleteCheck").is(':checked') === true)
+      {
+        console.log(".re-addshowtime not found in allShows[i]");
+        showTemplate._destroy= true;
+      }
+      else
+      {
+        //do nothing because the default is false.
+      }
 
       showTemplate.begin_time = $(allShows[i]).find("#showtime-time").val();
       showTemplate.address = $(allShows[i]).find("#showtime-address").val();
@@ -259,7 +260,7 @@ $scope.updatePerformance = function(){
       showTemplate.state = temp[1];
 
       showTemplate.zip_code = $(allShows[i]).find('#showtime-zip').val();
-      showTemplate.date = $(allShows[i]).find('#showtime-date').val();
+      showTemplate.show_date = $(allShows[i]).find('#showtime-date').val();
 
       console.log(showTemplate);
       allShowsJSON.push(showTemplate);
@@ -268,34 +269,10 @@ $scope.updatePerformance = function(){
     console.log("all shows JSON");
     console.log(allShowsJSON);
 
-    // var performance = JSON.stringify({
-    // "performance": {
-    //   "owner_id": ownerID,
-    //   "company_id": "1",
-    //   "name": $('#performance-name').val(),
-    //   "description": $('#perf-desc').val(),
-    //   "trailer_link": $('#trailer-link').val(),
-    //   "ticket_link": $('#ticket-link').val(),
-    //   "show_times_attributes": [
-    //  {
-    //    "begin_time": $('#showtime-time').val(),
-    //    "address": $('#showtime-address').val(),
-    //    "city": city,
-    //    "state": state,
-    //    "zip_code": $('#showtime-zip').val(),
-    //    "date": $('#showtime-date').val()
-    //  }]
-    // },
-    // "user_info": {
-    //   "login_token": token  //"butts"      //response.user_info.login_token
-    // }
-    //
-    // });
-
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
-      "company_id": "1",
+      "company_id": perfcompid,
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
@@ -308,18 +285,17 @@ $scope.updatePerformance = function(){
       "show_times_attributes": allShowsJSON
     },
     "user_info": {
-      "login_token": token  //"butts"      //response.user_info.login_token
+      "login_token": token //response.user_info.login_token
     }
 
     });
-
 
     console.log(performance);
 
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://infinite-reef-76606.herokuapp.com/performances",
+      "url": "https://api.the-scenery.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -346,7 +322,7 @@ $scope.updatePerformance = function(){
       alert("Performance deleted. The show will go on... just... at another time.")
 
       //THIS IS THE ANGULAR CALL
-        $http.delete('https://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
           console.log("performance DELETED!");
           console.log(data);
         },function(){console.log("performance delete failed...");
@@ -359,24 +335,6 @@ $scope.updatePerformance = function(){
       //do nothing. user decided not to delete.
     }
   }//end deletePerformance
-
-//this removes a showtime in the add
-  $(".edit-AVED-event-times-wrapper").on("click", ".removeShowtime", function(){
-    //console.log("we're in the remove new");
-    var toRemove = $(this).parent().parent();
-    toRemove.remove();
-    // console.log(toRemove);
-    // toRemove.css("background","red");
-  });
-
-  //this removes a showtime in the edit
-  $(".edit-AVED-event-times-wrapper-edit").on("click", ".removeShowtime", function(){
-    //console.log("were in the remove edit");
-    var toRemove = $(this).parent().parent();
-    toRemove.remove();
-    //console.log(toRemove);
-    // toRemove.css("background","red");
-  });
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
@@ -429,8 +387,6 @@ $scope.updatePerformance = function(){
     console.log(parent);
     console.log("section:");
     console.log(section);
-    // console.log("clone:");
-    // console.log(clone);
 
     parent.append(section.wrap('<p/>').parent().html());
     section.unwrap();

@@ -178,24 +178,24 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       }
     });
 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
-      "method": "PATCH",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": opportunity
-    };
-    // AJAX CALL
-    $.ajax(settings).done(function (data) {
-      console.log("Opportunity");
-      console.log(data);
-      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
-    });
+    // var settings = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
+    //   "method": "POST",
+    //   "headers": {
+    //     "content-type": "application/json",
+    //     "cache-control": "no-cache"
+    //   },
+    //   "processData": false,
+    //   "data": opportunity
+    // };
+    // // AJAX CALL
+    // $.ajax(settings).done(function (data) {
+    //   console.log("Opportunity");
+    //   console.log(data);
+    //   $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+    // });
   }
 
   $(".create-opportunity-btn").on("click", function(){

@@ -274,4 +274,71 @@
   margin-left: 175px;
   border-radius: 5px; }
 
+.company-create-opportunity-modal-wrapper {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.company-create-opportunity-modal {
+  width: 450px;
+  margin: 15% auto 0 auto;
+  padding: 50px 50px;
+  background: #ccc;
+  border-radius: 5px; }
+
+.company-create-opportunity-title {
+  text-align: center;
+  font-size: 16px; }
+
+.opportunity-title-input {
+  font-size: 16px;
+  margin-top: 15px;
+  width: 60%; }
+
+.company-create-opportunity-description {
+  text-align: center;
+  font-size: 16px;
+  padding: 25px 0; }
+
+.opportunity-description-input {
+  font-size: 16px;
+  width: 80%;
+  max-width: 80%;
+  height: 200px;
+  max-height: 200px;
+  margin-top: 25px; }
+
+.opportunity-save-btn-wrapper {
+  width: 80%;
+  margin: auto; }
+
+.opportunity-save-btn {
+  display: inline-block;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #999, #aaa);
+  padding: 8px;
+  border-radius: 3px;
+  font-size: 16px; }
+  .opportunity-save-btn:hover {
+    background: #999;
+    background-image: linear-gradient(to bottom right, #aaa, #999);
+    color: white; }
+
+.opportunity-cancel-btn {
+  display: inline-block;
+  padding: 8px;
+  background: red;
+  background-image: linear-gradient(to bottom right, red, #c80000);
+  border-radius: 3px;
+  float: right; }
+  .opportunity-cancel-btn:hover {
+    background-image: linear-gradient(to bottom right, #c80000, red);
+    color: white; }
+
+.hidden {
+  display: none; }
+
 /*# sourceMappingURL=company.css.map */

@@ -273,13 +273,28 @@
     </div>
   </div>
 
-  <div class="company-create-opportunity-modal-wrapper">
+  <div class="company-create-opportunity-modal-wrapper hidden">
     <div class="company-create-opportunity-modal">
       <div class="company-create-opportunity-title">
-        Opportunity Title
-        <input class="opportunity-title-input" placeholder="Title">
+        Opportunity Title<br>
+        <input class="opportunity-title-input">
       </div>
-      
+      <div class="company-create-opportunity-description">
+        Opportunity Description<br>
+        <textarea class="opportunity-description-input"></textarea>
+      </div>
+      <div class="opportunity-save-btn-wrapper">
+        <a href="">
+          <div class="opportunity-save-btn" ng-click="saveopportunity()">
+            Save Opportunity
+          </div>
+        </a>
+        <a href="">
+          <div class="opportunity-cancel-btn">
+            Cancel
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>

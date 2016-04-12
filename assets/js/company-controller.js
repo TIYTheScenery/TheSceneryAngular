@@ -160,4 +160,59 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
         $(".edit-company-description").val("");
 
   }//End Save Company
+
+  $scope.saveopportunity = function(){
+
+    var companyid = JSON.parse(localStorage.getItem('companyid'));
+
+    // var opportunity = JSON.stringify({
+    //   "company": {
+    //     "id": companyid,
+    //     "user_id": ownerID,
+    //     "name": $(".edit-company-name").val(),
+    //     "description": $(".edit-company-description").val(),
+    //     "website_link": $(".edit-company-url").val(),
+    //     "facebook_link": $(".edit-company-facebook").val(),
+    //     "twitter_link": $(".edit-company-twitter").val(),
+    //     "instagram_link": $(".edit-company-instagram").val(),
+    //     "youtube_link": $(".edit-company-youtube").val(),
+    //     "address": $(".edit-company-location-address").val(),
+    //     "city": $(".edit-company-location-city").val(),
+    //     "state": $(".edit-company-location-state option:selected").text(),
+    //     "zip_code": $(".edit-company-location-zip").val()
+    //   },
+    //   "user_info": {
+    //     "login_token": token
+    //   }
+    // });
+
+    // AJAX CALL
+    // var settings = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
+    //   "method": "PATCH",
+    //   "headers": {
+    //     "content-type": "application/json",
+    //     "cache-control": "no-cache"
+    //   },
+    //   "processData": false,
+    //   "data": opportunity
+    // };
+
+    // $.ajax(settings).done(function (data) {
+    //   console.log("Opportunity");
+    //   console.log(data);
+    //   $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+    // }
+
+  $(".create-opportunity-btn").on("click", function(){
+    $(".company-create-opportunity-modal-wrapper").removeClass("hidden");
+  })
+
+  // Close opportunity modal if the wrapper is clicked.
+
+  $(".opportunity-cancel-btn").on("click", function(){
+      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+  })
 });

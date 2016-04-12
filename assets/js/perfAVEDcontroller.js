@@ -314,7 +314,7 @@ $scope.updatePerformance = function(){
   $scope.deletePerformance = function()
   {
     //prompt user for certianty.
-    var doit = confirm("THE SHOW MUST GO ON! Proceeding will completley delete this Perofrmance and all of its show times. Are you sure?");
+    var doit = confirm("THE SHOW MUST GO ON! Proceeding will completely delete this Performance and all of its show times. Are you sure?");
 
     if(doit)
     {
@@ -399,41 +399,25 @@ $scope.updatePerformance = function(){
     var user = JSON.parse(localStorage.getItem('user'));
     console.log(user.user_info);
 
-    var performance = JSON.stringify({
-    // "performance": {
-    //   "owner_id": ownerID,
-    //   "company_id": perfcompid,
-    //   "name": $('#performance-name').val(),
-    //   "description": $('#perf-desc').val(),
-    //   "trailer_link": $('#trailer-link').val(),
-    //   "ticket_link": $('#ticket-link').val(),
-    //   "genre_performances_attributes":[
-    //    {
-    //      "genre_id": $(".edit-AVED-genre").val()
-    //    }
-    //  ],
-    //   "show_times_attributes": allShowsJSON
-    // },
-    // "user_info": {
-    //   "login_token": token //response.user_info.login_token
-    // }
+    var review = JSON.stringify({
 
     });
 
     console.log(performance);
 
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/performances",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": performance
-       };
+    // Reformat for reviews
+    // var settings = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": "http://infinite-reef-76606.herokuapp.com/performances",
+    //   "method": "POST",
+    //   "headers": {
+    //     "content-type": "application/json",
+    //     "cache-control": "no-cache"
+    //   },
+    //   "processData": false,
+    //   "data": performance
+    //    };
 
       $.ajax(settings).done(function (data) {
       console.log(data);

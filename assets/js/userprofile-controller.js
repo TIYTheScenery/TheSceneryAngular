@@ -135,7 +135,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://infinite-reef-76606.herokuapp.com/users",
+        "url": "https://api.the-scenery.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -153,7 +153,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
         });//end ajax.
 
 
-  //   $http.put('http://infinite-reef-76606.herokuapp.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
+  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
   //     console.log("user updated!");
   //     console.log(data);
   //   },function(data){

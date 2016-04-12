@@ -398,31 +398,39 @@ $scope.updatePerformance = function(){
 
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
+    var currentperf = ourData.borrowData("viewingPerf");
     // console.log(user.user_info);
 
     var review = JSON.stringify({
-      // Put JSON format for reviews here
-    });
+        "id": "",
+        "opinion": reviewtext,
+        "rating": null,
+        "user_id": user.user_info.id,
+        "reviewee_id": currentperf.id,
+        "reviewee_type": "Performance"
+    });  //End Review
+    console.log(review);
 
-    console.log(performance);
+    currentperf.reviews.push(review);
+    currentperf.user_info = {"login_token": user.user_info.login_token};
+    console.log(currentperf);
 
-    // Reformat for reviews
     // var settings = {
     //   "async": true,
     //   "crossDomain": true,
-    //   "url": "http://infinite-reef-76606.herokuapp.com/performances",
-    //   "method": "POST",
+    //   "url": "http://infinite-reef-76606.herokuapp.com/performances/" + currentperf.id,
+    //   "method": "PUT",
     //   "headers": {
     //     "content-type": "application/json",
     //     "cache-control": "no-cache"
     //   },
     //   "processData": false,
-    //   "data": performance
+    //   "data": currentperf
     //    };
-
-      $.ajax(settings).done(function (data) {
-      console.log(data);
-      });//end ajax.
+    //
+    //   $.ajax(settings).done(function (data) {
+    //   console.log(data);
+    //   });//end ajax.
 
   }
 

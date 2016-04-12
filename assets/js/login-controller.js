@@ -19,6 +19,44 @@ var dynamicJSON = function(params) {
   return jsonString.slice(0, -1) + '}';
 }
 
+TheSceneryapp.config(function($authProvider) {
+  $authProvider.httpInterceptor = function() { return true; },
+  $authProvider.withCredentials = true;
+  $authProvider.tokenRoot = null;
+  $authProvider.baseUrl = '/';
+  $authProvider.loginUrl = '/auth/login';
+  $authProvider.signupUrl = '/auth/signup';
+  $authProvider.unlinkUrl = '/auth/unlink/';
+  $authProvider.tokenName = 'token';
+  $authProvider.tokenPrefix = 'satellizer';
+  $authProvider.authHeader = 'Authorization';
+  $authProvider.authToken = 'Bearer';
+  $authProvider.storageType = 'localStorage';
+
+  // Facebook
+  $authProvider.facebook({
+    clientId: '1100219983355110',
+    name: 'facebook',
+    url: 'http://localhost:3000/auth/facebook',
+    authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+    redirectUri: window.location.origin + '/',
+    requiredUrlParams: ['display', 'scope'],
+    scope: ['email'],
+    scopeDelimiter: ',',
+    display: 'popup',
+    type: '2.0',
+    popupOptions: { width: 580, height: 400 }
+  });
+});
+
+TheSceneryapp.controller('LoginCtrl', function($scope, $auth) {
+
+  $scope.authenticate = function(provider) {
+    $auth.authenticate(provider);
+  };
+
+});
+
 TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
   console.log("WAAAGH");
@@ -95,7 +133,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "http://infinite-reef-76606.herokuapp.com/login",
+     "url": "http://api.the-scenery.com/login",
      "method": "POST",
      "headers": {
        "content-type": "application/json",

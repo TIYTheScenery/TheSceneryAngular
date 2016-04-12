@@ -284,7 +284,7 @@
 
 .company-create-opportunity-modal {
   width: 450px;
-  margin: 15% auto 0 auto;
+  margin: 10% auto 0 auto;
   padding: 50px 50px;
   background: #ccc;
   border-radius: 5px; }
@@ -307,9 +307,19 @@
   font-size: 16px;
   width: 80%;
   max-width: 80%;
-  height: 200px;
+  height: 125px;
   max-height: 200px;
   margin-top: 25px; }
+
+.opportunity-contact-info {
+  text-align: center;
+  font-size: 16px;
+  margin: 15px; }
+
+.opportunity-contact-info-input {
+  font-size: 16px;
+  width: 80%;
+  margin: 15px 0; }
 
 .opportunity-save-btn-wrapper {
   width: 80%;

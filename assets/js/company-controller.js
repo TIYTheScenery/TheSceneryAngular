@@ -165,46 +165,38 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
     var companyid = JSON.parse(localStorage.getItem('companyid'));
 
-    // var opportunity = JSON.stringify({
-    //   "company": {
-    //     "id": companyid,
-    //     "user_id": ownerID,
-    //     "name": $(".edit-company-name").val(),
-    //     "description": $(".edit-company-description").val(),
-    //     "website_link": $(".edit-company-url").val(),
-    //     "facebook_link": $(".edit-company-facebook").val(),
-    //     "twitter_link": $(".edit-company-twitter").val(),
-    //     "instagram_link": $(".edit-company-instagram").val(),
-    //     "youtube_link": $(".edit-company-youtube").val(),
-    //     "address": $(".edit-company-location-address").val(),
-    //     "city": $(".edit-company-location-city").val(),
-    //     "state": $(".edit-company-location-state option:selected").text(),
-    //     "zip_code": $(".edit-company-location-zip").val()
-    //   },
-    //   "user_info": {
-    //     "login_token": token
-    //   }
-    // });
+    var opportunity = JSON.stringify({
+      "opportunity": {
+        "name": $(".opportunity-title-input").val(),
+        "description": $(".opportunity-description-input").val(),
+        "contact_info": $(".opportunity-contact-info-input").val(),
+        "company_id": companyid,
+        "venue_id": ""
+      },
+      "user_info": {
+        "login_token": token
+      }
+    });
 
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
+      "method": "PATCH",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": opportunity
+    };
     // AJAX CALL
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
-    //   "method": "PATCH",
-    //   "headers": {
-    //     "content-type": "application/json",
-    //     "cache-control": "no-cache"
-    //   },
-    //   "processData": false,
-    //   "data": opportunity
-    // };
-
-    // $.ajax(settings).done(function (data) {
-    //   console.log("Opportunity");
-    //   console.log(data);
-    //   $(".company-create-opportunity-modal-wrapper").addClass("hidden");
-    // }
+    $.ajax(settings).done(function (data) {
+      console.log("Opportunity");
+      console.log(data);
+      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+    });
+  }
 
   $(".create-opportunity-btn").on("click", function(){
     $(".company-create-opportunity-modal-wrapper").removeClass("hidden");

@@ -32,13 +32,30 @@
       <div class="user-image-wrapper" ng-hide="show">
         <img src="" class="user-profile-image">
       </div>
-      <a href="">
+
         <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
           <div>
-            Add Image
-          </div>
-        </div>
-      </a>
+            <form action="https://thescenery-attachments.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="key" value="uploads/${filename}">
+              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOGVM2UO7Z7F4JHQ">
+              <input type="hidden" name="acl" value="private">
+              <input type="hidden" name="success_action_redirect" value="http://localhost/">
+              <input type="hidden" name="policy" value="ezpleHBpcmF0aW9uPT4iMjAxOS0wMS0wMVQwMDowMDowMFoiLCA6Y29uZGl0aW9ucz0+W3s6YnVja2V0PT4idGhlc2NlbmVyeS1hdHRhY2htZW50cyJ9LCBbInN0YXJ0cy13aXRoIiwgImltYWdlL2pwZWciLCAiIl0sIHs6YWNsPT4icHJpdmF0ZSJ9LCB7OnN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0PT4iaHR0cDovL2xvY2FsaG9zdDozMDAwIn0sIFsic3RhcnRzLXdpdGgiLCAiaW1hZ2UvanBlZyIsICIiXSwgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDEwNDg1NzZdXX0=">
+              <input type="hidden" name="signature" value="
+rPfvMD090sZIRb26F97t3YzuT44=">
+              <input type="hidden" name="Content-Type" value="image/jpeg">
+              <!-- Include any additional input fields here -->
+
+              Add Image
+              <input type="file"><br>
+              <br>
+              <input type="submit" value="Upload File to S3">
+           </form>
+         </div>
+       </div>
+
+
+
       <div class="user-name-title-wrapper">
         <div class="user-name-title-spacer">
           <div class="display-user-name" ng-hide="show">First Name Last Name</div>

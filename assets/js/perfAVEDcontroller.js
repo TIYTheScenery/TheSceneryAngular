@@ -3,6 +3,7 @@
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
   console.log("this works!");
   $scope.message = "you are now working with angular";
+  var perfcompid = JSON.parse(localStorage.getItem('companyid'));
 
   //use these for defaulting to view when you get on this page.
   // $scope.tAdd=true;
@@ -171,7 +172,7 @@ $scope.updatePerformance = function(){
   "performance": {
     "id": thisPerformanceID,
     "owner_id": ownerID,
-    "company_id": "1",
+    "company_id": perfcompid,
     "name": $('#performance-name-edit').val(),
     "description": $('#perf-desc-edit').val(),
     "trailer_link": $('#trailer-link-edit').val(),
@@ -271,7 +272,7 @@ $scope.updatePerformance = function(){
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
-      "company_id": "1",
+      "company_id": perfcompid,
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),

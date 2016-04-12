@@ -393,6 +393,54 @@ $scope.updatePerformance = function(){
 
   });//end adding new cast member
 
+  $scope.submitreview = function(){
+
+    var reviewtext = $(".new-review").val();
+    var user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.user_info);
+
+    var performance = JSON.stringify({
+    // "performance": {
+    //   "owner_id": ownerID,
+    //   "company_id": perfcompid,
+    //   "name": $('#performance-name').val(),
+    //   "description": $('#perf-desc').val(),
+    //   "trailer_link": $('#trailer-link').val(),
+    //   "ticket_link": $('#ticket-link').val(),
+    //   "genre_performances_attributes":[
+    //    {
+    //      "genre_id": $(".edit-AVED-genre").val()
+    //    }
+    //  ],
+    //   "show_times_attributes": allShowsJSON
+    // },
+    // "user_info": {
+    //   "login_token": token //response.user_info.login_token
+    // }
+
+    });
+
+    console.log(performance);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/performances",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": performance
+       };
+
+      $.ajax(settings).done(function (data) {
+      console.log(data);
+      });//end ajax.
+
+  }
+
 
   // });//end jquery function
 

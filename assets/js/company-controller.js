@@ -7,7 +7,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   // Populate the page with the first company in the database
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
+  $http.get('http://infinite-reef-76606.herokuapp.com/companies/2').then(function(data){
     // console.log(data);
     console.log(data.data.company);
     $(".company-name").text(data.data.company.name);
@@ -32,7 +32,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   });
 
 
-
+  $scope.goMakeAPerformance = function(){
+    //this sets the view going into the perfAVED page.
+    ourData.shareData("tAdd", false);
+    ourData.shareData("tView", true);
+    ourData.shareData("tEdit", true);
+  }
 
 
   // Set edit variables to current variables

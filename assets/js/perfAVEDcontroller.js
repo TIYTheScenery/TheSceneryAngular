@@ -1,7 +1,7 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
-  console.log("this works!");
+  // console.log("this works!");
   $scope.message = "you are now working with angular";
   var perfcompid = JSON.parse(localStorage.getItem('companyid'));
 
@@ -30,7 +30,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
   $http.get('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
-    console.log("performance in the service:")
+    console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
@@ -97,6 +97,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 var person = JSON.parse(localStorage.getItem('user'));
 //localStorage.setItem("user", JSON.stringify(person));
 
+console.log("This is the current user");
 console.log(person);
 
 $scope.updatePerformance = function(){
@@ -397,10 +398,10 @@ $scope.updatePerformance = function(){
 
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.user_info);
+    // console.log(user.user_info);
 
     var review = JSON.stringify({
-
+      // Put JSON format for reviews here
     });
 
     console.log(performance);

@@ -191,24 +191,26 @@
       <div class="opportunities-label">
         Opportunities:
       </div>
-      <div class="company-opportunity">
-        <div class="company-opportunity-poster-image-wrapper">
-          <img src="">
-        </div>
-        <div class="company-ndt-wrapper">  <!--wrap the name date and opportunity title for easy styling-->
-          <div class="company-opportunity-poster-name">
-            name of poster
+      <div class="insert-company-opportunity">
+        <!-- <div class="company-opportunity">
+          <div class="company-opportunity-poster-image-wrapper">
+            <img src="">
           </div>
-          <div class="company-opportunity-date-posted">
-            date posted
+          <div class="company-ndt-wrapper">
+            <div class="company-opportunity-poster-name">
+              name of poster
+            </div>
+            <div class="company-opportunity-date-posted">
+              date posted
+            </div>
+            <div class="company-opportunity-title">
+              name of the opportunity
+            </div>
           </div>
-          <div class="company-opportunity-title">
-            name of the opportunity
+          <div class="company-opportunity-description">
+            But her wit, charm and intelligence just may help her survive through another day. In a city of Marvels, Jessica Jones never found her niche. The very first appearance of Spider-Man. What do you get when you ask the question, What if Spider-Man had a daughter.
           </div>
-        </div>
-        <div class="company-opportunity-description">
-          But her wit, charm and intelligence just may help her survive through another day. In a city of Marvels, Jessica Jones never found her niche. The very first appearance of Spider-Man. What do you get when you ask the question, What if Spider-Man had a daughter.
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="company-performances-wrapper">
@@ -251,14 +253,19 @@
       <div class="company-reviews-label">
         Reviews:
       </div>
-      <div class="company-review">  <!--ADD ng-repeat!!!-->
+      <div class="company-review">
+        <div class="company-review-img"><img src=""></div>
+        <textarea class="company-new-review" id = "company-new-review"></textarea>
+        <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+      </div>
+      <div class="company-review" ng-repeat= "review in thisCompany.reviews">
         <div class="company-review-wrapper">
           <div class="company-review-img"><img src=""></div>
           <div class="company-rnd-wrap">
-            <div class="company-review-name">Name of reviewer:</div>
-            <div class="company-review-date">Date of review:</div>
+            <div class="company-review-name">{{review.display_name}}</div>
+            <div class="company-review-date">{{review.created_at}}</div>
           </div>
-          <div class="company-review-text">Review Text</div>
+          <div class="company-review-text">{{review.opinion}}</div>
         </div>
       </div>
     </div>
@@ -269,6 +276,35 @@
       Input Authorized Users by
       <div class="authorize-user-modal-input-holder">
         <input class="authorize-user-modal-input">
+      </div>
+    </div>
+  </div>
+
+  <div class="company-create-opportunity-modal-wrapper hidden">
+    <div class="company-create-opportunity-modal">
+      <div class="company-create-opportunity-title">
+        Opportunity Title<br>
+        <input class="opportunity-title-input">
+      </div>
+      <div class="company-create-opportunity-description">
+        Opportunity Description<br>
+        <textarea class="opportunity-description-input"></textarea>
+      </div>
+      <div class="opportunity-contact-info">
+        Contact E-Mail<br>
+        <input class="opportunity-contact-info-input">
+      </div>
+      <div class="opportunity-save-btn-wrapper">
+        <a href="">
+          <div class="opportunity-save-btn" ng-click="saveopportunity()">
+            Save Opportunity
+          </div>
+        </a>
+        <a href="">
+          <div class="opportunity-cancel-btn">
+            Cancel
+          </div>
+        </a>
       </div>
     </div>
   </div>

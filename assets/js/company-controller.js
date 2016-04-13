@@ -28,9 +28,9 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
     }
 
-    // for (var i=0; i<data.data.company.opportunities.length; i++){
-    //   $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>name of poster</div><div class='company-opportunity-date-posted'>date posted</div><div class='company-opportunity-title'>name of the opportunity</div></div><div class='company-opportunity-description'></div></div>")
-    // }
+    for (var i=0; i<data.data.company.opportunities.length; i++){
+      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + data.data.company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + data.data.company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + data.data.company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + data.data.company.opportunities[i].description + "</div></div>")
+    }
 
     localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
   });

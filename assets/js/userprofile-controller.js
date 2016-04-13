@@ -98,7 +98,18 @@ $scope.usercompany = function(){
 
   // Set view variables to new edited variables.
 
-  $scope.saveuser = function(){
+  $scope.saveuser = function()
+  {
+    var thing = jQuery.Event( "submit" );
+    if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
+    {
+      console.log("no file uploaded, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a file! Upload beggining!");
+      $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
 
     var names = $(".edit-display-user-name").val().split(" ");
     var firstname = names[0];
@@ -107,6 +118,7 @@ $scope.usercompany = function(){
     var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
+      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUsercurrUserId,
       "first_name": firstname,
       "last_name": lastname,
       "facebook_link": $("#edit-facebook").val(),
@@ -150,7 +162,7 @@ $scope.usercompany = function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://infinite-reef-76606.herokuapp.com/users",
+        "url": "https://infinite-reef-76606.herokuapp.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",

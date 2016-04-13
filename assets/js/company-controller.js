@@ -9,7 +9,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $scope.thisCompany;
 
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
+  $http.get('https://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);
@@ -190,7 +190,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/opportunities",
+      "url": "https://infinite-reef-76606.herokuapp.com/opportunities",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -244,7 +244,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "url": "https://infinite-reef-76606.herokuapp.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

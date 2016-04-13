@@ -422,7 +422,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "url": "https://infinite-reef-76606.herokuapp.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

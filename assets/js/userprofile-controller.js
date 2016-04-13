@@ -62,7 +62,7 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
 $scope.usercompany = function(){
   var nomnom = ourData.borrowData("associatedCompany");
   console.log($(this)[0].company.id);
-  localStorage.setItem("perfID", JSON.stringify($(this)[0].company.id));
+  localStorage.setItem("compID", JSON.stringify($(this)[0].company.id));
 }
 
   // If there is no logged in user reroute to homepage

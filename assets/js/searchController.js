@@ -37,7 +37,7 @@ $scope.searchDB = function()
     };
 
   $.ajax(settings).done(function (response) {
-  //  console.log(response);
+   console.log(response);
    //console.log(response.performances);
 
    //var iClickedDis = response.performances[clickedPerformance];

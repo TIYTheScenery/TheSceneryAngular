@@ -3,7 +3,7 @@ $scope.message3 ="GO!"
   window.onload = genrePull('genre-search', $('.landing-search-genre-wrapper'));
   var isacompany = false;
   var isaprofessional = false;
-  var isaperformace = false;
+  var isaperformance = false;
 // $('li').on("click", function(){
 //   console.log("inside click");
 //   $(this).attr("id");
@@ -49,7 +49,7 @@ $scope.searchDB = function()
    $('li').remove();
   //  Append Performances
    for (var i=0; i<response.performances.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performances'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
    }
   //  Append companies
    for (var i=0; i<response.companies.length; i++){
@@ -62,7 +62,7 @@ $scope.searchDB = function()
 
   if (response.performances.length > 0){
     ourData.shareData("searchResults", response.performances);
-    isaperformace = true;
+    isaperformance = true;
   }
   if (response.companies.length > 0){
     ourData.shareData("searchResults", response.companies);
@@ -91,7 +91,7 @@ $scope.searchDB = function()
     ourData.shareData("searchResults", clickedthing);//puts the clicked result into ourdata
 
     //puts the clicked result's id into local storage
-    if (isaperformace = true){
+    if (isaperformance = true){
       localStorage.setItem("perfID", JSON.stringify(ourData.borrowData("searchResults").id));
       isaperformance = false;
     }

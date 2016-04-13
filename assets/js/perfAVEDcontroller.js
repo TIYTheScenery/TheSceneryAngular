@@ -15,7 +15,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tEdit=ourData.borrowData("tEdit");
   $scope.tView=ourData.borrowData("tView");
 
-
+  $scope.currentUser = JSON.parse(localStorage.getItem('user'));
   console.log("id from local storage:");
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
@@ -28,10 +28,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.thisPerformance;
 
 //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
+
+    console.log(person.user_info.id);
+    console.log(data.data.performance.owner_id);
+
+    if (person.user_info.id != data.data.performance.owner_id){
+      console.log("happening");
+      $("#performance-edit-btn").addClass("hidden");
+      $("#performance-delete-btn").addClass("hidden");
+    }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
 
@@ -99,6 +108,7 @@ var person = JSON.parse(localStorage.getItem('user'));
 
 console.log("This is the current user");
 console.log(person);
+
 
 $scope.updatePerformance = function(){
 
@@ -173,7 +183,7 @@ $scope.updatePerformance = function(){
   "performance": {
     "id": thisPerformanceID,
     "owner_id": ownerID,
-    "company_id": perfcompid,
+    "company_id": $('#performance-company-edit').val(),
     "name": $('#performance-name-edit').val(),
     "description": $('#perf-desc-edit').val(),
     "trailer_link": $('#trailer-link-edit').val(),
@@ -193,13 +203,13 @@ $scope.updatePerformance = function(){
   console.log(performance);
 
 //MODIFIED ANGULAR CALL
-// $http({ method: 'PUT', url: 'http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, data: performance});
+// $http({ method: 'PUT', url: 'https://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
 
 //AJAX CALL
   // var settings = {
   //   "async": true,
   //   "crossDomain": true,
-  //   "url": "https://infinite-reef-76606.herokuapp.com/performances",
+  //   "url": "https://api.the-scenery.com/performances",
   //   "method": "PATCH",
   //   "headers": {
   //     "content-type": "application/json",
@@ -215,7 +225,7 @@ $scope.updatePerformance = function(){
 
 
 //THIS IS THE ANGULAR CALL
-  $http.put('https://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID, performance).then(function(data){
+  $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
     console.log("performance updated!");
     console.log(data);
   },function(){console.log("performance update failed...");
@@ -273,7 +283,7 @@ $scope.updatePerformance = function(){
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
-      "company_id": perfcompid,
+      "company_id": $('#performance-company-add').val(),
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
@@ -296,7 +306,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/performances",
+      "url": "https://api.the-scenery.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -307,9 +317,11 @@ $scope.updatePerformance = function(){
        };
 
       $.ajax(settings).done(function (data) {
-      console.log(data);
+        console.log(data);
+        $scope.thisPerformance = data
+        localStorage.setItem('perfID', data.performance.id)
       });//end ajax.
-
+      $scope.toggle();
   }//End addperformance
 
   $scope.deletePerformance = function()
@@ -323,7 +335,7 @@ $scope.updatePerformance = function(){
       alert("Performance deleted. The show will go on... just... at another time.")
 
       //THIS IS THE ANGULAR CALL
-        $http.delete('http://infinite-reef-76606.herokuapp.com/performances/'+thisPerformanceID).then(function(data){
+        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
           console.log("performance DELETED!");
           console.log(data);
         },function(){console.log("performance delete failed...");
@@ -422,7 +434,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "url": "https://infinite-reef-76606.herokuapp.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

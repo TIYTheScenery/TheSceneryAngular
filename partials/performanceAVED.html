@@ -11,12 +11,12 @@
       </a> -->
       <!-- <div class="btn" ng-click="toggle('VIEW')">View</div> -->
       <a href="">
-        <div class="btn" ng-click="toggle('EDIT')">
+        <div class="btn" id="performance-edit-btn" ng-click="toggle('EDIT')">
           EDIT&nbsp;<i class="fa fa-pencil-square fa-2x"></i>
         </div>
       </a>
       <a href ="">
-        <div class="btn" ng-click="deletePerformance()">
+        <div class="btn" id="performance-delete-btn" ng-click="deletePerformance()">
           Delete Performance&nbsp;<i class="fa fa-trash fa-2x"></i></i>
         </div>
       </a>
@@ -29,7 +29,7 @@
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> {{thisPerformance.name}}
+      {{thisPerformance.company_name}} presents <br> {{thisPerformance.name}}
     </div>
     <!--this ends the viewing-->
     <!-- <a href="">
@@ -39,10 +39,8 @@
     </a> -->
 <!--THIS IS FOR ADDING THE HERO IMAGE AND INFO-->
     <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tAdd">
-      <select class="hero-img-creator-dropdown">
-        <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
-        <option>Company Name</option>
-        <option>Professional ID</option>
+      <select class="hero-img-creator-dropdown" id="performance-company-add">
+        <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>  <!--might need ng-repeat for this-->
       </select>
       <span> presents </span><br>
       <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
@@ -52,10 +50,8 @@
 
 <!--THIS IS FOR EDITING THE HERO IMAGE AND INFO-->
   <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tEdit">
-    <select class="hero-img-creator-dropdown-edit">
-      <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
-      <option>Company Name</option>
-      <option>Professional ID</option>
+    <select class="hero-img-creator-dropdown" id="performance-company-edit">
+      <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>  <!--might need ng-repeat for this-->
     </select>
     <span> presents </span><br>
     <input class="hero-img-performance-name" id="performance-name-edit" placeholder="Performance Name" name="name" value="{{thisPerformance.name}}">
@@ -224,9 +220,9 @@
             <div class="event-adv">
               <div class="cast-wrapper">
                 <label>Cast</label>
-                <ul class="event-cast">
+                <ul class="event-cast" ng-repeat="cast in show.cast_members">
                   <li class="cast-member"> <!--ADD ng-repeat!!!-->
-                    Cast member name.
+                    {{cast.name}} as {{cast.role}}
                   </li>
                 </ul>
               </div>
@@ -257,6 +253,7 @@
     <!--THIS STARTS THE SHOWTIME-->
     <div class="EDIT-showtime-info-wrapper" ng-repeat="show in thisPerformance.show_times">
       <div class="date-time-location-wrapper-EDIT">
+        <input type="hidden" id="showtime-id" value="{{show.id}}">
         <input class="EDIT-showtime-date-input" id="showtime-date" placeholder="Date" value="{{show.show_date | date : fullDate}}">
         <input class="EDIT-showtime-time-input" id="showtime-time" placeholder="Time" value="{{show.begin_time | date : 'h:mma'}}">
         <input class="EDIT-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
@@ -270,10 +267,10 @@
         Cast:
       </div>
       <div class ="all-cast-members">
-        <div class="new-cast-member-wrapper">
-          <input class="new-cast-member-name" placeholder="Performer Name">
+        <div class="new-cast-member-wrapper" ng-repeat="cast in show.cast_members">
+          <input class="new-cast-member-name" placeholder="Performer Name" value="{{cast.name}}">
           <span> As </span>
-          <input class="new-cast-member-position" placeholder="Position/Title">
+          <input class="new-cast-member-position" placeholder="Position/Title" value="{{cast.role}}">
         </div>
       </div>
       <!-- <a href=""> -->

@@ -36,7 +36,7 @@ var genrePull = function(name, container){
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "http://infinite-reef-76606.herokuapp.com/genres",
+   "url": "https://api.the-scenery.com/genres",
    "method": "GET",
    "headers": {
      "content-type": "application/json",

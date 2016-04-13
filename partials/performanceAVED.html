@@ -224,9 +224,9 @@
             <div class="event-adv">
               <div class="cast-wrapper">
                 <label>Cast</label>
-                <ul class="event-cast">
+                <ul class="event-cast" ng-repeat="cast in show.cast_members">
                   <li class="cast-member"> <!--ADD ng-repeat!!!-->
-                    Cast member name.
+                    {{cast.name}} as {{cast.role}}
                   </li>
                 </ul>
               </div>

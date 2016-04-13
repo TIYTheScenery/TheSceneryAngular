@@ -21,17 +21,21 @@
 
   <div class="landing-input-wrapper">
 
-    <input class="landing-search name-search" id="searchName" placeholder="Performance Name">
-    <input class="landing-search location-search" id="searchLocation" placeholder="City, State">
+    <input class="landing-search name-search" id="name-search" placeholder="Search Term">
+    <input class="landing-search location-search" id="city-search" placeholder="City Or Zip Code">
+    <select class="landing-search location-state-search" id="state-search" ng-show="show">
+      <option selected disabled>Pick A State</option>
+      <option value="ZIP">Search By Zip Code</option>
+      <option value="NC">NC</option>
+    </select>
     <span class="landing-search-genre-wrapper">
-      <!-- <select class="genre-search" id="searchGenre">
-        <option selected disabled>Genre</option>
-        <option value="1">Theare</option>
-        <option value ="2">Improv</option>
-        <option value ="3">Dance</option>
-        <option value ="4">Film</option>
-      </select> -->
+      <!-- spot where genre dropdown goes -->
     </span>
+    <select class="landing-search type-search" id="type-search">
+      <option value="1" selected="selected">Performance</option>
+      <option value="2">Professional</option>
+      <option value="3">Company</option>
+    </select>
     <a href=""><div class="landing-search-btn" id="landingSearchBtn" ng-click="searchDB()">Search</div></a>
   </div>
 

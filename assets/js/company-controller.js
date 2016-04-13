@@ -9,6 +9,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   $scope.thisCompany;
 
+  // This makes clicking a performance navigate to the right page
+
+  $("body").on("click", ".company-performance", function(){
+    console.log($(this)[0].id);
+    localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
+  });
+
 
   $http.get('http://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
@@ -27,11 +34,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     // console.log(data.data.company.opportunities);
 
     for (var i=0; i<data.data.company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
     }
 
     for (var i=0; i<data.data.company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div>");
     }
 
     for (var i=0; i<data.data.company.opportunities.length; i++){
@@ -260,6 +267,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".company-new-review").val("");
       });//end ajax.
 
+  }
+
+  $scope.comptoperf = function(){
+    console.log("COMP TO PERF");
+    console.log($(this));
   }
 
 });

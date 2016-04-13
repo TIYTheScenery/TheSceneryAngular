@@ -15,7 +15,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tEdit=ourData.borrowData("tEdit");
   $scope.tView=ourData.borrowData("tView");
 
-
+  $scope.currentUser = JSON.parse(localStorage.getItem('user'));
   console.log("id from local storage:");
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
@@ -32,6 +32,15 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
+
+    console.log(person.user_info.id);
+    console.log(data.data.performance.owner_id);
+
+    if (person.user_info.id != data.data.performance.owner_id){
+      console.log("happening");
+      $("#performance-edit-btn").addClass("hidden");
+      $("#performance-delete-btn").addClass("hidden");
+    }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
 
@@ -99,6 +108,7 @@ var person = JSON.parse(localStorage.getItem('user'));
 
 console.log("This is the current user");
 console.log(person);
+
 
 $scope.updatePerformance = function(){
 
@@ -173,7 +183,7 @@ $scope.updatePerformance = function(){
   "performance": {
     "id": thisPerformanceID,
     "owner_id": ownerID,
-    "company_id": perfcompid,
+    "company_id": $('#performance-company-edit').val(),
     "name": $('#performance-name-edit').val(),
     "description": $('#perf-desc-edit').val(),
     "trailer_link": $('#trailer-link-edit').val(),
@@ -273,7 +283,7 @@ $scope.updatePerformance = function(){
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
-      "company_id": perfcompid,
+      "company_id": $('#performance-company-add').val(),
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
@@ -307,9 +317,11 @@ $scope.updatePerformance = function(){
        };
 
       $.ajax(settings).done(function (data) {
-      console.log(data);
+        console.log(data);
+        $scope.thisPerformance = data
+        localStorage.setItem('perfID', data.performance.id)
       });//end ajax.
-
+      $scope.toggle();
   }//End addperformance
 
   $scope.deletePerformance = function()

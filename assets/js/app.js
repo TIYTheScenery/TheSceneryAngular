@@ -8,6 +8,7 @@ TheSceneryapp.service("ourData", function(){
   var tEdit=true;
   var tView=false;
   var company;
+  var associatedCompany;
 
   return {
     borrowData: function(thing){
@@ -19,6 +20,8 @@ TheSceneryapp.service("ourData", function(){
       {return searchResults;}
       else if(thing==="company")
       {return company;}
+      else if(thing==="associatedCompany")
+      {return associatedCompany;}
       else if(thing==="tAdd")
       {return tAdd;}
       else if(thing==="tEdit")
@@ -37,6 +40,8 @@ TheSceneryapp.service("ourData", function(){
       {searchResults = what;}
       else if(thing === "company")
       {company = what;}
+      else if(thing === "associatedCompany")
+      {associatedCompany = what;}
       else if(thing==="tAdd")
       {tAdd = what;}
       else if(thing==="tEdit")

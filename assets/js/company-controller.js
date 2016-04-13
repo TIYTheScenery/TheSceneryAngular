@@ -3,13 +3,19 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   var person = JSON.parse(localStorage.getItem('user'));
   var token = person.user_info.login_token;
   var ownerID = person.user_info.id;
+  var compID = JSON.parse(localStorage.getItem('compID'));
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
   $scope.thisCompany;
 
+  // This makes clicking a performance navigate to the right page
+  $("body").on("click", ".company-performance", function(){
+    console.log($(this)[0].id);
+    localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
+  });
 
-  $http.get('https://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
+  $http.get('http://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);
@@ -17,20 +23,36 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     console.log(data.data.company);
     $(".company-name").text(data.data.company.name);
     $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
-    $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
-    $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
-    $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
-    $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    if (data.data.company.youtube_link.match(/\/\//)) {
+      $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
+    }else{
+      $(".media-youtube").parent().attr("href", "//" + data.data.company.youtube_link);
+    }
+    if (data.data.company.twitter_link.match(/\/\//)) {
+      $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
+    }else{
+      $(".media-twitter").parent().attr("href", "//" + data.data.company.twitter_link);
+    }
+    if (data.data.company.facebook_link.match(/\/\//)) {
+      $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
+    }else{
+      $(".media-facebook").parent().attr("href", "//" + data.data.company.facebook_link);
+    }
+    if (data.data.company.instagram_link.match(/\/\//)) {
+      $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    }else{
+      $(".media-instagram").parent().attr("href", "//" + data.data.company.instagram_link);
+    }
     $(".company-description").text(data.data.company.description);
 
     // console.log(data.data.company.opportunities);
 
     for (var i=0; i<data.data.company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
     }
 
     for (var i=0; i<data.data.company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div>");
     }
 
     for (var i=0; i<data.data.company.opportunities.length; i++){
@@ -259,6 +281,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".company-new-review").val("");
       });//end ajax.
 
+  }
+
+  $scope.comptoperf = function(){
+    console.log("COMP TO PERF");
+    console.log($(this));
   }
 
 });

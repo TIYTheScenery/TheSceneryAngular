@@ -59,7 +59,7 @@ TheSceneryapp.controller('LoginCtrl', function($scope, $auth) {
 
 TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
-  console.log("WAAAGH");
+  // console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;
   $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
@@ -74,6 +74,13 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
   $('.sign-up-btn').on('click', function () {
     $('#sign-up-modal').addClass('showing');
   });
+
+
+  $scope.viewprofile = function(){
+    // console.log(JSON.parse(localStorage.getItem('user')).user_info.id)
+    localStorage.setItem("profID", JSON.parse(localStorage.getItem('user')).user_info.id);
+    location.reload();
+  }
 
 
   $scope.isLogged = function()

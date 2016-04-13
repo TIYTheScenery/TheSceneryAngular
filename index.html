@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.3.3/aws-sdk.js"></script>
-    
+
     <script src='assets/js/app.js'></script>
     <script src='assets/js/login-controller.js'></script>
     <script src='assets/js/scripts.js'></script>
@@ -50,7 +50,7 @@
 
         <div class="header-user-wrapper">
           <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
-          <a href="#/userprofile"><div class="header-user-profile">My Profile</div></a>
+          <a href="#/userprofile" ng-click="viewprofile()"><div class="header-user-profile">My Profile</div></a>
         </div>
 
         <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>

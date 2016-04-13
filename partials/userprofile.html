@@ -6,7 +6,7 @@
       </div>
     </a>
     <a href="">
-      <div class="edit-profile-btn" ng-click="show = !show; edituser()" ng-hide="show">
+      <div class="edit-profile-btn" id="editprofilebutton" ng-click="show = !show; edituser()" ng-hide="show">
         Edit Profile
       </div>
     </a>
@@ -17,7 +17,7 @@
     </a>
     <br>
     <a href="#/company">
-      <div class="edit-profile-btn" ng-click="show = !show" ng-show="isProfessional()">
+      <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show" ng-show="isProfessional()">
         Create Company
       </div>
     </a>
@@ -84,6 +84,16 @@
         Add Description:
       </div>
       <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
+      <div class="associated-user-companies-wrapper">
+        <div class="associated-user-company">
+          My Companies:
+          <div class="associated-company-name" ng-repeat="company in currentuser.user_info.companies" ng-click="usercompany()">
+            <a href="">
+              {{company.name}}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
   </div>

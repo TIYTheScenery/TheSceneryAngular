@@ -29,7 +29,7 @@
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      COMPANYNAME presents <br> {{thisPerformance.name}}
+      {{thisPerformance.company_name}} presents <br> {{thisPerformance.name}}
     </div>
     <!--this ends the viewing-->
     <!-- <a href="">
@@ -39,10 +39,8 @@
     </a> -->
 <!--THIS IS FOR ADDING THE HERO IMAGE AND INFO-->
     <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tAdd">
-      <select class="hero-img-creator-dropdown">
-        <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
-        <option>Company Name</option>
-        <option>Professional ID</option>
+      <select class="hero-img-creator-dropdown" id="performance-company-add">
+        <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>  <!--might need ng-repeat for this-->
       </select>
       <span> presents </span><br>
       <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
@@ -52,10 +50,8 @@
 
 <!--THIS IS FOR EDITING THE HERO IMAGE AND INFO-->
   <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tEdit">
-    <select class="hero-img-creator-dropdown-edit">
-      <option selected disabled>Creator</option>  <!--might need ng-repeat for this-->
-      <option>Company Name</option>
-      <option>Professional ID</option>
+    <select class="hero-img-creator-dropdown" id="performance-company-edit">
+      <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>  <!--might need ng-repeat for this-->
     </select>
     <span> presents </span><br>
     <input class="hero-img-performance-name" id="performance-name-edit" placeholder="Performance Name" name="name" value="{{thisPerformance.name}}">

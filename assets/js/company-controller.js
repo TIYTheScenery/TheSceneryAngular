@@ -126,6 +126,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $.ajax(settings).done(function (data) {
       console.log("Company Created");
       console.log(data);
+
     });//end ajax.
   }//End Create Company
 
@@ -281,11 +282,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".company-new-review").val("");
       });//end ajax.
 
-  }
-
-  $scope.comptoperf = function(){
-    console.log("COMP TO PERF");
-    console.log($(this));
   }
 
 });

@@ -18,7 +18,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
     $(".company-description").text(data.data.company.description);
 
-    console.log(data.data.company.upcoming_performances);
+    // console.log(data.data.company.opportunities);
 
     for (var i=0; i<data.data.company.upcoming_performances.length; i++){
       $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
@@ -27,6 +27,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     for (var i=0; i<data.data.company.past_performances.length; i++){
       $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance'><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
     }
+
+    // for (var i=0; i<data.data.company.opportunities.length; i++){
+    //   $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>name of poster</div><div class='company-opportunity-date-posted'>date posted</div><div class='company-opportunity-title'>name of the opportunity</div></div><div class='company-opportunity-description'></div></div>")
+    // }
 
     localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
   });
@@ -178,24 +182,24 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       }
     });
 
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
-    //   "method": "POST",
-    //   "headers": {
-    //     "content-type": "application/json",
-    //     "cache-control": "no-cache"
-    //   },
-    //   "processData": false,
-    //   "data": opportunity
-    // };
-    // // AJAX CALL
-    // $.ajax(settings).done(function (data) {
-    //   console.log("Opportunity");
-    //   console.log(data);
-    //   $(".company-create-opportunity-modal-wrapper").addClass("hidden");
-    // });
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/opportunities",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": opportunity
+    };
+    // AJAX CALL
+    $.ajax(settings).done(function (data) {
+      console.log("Opportunity");
+      console.log(data);
+      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+    });
   }
 
   $(".create-opportunity-btn").on("click", function(){

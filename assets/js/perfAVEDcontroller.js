@@ -33,6 +33,15 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
 
+    console.log(person.user_info.id);
+    console.log(data.data.performance.owner_id);
+
+    if (person.user_info.id != data.data.performance.owner_id){
+      console.log("happening");
+      $("#performance-edit-btn").addClass("hidden");
+      $("#performance-delete-btn").addClass("hidden");
+    }
+
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
 
     //sets the default for the genre dropdown menu when editing
@@ -99,6 +108,7 @@ var person = JSON.parse(localStorage.getItem('user'));
 
 console.log("This is the current user");
 console.log(person);
+
 
 $scope.updatePerformance = function(){
 

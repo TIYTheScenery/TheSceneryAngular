@@ -29,7 +29,7 @@ $scope.searchDB = function()
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "http://infinite-reef-76606.herokuapp.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&city="+searchCity+"&state="+searchState+"&type="+searchType,
+   "url": "https://infinite-reef-76606.herokuapp.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&city="+searchCity+"&state="+searchState+"&type="+searchType,
    "method": "GET",
    "headers": {
      "content-type": "application/json",

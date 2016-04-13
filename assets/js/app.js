@@ -1,4 +1,4 @@
-var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute']);
+var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute','satellizer']);
 
 TheSceneryapp.service("ourData", function(){
   var userInfo="I GOT IT!";

@@ -10,12 +10,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $scope.thisCompany;
 
   // This makes clicking a performance navigate to the right page
-
   $("body").on("click", ".company-performance", function(){
     console.log($(this)[0].id);
     localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
   });
-
 
   $http.get('http://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
@@ -115,7 +113,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/companies",
+      "url": "https://api.the-scenery.com/companies",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -160,7 +158,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://infinite-reef-76606.herokuapp.com/companies/" + companyid,
+        "url": "https://api.the-scenery.com/companies/" + companyid,
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -214,7 +212,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/opportunities",
+      "url": "https://infinite-reef-76606.herokuapp.com/opportunities",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -268,7 +266,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "url": "https://infinite-reef-76606.herokuapp.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

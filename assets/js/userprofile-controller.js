@@ -1,8 +1,12 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window){
 
+
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+  $scope.currUserId = $scope.currentuser.user_info.id;
   console.log("Original User");
   console.log($scope.currentuser.user_info);
+  console.log("user ID:")
+  console.log($scope.currUserId);
 
   // If there is no logged in user reroute to homepage
 

@@ -23,6 +23,7 @@
     </a>
 
     <div class="user-header-txt-wrapper">
+      <img src="https://s3.amazonaws.com/thescenery/uploads/User{{currUserId}}">
       <label class="user-header-displayname">Display Name</label>
       <label class="user-header-professional">Professional</label>
     </div>
@@ -35,24 +36,29 @@
 
         <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
           <div>
-            <form action="https://thescenery-attachments.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="key" value="uploads/${filename}">
-              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOGVM2UO7Z7F4JHQ">
-              <input type="hidden" name="acl" value="private">
-              <input type="hidden" name="success_action_redirect" value="http://localhost/">
-              <input type="hidden" name="policy" value="ezpleHBpcmF0aW9uPT4iMjAxOS0wMS0wMVQwMDowMDowMFoiLCA6Y29uZGl0aW9ucz0+W3s6YnVja2V0PT4idGhlc2NlbmVyeS1hdHRhY2htZW50cyJ9LCBbInN0YXJ0cy13aXRoIiwgImltYWdlL2pwZWciLCAiIl0sIHs6YWNsPT4icHJpdmF0ZSJ9LCB7OnN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0PT4iaHR0cDovL2xvY2FsaG9zdDozMDAwIn0sIFsic3RhcnRzLXdpdGgiLCAiaW1hZ2UvanBlZyIsICIiXSwgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDEwNDg1NzZdXX0=">
-              <input type="hidden" name="signature" value="
-rPfvMD090sZIRb26F97t3YzuT44=">
-              <input type="hidden" name="Content-Type" value="image/jpeg">
-              <!-- Include any additional input fields here -->
+            <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="key" value="uploads/User{{currUserId}}">
+              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+              <input type="hidden" name="acl" value="public-read">
+              <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
+              <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+              <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
+              <input type="hidden" name="Content-Type" value="$Content-Type">
+              <!-- Include any additional input fields here U{{currUserId}}-->
 
               Add Image
-              <input type="file"><br>
+              <input name="file" type="file"><br>
               <br>
               <input type="submit" value="Upload File to S3">
-           </form>
+            </form>
          </div>
        </div>
+
+
+          <!-- signature hash -->
+      <!-- Me1pr7UvYelg4jAxyn+NEHXBFss= -->
+
+       <!--policy hash eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInRoZXNjZW5lcnktYXR0YWNobWVudHMifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICAgeyJhY2wiOiAicHJpdmF0ZSJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICJodHRwczovL3RoZS1zY2VuZXJ5LmNvbSJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiAgXQp9 -->
 
 
 

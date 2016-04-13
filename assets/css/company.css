@@ -132,6 +132,7 @@
   background: #bbb;
   width: 90%;
   margin: auto;
+  margin-bottom: 15px;
   border: 1px solid #999;
   padding: 10px;
   border-radius: 5px; }
@@ -182,7 +183,16 @@
   border-radius: 5px;
   border: 1px solid #999;
   background: #bbb;
-  padding: 10px; }
+  padding: 10px;
+  margin-bottom: 15px; }
+
+.company-new-review {
+  font-size: 16px;
+  width: 60%;
+  vertical-align: top;
+  height: 200px;
+  max-width: 60%;
+  max-height: 200px; }
 
 .edit-company-name,
 .create-company-name {
@@ -273,5 +283,82 @@
   margin-top: -150px;
   margin-left: 175px;
   border-radius: 5px; }
+
+.company-create-opportunity-modal-wrapper {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
+.company-create-opportunity-modal {
+  width: 450px;
+  margin: 10% auto 0 auto;
+  padding: 50px 50px;
+  background: #ccc;
+  border-radius: 5px; }
+
+.company-create-opportunity-title {
+  text-align: center;
+  font-size: 16px; }
+
+.opportunity-title-input {
+  font-size: 16px;
+  margin-top: 15px;
+  width: 60%; }
+
+.company-create-opportunity-description {
+  text-align: center;
+  font-size: 16px;
+  padding: 25px 0; }
+
+.opportunity-description-input {
+  font-size: 16px;
+  width: 80%;
+  max-width: 80%;
+  height: 125px;
+  max-height: 200px;
+  margin-top: 25px; }
+
+.opportunity-contact-info {
+  text-align: center;
+  font-size: 16px;
+  margin: 15px; }
+
+.opportunity-contact-info-input {
+  font-size: 16px;
+  width: 80%;
+  margin: 15px 0; }
+
+.opportunity-save-btn-wrapper {
+  width: 80%;
+  margin: auto; }
+
+.opportunity-save-btn {
+  display: inline-block;
+  background: #aaa;
+  background-image: linear-gradient(to bottom right, #999, #aaa);
+  padding: 8px;
+  border-radius: 3px;
+  font-size: 16px; }
+  .opportunity-save-btn:hover {
+    background: #999;
+    background-image: linear-gradient(to bottom right, #aaa, #999);
+    color: white; }
+
+.opportunity-cancel-btn {
+  display: inline-block;
+  padding: 8px;
+  background: red;
+  background-image: linear-gradient(to bottom right, red, #c80000);
+  border-radius: 3px;
+  float: right; }
+  .opportunity-cancel-btn:hover {
+    background-image: linear-gradient(to bottom right, #c80000, red);
+    color: white; }
+
+.hidden {
+  display: none; }
 
 /*# sourceMappingURL=company.css.map */

@@ -18,14 +18,16 @@ $scope.message3 ="GO!"
 $scope.searchDB = function()
 {
   console.log("searching!");
-  var searchName = $('#searchName').val();
-  var searchLocation =$('#searchLocation').val();
+  var searchName = $('#name-search').val();
+  var searchCity =$('#city-search').val();
+  var searchState =$('#state-search').val();
   var searchGenre =$('#genre-search').val();
+  var searchType =$('#type-search').val();
 
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "http://infinite-reef-76606.herokuapp.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&location="+searchLocation,
+   "url": "http://infinite-reef-76606.herokuapp.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&city="+searchCity+"&state="+searchState+"&type="+searchType,
    "method": "GET",
    "headers": {
      "content-type": "application/json",

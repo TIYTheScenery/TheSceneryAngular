@@ -295,17 +295,17 @@
         <div class="AVED-new-review">
           <div class="review-img"><img src=""></div>
           <textarea class="new-review" id = "new-review"></textarea>
-          <a href=""><div class="submit-review-btn">Add Review</div></a>
+          <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
         </div>
         <ul class="AVED-reviews-holder">
-          <li class="AVED-review">  <!--ADD ng-repeat!!!-->
+          <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews">
             <div class="review-wrapper">
               <div class="review-img"><img src=""></div>
               <div class="rnd-wrap">
-                <div class="review-name">Name of reviewer:</div>
-                <div class="review-date">Date of review:</div>
+                <div class="review-name">{{review.display_name}}</div>
+                <div class="review-date">{{review.created_at}}</div>
               </div>
-              <div class="review-text">Review Text</div>
+              <div class="review-text">{{review.opinion}}</div>
             </div>
           </li>
         </ul>

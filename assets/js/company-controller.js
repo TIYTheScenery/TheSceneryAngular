@@ -3,7 +3,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   var person = JSON.parse(localStorage.getItem('user'));
   var token = person.user_info.login_token;
   var ownerID = person.user_info.id;
-  var compID = JSON.parse(localStorage.getItem('perfID'));
+  var compID = JSON.parse(localStorage.getItem('compID'));
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 

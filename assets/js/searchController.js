@@ -1,7 +1,9 @@
 TheSceneryapp.controller('searchController', function($scope, $http, ourData){
 $scope.message3 ="GO!"
   window.onload = genrePull('genre-search', $('.landing-search-genre-wrapper'));
-
+  var isacompany = false;
+  var isaprofessional = false;
+  var isaperformace = false;
 // $('li').on("click", function(){
 //   console.log("inside click");
 //   $(this).attr("id");
@@ -60,12 +62,15 @@ $scope.searchDB = function()
 
   if (response.performances.length > 0){
     ourData.shareData("searchResults", response.performances);
+    isaperformace = true;
   }
   if (response.companies.length > 0){
     ourData.shareData("searchResults", response.companies);
+    isacompany = true;
   }
   if (response.professionals.length > 0){
     ourData.shareData("searchResults", response.professionals);
+    isaprofessional =  true;
   }
   //  console.log(ourData.borrowData("searchResults"));
 
@@ -86,7 +91,18 @@ $scope.searchDB = function()
     ourData.shareData("searchResults", clickedthing);//puts the clicked result into ourdata
 
     //puts the clicked result's id into local storage
-    localStorage.setItem("perfID", JSON.stringify(ourData.borrowData("searchResults").id));
+    if (isaperformace = true){
+      localStorage.setItem("perfID", JSON.stringify(ourData.borrowData("searchResults").id));
+      isaperformance = false;
+    }
+    if (isacompany = true){
+      localStorage.setItem("compID", JSON.stringify(ourData.borrowData("searchResults").id));
+      isacompany = false;
+    }
+    if (isaprofessional = true){
+      localStorage.setItem("profID", JSON.stringify(ourData.borrowData("searchResults").id));
+      isaprofessional = false;
+    }
 
     // console.log(ourData.borrowData("searchResults"));
 

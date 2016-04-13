@@ -87,8 +87,8 @@
       <div class="associated-user-companies-wrapper">
         <div class="associated-user-company">
           My Companies:
-          <div class="associated-company-name" ng-repeat="company in currentuser.user_info.companies" ng-click="usercompany()">
-            <a href="">
+          <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
+            <a href="#/company">
               {{company.name}}
             </a>
           </div>

@@ -1,13 +1,17 @@
-TheSceneryapp.controller('profileCont', function($scope, $http, $window){
+TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
   console.log("Original User");
   console.log($scope.currentuser.user_info);
-  var searcheduserid = JSON.parse(localStorage.getItem('perfID'));
+  var searcheduserid = JSON.parse(localStorage.getItem('profID'));
+  $scope.viewuser;
 
 
 $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
   // console.log($scope.thisCompany);
   // console.log(data);
+  $scope.viewuser = data.data.user_info;
+
+  ourData.shareData("associatedCompany", data.data.user_info.companies);
 
   if($scope.currentuser.user_info.id != data.data.user_info.id){
     $("#editprofilebutton").css("display", "none");
@@ -52,9 +56,9 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
 
 
 $scope.usercompany = function(){
-  // localStorage.setItem("companyid", JSON.stringify($scope.currentuser.user_info.companies));
-  console.log($scope.currentuser.user_info.companies);
-  console.log($(this)[0].company);
+  var nomnom = ourData.borrowData("associatedCompany");
+  console.log($(this)[0].company.id);
+  localStorage.setItem("perfID", JSON.stringify($(this)[0].company.id));
 }
 
   // If there is no logged in user reroute to homepage

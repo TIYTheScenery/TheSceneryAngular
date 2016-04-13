@@ -40,7 +40,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
   $scope.viewprofile = function(){
     // console.log(JSON.parse(localStorage.getItem('user')).user_info.id)
-    localStorage.setItem("perfID", JSON.parse(localStorage.getItem('user')).user_info.id);
+    localStorage.setItem("profID", JSON.parse(localStorage.getItem('user')).user_info.id);
     location.reload();
   }
 

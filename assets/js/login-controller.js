@@ -21,7 +21,7 @@ var dynamicJSON = function(params) {
 
 TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
-  console.log("WAAAGH");
+  // console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;
   $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.

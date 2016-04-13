@@ -37,20 +37,37 @@ $scope.searchDB = function()
     };
 
   $.ajax(settings).done(function (response) {
-  //  console.log(response);
+   console.log(response);
    //console.log(response.performances);
 
    //var iClickedDis = response.performances[clickedPerformance];
    //console.log(iClickedDis);
 
+   //Remove Past Search results
    $('li').remove();
-   //replace ahref
+  //  Append Performances
    for (var i=0; i<response.performances.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performances'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+   }
+  //  Append companies
+   for (var i=0; i<response.companies.length; i++){
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/company'><div class='performance-box'><div class='box box-performance-name'>"+ response.companies[i].name + "</div><div class='box box-performance-date'>" + response.companies[i].description + "</div></div></a></li>");
+   }
+  //  Append Professionals
+   for (var i=0; i<response.professionals.length; i++){
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/userprofile'><div class='performance-box'><div class='box box-performance-name'>"+ response.professionals[i].display_name + "</div><div class='box box-performance-date'>User since: " + response.professionals[i].created_at + "</div></div></a></li>");
    }
 
-   ourData.shareData("searchResults", response.performances);
-   //console.log(ourData.borrowData("searchResults"));
+  if (response.performances.length > 0){
+    ourData.shareData("searchResults", response.performances);
+  }
+  if (response.companies.length > 0){
+    ourData.shareData("searchResults", response.companies);
+  }
+  if (response.professionals.length > 0){
+    ourData.shareData("searchResults", response.professionals);
+  }
+  //  console.log(ourData.borrowData("searchResults"));
 
   });//end ajax call
 

@@ -1,9 +1,13 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
+
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+  $scope.currUserId = $scope.currentuser.user_info.id;
   console.log("Original User");
   console.log($scope.currentuser.user_info);
   var searcheduserid = JSON.parse(localStorage.getItem('profID'));
   $scope.viewuser;
+  console.log("user ID:")
+  console.log($scope.currUserId);
 
 
 $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){

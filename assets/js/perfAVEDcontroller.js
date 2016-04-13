@@ -15,7 +15,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tEdit=ourData.borrowData("tEdit");
   $scope.tView=ourData.borrowData("tView");
 
-
+  $scope.currentUser = JSON.parse(localStorage.getItem('user'));
   console.log("id from local storage:");
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
@@ -173,7 +173,7 @@ $scope.updatePerformance = function(){
   "performance": {
     "id": thisPerformanceID,
     "owner_id": ownerID,
-    "company_id": perfcompid,
+    "company_id": $('#performance-company-edit').val(),
     "name": $('#performance-name-edit').val(),
     "description": $('#perf-desc-edit').val(),
     "trailer_link": $('#trailer-link-edit').val(),
@@ -273,7 +273,7 @@ $scope.updatePerformance = function(){
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
-      "company_id": perfcompid,
+      "company_id": $('#performance-company-add').val(),
       "name": $('#performance-name').val(),
       "description": $('#perf-desc').val(),
       "trailer_link": $('#trailer-link').val(),
@@ -307,9 +307,11 @@ $scope.updatePerformance = function(){
        };
 
       $.ajax(settings).done(function (data) {
-      console.log(data);
+        console.log(data);
+        $scope.thisPerformance = data
+        localStorage.setItem('perfID', data.performance.id)
       });//end ajax.
-
+      $scope.toggle();
   }//End addperformance
 
   $scope.deletePerformance = function()

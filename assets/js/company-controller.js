@@ -18,10 +18,26 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     console.log(data.data.company);
     $(".company-name").text(data.data.company.name);
     $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
-    $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
-    $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
-    $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
-    $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    if (data.data.company.youtube_link.match(/\/\//)) {
+      $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
+    }else{
+      $(".media-youtube").parent().attr("href", "//" + data.data.company.youtube_link);
+    }
+    if (data.data.company.twitter_link.match(/\/\//)) {
+      $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
+    }else{
+      $(".media-twitter").parent().attr("href", "//" + data.data.company.twitter_link);
+    }
+    if (data.data.company.facebook_link.match(/\/\//)) {
+      $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
+    }else{
+      $(".media-facebook").parent().attr("href", "//" + data.data.company.facebook_link);
+    }
+    if (data.data.company.instagram_link.match(/\/\//)) {
+      $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    }else{
+      $(".media-instagram").parent().attr("href", "//" + data.data.company.instagram_link);
+    }
     $(".company-description").text(data.data.company.description);
 
     // console.log(data.data.company.opportunities);

@@ -86,6 +86,7 @@
 }
 
 .user-side-info-wrapper{
+  // border: 5px solid blue;
   width: 39%;
   display: inline-block;
   border: 1px solid #666;
@@ -93,6 +94,7 @@
 }
 
 .user-social-links-wrapper{
+  // border: 5px solid blue;
   text-align: center;
   width: 60%;
   margin: 20px auto 30px auto;
@@ -180,4 +182,19 @@
   border-radius: 3px;
   width: 60px;
   margin: 20px auto 25px auto;
+}
+
+.associated-user-company{
+  text-align: center;
+  font-size: 18px;
+  margin: 15px 0 25px 0;
+}
+
+.associated-company-name{
+  margin: 10px auto;
+  padding: 5px 10px;
+  background: #999;
+  border-radius: 3px;
+  width: 50%;
+  font-weight: bold;
 }

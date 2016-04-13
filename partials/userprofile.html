@@ -6,7 +6,7 @@
       </div>
     </a>
     <a href="">
-      <div class="edit-profile-btn" ng-click="show = !show; edituser()" ng-hide="show">
+      <div class="edit-profile-btn" id="editprofilebutton" ng-click="show = !show; edituser()" ng-hide="show">
         Edit Profile
       </div>
     </a>
@@ -17,12 +17,13 @@
     </a>
     <br>
     <a href="#/company">
-      <div class="edit-profile-btn" ng-click="show = !show" ng-show="isProfessional()">
+      <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show" ng-show="isProfessional()">
         Create Company
       </div>
     </a>
 
     <div class="user-header-txt-wrapper">
+      <img src="https://s3.amazonaws.com/thescenery/uploads/User{{currUserId}}">
       <label class="user-header-displayname">Display Name</label>
       <label class="user-header-professional">Professional</label>
     </div>
@@ -32,13 +33,35 @@
       <div class="user-image-wrapper" ng-hide="show">
         <img src="" class="user-profile-image">
       </div>
-      <a href="">
+
         <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
           <div>
-            Add Image
-          </div>
-        </div>
-      </a>
+            <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="key" value="uploads/User{{currUserId}}">
+              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+              <input type="hidden" name="acl" value="public-read">
+              <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
+              <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+              <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
+              <input type="hidden" name="Content-Type" value="$Content-Type">
+              <!-- Include any additional input fields here U{{currUserId}}-->
+
+              Add Image
+              <input name="file" type="file"><br>
+              <br>
+              <input type="submit" value="Upload File to S3">
+            </form>
+         </div>
+       </div>
+
+
+          <!-- signature hash -->
+      <!-- Me1pr7UvYelg4jAxyn+NEHXBFss= -->
+
+       <!--policy hash eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInRoZXNjZW5lcnktYXR0YWNobWVudHMifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICAgeyJhY2wiOiAicHJpdmF0ZSJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICJodHRwczovL3RoZS1zY2VuZXJ5LmNvbSJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiAgXQp9 -->
+
+
+
       <div class="user-name-title-wrapper">
         <div class="user-name-title-spacer">
           <div class="display-user-name" ng-hide="show">First Name Last Name</div>
@@ -84,6 +107,16 @@
         Add Description:
       </div>
       <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
+      <div class="associated-user-companies-wrapper">
+        <div class="associated-user-company">
+          My Companies:
+          <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
+            <a href="#/company">
+              {{company.name}}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
   </div>

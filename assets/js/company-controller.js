@@ -3,13 +3,14 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   var person = JSON.parse(localStorage.getItem('user'));
   var token = person.user_info.login_token;
   var ownerID = person.user_info.id;
+  var compID = JSON.parse(localStorage.getItem('compID'));
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
   $scope.thisCompany;
 
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
+  $http.get('http://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);

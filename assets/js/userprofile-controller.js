@@ -1,18 +1,75 @@
-TheSceneryapp.controller('profileCont', function($scope, $http, $window){
+TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
+
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+  $scope.currUserId = $scope.currentuser.user_info.id;
   console.log("Original User");
   console.log($scope.currentuser.user_info);
+  var searcheduserid = JSON.parse(localStorage.getItem('profID'));
+  $scope.viewuser;
+  console.log("user ID:")
+  console.log($scope.currUserId);
+
+
+$http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
+  // console.log($scope.thisCompany);
+  // console.log(data);
+  $scope.viewuser = data.data.user_info;
+
+  ourData.shareData("associatedCompany", data.data.user_info.companies);
+
+  if($scope.currentuser.user_info.id != data.data.user_info.id){
+    $("#editprofilebutton").css("display", "none");
+    $("#createcompanybutton").css("display", "none");
+  }
+
+  // Display user Display Name
+  $(".user-header-displayname").text(data.data.user_info.display_name);
+  $(".side-info-display-name").text(data.data.user_info.display_name);
+  // If a user has a first and last name display them
+  if (data.data.user_info.first_name != null && data.data.user_info.last_name != null){
+    $(".display-user-name").text(data.data.user_info.first_name + " " + data.data.user_info.last_name)
+  }
+  // If a user has titles display them
+  if (data.data.user_info.titles.length != 0){
+      $(".display-user-titles").text(data.data.user_info.titles[data.data.user_info.titles.length - 1].title);
+  }
+  // If a user has a description display it
+  if (data.data.user_info.description != null){
+      $(".side-info-user-description").text(data.data.user_info.description);
+  }
+  // Display user creation date
+  $(".display-user-creation-date").text("Member since: " + data.data.user_info.created_at);
+  //Display user social links if they exist.
+  if (data.data.user_info.youtube_link != null){
+    $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+  }
+  if (data.data.user_info.twitter_link != null){
+    $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+  }
+  if (data.data.user_info.facebook_link != null){
+    $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+  }
+  if (data.data.user_info.instagram_link != null){
+    $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+  }
+
+  // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
+  // ourData.shareData("company", data.data.company);
+});
+
+
+
+$scope.usercompany = function(){
+  var nomnom = ourData.borrowData("associatedCompany");
+  console.log($(this)[0].company.id);
+  localStorage.setItem("perfID", JSON.stringify($(this)[0].company.id));
+}
 
   // If there is no logged in user reroute to homepage
 
   if ($scope.currentuser === null){
     $window.location.href = '#/';
   }
-
-  // Place users display name into the page
-
-  $(".user-header-displayname").text($scope.currentuser.user_info.display_name);
-  $(".side-info-display-name").text($scope.currentuser.user_info.display_name);
 
   // If a user is not a professional hide sections that are professional only
 
@@ -25,48 +82,6 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window){
 
   $scope.isProfessional = function(){
     return $scope.currentuser.user_info.is_professional
-  }
-
-  // If the user currently has a first and last name display them.
-
-  if ($scope.currentuser.user_info.first_name != null && $scope.currentuser.user_info.last_name != null){
-    $(".display-user-name").text($scope.currentuser.user_info.first_name + " " + $scope.currentuser.user_info.last_name)
-  }
-
-  // If a user has titles display them.
-
-  // console.log($scope.currentuser.user_info.titles.length);
-
-  if ($scope.currentuser.user_info.titles.length != 0){
-      $(".display-user-titles").text($scope.currentuser.user_info.titles[$scope.currentuser.user_info.titles.length - 1].title);
-  }
-
-  // If a user has a description display it.
-
-  if ($scope.currentuser.user_info.description != null){
-    $(".side-info-user-description").text($scope.currentuser.user_info.description);
-  }
-
-  // Display user created at date
-
-  $(".display-user-creation-date").text("Member since: " + $scope.currentuser.user_info.created_at);
-
-  //Display user social links if they exist.
-
-  if ($scope.currentuser.user_info.youtube_link != null){
-    $(".user-youtube-link").parent().attr("href", $scope.currentuser.user_info.youtube_link);
-  }
-
-  if ($scope.currentuser.user_info.twitter_link != null){
-    $(".user-twitter-link").parent().attr("href", $scope.currentuser.user_info.twitter_link);
-  }
-
-  if ($scope.currentuser.user_info.facebook_link != null){
-    $(".user-facebook-link").parent().attr("href", $scope.currentuser.user_info.facebook_link);
-  }
-
-  if ($scope.currentuser.user_info.instagram_link != null){
-    $(".user-instagram-link").parent().attr("href", $scope.currentuser.user_info.instagram_link);
   }
 
   // Port view variables into edit containers

@@ -183,7 +183,16 @@
   border-radius: 5px;
   border: 1px solid #999;
   background: #bbb;
-  padding: 10px; }
+  padding: 10px;
+  margin-bottom: 15px; }
+
+.company-new-review {
+  font-size: 16px;
+  width: 60%;
+  vertical-align: top;
+  height: 200px;
+  max-width: 60%;
+  max-height: 200px; }
 
 .edit-company-name,
 .create-company-name {

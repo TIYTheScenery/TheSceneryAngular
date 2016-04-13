@@ -4,10 +4,15 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   var token = person.user_info.login_token;
   var ownerID = person.user_info.id;
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
-
   // Populate the page with the first company in the database
 
+  $scope.thisCompany;
+
+
   $http.get('http://infinite-reef-76606.herokuapp.com/companies/1').then(function(data){
+    $scope.thisCompany = ourData.shareData("company", data.data.company);
+    $scope.thisCompany = ourData.borrowData("company");
+    // console.log($scope.thisCompany);
     // console.log(data);
     console.log(data.data.company);
     $(".company-name").text(data.data.company.name);
@@ -33,8 +38,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     }
 
     localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
+    ourData.shareData("company", data.data.company);
   });
-
 
   $scope.goMakeAPerformance = function(){
     //this sets the view going into the perfAVED page.
@@ -211,4 +216,49 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $(".opportunity-cancel-btn").on("click", function(){
       $(".company-create-opportunity-modal-wrapper").addClass("hidden");
   })
+
+  //Submit reviews for a company
+
+  $scope.submitreview = function(){
+
+    var reviewtext = $(".company-new-review").val();
+    var user = JSON.parse(localStorage.getItem('user'));
+    var currentcomp = ourData.borrowData("company");
+    // console.log(user.user_info);
+    // console.log(currentcomp);
+
+    var review = JSON.stringify({
+        "id": "",
+        "opinion": reviewtext,
+        "rating": null,
+        "user_id": user.user_info.id,
+        "reviewee_id": currentcomp.id,
+        "reviewee_type": "Company",
+        "display_name": user.user_info.display_name,
+        "user_info": {
+          "login_token": user.user_info.login_token
+        }
+    });  //End Review
+    // console.log(review);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": review
+       };
+
+      $.ajax(settings).done(function (data) {
+      console.log(data);
+      $(".company-new-review").val("");
+      });//end ajax.
+
+  }
+
 });

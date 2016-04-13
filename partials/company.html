@@ -253,14 +253,19 @@
       <div class="company-reviews-label">
         Reviews:
       </div>
-      <div class="company-review">  <!--ADD ng-repeat!!!-->
+      <div class="company-review">
+        <div class="company-review-img"><img src=""></div>
+        <textarea class="company-new-review" id = "company-new-review"></textarea>
+        <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+      </div>
+      <div class="company-review" ng-repeat= "review in thisCompany.reviews">
         <div class="company-review-wrapper">
           <div class="company-review-img"><img src=""></div>
           <div class="company-rnd-wrap">
-            <div class="company-review-name">Name of reviewer:</div>
-            <div class="company-review-date">Date of review:</div>
+            <div class="company-review-name">{{review.display_name}}</div>
+            <div class="company-review-date">{{review.created_at}}</div>
           </div>
-          <div class="company-review-text">Review Text</div>
+          <div class="company-review-text">{{review.opinion}}</div>
         </div>
       </div>
     </div>

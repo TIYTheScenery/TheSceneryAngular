@@ -407,30 +407,35 @@ $scope.updatePerformance = function(){
         "rating": null,
         "user_id": user.user_info.id,
         "reviewee_id": currentperf.id,
-        "reviewee_type": "Performance"
+        "reviewee_type": "Performance",
+        "display_name": user.user_info.display_name,
+        "user_info": {
+          "login_token": user.user_info.login_token
+        }
     });  //End Review
     console.log(review);
 
-    currentperf.reviews.push(review);
-    currentperf.user_info = {"login_token": user.user_info.login_token};
-    console.log(currentperf);
+    // currentperf.reviews.push(review);
+    // currentperf.user_info = {"login_token": user.user_info.login_token};
+    // console.log(currentperf);
 
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": "http://infinite-reef-76606.herokuapp.com/performances/" + currentperf.id,
-    //   "method": "PUT",
-    //   "headers": {
-    //     "content-type": "application/json",
-    //     "cache-control": "no-cache"
-    //   },
-    //   "processData": false,
-    //   "data": currentperf
-    //    };
-    //
-    //   $.ajax(settings).done(function (data) {
-    //   console.log(data);
-    //   });//end ajax.
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://infinite-reef-76606.herokuapp.com/reviews",
+      "method": "POST",
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": review
+       };
+
+      $.ajax(settings).done(function (data) {
+      console.log(data);
+      $(".new-review").val("");
+      });//end ajax.
 
   }
 

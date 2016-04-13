@@ -191,24 +191,26 @@
       <div class="opportunities-label">
         Opportunities:
       </div>
-      <div class="company-opportunity">
-        <div class="company-opportunity-poster-image-wrapper">
-          <img src="">
-        </div>
-        <div class="company-ndt-wrapper">  <!--wrap the name date and opportunity title for easy styling-->
-          <div class="company-opportunity-poster-name">
-            name of poster
+      <div class="insert-company-opportunity">
+        <!-- <div class="company-opportunity">
+          <div class="company-opportunity-poster-image-wrapper">
+            <img src="">
           </div>
-          <div class="company-opportunity-date-posted">
-            date posted
+          <div class="company-ndt-wrapper">
+            <div class="company-opportunity-poster-name">
+              name of poster
+            </div>
+            <div class="company-opportunity-date-posted">
+              date posted
+            </div>
+            <div class="company-opportunity-title">
+              name of the opportunity
+            </div>
           </div>
-          <div class="company-opportunity-title">
-            name of the opportunity
+          <div class="company-opportunity-description">
+            But her wit, charm and intelligence just may help her survive through another day. In a city of Marvels, Jessica Jones never found her niche. The very first appearance of Spider-Man. What do you get when you ask the question, What if Spider-Man had a daughter.
           </div>
-        </div>
-        <div class="company-opportunity-description">
-          But her wit, charm and intelligence just may help her survive through another day. In a city of Marvels, Jessica Jones never found her niche. The very first appearance of Spider-Man. What do you get when you ask the question, What if Spider-Man had a daughter.
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="company-performances-wrapper">
@@ -273,13 +275,32 @@
     </div>
   </div>
 
-  <div class="company-create-opportunity-modal-wrapper">
+  <div class="company-create-opportunity-modal-wrapper hidden">
     <div class="company-create-opportunity-modal">
       <div class="company-create-opportunity-title">
-        Opportunity Title
-        <input class="opportunity-title-input" placeholder="Title">
+        Opportunity Title<br>
+        <input class="opportunity-title-input">
       </div>
-      
+      <div class="company-create-opportunity-description">
+        Opportunity Description<br>
+        <textarea class="opportunity-description-input"></textarea>
+      </div>
+      <div class="opportunity-contact-info">
+        Contact E-Mail<br>
+        <input class="opportunity-contact-info-input">
+      </div>
+      <div class="opportunity-save-btn-wrapper">
+        <a href="">
+          <div class="opportunity-save-btn" ng-click="saveopportunity()">
+            Save Opportunity
+          </div>
+        </a>
+        <a href="">
+          <div class="opportunity-cancel-btn">
+            Cancel
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>

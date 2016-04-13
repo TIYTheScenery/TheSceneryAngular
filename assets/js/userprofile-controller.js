@@ -41,16 +41,32 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
   $(".display-user-creation-date").text("Member since: " + data.data.user_info.created_at);
   //Display user social links if they exist.
   if (data.data.user_info.youtube_link != null){
-    $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+    if (data.data.user_info.youtube_link.match(/\/\//)){
+      $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+    } else {
+      $(".user-youtube-link").parent().attr("href", "//" + data.data.user_info.youtube_link);
+    }
   }
   if (data.data.user_info.twitter_link != null){
-    $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+    if (data.data.user_info.twitter_link.match(/\/\//)){
+      $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+    } else {
+      $(".user-twitter-link").parent().attr("href", "//" + data.data.user_info.twitter_link);
+    }
   }
   if (data.data.user_info.facebook_link != null){
-    $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+    if (data.data.user_info.facebook_link.match(/\/\//)){
+      $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+    } else {
+      $(".user-facebook-link").parent().attr("href", "//" + data.data.user_info.facebook_link);
+    }
   }
   if (data.data.user_info.instagram_link != null){
-    $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+    if (data.data.user_info.instagram_link.match(/\/\//)){
+      $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+    } else {
+      $(".user-instagram-link").parent().attr("href", "//" + data.data.user_info.instagram_link);
+    }
   }
 
   // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));

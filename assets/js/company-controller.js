@@ -7,6 +7,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
+//these variables are used in the html with ng-show to determine which version of the page is shown to the user
+//show is for viewing a company
+//edit is for editing one
+//and create is for creating one.
+  $scope.show;
+  $scope.create;
+  $scope.edit;
 
   $scope.companyCr = ourData.borrowData("companyCreate");
   if ($scope.companyCr === undefined)
@@ -15,13 +22,37 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   }
   console.log($scope.companyCr);
 
-  //this will set all the visible elements on the
-  //page depending on where you got to this page from
-  $scope.show = !$scope.companyCr;
-  $scope.create = $scope.companyCr;
+  $scope.toggle = function(turnOn)
+  {
+    if(turnOn === "CREATE")
+    {
+      $scope.show = false;
+      $scope.edit = false;
+      $scope.create = true;
+    }
+    else if(turnOn === "EDIT")
+    {
+      $scope.show = false;
+      $scope.edit = true;
+      $scope.create = false;
+    }
+    else
+    {
+      $scope.show = true;
+      $scope.edit = false;
+      $scope.create = false;
+    }
+  }//end toggle
 
+  if($scope.companyCr)
+  {
+    $scope.toggle("CREATE");
+  }
+  else{$scope.toggle("SHOW");}
+  //show technically dosent do anything, but the else in toggle makes it show.
+
+  
   $scope.thisCompany;
-
   // This makes clicking a performance navigate to the right page
   $("body").on("click", ".company-performance", function(){
     console.log($(this)[0].id);

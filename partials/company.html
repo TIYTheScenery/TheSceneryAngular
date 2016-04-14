@@ -32,7 +32,7 @@
     </div> -->
 
 
-    <div class="action" ng-show="show" ng-click="show = !show; editcompany()">
+    <div class="action" ng-show="show" ng-click="toggle('EDIT'); editcompany()">
       <a href="">
         <div class="edit-company-btn company-btn">
           Edit Company
@@ -205,7 +205,7 @@
   <!-- Company Save Edits Button -->
   <div class="company-save-btn-wrapper" ng-show="edit">
     <a href="">
-      <div class="company-save-btn" ng-click="show = !show; savecompany()">
+      <div class="company-save-btn" ng-click="toggle('SHOW'); savecompany()">
         Save
       </div>
     </a>
@@ -213,7 +213,7 @@
   <!-- Company Save Create Button -->
   <div class="company-create-btn-wrapper" ng-show="create">
     <a href="">
-      <div class="company-create-btn" ng-click="create = !create; createcompany()">
+      <div class="company-create-btn" ng-click="toggle('SHOW'); createcompany()">
         Submit
       </div>
     </a>

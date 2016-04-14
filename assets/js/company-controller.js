@@ -64,7 +64,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
   });
 
-  $http.get('http://api.the-scenery.com/companies/' + compID).then(function(data){
+  $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);
@@ -123,7 +123,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://api.the-scenery.com/companies",
+      "url": "https://api.the-scenery.com/companies",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -191,7 +191,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.the-scenery.com/companies/" + companyid,
+        "url": "https://api.the-scenery.com/companies/" + companyid,
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -245,7 +245,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://api.the-scenery.com/opportunities",
+      "url": "https://api.the-scenery.com/opportunities",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -299,7 +299,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://api.the-scenery.com/reviews",
+      "url": "https://api.the-scenery.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

@@ -64,52 +64,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
   });
 
-  $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){
+  $http.get('http://api.the-scenery.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);
     // console.log(data);
     console.log(data.data.company);
-    $(".company-name").text(data.data.company.name);
-    $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
-    if (data.data.company.youtube_link.match(/\/\//)) {
-      $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
-    }else{
-      $(".media-youtube").parent().attr("href", "//" + data.data.company.youtube_link);
-    }
-    if (data.data.company.twitter_link.match(/\/\//)) {
-      $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
-    }else{
-      $(".media-twitter").parent().attr("href", "//" + data.data.company.twitter_link);
-    }
-    if (data.data.company.facebook_link.match(/\/\//)) {
-      $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
-    }else{
-      $(".media-facebook").parent().attr("href", "//" + data.data.company.facebook_link);
-    }
-    if (data.data.company.instagram_link.match(/\/\//)) {
-      $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
-    }else{
-      $(".media-instagram").parent().attr("href", "//" + data.data.company.instagram_link);
-    }
-    $(".company-description").text(data.data.company.description);
-
-    // console.log(data.data.company.opportunities);
-
-    for (var i=0; i<data.data.company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
-    }
-
-    for (var i=0; i<data.data.company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div>");
-    }
-
-    for (var i=0; i<data.data.company.opportunities.length; i++){
-      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + data.data.company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + data.data.company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + data.data.company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + data.data.company.opportunities[i].description + "</div></div>")
-    }
-
-    localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
-    ourData.shareData("company", data.data.company);
+    $scope.fillCompany(data)
   });
 
   $scope.goMakeAPerformance = function(){
@@ -162,7 +123,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://api.the-scenery.com/companies",
+      "url": "http://api.the-scenery.com/companies",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -230,7 +191,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.the-scenery.com/companies/" + companyid,
+        "url": "http://api.the-scenery.com/companies/" + companyid,
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -284,7 +245,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://api.the-scenery.com/opportunities",
+      "url": "http://api.the-scenery.com/opportunities",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -338,7 +299,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://api.the-scenery.com/reviews",
+      "url": "http://api.the-scenery.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -355,6 +316,48 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   }
 
+  $scope.fillCompany = function(data){
+    $(".company-name").text(data.data.company.name);
+    $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
+    if (data.data.company.youtube_link.match(/\/\//)) {
+      $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
+    }else{
+      $(".media-youtube").parent().attr("href", "//" + data.data.company.youtube_link);
+    }
+    if (data.data.company.twitter_link.match(/\/\//)) {
+      $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
+    }else{
+      $(".media-twitter").parent().attr("href", "//" + data.data.company.twitter_link);
+    }
+    if (data.data.company.facebook_link.match(/\/\//)) {
+      $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
+    }else{
+      $(".media-facebook").parent().attr("href", "//" + data.data.company.facebook_link);
+    }
+    if (data.data.company.instagram_link.match(/\/\//)) {
+      $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    }else{
+      $(".media-instagram").parent().attr("href", "//" + data.data.company.instagram_link);
+    }
+    $(".company-description").text(data.data.company.description);
+
+    // console.log(data.data.company.opportunities);
+
+    for (var i=0; i<data.data.company.upcoming_performances.length; i++){
+      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
+    }
+
+    for (var i=0; i<data.data.company.past_performances.length; i++){
+      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div>");
+    }
+
+    for (var i=0; i<data.data.company.opportunities.length; i++){
+      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + data.data.company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + data.data.company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + data.data.company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + data.data.company.opportunities[i].description + "</div></div>")
+    }
+
+    localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
+    ourData.shareData("company", data.data.company);
+  }
   console.log("$scope.show");
   console.log($scope.show);
 

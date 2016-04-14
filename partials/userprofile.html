@@ -17,7 +17,7 @@
     </a>
     <br>
     <a href="#/company">
-      <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show; tocompany()">
+      <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show; tocompany('CREATE')">
         Create Company
       </div>
     </a>
@@ -112,7 +112,7 @@
         <div class="associated-user-company">
           My Companies:
           <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
-            <a href="#/company" ng-click="tocompany()">
+            <a href="#/company" ng-click="tocompany("SHOW")">
               {{company.name}}
             </a>
           </div>

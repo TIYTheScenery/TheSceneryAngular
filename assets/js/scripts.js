@@ -36,7 +36,7 @@ var genrePull = function(name, container){
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "https://api.the-scenery.com/genres",
+   "url": "http://api.the-scenery.com/genres",
    "method": "GET",
    "headers": {
      "content-type": "application/json",

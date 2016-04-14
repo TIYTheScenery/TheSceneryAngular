@@ -192,7 +192,7 @@ $scope.usercompany = function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.the-scenery.com/users",
+        "url": "http://api.the-scenery.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -210,7 +210,7 @@ $scope.usercompany = function(){
         });//end ajax.
 
 
-  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
+  //   $http.put('http://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
   //     console.log("user updated!");
   //     console.log(data);
   //   },function(data){

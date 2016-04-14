@@ -23,6 +23,16 @@
   vertical-align:middle;
 }
 
+.modal-close-btn{
+  float: right;
+  background: red !important;
+  background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0)) !important;
+  &:hover{
+    background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
+    color: white;
+  }
+}
+
 a{
   text-decoration: none;
   color: black;

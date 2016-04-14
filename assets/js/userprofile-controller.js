@@ -10,7 +10,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData
   console.log($scope.currUserId);
 
 
-$http.get('https://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
+$http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(data){
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;

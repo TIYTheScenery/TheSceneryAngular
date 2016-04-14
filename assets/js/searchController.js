@@ -53,7 +53,7 @@ $scope.searchDB = function()
    }
   //  Append companies
    for (var i=0; i<response.companies.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#/company'><div class='performance-box'><div class='box box-performance-name'>"+ response.companies[i].name + "</div><div class='box box-performance-date'>" + response.companies[i].description + "</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/company' ng-click='tocompany()'><div class='performance-box'><div class='box box-performance-name'>"+ response.companies[i].name + "</div><div class='box box-performance-date'>" + response.companies[i].description + "</div></div></a></li>");
    }
   //  Append Professionals
    for (var i=0; i<response.professionals.length; i++){
@@ -126,5 +126,8 @@ $scope.searchDB = function()
   //.css({"transform": "perspecitve(50px);","transition-duration": "1s"})
 
 }//end searchDB
+  $scope.tocompany = function(){
+    ourData.shareData("companyCreate", false);
+  }
 
 });//end controller

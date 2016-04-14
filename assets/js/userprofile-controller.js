@@ -195,5 +195,9 @@ $scope.usercompany = function(){
 
   }
 
+  $scope.tocompany = function(){
+    ourData.shareData("companyCreate", true);
+  }
+
 
 });

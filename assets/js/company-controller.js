@@ -7,6 +7,9 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
+  $scope.companyCr = ourData.borrowData("companyCreate");
+  console.log($scope.companyCr);
+
   $scope.thisCompany;
 
   // This makes clicking a performance navigate to the right page

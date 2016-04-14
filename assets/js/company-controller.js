@@ -7,8 +7,52 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
-  $scope.thisCompany;
+//these variables are used in the html with ng-show to determine which version of the page is shown to the user
+//show is for viewing a company
+//edit is for editing one
+//and create is for creating one.
+  $scope.show;
+  $scope.create;
+  $scope.edit;
 
+  $scope.companyCr = ourData.borrowData("companyCreate");
+  if ($scope.companyCr === undefined)
+  {
+    $scope.companyCr = false;
+  }
+  console.log($scope.companyCr);
+
+  $scope.toggle = function(turnOn)
+  {
+    if(turnOn === "CREATE")
+    {
+      $scope.show = false;
+      $scope.edit = false;
+      $scope.create = true;
+    }
+    else if(turnOn === "EDIT")
+    {
+      $scope.show = false;
+      $scope.edit = true;
+      $scope.create = false;
+    }
+    else
+    {
+      $scope.show = true;
+      $scope.edit = false;
+      $scope.create = false;
+    }
+  }//end toggle
+
+  if($scope.companyCr)
+  {
+    $scope.toggle("CREATE");
+  }
+  else{$scope.toggle("SHOW");}
+  //show technically dosent do anything, but the else in toggle makes it show.
+
+  
+  $scope.thisCompany;
   // This makes clicking a performance navigate to the right page
   $("body").on("click", ".company-performance", function(){
     console.log($(this)[0].id);
@@ -132,12 +176,34 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   $scope.savecompany = function(){
 
+    var thing = jQuery.Event( "submit" );
+    if($("#fileBtn1").val() === "")//if there isnt a value in the file upload button1
+    {
+      console.log("no company profile added, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a profile img! Upload beggining!");
+      $("#imgSubmitBtn1").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
+    if($("#fileBtn2").val() === "")//if there isnt a value in the file upload button2
+    {
+      console.log("no company splash added, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a splash img! Upload beggining!");
+      $("#imgSubmitBtn2").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
+
     var companyid = JSON.parse(localStorage.getItem('companyid'));
 
     var editcompany = JSON.stringify({
       "company": {
         "id": companyid,
         "user_id": ownerID,
+        "profile_img_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scopethisCompany.id,
+        "hero_img_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scopethisCompany.id,
         "name": $(".edit-company-name").val(),
         "description": $(".edit-company-description").val(),
         "website_link": $(".edit-company-url").val(),
@@ -283,5 +349,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       });//end ajax.
 
   }
+
+  console.log("$scope.show");
+  console.log($scope.show);
+
+  console.log("scope.create");
+  console.log($scope.create);
 
 });

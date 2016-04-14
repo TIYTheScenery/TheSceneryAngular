@@ -83,6 +83,7 @@ $scope.searchDB = function()
   $(".performance-show-container").on("click", "li", (function()
   {
     clickedPerformance = $(this).attr("id");
+    ourData.shareData("companyCreate", false);
 
     // console.log(ourData.borrowData("searchResults")[clickedPerformance]);
 

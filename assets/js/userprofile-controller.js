@@ -41,32 +41,36 @@ $http.get('http://api.the-scenery.com/users/' + searcheduserid).then(function(da
   // Display user creation date
   $(".display-user-creation-date").text("Member since: " + data.data.user_info.created_at);
   //Display user social links if they exist.
-  if (data.data.user_info.youtube_link != null){
-    if (data.data.user_info.youtube_link.match(/\/\//)){
-      $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+  var youtube_link = data.data.user_info.youtube_link
+  if (youtube_link != null && youtube_link != ""){
+    if (youtube_link.match(/\/\//)){
+      $(".user-youtube-link").parent().attr("href", youtube_link);
     } else {
-      $(".user-youtube-link").parent().attr("href", "//" + data.data.user_info.youtube_link);
+      $(".user-youtube-link").parent().attr("href", "//" + youtube_link);
     }
   }
-  if (data.data.user_info.twitter_link != null){
-    if (data.data.user_info.twitter_link.match(/\/\//)){
-      $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+  var twitter_link = data.data.user_info.twitter_link
+  if (twitter_link != null && twitter_link != ""){
+    if (twitter_link.match(/\/\//)){
+      $(".user-twitter-link").parent().attr("href", twitter_link);
     } else {
-      $(".user-twitter-link").parent().attr("href", "//" + data.data.user_info.twitter_link);
+      $(".user-twitter-link").parent().attr("href", "//" + twitter_link);
     }
   }
-  if (data.data.user_info.facebook_link != null){
-    if (data.data.user_info.facebook_link.match(/\/\//)){
-      $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+  var facebook_link = data.data.user_info.facebook_link
+  if (facebook_link != null && facebook_link != ""){
+    if (facebook_link.match(/\/\//)){
+      $(".user-facebook-link").parent().attr("href", facebook_link);
     } else {
-      $(".user-facebook-link").parent().attr("href", "//" + data.data.user_info.facebook_link);
+      $(".user-facebook-link").parent().attr("href", "//" + facebook_link);
     }
   }
-  if (data.data.user_info.instagram_link != null){
-    if (data.data.user_info.instagram_link.match(/\/\//)){
-      $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+  var instagram_link = data.data.user_info.instagram_link
+  if (instagram_link != null && instagram_link != ""){
+    if (instagram_link.match(/\/\//)){
+      $(".user-instagram-link").parent().attr("href", instagram_link);
     } else {
-      $(".user-instagram-link").parent().attr("href", "//" + data.data.user_info.instagram_link);
+      $(".user-instagram-link").parent().attr("href", "//" + instagram_link);
     }
   }
 
@@ -115,7 +119,18 @@ $scope.usercompany = function(){
 
   // Set view variables to new edited variables.
 
-  $scope.saveuser = function(){
+  $scope.saveuser = function()
+  {
+    var thing = jQuery.Event( "submit" );
+    if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
+    {
+      console.log("no file uploaded, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a file! Upload beggining!");
+      $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
 
     var names = $(".edit-display-user-name").val().split(" ");
     var firstname = names[0];
@@ -124,6 +139,7 @@ $scope.usercompany = function(){
     var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
+      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUsercurrUserId,
       "first_name": firstname,
       "last_name": lastname,
       "facebook_link": $("#edit-facebook").val(),
@@ -192,6 +208,18 @@ $scope.usercompany = function(){
   //     console.log("user update failed...");
   //     console.log(data);
   // });//end http call.
+
+  }
+
+  $scope.tocompany = function(what){
+    if(what==="CREATE")
+    {
+      ourData.shareData("companyCreate", true);
+    }
+    else if(what === "SHOW")
+    {
+      ourData.shareData("companyCreate", false);
+    }
 
   }
 

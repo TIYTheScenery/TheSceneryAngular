@@ -190,6 +190,7 @@ $scope.updatePerformance = function(){
     "ticket_link": $('#ticket-link-edit').val(),
     "genre_performances_attributes":[
      {
+       "id": $scope.thisPerformance.genre_id[0].id,
        "genre_id": $(".edit-AVED-genre-edit").val()
      }
    ],

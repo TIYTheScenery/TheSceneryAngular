@@ -1,6 +1,6 @@
 
 
-TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window){
+TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
   // console.log("this works!");
   $scope.message = "you are now working with angular";
   var perfcompid = JSON.parse(localStorage.getItem('companyid'));
@@ -33,13 +33,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
 
-    console.log(person.user_info.id);
     console.log(data.data.performance.owner_id);
 
-    if (person.user_info.id != data.data.performance.owner_id){
-      console.log("happening");
-      $("#performance-edit-btn").addClass("hidden");
-      $("#performance-delete-btn").addClass("hidden");
+    if(person){
+      if (person.user_info.id != data.data.performance.owner_id){
+        console.log("happening");
+        $("#performance-edit-btn").addClass("hidden");
+        $("#performance-delete-btn").addClass("hidden");
+      }
     }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
@@ -322,7 +323,7 @@ $scope.updatePerformance = function(){
         $scope.thisPerformance = data
         localStorage.setItem('perfID', data.performance.id)
       });//end ajax.
-      $scope.toggle();
+
   }//End addperformance
 
   $scope.deletePerformance = function()
@@ -435,7 +436,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://infinite-reef-76606.herokuapp.com/reviews",
+      "url": "https://api.the-scenery.com/reviews",
       "method": "POST",
       "headers": {
         "content-type": "application/json",

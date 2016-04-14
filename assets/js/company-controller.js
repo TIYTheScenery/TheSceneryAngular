@@ -126,10 +126,31 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $.ajax(settings).done(function (data) {
       console.log("Company Created");
       console.log(data);
+
     });//end ajax.
   }//End Create Company
 
   $scope.savecompany = function(){
+
+    var thing = jQuery.Event( "submit" );
+    if($("#fileBtn1").val() === "")//if there isnt a value in the file upload button1
+    {
+      console.log("no company profile added, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a profile img! Upload beggining!");
+      $("#imgSubmitBtn1").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
+    if($("#fileBtn2").val() === "")//if there isnt a value in the file upload button2
+    {
+      console.log("no company splash added, dont send to amazon...");
+    }
+    else//there IS a file that the user wants to upload... so click our hidden submit button.
+    {
+      console.log("we have a splash img! Upload beggining!");
+      $("#imgSubmitBtn2").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    }
 
     var companyid = JSON.parse(localStorage.getItem('companyid'));
 
@@ -137,6 +158,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       "company": {
         "id": companyid,
         "user_id": ownerID,
+        "profile_img_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scopethisCompany.id,
+        "hero_img_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scopethisCompany.id,
         "name": $(".edit-company-name").val(),
         "description": $(".edit-company-description").val(),
         "website_link": $(".edit-company-url").val(),
@@ -281,11 +304,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".company-new-review").val("");
       });//end ajax.
 
-  }
-
-  $scope.comptoperf = function(){
-    console.log("COMP TO PERF");
-    console.log($(this));
   }
 
 });

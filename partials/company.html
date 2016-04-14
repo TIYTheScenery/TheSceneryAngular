@@ -49,11 +49,27 @@
   </nav>
   <header class="company-header">
     <!-- Edit Company Hero Image -->
-    <a href=""><div class="edit-company-hero-image" ng-show="show">Edit Company Banner</div></a>
+    <div class="edit-company-hero-image" ng-show="show">
+      <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="uploads/CompanyHero{{thisCompany.id}}">
+        <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+        <input type="hidden" name="acl" value="public-read">
+        <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/company">
+        <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvY29tcGFueSJ9LAogICBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiIl0KIF0KfQ==">
+        <input type="hidden" name="signature" value="gnBSpg7Fvz0AvcbP1tCyk/adfi8=">
+        <input type="hidden" name="Content-Type" value="$Content-Type">
+        <!-- Include any additional input fields here U{{currUserId}}-->
+
+        Add Image
+        <input name="file" type="file" id="fileBtn2"><br>
+        <br>
+        <input type="submit" style="display:none;" id="imgSubmitBtn2" value="Upload File to S3">
+      </form>
+    </div>
     <!-- Create Company Hero Image -->
     <a href=""><div class="create-company-hero-image" ng-show="create">Add Company Banner</div></a>
     <!-- Display Company Hero Image -->
-    <img src="" class="company-hero-image">
+    <img src="https://s3.amazonaws.com/thescenery/uploads/CompanyHero{{thisCompany.id}}" width="800" height="300" class="company-hero-image">
     <div class="company-name-type-wrapper">
       <!-- Display Company Name -->
       <div class="company-name" ng-hide="show || create">Company Name</div>
@@ -61,28 +77,29 @@
       <input class="edit-company-name" placeholder="edit company name" ng-show="show">
       <!-- Create Company Name -->
       <input class="create-company-name" placeholder="add company name" ng-show="create">
-      <!-- Display Company Type -->
-      <div class="company-type" ng-hide="show || create">Company & Venue</div>
-      <!-- Edit Company Type -->
-      <select class="edit-company-type"  ng-show="show">
-        <option selected disabled>Company Type</option>
-        <option>Company</option>
-        <option>Company & Venue</option>
-      </select>
-      <!-- Create Company Type -->
-      <select class="create-company-type"  ng-show="create">
-        <option selected disabled>Company Type</option>
-        <option>Company</option>
-        <option>Company & Venue</option>
-      </select>
     </div>
   </header>
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-hide="show || create">
-    <img src="">
+    <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
   </div>
   <!-- Edit company profile picture -->
-  <a href=""><div class="company-profile-pic edit-company-profile-pic" ng-show="show">Edit Profile Picture</div></a>
+  <div class="company-profile-pic edit-company-profile-pic" ng-show="show">
+    <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
+      <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+      <input type="hidden" name="acl" value="public-read">
+      <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+      <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
+      <input type="hidden" name="Content-Type" value="$Content-Type">
+      <!-- Include any additional input fields here U{{currUserId}}-->
+
+      Add Image
+      <input name="file" type="file" id="fileBtn1"><br>
+      <br>
+      <input type="submit" style="display:none;" id="imgSubmitBtn1" value="Upload File to S3">
+    </form>
+  </div>
   <!-- Create company profile picture -->
   <a href=""><div class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture</div></a>
   <!-- Display company location -->
@@ -180,7 +197,7 @@
   </div>
   <!-- Company Save Create Button -->
   <div class="company-create-btn-wrapper" ng-show="create">
-    <a href="">
+    <a href="#/userprofile">
       <div class="company-create-btn" ng-click="create = !create; createcompany()">
         Submit
       </div>

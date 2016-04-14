@@ -7,7 +7,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
+
   $scope.companyCr = ourData.borrowData("companyCreate");
+  if ($scope.companyCr == undefined){
+    $scope.companyCr = false;
+  }
   console.log($scope.companyCr);
 
   $scope.thisCompany;

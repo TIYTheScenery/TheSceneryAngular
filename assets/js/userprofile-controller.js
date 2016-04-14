@@ -32,6 +32,7 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
   // If a user has titles display them
   if (data.data.user_info.titles.length != 0){
       $(".display-user-titles").text(data.data.user_info.titles[data.data.user_info.titles.length - 1].title);
+      $(".edit-display-user-titles-id").text(data.data.user_info.titles[data.data.user_info.titles.length - 1].id);
   }
   // If a user has a description display it
   if (data.data.user_info.description != null){
@@ -147,7 +148,7 @@ $scope.usercompany = function(){
       "display_name": $scope.currentuser.user_info.display_name,
       "is_professional": $scope.currentuser.user_info.is_professional,
       "titles_attributes": [
-	       { "id": "",
+	       { "id": $("#user-titles-id").text(),
            "title": $("#user-titles").val()}
        ]
       }

@@ -1,13 +1,16 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
+  console.log(localStorage.user);
+  if (localStorage.user != undefined){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
   $scope.currUserId = $scope.currentuser.user_info.id;
-  console.log("Original User");
-  console.log($scope.currentuser.user_info);
+  }
+  // console.log("Original User");
+  // console.log($scope.currentuser.user_info);
   var searcheduserid = JSON.parse(localStorage.getItem('profID'));
   $scope.viewuser;
-  console.log("user ID:")
-  console.log($scope.currUserId);
+  // console.log("user ID:")
+  // console.log($scope.currUserId);
 
 
 $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(data){
@@ -17,7 +20,13 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
-  if($scope.currentuser.user_info.id != data.data.user_info.id){
+  if (localStorage.user != undefined){
+    if($scope.currentuser.user_info.id != data.data.user_info.id){
+      $("#editprofilebutton").css("display", "none");
+      $("#createcompanybutton").css("display", "none");
+    }
+  }
+  if (localStorage.user === undefined){
     $("#editprofilebutton").css("display", "none");
     $("#createcompanybutton").css("display", "none");
   }
@@ -74,6 +83,15 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
     }
   }
 
+    // If a user is not a professional hide sections that are professional only
+
+    if (data.data.user_info.is_professional == false){
+      $(".user-header-professional").css("display", "none");
+      $(".display-user-titles").css("display", "none");
+      $(".edit-display-user-titles").css("display", "none");
+      $(".user-social-links-wrapper").css("display", "none");
+    }
+
   // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
   // ourData.shareData("company", data.data.company);
 });
@@ -92,18 +110,9 @@ $scope.usercompany = function(){
     $window.location.href = '#/';
   }
 
-  // If a user is not a professional hide sections that are professional only
-
-  if ($scope.currentuser.user_info.is_professional == false){
-    $(".user-header-professional").css("display", "none");
-    $(".display-user-titles").css("display", "none");
-    $(".edit-display-user-titles").css("display", "none");
-    $(".user-social-links-wrapper").css("display", "none");
-  }
-
-  $scope.isProfessional = function(){
-    return $scope.currentuser.user_info.is_professional
-  }
+  // $scope.isProfessional = function(){
+  //   return $scope.currentuser.user_info.is_professional
+  // }
 
   // Port view variables into edit containers
 

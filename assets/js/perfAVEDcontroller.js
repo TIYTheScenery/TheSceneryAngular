@@ -435,11 +435,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-<<<<<<< HEAD
-      "url": "http://api.the-scenery.com/reviews",
-=======
       "url": "https://api.the-scenery.com/reviews",
->>>>>>> f0907bc39fef5090ddc16b2babce041a6d9bc702
       "method": "POST",
       "headers": {
         "content-type": "application/json",

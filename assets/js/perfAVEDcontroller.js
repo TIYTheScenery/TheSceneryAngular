@@ -16,6 +16,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tView=ourData.borrowData("tView");
 
   console.log("id from local storage:");
+  
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
   //gets the performance ID from localstorage

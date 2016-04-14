@@ -1,5 +1,6 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
+
   console.log(localStorage.user);
   if (localStorage.user != undefined){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
@@ -145,10 +146,12 @@ $scope.usercompany = function(){
     var firstname = names[0];
     var lastname = names[1];
 
+    console.log("this is the user ID: "+$scope.currentuser.user_info.id);
+
     var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
-      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUsercurrUserId,
+      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
       "first_name": firstname,
       "last_name": lastname,
       "facebook_link": $("#edit-facebook").val(),

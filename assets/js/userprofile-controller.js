@@ -41,32 +41,36 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
   // Display user creation date
   $(".display-user-creation-date").text("Member since: " + data.data.user_info.created_at);
   //Display user social links if they exist.
-  if (data.data.user_info.youtube_link != null){
-    if (data.data.user_info.youtube_link.match(/\/\//)){
-      $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+  var youtube_link = data.data.user_info.youtube_link
+  if (youtube_link != null && youtube_link != ""){
+    if (youtube_link.match(/\/\//)){
+      $(".user-youtube-link").parent().attr("href", youtube_link);
     } else {
-      $(".user-youtube-link").parent().attr("href", "//" + data.data.user_info.youtube_link);
+      $(".user-youtube-link").parent().attr("href", "//" + youtube_link);
     }
   }
-  if (data.data.user_info.twitter_link != null){
-    if (data.data.user_info.twitter_link.match(/\/\//)){
-      $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+  var twitter_link = data.data.user_info.twitter_link
+  if (twitter_link != null && twitter_link != ""){
+    if (twitter_link.match(/\/\//)){
+      $(".user-twitter-link").parent().attr("href", twitter_link);
     } else {
-      $(".user-twitter-link").parent().attr("href", "//" + data.data.user_info.twitter_link);
+      $(".user-twitter-link").parent().attr("href", "//" + twitter_link);
     }
   }
-  if (data.data.user_info.facebook_link != null){
-    if (data.data.user_info.facebook_link.match(/\/\//)){
-      $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+  var facebook_link = data.data.user_info.facebook_link
+  if (facebook_link != null && facebook_link != ""){
+    if (facebook_link.match(/\/\//)){
+      $(".user-facebook-link").parent().attr("href", facebook_link);
     } else {
-      $(".user-facebook-link").parent().attr("href", "//" + data.data.user_info.facebook_link);
+      $(".user-facebook-link").parent().attr("href", "//" + facebook_link);
     }
   }
-  if (data.data.user_info.instagram_link != null){
-    if (data.data.user_info.instagram_link.match(/\/\//)){
-      $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+  var instagram_link = data.data.user_info.instagram_link
+  if (instagram_link != null && instagram_link != ""){
+    if (instagram_link.match(/\/\//)){
+      $(".user-instagram-link").parent().attr("href", instagram_link);
     } else {
-      $(".user-instagram-link").parent().attr("href", "//" + data.data.user_info.instagram_link);
+      $(".user-instagram-link").parent().attr("href", "//" + instagram_link);
     }
   }
 

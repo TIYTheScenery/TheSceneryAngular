@@ -15,7 +15,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
   });
 
-  $http.get('http://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
+  $http.get('https://infinite-reef-76606.herokuapp.com/companies/' + compID).then(function(data){
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);

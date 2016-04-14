@@ -211,8 +211,16 @@ $scope.usercompany = function(){
 
   }
 
-  $scope.tocompany = function(){
-    ourData.shareData("companyCreate", true);
+  $scope.tocompany = function(what){
+    if(what==="CREATE")
+    {
+      ourData.shareData("companyCreate", true);
+    }
+    else if(what === "SHOW")
+    {
+      ourData.shareData("companyCreate", false);
+    }
+
   }
 
 

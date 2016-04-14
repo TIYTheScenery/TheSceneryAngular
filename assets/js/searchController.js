@@ -75,7 +75,6 @@ $scope.searchDB = function()
   // console.log(response.success);
   if (response.success === false){
     alert("There were no results for your search");
-    location.reload();
   }
   //  console.log(ourData.borrowData("searchResults"));
 

@@ -157,14 +157,6 @@ a {
   .cast-wrapper label {
     display: block; }
 
-.google-map {
-  width: 250px;
-  height: 250px;
-  background: #444;
-  display: block;
-  margin: auto;
-  vertical-align: top; }
-
 .AVED-review-wrapper {
   width: 90%;
   margin: auto;

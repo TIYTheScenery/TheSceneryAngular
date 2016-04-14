@@ -75,6 +75,19 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     $('#sign-up-modal').addClass('showing');
   });
 
+// //THIS CODE DETECTS IF A USER HAS A PROFILE IMAGE, OR NOT.
+//   $scope.whichProfilePic = function()
+//   {
+//     if($scope.gUserInfo.user_info.image_url === "")
+//     {
+//       return "assets/images/generic_user.jpg";
+//     }
+//     else
+//     {
+//       return "https://s3.amazonaws.com/thescenery/uploads/User"+gUserInfo.user_info.id;
+//     }
+//   }
+
 
   $scope.viewprofile = function(){
     // console.log(JSON.parse(localStorage.getItem('user')).user_info.id)
@@ -124,6 +137,8 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
      "processData": false,
      "data": "{" + dynamicJSON(["user_info", "login_token"]) + "}"
     };
+
+
 
     $.ajax(settings).done(function (response) {
      console.log(response);
@@ -208,6 +223,9 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
     if(password === password2)//if the password fields match...
     {
+
+      var createdUser = "{" + dynamicJSON(["user_info", "user-info-create"]) + "}";
+
       var settings = {
        "async": true,
        "crossDomain": true,
@@ -218,8 +236,10 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
          "cache-control": "no-cache"
        },
        "processData": false,
-      "data": "{" + dynamicJSON(["user_info", "user-info-create"]) + "}"
+      "data": createdUser
         };
+
+        console.log(createdUser);
 
       $.ajax(settings).done(function (response) {
        console.log(response);

@@ -1,4 +1,4 @@
-<section class="user-profile-wrapper" ng-controller="profileCont">
+<section class="user-profile-wrapper" ng-controller="profileCont" ng-cloak>
   <header class="user-profile-header">
     <a href="#/">
       <div class="to-search-btn">
@@ -23,9 +23,9 @@
     </a>
 
     <div class="user-header-txt-wrapper">
-      <img src="https://s3.amazonaws.com/thescenery/uploads/User{{currUserId}}" width="200" height="200">
-      <label class="user-header-displayname">Display Name</label>
-      <label class="user-header-professional">Professional</label>
+      <img src="{{currentuser.user_info.image_url}}" width="200" height="200">
+      <label class="user-header-displayname"></label>
+      <label class="user-header-professional"></label>
     </div>
   </header>
   <div class="user-profile-info-wrapper">

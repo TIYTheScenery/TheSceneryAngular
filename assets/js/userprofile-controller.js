@@ -10,7 +10,7 @@ TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData
   console.log($scope.currUserId);
 
 
-$http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
+$http.get('http://api.the-scenery.com/users/' + searcheduserid).then(function(data){
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
@@ -167,7 +167,7 @@ $scope.usercompany = function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.the-scenery.com/users",
+        "url": "http://api.the-scenery.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -185,7 +185,7 @@ $scope.usercompany = function(){
         });//end ajax.
 
 
-  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
+  //   $http.put('http://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
   //     console.log("user updated!");
   //     console.log(data);
   //   },function(data){

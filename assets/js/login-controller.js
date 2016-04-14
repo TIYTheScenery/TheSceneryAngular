@@ -37,7 +37,7 @@ TheSceneryapp.config(function($authProvider) {
   $authProvider.facebook({
     clientId: '1100219983355110',
     name: 'facebook',
-    url: 'https://api.the-scenery.com/auth/facebook',
+    url: 'http://api.the-scenery.com/auth/facebook',
     authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
     redirectUri: window.location.origin + '/',
     requiredUrlParams: ['display', 'scope'],
@@ -128,7 +128,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "https://api.the-scenery.com/logout",
+     "url": "http://api.the-scenery.com/logout",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -156,7 +156,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "https://api.the-scenery.com/login",
+     "url": "http://api.the-scenery.com/login",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -169,7 +169,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     $.ajax(settings).done(function (response) {
      //console.log(response);
      $scope.userinfo = response;
-     //console.log($scope.userinfo);
+    //  console.log($scope.userinfo);
 
      localStorage.setItem("user", JSON.stringify($scope.userinfo));
 
@@ -229,7 +229,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
       var settings = {
        "async": true,
        "crossDomain": true,
-       "url": "https://api.the-scenery.com/users",
+       "url": "http://api.the-scenery.com/users",
        "method": "POST",
        "headers": {
          "content-type": "application/json",
@@ -242,7 +242,9 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
         console.log(createdUser);
 
       $.ajax(settings).done(function (response) {
-       console.log(response);
+        localStorage.setItem("user", JSON.stringify(response));
+        console.log(response);
+        location.reload();
       });
 
       $('.no-log-header').addClass('hidden');

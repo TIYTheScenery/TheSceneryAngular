@@ -1,27 +1,33 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
-var searcheduserid = JSON.parse(localStorage.getItem('profID'));
 
-    $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+  console.log(localStorage.user);
+  if (localStorage.user != undefined){
+  $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+  $scope.currUserId = $scope.currentuser.user_info.id;
+  }
+  // console.log("Original User");
+  // console.log($scope.currentuser.user_info);
+  var searcheduserid = JSON.parse(localStorage.getItem('profID'));
+  $scope.viewuser;
+  // console.log("user ID:")
+  // console.log($scope.currUserId);
 
-    $scope.currentuser = JSON.parse(localStorage.getItem('user'));
-    $scope.currUserId = $scope.currentuser.user_info.id;
-    console.log("currentuser.user_info:");
-    console.log($scope.currentuser.user_info);
 
-    $scope.viewuser;
-    console.log("user ID:")
-    console.log($scope.currUserId);
-
-
-$http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
+$http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(data){
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
-  if($scope.currentuser.user_info.id != data.data.user_info.id){
+  if (localStorage.user != undefined){
+    if($scope.currentuser.user_info.id != data.data.user_info.id){
+      $("#editprofilebutton").css("display", "none");
+      $("#createcompanybutton").css("display", "none");
+    }
+  }
+  if (localStorage.user === undefined){
     $("#editprofilebutton").css("display", "none");
     $("#createcompanybutton").css("display", "none");
   }
@@ -45,34 +51,47 @@ $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).th
   // Display user creation date
   $(".display-user-creation-date").text("Member since: " + data.data.user_info.created_at);
   //Display user social links if they exist.
-  if (data.data.user_info.youtube_link != null){
-    if (data.data.user_info.youtube_link.match(/\/\//)){
-      $(".user-youtube-link").parent().attr("href", data.data.user_info.youtube_link);
+  var youtube_link = data.data.user_info.youtube_link
+  if (youtube_link != null && youtube_link != ""){
+    if (youtube_link.match(/\/\//)){
+      $(".user-youtube-link").parent().attr("href", youtube_link);
     } else {
-      $(".user-youtube-link").parent().attr("href", "//" + data.data.user_info.youtube_link);
+      $(".user-youtube-link").parent().attr("href", "//" + youtube_link);
     }
   }
-  if (data.data.user_info.twitter_link != null){
-    if (data.data.user_info.twitter_link.match(/\/\//)){
-      $(".user-twitter-link").parent().attr("href", data.data.user_info.twitter_link);
+  var twitter_link = data.data.user_info.twitter_link
+  if (twitter_link != null && twitter_link != ""){
+    if (twitter_link.match(/\/\//)){
+      $(".user-twitter-link").parent().attr("href", twitter_link);
     } else {
-      $(".user-twitter-link").parent().attr("href", "//" + data.data.user_info.twitter_link);
+      $(".user-twitter-link").parent().attr("href", "//" + twitter_link);
     }
   }
-  if (data.data.user_info.facebook_link != null){
-    if (data.data.user_info.facebook_link.match(/\/\//)){
-      $(".user-facebook-link").parent().attr("href", data.data.user_info.facebook_link);
+  var facebook_link = data.data.user_info.facebook_link
+  if (facebook_link != null && facebook_link != ""){
+    if (facebook_link.match(/\/\//)){
+      $(".user-facebook-link").parent().attr("href", facebook_link);
     } else {
-      $(".user-facebook-link").parent().attr("href", "//" + data.data.user_info.facebook_link);
+      $(".user-facebook-link").parent().attr("href", "//" + facebook_link);
     }
   }
-  if (data.data.user_info.instagram_link != null){
-    if (data.data.user_info.instagram_link.match(/\/\//)){
-      $(".user-instagram-link").parent().attr("href", data.data.user_info.instagram_link);
+  var instagram_link = data.data.user_info.instagram_link
+  if (instagram_link != null && instagram_link != ""){
+    if (instagram_link.match(/\/\//)){
+      $(".user-instagram-link").parent().attr("href", instagram_link);
     } else {
-      $(".user-instagram-link").parent().attr("href", "//" + data.data.user_info.instagram_link);
+      $(".user-instagram-link").parent().attr("href", "//" + instagram_link);
     }
   }
+
+    // If a user is not a professional hide sections that are professional only
+
+    if (data.data.user_info.is_professional == false){
+      $(".user-header-professional").css("display", "none");
+      $(".display-user-titles").css("display", "none");
+      $(".edit-display-user-titles").css("display", "none");
+      $(".user-social-links-wrapper").css("display", "none");
+    }
 
   // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
   // ourData.shareData("company", data.data.company);
@@ -92,18 +111,9 @@ $scope.usercompany = function(){
     $window.location.href = '#/';
   }
 
-  // If a user is not a professional hide sections that are professional only
-
-  if ($scope.currentuser.user_info.is_professional == false){
-    $(".user-header-professional").css("display", "none");
-    $(".display-user-titles").css("display", "none");
-    $(".edit-display-user-titles").css("display", "none");
-    $(".user-social-links-wrapper").css("display", "none");
-  }
-
-  $scope.isProfessional = function(){
-    return $scope.currentuser.user_info.is_professional
-  }
+  // $scope.isProfessional = function(){
+  //   return $scope.currentuser.user_info.is_professional
+  // }
 
   // Port view variables into edit containers
 
@@ -137,7 +147,7 @@ $scope.usercompany = function(){
     var lastname = names[1];
 
     console.log("this is the user ID: "+$scope.currentuser.user_info.id);
-    
+
     var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
@@ -185,7 +195,7 @@ $scope.usercompany = function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.the-scenery.com/users",
+        "url": "http://api.the-scenery.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -203,7 +213,7 @@ $scope.usercompany = function(){
         });//end ajax.
 
 
-  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
+  //   $http.put('http://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
   //     console.log("user updated!");
   //     console.log(data);
   //   },function(data){

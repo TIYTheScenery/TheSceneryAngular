@@ -29,7 +29,7 @@ $scope.searchDB = function()
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "https://infinite-reef-76606.herokuapp.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&city="+searchCity+"&state="+searchState+"&type="+searchType,
+   "url": "https://api.the-scenery.com/search/index?search_term="+searchName+"&genre_id="+searchGenre+"&city="+searchCity+"&state="+searchState+"&type="+searchType,
    "method": "GET",
    "headers": {
      "content-type": "application/json",
@@ -53,7 +53,7 @@ $scope.searchDB = function()
    }
   //  Append companies
    for (var i=0; i<response.companies.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#/company'><div class='performance-box'><div class='box box-performance-name'>"+ response.companies[i].name + "</div><div class='box box-performance-date'>" + response.companies[i].description + "</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/company' ng-click='tocompany('SHOW')'><div class='performance-box'><div class='box box-performance-name'>"+ response.companies[i].name + "</div><div class='box box-performance-date'>" + response.companies[i].description + "</div></div></a></li>");
    }
   //  Append Professionals
    for (var i=0; i<response.professionals.length; i++){
@@ -71,6 +71,10 @@ $scope.searchDB = function()
   if (response.professionals.length > 0){
     ourData.shareData("searchResults", response.professionals);
     isaprofessional =  true;
+  }
+  // console.log(response.success);
+  if (response.success === false){
+    alert("There were no results for your search");
   }
   //  console.log(ourData.borrowData("searchResults"));
 
@@ -126,5 +130,16 @@ $scope.searchDB = function()
   //.css({"transform": "perspecitve(50px);","transition-duration": "1s"})
 
 }//end searchDB
+  $scope.tocompany = function(what){
+    if(what==="CREATE")
+    {
+      ourData.shareData("companyCreate", true);
+    }
+    else if(what === "SHOW")
+    {
+      ourData.shareData("companyCreate", false);
+    }
+
+  }//end tocompany
 
 });//end controller

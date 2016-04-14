@@ -1,6 +1,7 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+
   // console.log("this works!");
   $scope.message = "you are now working with angular";
   var perfcompid = JSON.parse(localStorage.getItem('companyid'));
@@ -30,7 +31,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.thisPerformance;
 
 //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('http://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
@@ -46,10 +47,16 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
-
     //sets the default for the genre dropdown menu when editing
     var lastinarray = $scope.thisPerformance.genre_id.length-1;
     var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+
+    //these two calls will fill in the dropdowns for the user to select the company for the performance
+    userCompanyCreate(person, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
+    userCompanyCreate(person, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
+    //set default value for the edit to the current company
+    $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
+    
     // lastinarray = lastinarray.genre_id;
     // console.log("defaultGenre:")
     // console.log(defaultGenre);
@@ -108,11 +115,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end scope.toggle
 
-var person = JSON.parse(localStorage.getItem('user'));
-//localStorage.setItem("user", JSON.stringify(person));
+  var person = JSON.parse(localStorage.getItem('user'));
 
-console.log("This is the current user");
-console.log(person);
+  // localStorage.setItem("user", JSON.stringify(person));
+
+  console.log("This is the current user");
+  console.log(person);
 
 
 $scope.updatePerformance = function(){
@@ -209,13 +217,13 @@ $scope.updatePerformance = function(){
   console.log(performance);
 
 //MODIFIED ANGULAR CALL
-// $http({ method: 'PUT', url: 'http://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
+// $http({ method: 'PUT', url: 'https://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
 
 //AJAX CALL
   // var settings = {
   //   "async": true,
   //   "crossDomain": true,
-  //   "url": "http://api.the-scenery.com/performances",
+  //   "url": "https://api.the-scenery.com/performances",
   //   "method": "PATCH",
   //   "headers": {
   //     "content-type": "application/json",
@@ -231,7 +239,7 @@ $scope.updatePerformance = function(){
 
 
 //THIS IS THE ANGULAR CALL
-  $http.put('http://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
+  $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
     console.log("performance updated!");
     console.log(data);
   },function(){console.log("performance update failed...");
@@ -312,7 +320,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://api.the-scenery.com/performances",
+      "url": "https://api.the-scenery.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -340,7 +348,7 @@ $scope.updatePerformance = function(){
       alert("Performance deleted. The show will go on... just... at another time.")
 
       //THIS IS THE ANGULAR CALL
-        $http.delete('http://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
           console.log("performance DELETED!");
           console.log(data);
         },function(){console.log("performance delete failed...");
@@ -413,6 +421,11 @@ $scope.updatePerformance = function(){
 
   $scope.submitreview = function(){
 
+    if (localStorage.user === undefined){
+      alert("Please log in if you wish to submit a review");
+      $(".new-review").val("");
+    }
+
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentperf = ourData.borrowData("viewingPerf");
@@ -452,6 +465,7 @@ $scope.updatePerformance = function(){
       $.ajax(settings).done(function (data) {
       console.log(data);
       $(".new-review").val("");
+      location.reload();
       });//end ajax.
 
   }

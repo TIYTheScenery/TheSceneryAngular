@@ -36,7 +36,7 @@ var genrePull = function(name, container){
   var settings = {
    "async": true,
    "crossDomain": true,
-   "url": "http://api.the-scenery.com/genres",
+   "url": "https://api.the-scenery.com/genres",
    "method": "GET",
    "headers": {
      "content-type": "application/json",
@@ -57,5 +57,19 @@ var genrePull = function(name, container){
     });
     container.append(select)
   });//end ajax call
+
+}
+
+var userCompanyCreate = function(user, container, className, id){
+  var select = "";
+  select = $('<select class="'+ className + '" id="' + id + '"></select>');
+  $.each(user.user_info.companies, function(){
+    var option = $('<option></option>');
+    option.attr('value', this["id"]);
+    option.text(this["name"]);
+    select.append(option);
+
+  });
+  container.append(select)
 
 }

@@ -37,7 +37,7 @@ TheSceneryapp.config(function($authProvider) {
   $authProvider.facebook({
     clientId: '1100219983355110',
     name: 'facebook',
-    url: 'http://api.the-scenery.com/auth/facebook',
+    url: 'https://api.the-scenery.com/auth/facebook',
     authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
     redirectUri: window.location.origin + '/',
     requiredUrlParams: ['display', 'scope'],
@@ -73,6 +73,11 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
 
   $('.sign-up-btn').on('click', function () {
     $('#sign-up-modal').addClass('showing');
+  });
+
+  $(".modal-close-btn").on('click', function () {
+    $('#sign-up-modal').removeClass('showing');
+    $('#log-in-modal').removeClass('showing');
   });
 
 // //THIS CODE DETECTS IF A USER HAS A PROFILE IMAGE, OR NOT.
@@ -128,7 +133,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "http://api.the-scenery.com/logout",
+     "url": "https://api.the-scenery.com/logout",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -156,7 +161,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     var settings = {
      "async": true,
      "crossDomain": true,
-     "url": "http://api.the-scenery.com/login",
+     "url": "https://api.the-scenery.com/login",
      "method": "POST",
      "headers": {
        "content-type": "application/json",
@@ -181,6 +186,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
      {
        $(".modal-input").val("");
        setTimeout(myFunction, 5);
+       setTimeout(location.reload(), 200);
      }//end else
     });//end ajax call
 
@@ -229,7 +235,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
       var settings = {
        "async": true,
        "crossDomain": true,
-       "url": "http://api.the-scenery.com/users",
+       "url": "https://api.the-scenery.com/users",
        "method": "POST",
        "headers": {
          "content-type": "application/json",

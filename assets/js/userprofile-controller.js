@@ -1,7 +1,7 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
 
-  console.log(localStorage.user);
+  // console.log(localStorage.user);
   if (localStorage.user != undefined){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
   $scope.currUserId = $scope.currentuser.user_info.id;
@@ -84,13 +84,27 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
     }
   }
 
+  if($(".user-youtube-link").parent().attr("href") === ""){
+    $(".user-youtube-link").css("display", "none");
+  }
+  if($(".user-twitter-link").parent().attr("href") === ""){
+    $(".user-twitter-link").css("display", "none");
+  }
+  if($(".user-facebook-link").parent().attr("href") === ""){
+    $(".user-facebook-link").css("display", "none");
+  }
+  if($(".user-instagram-link").parent().attr("href") === ""){
+    $(".user-instagram-link").css("display", "none");
+  }
+
     // If a user is not a professional hide sections that are professional only
 
-    if (data.data.user_info.is_professional == false){
+    if (data.data.user_info.is_professional === false){
       $(".user-header-professional").css("display", "none");
       $(".display-user-titles").css("display", "none");
       $(".edit-display-user-titles").css("display", "none");
       $(".user-social-links-wrapper").css("display", "none");
+      //$("#createcompanybutton").css("display", "none");
     }
 
   // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
@@ -195,7 +209,7 @@ $scope.usercompany = function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.the-scenery.com/users",
+        "url": "https://api.the-scenery.com/users",
         "method": "PATCH",
         "headers": {
           "content-type": "application/json",
@@ -213,7 +227,7 @@ $scope.usercompany = function(){
         });//end ajax.
 
 
-  //   $http.put('http://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
+  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
   //     console.log("user updated!");
   //     console.log(data);
   //   },function(data){

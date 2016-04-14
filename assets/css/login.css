@@ -20,6 +20,14 @@
   border-radius: 3px;
   vertical-align: middle; }
 
+.modal-close-btn {
+  float: right;
+  background: red !important;
+  background-image: linear-gradient(to bottom right, red, #c80000) !important; }
+  .modal-close-btn:hover {
+    background-image: linear-gradient(to bottom right, #c80000, red);
+    color: white; }
+
 a {
   text-decoration: none;
   color: black; }

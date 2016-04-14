@@ -37,7 +37,7 @@
         <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
           <div>
             <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="key" value="uploads/User{{currUserId}}">
+              <input type="hidden" name="key" value="uploads/User{{currentuser.user_info.id}}">
               <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
               <input type="hidden" name="acl" value="public-read">
               <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">

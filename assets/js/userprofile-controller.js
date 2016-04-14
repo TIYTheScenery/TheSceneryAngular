@@ -1,13 +1,17 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
-  $scope.currentuser = JSON.parse(localStorage.getItem('user'));
-  $scope.currUserId = $scope.currentuser.user_info.id;
-  console.log("Original User");
-  console.log($scope.currentuser.user_info);
-  var searcheduserid = JSON.parse(localStorage.getItem('profID'));
-  $scope.viewuser;
-  console.log("user ID:")
-  console.log($scope.currUserId);
+var searcheduserid = JSON.parse(localStorage.getItem('profID'));
+
+    $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+
+    $scope.currentuser = JSON.parse(localStorage.getItem('user'));
+    $scope.currUserId = $scope.currentuser.user_info.id;
+    console.log("currentuser.user_info:");
+    console.log($scope.currentuser.user_info);
+
+    $scope.viewuser;
+    console.log("user ID:")
+    console.log($scope.currUserId);
 
 
 $http.get('http://infinite-reef-76606.herokuapp.com/users/' + searcheduserid).then(function(data){
@@ -132,10 +136,12 @@ $scope.usercompany = function(){
     var firstname = names[0];
     var lastname = names[1];
 
+    console.log("this is the user ID: "+$scope.currentuser.user_info.id);
+    
     var updatedUser = JSON.stringify({
       "user_info":{
       "description": $("#user-desc").val(),
-      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUsercurrUserId,
+      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
       "first_name": firstname,
       "last_name": lastname,
       "facebook_link": $("#edit-facebook").val(),

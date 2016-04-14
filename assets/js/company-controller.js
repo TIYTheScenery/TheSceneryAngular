@@ -73,6 +73,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $scope.fillCompany(data)
   });
 
+
+  $("#filebtn1").on("click", function(){
+    console.log("i clicked file button 1");
+  });
+
+
   $scope.goMakeAPerformance = function(){
     //this sets the view going into the perfAVED page.
     ourData.shareData("tAdd", false);
@@ -97,6 +103,38 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // Set view variables to new edited variables.
 
   $scope.createcompany = function(){
+
+    //THIS CODE MAKES THE IMAGE UPLOAD FOR TWO FILES WORK...KINDA.
+    var thing = jQuery.Event( "submit" );
+    if($("#fileBtn2Add").val() === "")//if there isnt a value in the file upload for the splash image
+    {
+      console.log("no company splash added, dont send to amazon...");
+      //then check to see if there is a file to upload for the profile image
+      if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
+      {console.log("no company profile added, dont send to amazon...");}
+      else//there IS a file that the user wants to upload... so click our hidden submit button.
+      {
+        console.log("we have a profile img! Upload beggining!");
+        $("#imgSubmitBtn1Add").trigger("click");//send profile image to AWS
+      }
+    }
+    else//there IS a splash image that the user wants to upload...
+    {
+      //first we check to upload a possible profile image
+      if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
+      {console.log("no company profile added, dont send to amazon...");}
+      else//there IS a file that the user wants to upload... so click our hidden submit button.
+      {
+        console.log("we have a profile img! Upload beggining!");
+        $("#imgSubmitBtn1Add").trigger("click");
+      }
+      setTimeout(function(){
+        //then we finally upload the splash, and get redirected back to the company page.
+        console.log("we have a splash img! Upload beggining!");
+        $("#imgSubmitBtn2").trigger("click");
+      }, 50);
+
+    }
 
     var createCompany = JSON.stringify({
     "company": {
@@ -140,27 +178,40 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     });//end ajax.
   }//End Create Company
 
+
   $scope.savecompany = function(){
 
-    var thing = jQuery.Event( "submit" );
-    if($("#fileBtn1").val() === "")//if there isnt a value in the file upload button1
-    {
-      console.log("no company profile added, dont send to amazon...");
-    }
+  //THIS CODE MAKES THE IMAGE UPLOAD FOR TWO FILES WORK...KINDA.
+  var thing = jQuery.Event( "submit" );
+  if($("#fileBtn2").val() === "")//if there isnt a value in the file upload for the splash image
+  {
+    console.log("no company splash added, dont send to amazon...");
+    //then check to see if there is a file to upload for the profile image
+    if($("#fileBtn1").val() === "")//if there isnt a value in the profile upload button1
+    {console.log("no company profile added, dont send to amazon...");}
     else//there IS a file that the user wants to upload... so click our hidden submit button.
     {
       console.log("we have a profile img! Upload beggining!");
-      $("#imgSubmitBtn1").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+      $("#imgSubmitBtn1").trigger("click");//send profile image to AWS
     }
-    if($("#fileBtn2").val() === "")//if there isnt a value in the file upload button2
-    {
-      console.log("no company splash added, dont send to amazon...");
-    }
+  }
+  else//there IS a splash image that the user wants to upload...
+  {
+    //first we check to upload a possible profile image
+    if($("#fileBtn1").val() === "")//if there isnt a value in the profile upload button1
+    {console.log("no company profile added, dont send to amazon...");}
     else//there IS a file that the user wants to upload... so click our hidden submit button.
     {
-      console.log("we have a splash img! Upload beggining!");
-      $("#imgSubmitBtn2").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+      console.log("we have a profile img! Upload beggining!");
+      $("#imgSubmitBtn1").trigger("click");
     }
+    setTimeout(function(){
+      //then we finally upload the splash, and get redirected back to the company page.
+      console.log("we have a splash img! Upload beggining!");
+      $("#imgSubmitBtn2").trigger("click");
+    }, 50);
+
+  }
 
     var companyid = JSON.parse(localStorage.getItem('companyid'));
 
@@ -168,8 +219,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       "company": {
         "id": companyid,
         "user_id": ownerID,
-        "profile_img_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scopethisCompany.id,
-        "hero_img_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scopethisCompany.id,
+        "profile_img_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id,
+        "hero_img_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scope.thisCompany.id,
         "name": $(".edit-company-name").val(),
         "description": $(".edit-company-description").val(),
         "website_link": $(".edit-company-url").val(),
@@ -271,6 +322,47 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $(".opportunity-cancel-btn").on("click", function(){
       $(".company-create-opportunity-modal-wrapper").addClass("hidden");
   })
+
+  $scope.deleteComp = function(){
+    if(confirm("Are you sure you want to delete this company?"))
+    {
+      console.log("this company's ID")
+      console.log($scope.thisCompany.id);
+
+      var settings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "http://infinite-reef-76606.herokuapp.com/companies/"+$scope.thisCompany.id,
+       "method": "DELETE",
+       "headers": {
+         "content-type": "application/json",
+         "cache-control": "no-cache",
+         "postman-token": "d563f488-7d24-e0be-a811-1b2222d956b5"
+       },
+       "processData": false,
+       "data": JSON.stringify({"user_info": {"login_token": token} })
+      }
+
+      $.ajax(settings).done(function (response) {
+       console.log(response);
+      });
+
+
+      //ANGULAR! CALL
+      // var authStuff = JSON.stringify({"user_info": {
+      //     "login_token": token
+      //           }
+      //         });
+      //
+      //    $http.delete('http://api.the-scenery.com/companies/' + compID, authStuff).then(function(data){
+      //     console.log("delete Data");
+      //     console.log(data);
+      //    });
+
+    }//end confirm.
+
+  }
+
 
   //Submit reviews for a company
 

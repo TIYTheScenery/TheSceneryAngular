@@ -16,10 +16,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tView=ourData.borrowData("tView");
 
   console.log("id from local storage:");
-  
+
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
   //gets the performance ID from localstorage
+  if($scope.tAdd)
+  {
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
 
   //var thisPerformanceID = ourData.borrowData("searchResults").id;//gets the performance id from the data service
@@ -59,6 +61,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   },function(){console.log("performance get failed...");
 });//end http call.
+}//end the check to see if we're adding. 
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();

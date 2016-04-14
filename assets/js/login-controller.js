@@ -75,6 +75,11 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     $('#sign-up-modal').addClass('showing');
   });
 
+  $(".modal-close-btn").on('click', function () {
+    $('#sign-up-modal').removeClass('showing');
+    $('#log-in-modal').removeClass('showing');
+  });
+
 // //THIS CODE DETECTS IF A USER HAS A PROFILE IMAGE, OR NOT.
 //   $scope.whichProfilePic = function()
 //   {

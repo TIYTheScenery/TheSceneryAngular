@@ -222,7 +222,9 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
         };
 
       $.ajax(settings).done(function (response) {
-       console.log(response);
+        localStorage.setItem("user", JSON.stringify(response));
+        console.log(response);
+        location.reload();
       });
 
       $('.no-log-header').addClass('hidden');

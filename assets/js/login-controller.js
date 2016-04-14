@@ -132,6 +132,7 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
     $scope.gUserInfo = "";
     $scope.userinfo = "";
     localStorage.removeItem('user');
+    localStorage.removeItem('profID');
   }//end logout
 
   $scope.authenticate = function(){

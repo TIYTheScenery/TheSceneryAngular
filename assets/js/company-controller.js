@@ -1,8 +1,13 @@
 TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   var person = JSON.parse(localStorage.getItem('user'));
-  var token = person.user_info.login_token;
-  var ownerID = person.user_info.id;
+  if (localStorage.user != undefined){
+    var token = person.user_info.login_token;
+    var ownerID = person.user_info.id;
+  }
+  if (localStorage.user === undefined){
+    $(".action-buttons").css("display", "none");
+  }
   var compID = JSON.parse(localStorage.getItem('compID'));
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
@@ -51,7 +56,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   else{$scope.toggle("SHOW");}
   //show technically dosent do anything, but the else in toggle makes it show.
 
-  
+
   $scope.thisCompany;
   // This makes clicking a performance navigate to the right page
   $("body").on("click", ".company-performance", function(){

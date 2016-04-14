@@ -15,7 +15,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tEdit=ourData.borrowData("tEdit");
   $scope.tView=ourData.borrowData("tView");
 
-  $scope.currentUser = JSON.parse(localStorage.getItem('user'));
   console.log("id from local storage:");
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
@@ -28,7 +27,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.thisPerformance;
 
 //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+  $http.get('http://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
     ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
     console.log("current performance:");
     console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
@@ -75,6 +74,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
     else
     {
+      $scope.currentUser = JSON.parse(localStorage.getItem('user'));
       return false;//same deal here.
       $scope.$apply();
     }
@@ -205,13 +205,13 @@ $scope.updatePerformance = function(){
   console.log(performance);
 
 //MODIFIED ANGULAR CALL
-// $http({ method: 'PUT', url: 'https://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
+// $http({ method: 'PUT', url: 'http://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
 
 //AJAX CALL
   // var settings = {
   //   "async": true,
   //   "crossDomain": true,
-  //   "url": "https://api.the-scenery.com/performances",
+  //   "url": "http://api.the-scenery.com/performances",
   //   "method": "PATCH",
   //   "headers": {
   //     "content-type": "application/json",
@@ -227,7 +227,7 @@ $scope.updatePerformance = function(){
 
 
 //THIS IS THE ANGULAR CALL
-  $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
+  $http.put('http://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
     console.log("performance updated!");
     console.log(data);
   },function(){console.log("performance update failed...");
@@ -308,7 +308,7 @@ $scope.updatePerformance = function(){
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://api.the-scenery.com/performances",
+      "url": "http://api.the-scenery.com/performances",
       "method": "POST",
       "headers": {
         "content-type": "application/json",
@@ -323,7 +323,6 @@ $scope.updatePerformance = function(){
         $scope.thisPerformance = data
         localStorage.setItem('perfID', data.performance.id)
       });//end ajax.
-
   }//End addperformance
 
   $scope.deletePerformance = function()
@@ -337,7 +336,7 @@ $scope.updatePerformance = function(){
       alert("Performance deleted. The show will go on... just... at another time.")
 
       //THIS IS THE ANGULAR CALL
-        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+        $http.delete('http://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
           console.log("performance DELETED!");
           console.log(data);
         },function(){console.log("performance delete failed...");

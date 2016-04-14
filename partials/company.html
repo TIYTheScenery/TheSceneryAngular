@@ -49,7 +49,7 @@
   </nav>
   <header class="company-header">
     <!-- Edit Company Hero Image -->
-    <div class="edit-company-hero-image" ng-show="show">
+    <div class="edit-company-hero-image" ng-show="edit">
       <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="key" value="uploads/CompanyHero{{thisCompany.id}}">
         <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
@@ -72,9 +72,9 @@
     <img src="https://s3.amazonaws.com/thescenery/uploads/CompanyHero{{thisCompany.id}}" width="800" height="300" class="company-hero-image" ng-show="show">
     <div class="company-name-type-wrapper">
       <!-- Display Company Name -->
-      <div class="company-name" ng-show="show || create">Company Name</div>
+      <div class="company-name" ng-show="show">Company Name</div>
       <!-- Edit Company Name -->
-      <input class="edit-company-name" placeholder="edit company name" ng-show="create">
+      <input class="edit-company-name" placeholder="edit company name" ng-show="edit">
       <!-- Create Company Name -->
       <input class="create-company-name" placeholder="add company name" ng-show="create">
       <!-- Display Company Type -->
@@ -98,7 +98,7 @@
     <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
   </div>
   <!-- Edit company profile picture -->
-  <div class="company-profile-pic edit-company-profile-pic" ng-show="create">
+  <div class="company-profile-pic edit-company-profile-pic" ng-show="edit">
     <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
     <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
@@ -118,18 +118,18 @@
   <!-- Create company profile picture -->
   <a href=""><div class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture</div></a>
   <!-- Display company location -->
-  <div class="company-location" ng-show="show || create">123 Example St. Durham, NC 27703</div>
+  <div class="company-location" ng-show="show">123 Example St. Durham, NC 27703</div>
 
   <div class="company-location-input-wrapper">
 
     <!-- Edit company location -->
-    <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="create">
-    <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="create">
-    <select class="company-location-input edit-company-location-state" ng-show="create">
+    <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="edit">
+    <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="edit">
+    <select class="company-location-input edit-company-location-state" ng-show="edit">
       <option selected disabled>Pick A State</option>
       <option>NC</option>
     </select>
-    <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="create">
+    <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="edit">
 
     <!-- Create company location -->
     <input class="company-location-input create-company-location-address" placeholder="Company Address" ng-show="create">
@@ -145,8 +145,8 @@
     <!-- Display Company Description -->
     <div class="company-description" ng-show="show">Enter your company description here.</div>
     <!-- Edit Company Description -->
-    <div class="edit-company-description-label" ng-show="create">Edit Company Description</div>
-    <textarea class="edit-company-description" ng-show="create"></textarea>
+    <div class="edit-company-description-label" ng-show="edit">Edit Company Description</div>
+    <textarea class="edit-company-description" ng-show="edit"></textarea>
     <!-- Create Company Description -->
     <div class="create-company-description-label" ng-show="create">Add Company Description</div>
     <textarea class="create-company-description" ng-show="create"></textarea>
@@ -159,11 +159,11 @@
       </div>
       <div class="company-media-wrapper">
         <!-- Edit Company Media -->
-        <input class="edit-company-media edit-company-url" placeholder="edit company url" ng-show="create">
-        <input class="edit-company-media edit-company-youtube" placeholder="edit youtube link" ng-show="create">
-        <input class="edit-company-media edit-company-twitter" placeholder="edit twitter link" ng-show="create">
-        <input class="edit-company-media edit-company-facebook" placeholder="edit facebook link" ng-show="create">
-        <input class="edit-company-media edit-company-instagram" placeholder="edit instagram link" ng-show="create">
+        <input class="edit-company-media edit-company-url" placeholder="edit company url" ng-show="edit">
+        <input class="edit-company-media edit-company-youtube" placeholder="edit youtube link" ng-show="edit">
+        <input class="edit-company-media edit-company-twitter" placeholder="edit twitter link" ng-show="edit">
+        <input class="edit-company-media edit-company-facebook" placeholder="edit facebook link" ng-show="edit">
+        <input class="edit-company-media edit-company-instagram" placeholder="edit instagram link" ng-show="edit">
         <!-- Create Company Media -->
         <input class="create-company-media create-company-url" placeholder="add company url" ng-show="create">
         <input class="create-company-media create-company-youtube" placeholder="add youtube link" ng-show="create">
@@ -171,28 +171,28 @@
         <input class="create-company-media create-company-facebook" placeholder="add facebook link" ng-show="create">
         <input class="create-company-media create-company-instagram" placeholder="add instagram link" ng-show="create">
         <!-- Display Company Media -->
-        <div class="company-media-youtube" ng-show="show || create">
+        <div class="company-media-youtube" ng-show="show">
           <a href="" target="_blank">
             <div class="media media-youtube">
               <i class="fa fa-youtube"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-twitter" ng-show="show || create">
+        <div class="company-media-twitter" ng-show="show">
           <a href="" target="_blank">
             <div class="media media-twitter">
               <i class="fa fa-twitter"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-facebook" ng-show="show || create">
+        <div class="company-media-facebook" ng-show="show">
           <a href="" target="_blank">
             <div class="media media-facebook">
               <i class="fa fa-facebook"></i>
             </div>
           </a>
         </div>
-        <div class="company-media-instagram" ng-show="show || create">
+        <div class="company-media-instagram" ng-show="show">
           <a href="" target="_blank">
             <div class="media media-instagram">
               <i class="fa fa-instagram"></i>
@@ -203,7 +203,7 @@
     </div> <!--end company social-->
   </div> <!--end company detail wrapper-->
   <!-- Company Save Edits Button -->
-  <div class="company-save-btn-wrapper" ng-show="show">
+  <div class="company-save-btn-wrapper" ng-show="edit">
     <a href="">
       <div class="company-save-btn" ng-click="show = !show; savecompany()">
         Save
@@ -218,7 +218,7 @@
       </div>
     </a>
   </div>
-  <div class="O-p-R-wrapper" ng-show="show || create">  <!--Wrapper for opportunities, performances, and reviews-->
+  <div class="O-p-R-wrapper" ng-show="show">  <!--Wrapper for opportunities, performances, and reviews-->
     <div class="opportunities-wrapper">
       <div class="opportunities-label">
         Opportunities:

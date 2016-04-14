@@ -45,10 +45,16 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
-
     //sets the default for the genre dropdown menu when editing
     var lastinarray = $scope.thisPerformance.genre_id.length-1;
     var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+
+    //these two calls will fill in the dropdowns for the user to select the company for the performance
+    userCompanyCreate(person, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
+    userCompanyCreate(person, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
+    //set default value for the edit to the current company
+    $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
+    
     // lastinarray = lastinarray.genre_id;
     // console.log("defaultGenre:")
     // console.log(defaultGenre);
@@ -106,11 +112,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end scope.toggle
 
-var person = JSON.parse(localStorage.getItem('user'));
-//localStorage.setItem("user", JSON.stringify(person));
+  var person = JSON.parse(localStorage.getItem('user'));
 
-console.log("This is the current user");
-console.log(person);
+  // localStorage.setItem("user", JSON.stringify(person));
+
+  console.log("This is the current user");
+  console.log(person);
 
 
 $scope.updatePerformance = function(){

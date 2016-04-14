@@ -12,10 +12,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // var companyid = JSON.parse(localStorage.getItem('companyid'));
   // Populate the page with the first company in the database
 
-//these variables are used in the html with ng-show to determine which version of the page is shown to the user
-//show is for viewing a company
-//edit is for editing one
-//and create is for creating one.
+  //these variables are used in the html with ng-show to determine which version of the page is shown to the user
+  //show is for viewing a company
+  //edit is for editing one
+  //and create is for creating one.
   $scope.show;
   $scope.create;
   $scope.edit;
@@ -52,8 +52,9 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   if($scope.companyCr)
   {
     $scope.toggle("CREATE");
+  } else {
+    $scope.toggle("SHOW");
   }
-  else{$scope.toggle("SHOW");}
   //show technically dosent do anything, but the else in toggle makes it show.
 
 
@@ -87,6 +88,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     if($(".media-twitter").parent().attr("href") === "//"){
       $(".media-twitter").css("display", "none");
     }
+    // $scope.fillCompany($scope.thisCompany)
   });
 
   $scope.goMakeAPerformance = function(){
@@ -150,10 +152,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     };
 
     $.ajax(settings).done(function (data) {
-      console.log("Company Created");
       console.log(data);
-      localStorage.setItem("compID", JSON.stringify(data.company.id));
-      location.reload();
+      console.log("setting new compID");
+      console.log(JSON.stringify(data.company.id));
+      localStorage.setItem('compID', JSON.stringify(data.company.id));
+      $scope.thisCompany = data.company;
+      $scope.fillCompany($scope.thisCompany);
+      $scope.toggle("SHOW");
     });//end ajax.
   }//End Create Company
 
@@ -339,47 +344,47 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   }
 
-  $scope.fillCompany = function(data){
-    $(".company-name").text(data.data.company.name);
-    $(".company-location").text(data.data.company.address + " " + data.data.company.city + ", " + data.data.company.state + " " + data.data.company.zip_code);
-    if (data.data.company.youtube_link.match(/\/\//)) {
-      $(".media-youtube").parent().attr("href", data.data.company.youtube_link);
+  $scope.fillCompany = function(company){
+    $(".company-name").text(company.name);
+    $(".company-location").text(company.address + " " + company.city + ", " + company.state + " " + company.zip_code);
+    if (company.youtube_link.match(/\/\//)) {
+      $(".media-youtube").parent().attr("href", company.youtube_link);
     }else{
-      $(".media-youtube").parent().attr("href", "//" + data.data.company.youtube_link);
+      $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
     }
-    if (data.data.company.twitter_link.match(/\/\//)) {
-      $(".media-twitter").parent().attr("href", data.data.company.twitter_link);
+    if (company.twitter_link.match(/\/\//)) {
+      $(".media-twitter").parent().attr("href", company.twitter_link);
     }else{
-      $(".media-twitter").parent().attr("href", "//" + data.data.company.twitter_link);
+      $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
     }
-    if (data.data.company.facebook_link.match(/\/\//)) {
-      $(".media-facebook").parent().attr("href", data.data.company.facebook_link);
+    if (company.facebook_link.match(/\/\//)) {
+      $(".media-facebook").parent().attr("href", company.facebook_link);
     }else{
-      $(".media-facebook").parent().attr("href", "//" + data.data.company.facebook_link);
+      $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
     }
-    if (data.data.company.instagram_link.match(/\/\//)) {
-      $(".media-instagram").parent().attr("href", data.data.company.instagram_link);
+    if (company.instagram_link.match(/\/\//)) {
+      $(".media-instagram").parent().attr("href", company.instagram_link);
     }else{
-      $(".media-instagram").parent().attr("href", "//" + data.data.company.instagram_link);
+      $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
     }
-    $(".company-description").text(data.data.company.description);
+    $(".company-description").text(company.description);
 
-    // console.log(data.data.company.opportunities);
+    // console.log(company.opportunities);
 
-    for (var i=0; i<data.data.company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div></a>");
-    }
-
-    for (var i=0; i<data.data.company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + data.data.company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + data.data.company.past_performances[i].name + "</div><div class='company-box-company-name'>" + data.data.company.name + "</div></div></div>");
+    for (var i=0; i<company.upcoming_performances.length; i++){
+      $(".insert-upcoming-performance").append("<a href='#/performance'><div class='company-performance' id='" + company.upcoming_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.upcoming_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div></a>");
     }
 
-    for (var i=0; i<data.data.company.opportunities.length; i++){
-      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + data.data.company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + data.data.company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + data.data.company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + data.data.company.opportunities[i].description + "</div></div>")
+    for (var i=0; i<company.past_performances.length; i++){
+      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.past_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
-    localStorage.setItem("companyid", JSON.stringify(data.data.company.id));
-    ourData.shareData("company", data.data.company);
+    for (var i=0; i<company.opportunities.length; i++){
+      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + company.opportunities[i].description + "</div></div>")
+    }
+
+    localStorage.setItem("companyid", JSON.stringify(company.id));
+    ourData.shareData("company", company);
   }
   console.log("$scope.show");
   console.log($scope.show);

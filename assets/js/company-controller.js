@@ -9,10 +9,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
 
   $scope.companyCr = ourData.borrowData("companyCreate");
-  if ($scope.companyCr == undefined){
+  if ($scope.companyCr === undefined)
+  {
     $scope.companyCr = false;
   }
   console.log($scope.companyCr);
+
+  //this will set all the visible elements on the
+  //page depending on where you got to this page from
+  $scope.show = !$scope.companyCr;
+  $scope.create = $scope.companyCr;
 
   $scope.thisCompany;
 
@@ -312,5 +318,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       });//end ajax.
 
   }
+
+  console.log("$scope.show");
+  console.log($scope.show);
+
+  console.log("scope.create");
+  console.log($scope.create);
 
 });

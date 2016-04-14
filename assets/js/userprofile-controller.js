@@ -84,6 +84,19 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
     }
   }
 
+  if($(".user-youtube-link").parent().attr("href") === ""){
+    $(".user-youtube-link").css("display", "none");
+  }
+  if($(".user-twitter-link").parent().attr("href") === ""){
+    $(".user-twitter-link").css("display", "none");
+  }
+  if($(".user-facebook-link").parent().attr("href") === ""){
+    $(".user-facebook-link").css("display", "none");
+  }
+  if($(".user-instagram-link").parent().attr("href") === ""){
+    $(".user-instagram-link").css("display", "none");
+  }
+
     // If a user is not a professional hide sections that are professional only
 
     if (data.data.user_info.is_professional === false){

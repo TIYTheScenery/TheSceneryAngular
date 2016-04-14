@@ -74,6 +74,19 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     // console.log(data);
     console.log(data.data.company);
     $scope.fillCompany(data)
+
+    if($(".media-youtube").parent().attr("href") === "//"){
+      $(".media-youtube").css("display", "none");
+    }
+    if($(".media-facebook").parent().attr("href") === "//"){
+      $(".media-facebook").css("display", "none");
+    }
+    if($(".media-instagram").parent().attr("href") === "//"){
+      $(".media-instagram").css("display", "none");
+    }
+    if($(".media-twitter").parent().attr("href") === "//"){
+      $(".media-twitter").css("display", "none");
+    }
   });
 
   $scope.goMakeAPerformance = function(){

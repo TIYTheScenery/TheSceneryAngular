@@ -86,11 +86,12 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
 
     // If a user is not a professional hide sections that are professional only
 
-    if (data.data.user_info.is_professional == false){
+    if (data.data.user_info.is_professional === false){
       $(".user-header-professional").css("display", "none");
       $(".display-user-titles").css("display", "none");
       $(".edit-display-user-titles").css("display", "none");
       $(".user-social-links-wrapper").css("display", "none");
+      //$("#createcompanybutton").css("display", "none");
     }
 
   // localStorage.setItem("companyid", JSON.stringify(data.data.company.id));

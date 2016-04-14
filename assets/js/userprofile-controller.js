@@ -1,7 +1,7 @@
 TheSceneryapp.controller('profileCont', function($scope, $http, $window, ourData){
 
 
-  console.log(localStorage.user);
+  // console.log(localStorage.user);
   if (localStorage.user != undefined){
   $scope.currentuser = JSON.parse(localStorage.getItem('user'));
   $scope.currUserId = $scope.currentuser.user_info.id;

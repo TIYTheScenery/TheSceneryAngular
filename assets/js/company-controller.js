@@ -65,6 +65,9 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   });
 
   $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){
+    if(data.data.company.user_id != ownerID){
+      $(".action-buttons").css("display", "none");
+    }
     $scope.thisCompany = ourData.shareData("company", data.data.company);
     $scope.thisCompany = ourData.borrowData("company");
     // console.log($scope.thisCompany);
@@ -136,7 +139,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     $.ajax(settings).done(function (data) {
       console.log("Company Created");
       console.log(data);
-
+      localStorage.setItem("compID", JSON.stringify(data.company.id));
+      location.reload();
     });//end ajax.
   }//End Create Company
 

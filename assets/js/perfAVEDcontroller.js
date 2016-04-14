@@ -1,6 +1,7 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+
   // console.log("this works!");
   $scope.message = "you are now working with angular";
   var perfcompid = JSON.parse(localStorage.getItem('companyid'));
@@ -410,6 +411,11 @@ $scope.updatePerformance = function(){
 
   $scope.submitreview = function(){
 
+    if (localStorage.user === undefined){
+      alert("Please log in if you wish to submit a review");
+      $(".new-review").val("");
+    }
+
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentperf = ourData.borrowData("viewingPerf");
@@ -449,6 +455,7 @@ $scope.updatePerformance = function(){
       $.ajax(settings).done(function (data) {
       console.log(data);
       $(".new-review").val("");
+      location.reload();
       });//end ajax.
 
   }

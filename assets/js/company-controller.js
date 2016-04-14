@@ -276,6 +276,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   $scope.submitreview = function(){
 
+    if (localStorage.user === undefined){
+      alert("Please log in if you wish to submit a review");
+      $(".company-new-review").val("");
+    }
+
     var reviewtext = $(".company-new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentcomp = ourData.borrowData("company");
@@ -312,6 +317,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $.ajax(settings).done(function (data) {
       console.log(data);
       $(".company-new-review").val("");
+      location.reload();
       });//end ajax.
 
   }

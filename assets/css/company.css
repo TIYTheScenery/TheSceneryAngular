@@ -269,7 +269,8 @@
 
 .edit-company-hero-image,
 .create-company-hero-image {
-  position: absolute;
+  width: 100%;
+  height: 300px;
   margin: 40px 0 0 40px;
   background: #ccc;
   padding: 5px;

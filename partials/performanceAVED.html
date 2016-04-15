@@ -159,10 +159,11 @@
       <div class="edit-AVED-tags" ng-hide="tEdit">
         Tags: <input class="edit-AVED-tags-input" id="tags-edit">
       </div>
-      <a href="">
+
       <!--this ends editing-->
 
 <!--THIS BEGINS ADDING PRODUCTION IMAGES-->
+      <!-- <a href="">
         <div class="AVED-prod-images" ng-hide="tView">
           View Prodution Images
         </div>
@@ -181,13 +182,13 @@
         <div class="AVED-upload-img" id="AVED-img-3" ng-hide="tAdd">
           Upload Production Images
         </div>
-      </a>
+      </a> -->
       <!--this ends adding-->
     </div><!--ends right col-->
 
 <!--BEGINS VIEWING TICKET LINK-->
     <div class="AVED-tickets">
-      <a href="http://{{thisPerformance.ticket_link}}">
+      <a href="{{thisPerformance.ticket_link}}">
         <div class="AVED-ticket-btn" ng-hide="tView">
           Buy Tickets!!
         </div>

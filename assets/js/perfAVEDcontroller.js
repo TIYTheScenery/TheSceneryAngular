@@ -1,5 +1,3 @@
-
-
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
   $scope.isLogged = function()
   {
@@ -19,7 +17,13 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end islogged
 
-  //gets the performance ID from localstorage
+  //these poll ourdata for what the view should be on this page: view, edit, or add.
+  $scope.tAdd=ourData.borrowData("tAdd");
+  $scope.tEdit=ourData.borrowData("tEdit");
+  $scope.tView=ourData.borrowData("tView");
+
+
+  if($scope.tAdd){
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
   $scope.currentUser = JSON.parse(localStorage.getItem('user'));
   //these two calls will fill in the dropdowns for the user to select the company for the performance
@@ -54,18 +58,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     // console.log(defaultGenre);
     $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
   },function(){console.log("performance get failed...");
-  });//end http call.
+});//end http call.
+}//end the check to see if we're adding.
 
-  $scope.message = "you are now working with angular";
-  // var perfcompid = $scope.thisPerformance.company_id;
-
-  //these poll ourdata for what the view should be on this page: view, edit, or add.
-  $scope.tAdd=ourData.borrowData("tAdd");
-  $scope.tEdit=ourData.borrowData("tEdit");
-  $scope.tView=ourData.borrowData("tView");
-
-
-  $scope.performanceTimes;
 
   //assign pickadate to the showtime fields
   $('#showtime-date').pickadate();
@@ -331,6 +326,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   $scope.submitreview = function(){
 
+    if (localStorage.user === undefined){
+      alert("Please log in if you wish to submit a review");
+      $(".new-review").val("");
+    }
+
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentperf = ourData.borrowData("viewingPerf");
@@ -370,6 +370,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       $.ajax(settings).done(function (data) {
       console.log(data);
       $(".new-review").val("");
+      location.reload();
       });//end ajax.
 
   }

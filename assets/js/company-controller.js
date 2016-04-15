@@ -62,7 +62,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // This makes clicking a performance navigate to the right page
   $("body").on("click", ".company-performance", function(){
     console.log($(this)[0].id);
-    localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
+    localStorage.setItem("perfID", $(this)[0].id);
+    localStorage.setItem("compID", $scope.thisCompany.id);
   });
 
   $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){
@@ -468,7 +469,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     }
 
     for (var i=0; i<company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance'><div class='company-performance' id='" + company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.past_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
+      $(".insert-past-performance").append("<a href='#/performance' ng-click='setPerformance(" + company.past_performances.id + ")'><div class='company-performance' id='" + company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.past_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.opportunities.length; i++){
@@ -478,6 +479,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     localStorage.setItem("companyid", JSON.stringify(company.id));
     ourData.shareData("company", company);
   }
+
+  $scope.setPerformance = function(performaceID){
+    localStorage.setItem("perfID", performaceID);
+  }
+
+
   console.log("$scope.show");
   console.log($scope.show);
 

@@ -122,16 +122,24 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
   $scope.createcompany = function(){
 
+    var companySplashURL;
+    var companyProfileURL;
+
     //THIS CODE MAKES THE IMAGE UPLOAD FOR TWO FILES WORK...KINDA.
     var thing = jQuery.Event( "submit" );
     if($("#fileBtn2Add").val() === "")//if there isnt a value in the file upload for the splash image
     {
+      companySplashURL = "assets/images/genericCompanyHero.jpg";
       console.log("no company splash added, dont send to amazon...");
       //then check to see if there is a file to upload for the profile image
       if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
-      {console.log("no company profile added, dont send to amazon...");}
+      {
+        companyProfileURL = "assets/images/genericCompanyProfile.png";
+        console.log("no company profile added, dont send to amazon...");
+      }
       else//there IS a file that the user wants to upload... so click our hidden submit button.
       {
+        companyProfileURL = "https://s3.amazonaws.com/thescenery/uploads/Company"+thisCompany.id;
         console.log("we have a profile img! Upload beggining!");
         $("#imgSubmitBtn1Add").trigger("click");//send profile image to AWS
       }
@@ -140,16 +148,21 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     {
       //first we check to upload a possible profile image
       if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
-      {console.log("no company profile added, dont send to amazon...");}
+      {
+        companyProfileURL = "assets/images/genericCompanyProfile.png";
+        console.log("no company profile added, dont send to amazon...");}
       else//there IS a file that the user wants to upload... so click our hidden submit button.
       {
+        companyProfileURL = "https://s3.amazonaws.com/thescenery/uploads/Company"+thisCompany.id;
         console.log("we have a profile img! Upload beggining!");
         $("#imgSubmitBtn1Add").trigger("click");
       }
       setTimeout(function(){
         //then we finally upload the splash, and get redirected back to the company page.
+        companySplashURL = "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+thisCompany.id;
         console.log("we have a splash img! Upload beggining!");
         $("#imgSubmitBtn2").trigger("click");
+
       }, 50);
 
     }
@@ -157,6 +170,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     var createCompany = JSON.stringify({
     "company": {
       "id": "",
+      "profile_image_url": companyProfileURL,
+      "hero_image_url": companySplashURL,
       "user_id": ownerID,
       "name": $(".create-company-name").val(),
       "description": $(".create-company-description").val(),
@@ -198,6 +213,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $scope.fillCompany($scope.thisCompany);
       $scope.toggle("SHOW");
     });//end ajax.
+
+    // $window.reload();
   }//End Create Company
 
 
@@ -241,8 +258,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       "company": {
         "id": companyid,
         "user_id": ownerID,
-        "profile_img_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id,
-        "hero_img_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scope.thisCompany.id,
+        "profile_image_url": "https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id,
+        "hero_image_url": "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scope.thisCompany.id,
         "name": $(".edit-company-name").val(),
         "description": $(".edit-company-description").val(),
         "website_link": $(".edit-company-url").val(),

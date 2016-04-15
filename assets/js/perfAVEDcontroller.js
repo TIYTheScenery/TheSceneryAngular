@@ -31,7 +31,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
   // if we aren't creating a new performance and there is no performance_id then redirect back to home page
-  if(thisPerformanceID === null && !$scope.tAdd){
+  if(thisPerformanceID === null && $scope.tAdd){
     console.log("no performance_id in local storage and not creating a new one");
     $window.location = "/";
   }
@@ -43,7 +43,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
       $scope.thisPerformance = data.data.performance;
       // this need to happen whenever a user is logged in and not creating a performance
-      if(!$scope.isLogged()){
+      if($scope.isLogged() === false){
         //if logged in user doesn't match owner of performance then hide edit buttons
         console.log($scope.currentUser);
         if($scope.currentUser){
@@ -68,7 +68,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   }
 
   // set up for create
-  if(!$scope.tAdd && !$scope.isLogged()){
+  if($scope.tAdd === false && $scope.isLogged() === false){
     //create dropdown for performance creation and set default to company that user came from
     //if that company is in localStorage
     console.log($scope.currentUser);
@@ -77,6 +77,8 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     if(company_id){
       $('.hero-img-creator-dropdown').val(company_id);
     }
+    $("#performance-edit-btn").addClass("hidden");
+    $("#performance-delete-btn").addClass("hidden");
   }
 
   //assign pickadate to the showtime fields
@@ -266,17 +268,26 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     if(doit)
     {
+      var token = $scope.currentUser.user_info.login_token;
       //confirm delete, delete performance, go back to landing page.
       alert("Performance deleted. The show will go on... just... at another time.")
 
+      var user_info = JSON.stringify({
+        "user_info": {
+          "login_token": token
+        }
+      });
+
       //THIS IS THE ANGULAR CALL
-        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID, user_info).then(function(data){
           console.log("performance DELETED!");
           console.log(data);
-        },function(){console.log("performance delete failed...");
+          $window.location.href = "/";
+        },function(data){
+          console.log("performance delete failed...");
+          console.log(data);
       });//end http call.
 
-      $window.location.href = "/";
     }
     else
     {

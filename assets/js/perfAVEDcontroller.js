@@ -1,6 +1,7 @@
 
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+
   // console.log("this works!");
   $scope.message = "you are now working with angular";
   var perfcompid = JSON.parse(localStorage.getItem('companyid'));
@@ -20,6 +21,8 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   console.log(JSON.parse(localStorage.getItem('perfID')));
 
   //gets the performance ID from localstorage
+  if($scope.tAdd)
+  {
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
 
   //var thisPerformanceID = ourData.borrowData("searchResults").id;//gets the performance id from the data service
@@ -44,10 +47,16 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
 
     $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
-
     //sets the default for the genre dropdown menu when editing
     var lastinarray = $scope.thisPerformance.genre_id.length-1;
     var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+
+    //these two calls will fill in the dropdowns for the user to select the company for the performance
+    userCompanyCreate(person, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
+    userCompanyCreate(person, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
+    //set default value for the edit to the current company
+    $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
+    
     // lastinarray = lastinarray.genre_id;
     // console.log("defaultGenre:")
     // console.log(defaultGenre);
@@ -59,6 +68,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   },function(){console.log("performance get failed...");
 });//end http call.
+}//end the check to see if we're adding. 
 
   $('#showtime-date').pickadate();
   $('#showtime-time').pickatime();
@@ -105,11 +115,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end scope.toggle
 
-var person = JSON.parse(localStorage.getItem('user'));
-//localStorage.setItem("user", JSON.stringify(person));
+  var person = JSON.parse(localStorage.getItem('user'));
 
-console.log("This is the current user");
-console.log(person);
+  // localStorage.setItem("user", JSON.stringify(person));
+
+  console.log("This is the current user");
+  console.log(person);
 
 
 $scope.updatePerformance = function(){
@@ -410,6 +421,11 @@ $scope.updatePerformance = function(){
 
   $scope.submitreview = function(){
 
+    if (localStorage.user === undefined){
+      alert("Please log in if you wish to submit a review");
+      $(".new-review").val("");
+    }
+
     var reviewtext = $(".new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentperf = ourData.borrowData("viewingPerf");
@@ -449,6 +465,7 @@ $scope.updatePerformance = function(){
       $.ajax(settings).done(function (data) {
       console.log(data);
       $(".new-review").val("");
+      location.reload();
       });//end ajax.
 
   }

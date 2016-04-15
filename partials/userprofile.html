@@ -16,7 +16,7 @@
       </div>
     </a>
     <br>
-    <a href="#/company">
+    <a href="#/company" ng-show="{{currentuser.user_info.is_professional}}">
       <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show; tocompany('CREATE')">
         Create Company
       </div>

@@ -188,9 +188,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     var allEditedShowsJSON=[];
 
-    var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
     $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(){
-      if($(this).find(".deleteCheck").is(':checked') === true)
+      var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+      if($(this).find("#delete-check").is(':checked'))
       {
         showTemplate._destroy = true;
       } else {
@@ -208,7 +208,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
       allEditedShowsJSON.push(showTemplate);
     });
-
 
     var performance = JSON.stringify({
       "performance": {
@@ -294,17 +293,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
-    if(where===1)
+    if(where == 1)
     {
       var theParent = $(".new-showtime-wrapper");
     }
-    else if(where === 2)
+    else if(where == 2)
     {
       var theParent = $(".EDIT-showtime-wrapper");
     }
     var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
+    console.log("the section we are cloning");
+    console.log(section);
 
-    if(where === 2)
+    if(where == 2)
     {// if this is an edit and not an add we change the class of the clone so that when we scrape the page during the edit update, we can find the right thing.
       console.log("changing classes...");
       section.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
@@ -312,12 +313,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     //var theClone = section.clone(true);
     // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
 
-    if(where === 1)//1 is for adding a showtime while initilally creating.
+    if(where == 1)//1 is for adding a showtime while initilally creating.
     {
       theParent.append(section.wrap('<p/>').parent().html());
       section.unwrap();
     }
-    else if(where === 2)//2 is for adding a showtime while editing..
+    else if(where == 2)//2 is for adding a showtime while editing..
     {
       theParent.append(section.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
       section.unwrap();

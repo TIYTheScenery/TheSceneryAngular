@@ -469,7 +469,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     }
 
     for (var i=0; i<company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance' ng-click='setPerformance(" + company.past_performances.id + ")'><div class='company-performance' id='" + company.past_performances.id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.past_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
+      $(".insert-past-performance").append("<a href='#/performance' ng-click='setPerformance(" + company.past_performances[i].id + ")'><div class='company-performance' id='" + company.past_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'>" + company.past_performances[i].name + "</div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.opportunities.length; i++){

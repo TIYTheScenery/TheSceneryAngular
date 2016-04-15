@@ -287,15 +287,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       });
 
       //THIS IS THE ANGULAR CALL
-        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID, user_info).then(function(data){
-          console.log("performance DELETED!");
-          console.log(data);
-          $window.location.href = "/";
-        },function(data){
-          console.log("performance delete failed...");
-          console.log(data);
+      $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID, user_info).then(function(data){
+        console.log("performance DELETED!");
+        console.log(data);
+        $window.location.href = "/";
+      },function(data){
+        console.log("performance delete failed...");
+        console.log(data);
       });//end http call.
-
     }
     else
     {

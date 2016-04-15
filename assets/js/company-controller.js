@@ -1,4 +1,4 @@
-TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
+TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window){
 
   var person = JSON.parse(localStorage.getItem('user'));
   if (localStorage.user != undefined){
@@ -192,12 +192,18 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
 
     $.ajax(settings).done(function (data) {
       console.log(data);
-      console.log("setting new compID");
-      console.log(JSON.stringify(data.company.id));
-      localStorage.setItem('compID', JSON.stringify(data.company.id));
-      $scope.thisCompany = data.company;
-      $scope.fillCompany($scope.thisCompany);
-      $scope.toggle("SHOW");
+      if (data.success) {
+        localStorage.setItem('compID', JSON.stringify(data.company.id));
+        $scope.thisCompany = data.company;
+        ourData.shareData("companyCreate", false);
+        location.reload();
+      } else {
+        var errorText = "";
+        for(var i = 0; i < data.errors.length; i++){
+          errorText += data.errors[i] + "\n";
+        }
+        alert(errorText);
+      }
     });//end ajax.
   }//End Create Company
 
@@ -346,16 +352,23 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
       $(".company-create-opportunity-modal-wrapper").addClass("hidden");
   })
 
+
   $scope.deleteComp = function(){
     if(confirm("Are you sure you want to delete this company?"))
     {
       console.log("this company's ID")
       console.log($scope.thisCompany.id);
+      var compID = $scope.thisCompany.id
+      var user_info = JSON.stringify({
+        "user_info": {
+          "login_token": token
+        }
+      });
 
       var settings = {
        "async": true,
        "crossDomain": true,
-       "url": "http://infinite-reef-76606.herokuapp.com/companies/"+$scope.thisCompany.id,
+       "url": "http://infinite-reef-76606.herokuapp.com/companies/"+compID,
        "method": "DELETE",
        "headers": {
          "content-type": "application/json",
@@ -363,24 +376,23 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
          "postman-token": "d563f488-7d24-e0be-a811-1b2222d956b5"
        },
        "processData": false,
-       "data": JSON.stringify({"user_info": {"login_token": token} })
+       "data": user_info
       }
 
       $.ajax(settings).done(function (response) {
        console.log(response);
+       $window.location.href = "#/userprofile";
       });
 
-
-      //ANGULAR! CALL
-      // var authStuff = JSON.stringify({"user_info": {
-      //     "login_token": token
-      //           }
-      //         });
-      //
-      //    $http.delete('http://api.the-scenery.com/companies/' + compID, authStuff).then(function(data){
-      //     console.log("delete Data");
-      //     console.log(data);
-      //    });
+      // console.log(user_info);
+      // $http.delete('https://api.the-scenery.com/companies/'+compID, user_info).then(function(data){
+      //   console.log("performance DELETED!");
+      //   console.log(data);
+        // $window.location.href = "#/userprofile";
+      // },function(data){
+      //   console.log("performance delete failed...");
+      //   console.log(data);
+      // });//end http call.
 
     }//end confirm.
 

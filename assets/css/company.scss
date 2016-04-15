@@ -44,19 +44,23 @@
 }
 
 .company-name-type-wrapper{
-  position: absolute;
+  // position: absolute;
+  display: inline-block;
+  width: 99%;
+  height: 300px;
   text-align: center;
-  margin-top: -250px;
+  // margin-top: -300px;
   background: rgba(0,0,0,0.5);
-  border-radius: 10px;
-  margin-left: 33%;
-  padding: 10px;
+  // border-radius: 10px;
+  // margin-left: 33%;
+  // padding: 10px;
 }
 
 .company-name{
+  position: absolute;
+  margin-top:-250px;
   font-size: 60px;
   color: #eee;
-  margin-bottom: 15px;
 }
 
 .company-type{
@@ -242,9 +246,12 @@
 
 .edit-company-name,
 .create-company-name{
+  position: absolute;
+  margin-top: 200px;
+  display: inline-block;
   width: 300px;
   font-size: 16px;
-  margin-bottom: 10px;
+  // margin-left: 30%;
 }
 
 .edit-company-type,
@@ -329,12 +336,28 @@
 .create-company-hero-image{
   width: 100%;
   height: 300px;
-  // position: absolute;
-  margin: 40px 0 0 40px;
+  // margin-top:-200px;
+  position: absolute;
+  // margin: 40px 0 0 40px;
   background: #ccc;
   padding: 5px;
   border-radius: 5px;
 }
+
+// #filebtn2{
+//   background: rgba(0,0,0,0);
+//   color: white;
+//   font-family: impact, sans-serif;
+//   font-size: 20px;
+//   border: 2px solid white;
+//   height: 100%;
+//   width:300px;
+//   z-index:2;
+// }
+// #filebtn2:hover{
+//
+// }
+
 
 .company-profile-pic{
   position: absolute;

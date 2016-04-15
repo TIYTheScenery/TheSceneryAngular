@@ -23,44 +23,59 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tView=ourData.borrowData("tView");
 
 
-  if($scope.tAdd){
+  //these need to happen whenever a user is not logged in
+  if($scope.isLogged()){
+    $("#performance-edit-btn").addClass("hidden");
+    $("#performance-delete-btn").addClass("hidden");
+  }
+
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
-  $scope.currentUser = JSON.parse(localStorage.getItem('user'));
-  //these two calls will fill in the dropdowns for the user to select the company for the performance
-  userCompanyCreate($scope.currentUser, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
-  userCompanyCreate($scope.currentUser, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
-  //set deauflt to match company_id in storge should be set on company controller
-  $('.hero-img-creator-dropdown').val(parseInt(JSON.parse(localStorage.getItem('compID'))));
-  //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
-    ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
+  // if we aren't creating a new performance and there is no performance_id then redirect back to home page
+  if(thisPerformanceID === null && $scope.tAdd){
+    console.log("no performance_id in local storage and not creating a new one");
+    $window.location = "/";
+  }
+  //we need to call this every time except for a create
+  //tAdd is used on ng-hide and will only be false when creating
+  if($scope.tAdd){
+    //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
+    $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+      ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
+      $scope.thisPerformance = data.data.perfromance;
+      // this need to happen whenever a user is logged in and not creating a performance
+      if(!$scope.isLogged()){
+        //if logged in user doesn't match owner of performance then hide edit buttons
+        if($scope.currentUser){
+          if ($scope.currentUser.user_info.id != data.data.performance.owner_id){
+            $("#performance-edit-btn").addClass("hidden");
+            $("#performance-delete-btn").addClass("hidden");
+          } else {  //otherwise fill in drop down for the edit
+            //these two calls will fill in the dropdowns for the user to select the company for the performance
+            userCompanyCreate($scope.currentUser, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
+            //set default value for the edit to the current company only works if there is a perofrmance id coming in
+            if($scope.thisPerformance){
+              $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
+            }
+            //sets the default for the genre dropdown menu when editing
+            var lastinarray = $scope.thisPerformance.genre_id.length-1;
+            var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+            $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
+          }
+        }
+      }//end the check to see if we're adding.
+    });
+  }
 
-    //if logged in user doesn't match owner of performance then hide edit buttons
-    if($scope.currentUser){
-      if ($scope.currentUser.user_info.id != data.data.performance.owner_id){
-        console.log("happening");
-        $("#performance-edit-btn").addClass("hidden");
-        $("#performance-delete-btn").addClass("hidden");
-      }
+  // set up for create
+  if(!$scope.tAdd && !$scope.isLogged()){
+    //create dropdown for performance creation and set default to company that user came from
+    //if that company is in localStorage
+    userCompanyCreate($scope.currentUser, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
+    var company_id = JSON.parse(localStorage.getItem('compID'));
+    if(company_id){
+      $('.hero-img-creator-dropdown').val(company_id);
     }
-
-    $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
-    //set default value for the edit to the current company only works if there is a perofrmance id coming in
-    if($scope.thisPerformance){
-      $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
-    }
-    //sets the default for the genre dropdown menu when editing
-    var lastinarray = $scope.thisPerformance.genre_id.length-1;
-    var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
-
-    // lastinarray = lastinarray.genre_id;
-    // console.log("defaultGenre:")
-    // console.log(defaultGenre);
-    $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
-  },function(){console.log("performance get failed...");
-});//end http call.
-}//end the check to see if we're adding.
-
+  }
 
   //assign pickadate to the showtime fields
   $('#showtime-date').pickadate();
@@ -228,10 +243,10 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       console.log(data);
       $scope.thisPerformance = data.data.performance;
       localStorage.setItem('perfID', $scope.thisPerformance .id);
-      ourData.shareData("tAdd", false);
-      ourData.shareData("tEdit", false);
-      ourData.shareData("tView", true);
       if(data.data.success){
+        ourData.shareData("tAdd", false);
+        ourData.shareData("tEdit", false);
+        ourData.shareData("tView", true);
         $window.location.reload();
       }
     },function(){console.log("performance update failed...");

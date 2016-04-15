@@ -61,7 +61,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   // This makes clicking a performance navigate to the right page
   $("body").on("click", ".company-performance", function(){
     console.log($(this)[0].id);
-    localStorage.setItem("perfID", JSON.stringify($(this)[0].id));
+    localStorage.setItem("perfID", $(this)[0].id);
+    localStorage.setItem("compID", $scope.thisCompany.id);
   });
 
   $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){

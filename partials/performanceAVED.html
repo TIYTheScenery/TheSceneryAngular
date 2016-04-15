@@ -259,7 +259,12 @@
         <input class="EDIT-showtime-date-input" id="showtime-date" placeholder="Date" value="{{show.show_date | date : fullDate}}">
         <input class="EDIT-showtime-time-input" id="showtime-time" placeholder="Time" value="{{show.begin_time | date : 'h:mma'}}">
         <input class="EDIT-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
-        <input class="EDIT-showtime-city-state-input" id="showtime-city-state" placeholder="City, State" value="{{show.city}}, {{show.state}}">
+        <input class="EDIT-showtime-city-input" id="showtime-city" placeholder="City" value="{{show.city}}">
+        <select class="EDIT-showtime-state-input" id="showtime-state">
+          <option value="">Pick A State</option>
+          <option value="NC" selected="selected">NC</option>
+        </select>
+        <input class="EDIT-showtime-city-state-input" id="showtime-city-state" placeholder="City, State" value=", {{show.state}}">
         <input class="EDIT-showtime-zip-input" id="showtime-zip" placeholder="Zip Code" value="{{show.zip_code}}">
         <span style="color: red;" class="removeShowtime">
           <input type="checkbox" class="deleteCheck"><i class="fa fa-trash"></i>Delete This Showtime
@@ -331,7 +336,11 @@
             <input class="new-showtime-date-input" id="showtime-date" placeholder="Date">
             <input class="new-showtime-time-input" id="showtime-time" placeholder="Time">
             <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
-            <input class="new-showtime-city-state-input" id="showtime-city-state" placeholder="City, State">
+            <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
+            <select class="new-showtime-state-input" id="showtime-state">
+              <option value="">Pick A State</option>
+              <option value="NC">NC</option>
+            </select>
             <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
           </div>
             <div>
@@ -357,7 +366,11 @@
               <input class="new-showtime-date-input" id="showtime-date" placeholder="Date">
               <input class="new-showtime-time-input" id="showtime-time" placeholder="Time">
               <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
-              <input class="new-showtime-city-state-input" id="showtime-city-state" placeholder="City, State">
+              <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
+              <select class="new-showtime-state-input" id="showtime-state">
+                <option value="">Pick A State</option>
+                <option value="NC">NC</option>
+              </select>
               <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
               <span style="color: red;" class="removeShowtime">
                 <input type="checkbox" class="deleteCheck"><i class="fa fa-trash" ></i>Delete This Showtime

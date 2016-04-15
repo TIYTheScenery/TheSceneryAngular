@@ -36,8 +36,16 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   $(".user-header-displayname").text(data.data.user_info.display_name);
   $(".side-info-display-name").text(data.data.user_info.display_name);
   // If a user has a first and last name display them
-  if (data.data.user_info.first_name != null && data.data.user_info.last_name != null){
-    $(".display-user-name").text(data.data.user_info.first_name + " " + data.data.user_info.last_name)
+  if (data.data.user_info.first_name != null || data.data.user_info.last_name != null){
+    if (data.data.user_info.first_name != null){
+      $(".display-user-name").text(data.data.user_info.first_name);
+    }
+    if (data.data.user_info.last_name != null){
+      $(".display-user-name").text(data.data.user_info.last_name);
+    }
+    if (data.data.user_info.first_name != null && data.data.user_info.last_name != null){
+      $(".display-user-name").text(data.data.user_info.first_name + " " + data.data.user_info.last_name)
+    }
   }
   // If a user has titles display them
   if (data.data.user_info.titles.length != 0){

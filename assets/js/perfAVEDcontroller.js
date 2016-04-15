@@ -21,12 +21,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   $scope.tAdd=ourData.borrowData("tAdd");
   $scope.tEdit=ourData.borrowData("tEdit");
   $scope.tView=ourData.borrowData("tView");
-
+  // $('.edit-AVED-tags-input').datepicker();
 
   //these need to happen whenever a user is not logged in
   if($scope.isLogged()){
-    $("#performance-edit-btn").addClass("hidden");
-    $("#performance-delete-btn").addClass("hidden");
+    $scope.editPowers = false;
   }
 
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
@@ -46,8 +45,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
         //if logged in user doesn't match owner of performance then hide edit buttons
         if($scope.currentUser){
           if ($scope.currentUser.user_info.id != data.data.performance.owner_id){
-            $("#performance-edit-btn").addClass("hidden");
-            $("#performance-delete-btn").addClass("hidden");
+            $scope.editPowers = false;
           } else {  //otherwise fill in drop down for the edit
             //these two calls will fill in the dropdowns for the user to select the company for the performance
             userCompanyCreate($scope.currentUser, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
@@ -59,6 +57,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
             var lastinarray = $scope.thisPerformance.genre_id.length-1;
             var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
             $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
+            $scope.editPowers = true;
           }
         }
       }//end the check to see if we're adding.
@@ -74,13 +73,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     if(company_id){
       $('.hero-img-creator-dropdown').val(company_id);
     }
-    $("#performance-edit-btn").addClass("hidden");
-    $("#performance-delete-btn").addClass("hidden");
+    $scope.editPowers = false;
   }
 
+
+// $(".Invisible-Showtime-wrapper").find('.EDIT-showtime-date-input').datepicker();
   //assign pickadate to the showtime fields
-  $('#showtime-date').pickadate();
-  $('#showtime-time').pickatime();
+    // $('#showtime-date').pickadate();
+    // $('#showtime-time').pickatime();
 
   $scope.toggle = function(turnOn){
     if(turnOn === 'ADD')
@@ -149,7 +149,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     });
 
-
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -188,6 +187,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     var allEditedShowsJSON=[];
 
+    var dateBreak = false;
     $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(){
       var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
       if($(this).find("#delete-check").is(':checked'))
@@ -203,12 +203,23 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       showTemplate.state = $(this).find('#showtime-state').val()
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
       showDate = $(this).find('#showtime-date').val();
-      showDate = showDate.substring(6,10) + "-" + showDate.substring(0,2) + "-" + showDate.substring(3,5);
+
+      if(showDate.match(/^\d{2}\/\d{2}\/\d{4}$/))
+      {//MM/DD/YYYY
+        var dateArray = showDate.split('/');
+        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
+      }
+      else
+      {
+        alert("please enter all show dates in this format: MM/DD/YYYY");
+        dateBreak = true;
+      }
       showTemplate.show_date = showDate;
 
       allEditedShowsJSON.push(showTemplate);
     });
 
+    if(dateBreak){return;}
     var performance = JSON.stringify({
       "performance": {
         "id": thisPerformanceID,
@@ -231,7 +242,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       }
     });
 
-
+    console.log(performance);
 
     //THIS IS THE ANGULAR CALL
     $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
@@ -253,6 +264,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       }
       },function(){console.log("performance update failed...");
     });//end http call.
+
 
   }//end updatePerformance
 
@@ -302,26 +314,24 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       var theParent = $(".EDIT-showtime-wrapper");
     }
     var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
-    console.log("the section we are cloning");
-    console.log(section);
 
+    var theClone = section.clone(true);
     if(where == 2)
     {// if this is an edit and not an add we change the class of the clone so that when we scrape the page during the edit update, we can find the right thing.
       console.log("changing classes...");
-      section.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
+      theClone.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
+      // theClone.find('.new-showtime-date-input').datepicker();
     }
-    //var theClone = section.clone(true);
-    // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
 
     if(where == 1)//1 is for adding a showtime while initilally creating.
     {
-      theParent.append(section.wrap('<p/>').parent().html());
-      section.unwrap();
+      theParent.append(theClone.wrap('<p/>').parent().html());
+      theClone.unwrap();
     }
     else if(where == 2)//2 is for adding a showtime while editing..
     {
-      theParent.append(section.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
-      section.unwrap();
+      theParent.append(theClone.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
+      theClone.unwrap();
     }
     else{console.log("I dont understand where im supposed to put the new showtime...");}
 
@@ -400,7 +410,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       });//end ajax.
 
   }
-
 
   // });//end jquery function
 

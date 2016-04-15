@@ -11,12 +11,12 @@
       </a> -->
       <!-- <div class="btn" ng-click="toggle('VIEW')">View</div> -->
       <a href="">
-        <div class="btn" id="performance-edit-btn" ng-click="toggle('EDIT')">
+        <div class="btn" id="performance-edit-btn" ng-show="editPowers" ng-click="toggle('EDIT')">
           EDIT&nbsp;<i class="fa fa-pencil-square fa-2x"></i>
         </div>
       </a>
       <a href ="">
-        <div class="btn" id="performance-delete-btn" ng-click="deletePerformance()">
+        <div class="btn" id="performance-delete-btn" ng-show="editPowers" ng-click="deletePerformance()">
           Delete Performance&nbsp;<i class="fa fa-trash fa-2x"></i></i>
         </div>
       </a>

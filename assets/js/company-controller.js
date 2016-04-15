@@ -74,7 +74,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
     // console.log($scope.thisCompany);
     // console.log(data);
     console.log(data.data.company);
-    $scope.fillCompany(data)
+    $scope.fillCompany(data.data.company)
 
     if($(".media-youtube").parent().attr("href") === "//"){
       $(".media-youtube").css("display", "none");
@@ -439,22 +439,22 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData){
   $scope.fillCompany = function(company){
     $(".company-name").text(company.name);
     $(".company-location").text(company.address + " " + company.city + ", " + company.state + " " + company.zip_code);
-    if (company.youtube_link.match(/\/\//)) {
+    if (company.youtube_link && company.youtube_link.match(/\/\//)) {
       $(".media-youtube").parent().attr("href", company.youtube_link);
     }else{
       $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
     }
-    if (company.twitter_link.match(/\/\//)) {
+    if (company.twitter_link && company.twitter_link.match(/\/\//)) {
       $(".media-twitter").parent().attr("href", company.twitter_link);
     }else{
       $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
     }
-    if (company.facebook_link.match(/\/\//)) {
+    if (company.facebook_link && company.facebook_link.match(/\/\//)) {
       $(".media-facebook").parent().attr("href", company.facebook_link);
     }else{
       $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
     }
-    if (company.instagram_link.match(/\/\//)) {
+    if (company.instagram_link && company.instagram_link.match(/\/\//)) {
       $(".media-instagram").parent().attr("href", company.instagram_link);
     }else{
       $(".media-instagram").parent().attr("href", "//" + company.instagram_link);

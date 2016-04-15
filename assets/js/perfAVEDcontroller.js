@@ -32,7 +32,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
   // if we aren't creating a new performance and there is no performance_id then redirect back to home page
   if(thisPerformanceID === null && $scope.tAdd){
-    console.log("no performance_id in local storage and not creating a new one");
     $window.location = "/";
   }
   //we need to call this every time except for a create
@@ -45,7 +44,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){
         //if logged in user doesn't match owner of performance then hide edit buttons
-        console.log($scope.currentUser);
         if($scope.currentUser){
           if ($scope.currentUser.user_info.id != data.data.performance.owner_id){
             $("#performance-edit-btn").addClass("hidden");
@@ -71,7 +69,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   if($scope.tAdd === false && $scope.isLogged() === false){
     //create dropdown for performance creation and set default to company that user came from
     //if that company is in localStorage
-    console.log($scope.currentUser);
     userCompanyCreate($scope.currentUser, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
     var company_id = JSON.parse(localStorage.getItem('compID'));
     if(company_id){
@@ -102,16 +99,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
     else//if we're not editing, and we're not adding, we must be viewing...
     {
-      $scope.tAdd=false;
-      $scope.tEdit=false;
-      $scope.tView=true;
+      $scope.tAdd=true;
+      $scope.tEdit=true;
+      $scope.tView=false;
       // $scope.$apply();
     }
   }//end scope.toggle
-
-
-  console.log("This is the current user");
-  console.log($scope.currentUser);
 
   $scope.addperformance = function(){
     var token = $scope.currentUser.user_info.login_token;
@@ -122,7 +115,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
       if($(this).find(".deleteCheck").is(':checked') === true)
       {
-        console.log(".re-addshowtime not found in allShows[i]");
         showTemplate._destroy= true;
       } else {
         showTemplate._destroy= false;
@@ -135,9 +127,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       showTemplate.show_date = $(this).find('#showtime-date').val();
       allShowsJSON.push(showTemplate);
     });
-
-    console.log("all shows JSON");
-    console.log(allShowsJSON);
 
     var performance = JSON.stringify({
     "performance": {
@@ -160,8 +149,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     });
 
-    console.log("performance");
-    console.log(performance);
 
     var settings = {
       "async": true,
@@ -178,13 +165,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
       $.ajax(settings).done(function (data) {
         console.log(data);
-        $scope.thisPerformance = data.performance
-        localStorage.setItem('perfID', data.performance.id)
-        ourData.shareData("tAdd", false);
-        ourData.shareData("tEdit", false);
-        ourData.shareData("tView", true);
         if(data.success){
+          $scope.thisPerformance = data.performance
+          localStorage.setItem('perfID', data.performance.id)
+          ourData.shareData("tAdd", false);
+          ourData.shareData("tEdit", false);
+          ourData.shareData("tView", true);
           $window.location.reload();
+        }else{
+          var errorText = "";
+          for(var i = 0; i < data.data.errors.length; i++){
+            errorText += data.data.errors[i] + "\n";
+          }
+          alert(errorText);
         }
       });//end ajax.
   }//End addperformance
@@ -218,47 +211,51 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
 
     var performance = JSON.stringify({
-    "performance": {
-      "id": thisPerformanceID,
-      "owner_id": ownerID,
-      "company_id": $('#performance-company-edit').val(),
-      "name": $('#performance-name-edit').val(),
-      "description": $('#perf-desc-edit').val(),
-      "trailer_link": $('#trailer-link-edit').val(),
-      "ticket_link": $('#ticket-link-edit').val(),
-      "genre_performances_attributes":[
-       {
-         "id": $scope.thisPerformance.genre_id[0].id,
-         "genre_id": $(".edit-AVED-genre-edit").val()
-       }
-     ],
-      "show_times_attributes": allEditedShowsJSON
-    },
-    "user_info": {
-      "login_token": token
+      "performance": {
+        "id": thisPerformanceID,
+        "owner_id": ownerID,
+        "company_id": $('#performance-company-edit').val(),
+        "name": $('#performance-name-edit').val(),
+        "description": $('#perf-desc-edit').val(),
+        "trailer_link": $('#trailer-link-edit').val(),
+        "ticket_link": $('#ticket-link-edit').val(),
+        "genre_performances_attributes":[
+         {
+           "id": $scope.thisPerformance.genre_id[0].id,
+           "genre_id": $(".edit-AVED-genre-edit").val()
+         }
+        ],
+        "show_times_attributes": allEditedShowsJSON
+      },
+      "user_info": {
+        "login_token": token
       }
-  });
+    });
 
-  console.log(performance);
 
 
     //THIS IS THE ANGULAR CALL
     $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
       console.log(data);
-      $scope.thisPerformance = data.data.performance;
-      localStorage.setItem('perfID', $scope.thisPerformance .id);
       if(data.data.success){
+        $scope.thisPerformance = data.data.performance;
+        localStorage.setItem('perfID', $scope.thisPerformance .id);
         ourData.shareData("tAdd", false);
         ourData.shareData("tEdit", false);
         ourData.shareData("tView", true);
         $window.location.reload();
+      } else {
+        // $scope.toggle("EDIT");
+        var errorText = "";
+        for(var i = 0; i < data.data.errors.length; i++){
+          errorText += data.data.errors[i] + "\n";
+        }
+        alert(errorText);
       }
-    },function(){console.log("performance update failed...");
-  });//end http call.
+      },function(){console.log("performance update failed...");
+    });//end http call.
 
-  $scope.thisPerformance = performance;
-
-}//end updatePerformance
+  }//end updatePerformance
 
 
   $scope.deletePerformance = function()

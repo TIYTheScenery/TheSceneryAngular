@@ -1,14 +1,25 @@
+$popCol1: rgb(89, 25, 45);
+
 .header{
   background: #eee;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $popCol1;
+  height:100px
 }
 
-.scenery-logo,
-.header-user-portrait{
+.scenery-logo{
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
+  background: black;
+  vertical-align: middle;
+  border-radius: 80px;
+}
+.header-user-portrait{
+  float:right;
+  display: inline-block;
+  width: 75px;
+  height: 75px;
   background: black;
   vertical-align: middle;
 }
@@ -20,7 +31,7 @@
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
   border: 1px solid #999;
   border-radius: 3px;
-  vertical-align:middle;
+  vertical-align:bottom;
 }
 
 .modal-close-btn{
@@ -42,7 +53,9 @@ a{
 .sign-up-btn,
 .logout-btn{
   float: right;
-  margin-right: 25px;
+  margin-right: 15px;
+  margin-top: 70px;
+  // vertical-align: bottom;
 }
 
 .header-user-wrapper{

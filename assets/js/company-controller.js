@@ -110,7 +110,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
   $scope.editcompany = function(){
     $(".edit-company-name").val($(".company-name").text());
-    $(".edit-company-location").val($(".company-location").text());
+    $(".edit-company-location-address").val($(".company-location").text().split(" ")[0]);
+    $(".edit-company-location-city").val($(".company-location").text().split(" ")[1].substring(0, $(".company-location").text().split(" ")[1].length - 1));
+    $(".edit-company-location-state").prop("selectedIndex", 1);
+    $(".edit-company-location-zip").val($(".company-location").text().split(" ")[3]);
     $(".edit-company-url").val($(".company-url").parent().attr("href"));
     $(".edit-company-youtube").val($(".media-youtube").parent().attr("href"));
     $(".edit-company-twitter").val($(".media-twitter").parent().attr("href"));

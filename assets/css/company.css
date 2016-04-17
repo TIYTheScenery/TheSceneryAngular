@@ -285,6 +285,13 @@
   margin-top: -150px;
   margin-left: 175px;
   border-radius: 5px; }
+  .company-profile-pic img {
+    width: 175px !important;
+    height: 175px !important; }
+
+.moveform {
+  margin-top: -105px;
+  color: white; }
 
 .company-create-opportunity-modal-wrapper {
   position: fixed;

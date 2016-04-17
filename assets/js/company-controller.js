@@ -337,7 +337,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     $.ajax(settings).done(function (data) {
       console.log("Opportunity");
       console.log(data);
-      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+      if(data.success){
+        $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+        $window.location.reload();
+      }else{
+        var errorText = "";
+        for(var i = 0; i < data.errors.length; i++){
+          errorText += data.errors[i] + "\n";
+        }
+        alert(errorText);
+      }
     });
   }
 
@@ -382,16 +391,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
        console.log(response);
        $window.location.href = "#/userprofile";
       });
-
-      // console.log(user_info);
-      // $http.delete('https://api.the-scenery.com/companies/'+compID, user_info).then(function(data){
-      //   console.log("performance DELETED!");
-      //   console.log(data);
-        // $window.location.href = "#/userprofile";
-      // },function(data){
-      //   console.log("performance delete failed...");
-      //   console.log(data);
-      // });//end http call.
 
     }//end confirm.
 

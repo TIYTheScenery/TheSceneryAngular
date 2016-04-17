@@ -288,7 +288,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
         $.ajax(settings).done(function (data) {
           if(data.success){
-            console.log(data);
             $scope.thisCompany = data.company
             localStorage.setItem('compID', data.company.id)
             $scope.toggle('SHOW');
@@ -303,23 +302,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         });//end ajax.
 
         $scope.fillCompany($scope.thisCompany);
-        // $(".company-name").text($(".edit-company-name").val());
-        // $(".edit-company-name").val("");
-        // $(".company-location").text($(".edit-company-location").val());
-        // $(".edit-company-location").val("");
-        // $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
-        // $(".edit-company-url").val("");
-        // $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
-        // $(".edit-company-youtube").val("");
-        // $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
-        // $(".edit-company-twitter").val("");
-        // $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
-        // $(".edit-company-facebook").val("");
-        // $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
-        // $(".edit-company-instagram").val("");
-        // $(".company-description").text($(".edit-company-description").val());
-        // $(".edit-company-description").val("");
-
   }//End Save Company
 
   $scope.saveopportunity = function(){
@@ -469,25 +451,37 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   $scope.fillCompany = function(company){
     $(".company-name").text(company.name);
     $(".company-location").text(company.address + " " + company.city + ", " + company.state + " " + company.zip_code);
-    if (company.youtube_link && company.youtube_link.match(/\/\//)) {
-      $(".media-youtube").parent().attr("href", company.youtube_link);
-    }else{
-      $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
+    var youtube_link = company.youtube_link
+    if (youtube_link != null && youtube_link != ""){
+      if (youtube_link.match(/\/\//)){
+        $(".media-youtube").parent().attr("href", company.youtube_link);
+      } else {
+        $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
+      }
     }
-    if (company.twitter_link && company.twitter_link.match(/\/\//)) {
-      $(".media-twitter").parent().attr("href", company.twitter_link);
-    }else{
-      $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
+    var twitter_link = company.twitter_link
+    if (twitter_link != null && twitter_link != ""){
+      if (twitter_link.match(/\/\//)){
+        $(".media-twitter").parent().attr("href", company.twitter_link);
+      } else {
+        $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
+      }
     }
-    if (company.facebook_link && company.facebook_link.match(/\/\//)) {
-      $(".media-facebook").parent().attr("href", company.facebook_link);
-    }else{
-      $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
+    var facebook_link = company.facebook_link
+    if (facebook_link != null && facebook_link != ""){
+      if (facebook_link.match(/\/\//)){
+        $(".media-facebook").parent().attr("href", company.facebook_link);
+      } else {
+        $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
+      }
     }
-    if (company.instagram_link && company.instagram_link.match(/\/\//)) {
-      $(".media-instagram").parent().attr("href", company.instagram_link);
-    }else{
-      $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+    var instagram_link = company.instagram_link
+    if (instagram_link != null && instagram_link != ""){
+      if (instagram_link.match(/\/\//)){
+        $(".media-instagram").parent().attr("href", company.instagram_link);
+      } else {
+        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+      }
     }
     $(".company-description").text(company.description);
 

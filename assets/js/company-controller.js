@@ -111,17 +111,17 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   $scope.editcompany = function(){
     console.log("company");
     console.log($scope.thisCompany);
-    $(".edit-company-name").val($(".company-name").text());
+    $(".edit-company-name").val($scope.thisCompany.name);
     $(".edit-company-location-address").val($scope.thisCompany.address);
     $(".edit-company-location-city").val($scope.thisCompany.city);
     $(".edit-company-location-state").prop("selectedIndex", 1);
     $(".edit-company-location-zip").val($scope.thisCompany.zip_code);
-    $(".edit-company-url").val($(".company-url").parent().attr("href"));
-    $(".edit-company-youtube").val($(".media-youtube").parent().attr("href"));
-    $(".edit-company-twitter").val($(".media-twitter").parent().attr("href"));
-    $(".edit-company-facebook").val($(".media-facebook").parent().attr("href"));
-    $(".edit-company-instagram").val($(".media-instagram").parent().attr("href"));
-    $(".edit-company-description").val($(".company-description").text());
+    $(".edit-company-url").val($scope.thisCompany.website_link);
+    $(".edit-company-youtube").val($scope.thisCompany.youtube_link);
+    $(".edit-company-twitter").val($scope.thisCompany.twitter_link);
+    $(".edit-company-facebook").val($scope.thisCompany.facebook_link);
+    $(".edit-company-instagram").val($scope.thisCompany.instagram_link);
+    $(".edit-company-description").val($scope.thisCompany.description);
   }
 
   // Set view variables to new edited variables.
@@ -287,26 +287,38 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
          };
 
         $.ajax(settings).done(function (data) {
-          console.log("Updated Company");
-          console.log(data);
+          if(data.success){
+            console.log(data);
+            $scope.thisCompany = data.company
+            localStorage.setItem('compID', data.company.id)
+            $scope.toggle('SHOW');
+            $window.location.reload();
+          }else{
+            var errorText = "";
+            for(var i = 0; i < data.errors.length; i++){
+              errorText += data.errors[i] + "\n";
+            }
+            alert(errorText);
+          }
         });//end ajax.
 
-        $(".company-name").text($(".edit-company-name").val());
-        $(".edit-company-name").val("");
-        $(".company-location").text($(".edit-company-location").val());
-        $(".edit-company-location").val("");
-        $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
-        $(".edit-company-url").val("");
-        $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
-        $(".edit-company-youtube").val("");
-        $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
-        $(".edit-company-twitter").val("");
-        $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
-        $(".edit-company-facebook").val("");
-        $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
-        $(".edit-company-instagram").val("");
-        $(".company-description").text($(".edit-company-description").val());
-        $(".edit-company-description").val("");
+        $scope.fillCompany($scope.thisCompany);
+        // $(".company-name").text($(".edit-company-name").val());
+        // $(".edit-company-name").val("");
+        // $(".company-location").text($(".edit-company-location").val());
+        // $(".edit-company-location").val("");
+        // $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
+        // $(".edit-company-url").val("");
+        // $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
+        // $(".edit-company-youtube").val("");
+        // $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
+        // $(".edit-company-twitter").val("");
+        // $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
+        // $(".edit-company-facebook").val("");
+        // $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
+        // $(".edit-company-instagram").val("");
+        // $(".company-description").text($(".edit-company-description").val());
+        // $(".edit-company-description").val("");
 
   }//End Save Company
 

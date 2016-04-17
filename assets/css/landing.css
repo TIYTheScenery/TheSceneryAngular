@@ -104,7 +104,8 @@ html {
 .landingFunctional {
   position: absolute;
   top: 200px;
-  overflow: hidden; }
+  overflow: hidden;
+  width: 100%; }
 
 .landing-header h1 {
   font-size: 80px;

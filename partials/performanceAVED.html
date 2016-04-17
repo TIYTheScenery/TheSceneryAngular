@@ -220,19 +220,20 @@
               {{show.begin_time}} on {{show.show_date}}, at {{show.address}} {{show.city}}, {{show.state}}.
               </div>
             </div>
-            <div class="event-adv">
+            <!-- hide casts for now since they aren't working -->
+            <!-- <div class="event-adv">
               <div class="cast-wrapper">
                 <label>Cast</label>
                 <ul class="event-cast" ng-repeat="cast in show.cast_members">
                   <li class="cast-member"> <!--ADD ng-repeat!!!-->
-                    {{cast.name}} as {{cast.role}}
+                    <!-- {{cast.name}} as {{cast.role}}
                   </li>
-                </ul>
-              </div>
+                </ul> -->
+              <!-- </div> -->
               <!-- <div class="google-map">
                 Google map here.
               </div> -->
-            </div>
+            </div> -->
           </div>
         </li><br><br>
       </ul><!-- end the ng-repeat in AVED-events-holder-->
@@ -273,13 +274,13 @@
       <div>
         Cast:
       </div>
-      <div class ="all-cast-members">
+      <!-- <div class ="all-cast-members">
         <div class="new-cast-member-wrapper" ng-repeat="cast in show.cast_members">
           <input class="new-cast-member-name" placeholder="Performer Name" value="{{cast.name}}">
           <span> As </span>
           <input class="new-cast-member-position" placeholder="Position/Title" value="{{cast.role}}">
         </div>
-      </div>
+      </div> -->
       <!-- <a href=""> -->
         <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
       <!-- </a> -->
@@ -343,16 +344,16 @@
             </select>
             <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
           </div>
-            <div>
+            <!-- <div>
               Cast:
-            </div>
-          <div class ="all-cast-members">
+            </div> -->
+          <!-- <div class ="all-cast-members">
             <div class="new-cast-member-wrapper">
               <input class="new-cast-member-name" placeholder="Performer Name">
               <span> As </span>
               <input class="new-cast-member-position" placeholder="Position/Title">
             </div>
-          </div>
+          </div> -->
           <a href="">
             <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i></span>
           </a>
@@ -377,7 +378,7 @@
                 <input type="checkbox" class="deleteCheck" id="delete-check"><i class="fa fa-trash" ></i>Delete This Showtime
               </span>
             </div>
-            <div>
+            <!-- <div>
               Cast:
             </div>
             <div class ="all-cast-members">
@@ -386,7 +387,7 @@
                 <span> As </span>
                 <input class="new-cast-member-position" placeholder="Position/Title">
               </div>
-            </div>
+            </div> -->
             <!-- <a href=""> -->
               <span class="add-performer">Add Performer <i class="fa fa-plus-circle"></i>
               </span>

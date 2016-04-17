@@ -20,21 +20,12 @@
   background: black;
   vertical-align: middle; }
 
-.btn {
-  display: inline-block;
-  padding: 10px 10px;
-  background: rgba(255, 255, 255, 0.5);
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 2px solid #812742;
-  border-radius: 3px;
-  vertical-align: bottom; }
-
 .modal-close-btn {
   float: right;
-  background: red !important;
-  background-image: linear-gradient(to bottom right, red, #c80000) !important; }
+  background: #812742 !important;
+  color: #ddd; }
   .modal-close-btn:hover {
-    background-image: linear-gradient(to bottom right, #c80000, red);
+    background: #952d4c !important;
     color: white; }
 
 a {
@@ -44,9 +35,17 @@ a {
 .login-btn,
 .sign-up-btn,
 .logout-btn {
+  font-size: 30px;
   float: right;
   margin-right: 15px;
-  margin-top: 70px; }
+  margin-top: 30px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  border: 3px solid #812742 !important;
+  color: #5a1b2e; }
+  .login-btn:hover,
+  .sign-up-btn:hover,
+  .logout-btn:hover {
+    background: rgba(230, 230, 230, 0.8) !important; }
 
 .header-user-wrapper {
   display: inline-block;
@@ -113,11 +112,6 @@ a {
   width: 50%;
   margin: auto;
   margin-top: 35px; }
-
-.modal-facebook-btn {
-  float: right;
-  background: blue;
-  color: white; }
 
 .modal-login-btn {
   display: block;

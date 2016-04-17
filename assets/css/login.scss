@@ -28,22 +28,24 @@ $inputPlaceholder: rgb(77, 11, 11);
   vertical-align: middle;
 }
 
-.btn{
-  display: inline-block;
-  padding: 10px 10px;
-  background: $inputBG;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 2px solid $inputBorder;
-  border-radius: 3px;
-  vertical-align:bottom;
-}
+// .btn{
+//   display: inline-block;
+//   padding: 10px 10px;
+//   background: $inputBG;
+//   background-image: linear-gradient(to bottom right, #ddd, #aaa);
+//   border: 2px solid $inputBorder;
+//   border-radius: 3px;
+//   vertical-align:bottom;
+// }
 
 .modal-close-btn{
   float: right;
-  background: red !important;
-  background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0)) !important;
+  background: $inputBorder !important;
+  color: #ddd;
+  // background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0)) !important;
   &:hover{
-    background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
+    background: lighten($inputBorder, 5%) !important;
+    // background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
     color: white;
   }
 }
@@ -56,10 +58,18 @@ a{
 .login-btn,
 .sign-up-btn,
 .logout-btn{
+  font-size: 30px;
   float: right;
   margin-right: 15px;
-  margin-top: 70px;
+  margin-top: 30px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  border: 3px solid $inputBorder !important;
+  // color: $inputColor;
+  color: darken($inputBorder, 10%);
   // vertical-align: bottom;
+  &:hover{
+    background: rgba(230, 230, 230, 0.8) !important;
+  }
 }
 
 .header-user-wrapper{
@@ -141,11 +151,11 @@ a{
   margin-top: 35px;
 }
 
-.modal-facebook-btn{
-  float: right;
-  background: blue;
-  color: white;
-}
+// .modal-facebook-btn{
+//   float: right;
+//   background: blue;
+//   color: white;
+// }
 
 .modal-login-btn{
   display: block;

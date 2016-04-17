@@ -1,8 +1,13 @@
 .header {
   background: #eee;
   padding: 10px;
-  border-bottom: 1px solid #59192d;
   height: 100px; }
+
+.tohome {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 40px;
+  margin-left: 25px; }
 
 .scenery-logo {
   display: inline-block;
@@ -15,8 +20,6 @@
 .header-user-portrait {
   float: right;
   display: inline-block;
-  width: 75px;
-  height: 75px;
   background: black;
   vertical-align: middle; }
 
@@ -32,33 +35,43 @@ a {
   text-decoration: none;
   color: black; }
 
+.header-user-greeting {
+  font-size: 30px; }
+
+.header-user-wrapper {
+  float: right;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 35px; }
+
+.noLogBtnBank,
+.subUserInfoHeader {
+  margin-left: 10px;
+  text-align: center;
+  float: right;
+  display: block; }
+
 .login-btn,
 .sign-up-btn,
-.logout-btn {
-  font-size: 30px;
-  float: right;
-  margin-right: 15px;
-  margin-top: 30px;
+.logout-btn,
+.header-user-profile {
+  font-size: 16px;
+  width: 125px;
+  margin-top: 5px;
   background: rgba(235, 235, 235, 0.8) !important;
   border: 3px solid #812742 !important;
   color: #5a1b2e; }
   .login-btn:hover,
   .sign-up-btn:hover,
-  .logout-btn:hover {
+  .logout-btn:hover,
+  .header-user-profile:hover {
     background: rgba(230, 230, 230, 0.8) !important; }
 
-.header-user-wrapper {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 35px; }
+.logout-btn {
+  background: rgba(255, 235, 235, 0.8) !important; }
 
-.header-user-greeting {
-  font-size: 18px;
-  padding-bottom: 5px; }
-
-.header-user-profile {
-  text-decoration: underline;
-  color: #666; }
+.logout-btn:hover {
+  background: #ff6464 !important; }
 
 .logged-header {
   display: none; }

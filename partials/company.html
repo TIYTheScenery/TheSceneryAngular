@@ -128,8 +128,8 @@
     </form>
   </span>
   <!-- Create company profile picture -->
-  <span class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture
-    <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+  <span class="company-profile-pic create-company-profile-pic" ng-show="create">
+    <form class="editformcolor" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
       <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
       <input type="hidden" name="acl" value="public-read">

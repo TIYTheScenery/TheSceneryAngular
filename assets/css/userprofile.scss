@@ -1,3 +1,8 @@
+$inputColor: rgb(235, 242, 162);
+$inputBG: rgba(255, 255, 255, .5);
+$inputBorder: rgb(129, 39, 66);
+$inputPlaceholder: rgb(77, 11, 11);
+
 .user-profile-header{
   text-align: center;
   font-size: 50px;
@@ -10,9 +15,12 @@
 .to-search-btn{
   position: absolute;
   font-size: 15px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  // background: #aaa;
+  // background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  background: rgba(235, 235, 235, 0.8);
+  color: $inputBorder;
   padding: 7px;
+  border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: -20px;
@@ -21,9 +29,12 @@
 .edit-profile-btn{
   position: absolute;
   font-size: 15px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  // background: #aaa;
+  // background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  background: rgba(235, 235, 235, 0.8);
+  color: $inputBorder;
   padding: 7px;
+  border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px;
@@ -83,6 +94,10 @@
 .display-user-titles{
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.display-user-creation-date{
+  margin-bottom: 15px;
 }
 
 .user-side-info-wrapper{

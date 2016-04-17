@@ -81,8 +81,8 @@
         <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
       </form></span>
     <!-- Display Company Hero Image -->
-    <img src="https://s3.amazonaws.com/thescenery/uploads/CompanyHero{{thisCompany.id}}" width="800" height="300" class="company-hero-image" ng-show="show">
     <div class="company-name-type-wrapper">
+      <img src="https://s3.amazonaws.com/thescenery/uploads/CompanyHero{{thisCompany.id}}" width="800" height="300" class="company-hero-image" ng-show="show">
       <!-- Display Company Name -->
       <div class="company-name" ng-show="show">Company Name</div>
       <!-- Edit Company Name -->
@@ -107,12 +107,12 @@
   </header>
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
-    <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
+    <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="500" height="500">
   </div>
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
     <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
-    <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+    <form class="moveform" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
       <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
       <input type="hidden" name="acl" value="public-read">
@@ -128,8 +128,8 @@
     </form>
   </span>
   <!-- Create company profile picture -->
-  <span class="company-profile-pic create-company-profile-pic" ng-show="create">Add Profile Picture
-    <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+  <span class="company-profile-pic create-company-profile-pic" ng-show="create">
+    <form class="editformcolor" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
       <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
       <input type="hidden" name="acl" value="public-read">
@@ -239,7 +239,7 @@
   <!-- Company Save Create Button -->
   <div class="company-create-btn-wrapper" ng-show="create">
     <a href="">
-      <div class="company-create-btn" ng-click="toggle('SHOW'); createcompany()">
+      <div class="company-create-btn" ng-click="createcompany()">
         Submit
       </div>
     </a>

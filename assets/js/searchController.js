@@ -16,6 +16,11 @@ $scope.message3 ="GO!"
 // ourData.shareData("userInfo","something else");
 // console.log(ourData.borrowData("userInfo"));
 
+//function for toggling advanced search
+$scope.toggleAdvanced = function()
+{
+  $scope.ADV = !$scope.ADV;
+}
 
 $scope.searchDB = function()
 {

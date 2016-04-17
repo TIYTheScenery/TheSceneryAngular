@@ -1,16 +1,23 @@
+$popCol1: rgb(89, 25, 45);
+
 .action-buttons{
+  background: #eee;
+  border-top: 1px solid $popCol1;
+  width: 80%;
+  margin: auto;
+  text-align: center;
   padding: 10px 0;
-  padding-left: 50px;
+  padding-left: 10px;
 }
 
 .action{
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 20px;
   vertical-align: top;
-  &:last-child{
-    float: right;
-    margin-right: 100px;
-  }
+  // &:last-child{
+  //   float: right;
+  //   margin-right: 100px;
+  // }
 }
 
 .company-btn{
@@ -32,6 +39,10 @@
   }
 }
 
+.company-wrapper{
+  background: #eee;
+}
+
 .company-header{
   border-bottom: #999;
   position: relative;
@@ -44,19 +55,24 @@
 }
 
 .company-name-type-wrapper{
-  position: absolute;
+  // position: absolute;
+  display: inline-block;
+  border-top: 3px solid $popCol1;
+  width: 100%;
+  height: 300px;
   text-align: center;
-  margin-top: -250px;
+  // margin-top: -300px;
   background: rgba(0,0,0,0.5);
-  border-radius: 10px;
-  margin-left: 33%;
-  padding: 10px;
+  // border-radius: 10px;
+  // margin-left: 33%;
+  // padding: 10px;
 }
 
 .company-name{
+  position: absolute;
+  margin-top:-250px;
   font-size: 60px;
   color: #eee;
-  margin-bottom: 15px;
 }
 
 .company-type{
@@ -242,9 +258,12 @@
 
 .edit-company-name,
 .create-company-name{
+  position: absolute;
+  margin-top: 200px;
+  display: inline-block;
   width: 300px;
   font-size: 16px;
-  margin-bottom: 10px;
+  // margin-left: 30%;
 }
 
 .edit-company-type,
@@ -329,21 +348,49 @@
 .create-company-hero-image{
   width: 100%;
   height: 300px;
-  // position: absolute;
-  margin: 40px 0 0 40px;
+  // margin-top:-200px;
+  position: absolute;
+  // margin: 40px 0 0 40px;
   background: #ccc;
   padding: 5px;
   border-radius: 5px;
 }
 
+// #filebtn2{
+//   background: rgba(0,0,0,0);
+//   color: white;
+//   font-family: impact, sans-serif;
+//   font-size: 20px;
+//   border: 2px solid white;
+//   height: 100%;
+//   width:300px;
+//   z-index:2;
+// }
+// #filebtn2:hover{
+//
+// }
+
+
 .company-profile-pic{
   position: absolute;
-  height: 175px;
-  width: 175px;
   background: #444;
   margin-top: -150px;
   margin-left: 175px;
   border-radius: 5px;
+  img{
+    width: 175px !important;
+    height: 175px !important;
+  }
+}
+
+.moveform{
+  margin-top: -105px;
+  color: white;
+}
+
+.editformcolor{
+  margin-top: 40px;
+  color: white;
 }
 
 .company-create-opportunity-modal-wrapper{

@@ -112,7 +112,7 @@
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
     <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
-    <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+    <form class="moveform" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
       <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
       <input type="hidden" name="acl" value="public-read">

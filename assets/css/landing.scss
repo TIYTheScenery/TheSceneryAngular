@@ -78,7 +78,7 @@ html{
   margin-top:30px;
   width: 100%;
   text-align: center;
-  padding-bottom: 25%;
+  // padding-bottom: 25%;
   input, select {
     font-size: 25px;
     margin-right: 20px;
@@ -86,13 +86,13 @@ html{
     border: 5px solid $inputBorder;
     padding: 20px 20px 20px 20px;
     background: $inputBG;
-    color: $inputColor;
+    color: $inputPlaceholder;
     outline: none;
     }
   }
 
   .landing-search-btn{
-    width: 10%;
+    width: 141px;
     height: 65px;
     display: inline-block;
     padding: 10px 10px;
@@ -108,24 +108,25 @@ html{
     box-sizing: border-box;
   }
   .landing-search-btn:hover{
-    width: 11%;
+    width: 150px;
     height: 70px;
   }
 .name-search{
   width: 70%;
 }
 .location-search{
-  width: 10%;
+  width: 140px;
+  height: 18px;
 }
 .genre-search{
-  width: 10%;
+  width: 140px;
   height: 70px;
 }
 .location-state-search{
-  height: 65px;
+  height: 70px;
 }
 #type-search{
-  height: 65px;
+  height: 70px;
 }
 
 .landingFunctional{

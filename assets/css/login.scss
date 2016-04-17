@@ -1,4 +1,8 @@
 $popCol1: rgb(89, 25, 45);
+$inputColor: rgb(235, 242, 162);
+$inputBG: rgba(255, 255, 255, .5);
+$inputBorder: rgb(129, 39, 66);
+$inputPlaceholder: rgb(77, 11, 11);
 
 .header{
   background: #eee;
@@ -27,9 +31,9 @@ $popCol1: rgb(89, 25, 45);
 .btn{
   display: inline-block;
   padding: 10px 10px;
-  background: #aaa;
+  background: $inputBG;
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
+  border: 2px solid $inputBorder;
   border-radius: 3px;
   vertical-align:bottom;
 }

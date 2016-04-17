@@ -1,16 +1,23 @@
+$popCol1: rgb(89, 25, 45);
+
 .action-buttons{
+  background: #eee;
+  border-top: 1px solid $popCol1;
+  width: 80%;
+  margin: auto;
+  text-align: center;
   padding: 10px 0;
-  padding-left: 50px;
+  padding-left: 10px;
 }
 
 .action{
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 20px;
   vertical-align: top;
-  &:last-child{
-    float: right;
-    margin-right: 100px;
-  }
+  // &:last-child{
+  //   float: right;
+  //   margin-right: 100px;
+  // }
 }
 
 .company-btn{
@@ -32,6 +39,10 @@
   }
 }
 
+.company-wrapper{
+  background: #eee;
+}
+
 .company-header{
   border-bottom: #999;
   position: relative;
@@ -46,7 +57,8 @@
 .company-name-type-wrapper{
   // position: absolute;
   display: inline-block;
-  width: 99%;
+  border-top: 3px solid $popCol1;
+  width: 100%;
   height: 300px;
   text-align: center;
   // margin-top: -300px;
@@ -361,8 +373,6 @@
 
 .company-profile-pic{
   position: absolute;
-  height: 175px;
-  width: 175px;
   background: #444;
   margin-top: -150px;
   margin-left: 175px;

@@ -1,14 +1,16 @@
 .action-buttons {
+  background: #eee;
+  border-top: 1px solid #59192d;
+  width: 80%;
+  margin: auto;
+  text-align: center;
   padding: 10px 0;
-  padding-left: 50px; }
+  padding-left: 10px; }
 
 .action {
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 20px;
   vertical-align: top; }
-  .action:last-child {
-    float: right;
-    margin-right: 100px; }
 
 .company-btn {
   padding: 5px 10px;
@@ -26,6 +28,9 @@
     background-image: linear-gradient(to bottom right, #c80000, red);
     color: #ccc; }
 
+.company-wrapper {
+  background: #eee; }
+
 .company-header {
   border-bottom: #999;
   position: relative; }
@@ -37,7 +42,8 @@
 
 .company-name-type-wrapper {
   display: inline-block;
-  width: 99%;
+  border-top: 3px solid #59192d;
+  width: 100%;
   height: 300px;
   text-align: center;
   background: rgba(0, 0, 0, 0.5); }
@@ -279,8 +285,6 @@
 
 .company-profile-pic {
   position: absolute;
-  height: 175px;
-  width: 175px;
   background: #444;
   margin-top: -150px;
   margin-left: 175px;

@@ -19,6 +19,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   $scope.show;
   $scope.create;
   $scope.edit;
+  $scope.comapny_website_link;
 
   $scope.companyCr = ourData.borrowData("companyCreate");
   if ($scope.companyCr === undefined)
@@ -480,6 +481,20 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $(".media-instagram").parent().attr("href", company.instagram_link);
       } else {
         $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+      }
+    }
+    if (instagram_link != null && instagram_link != ""){
+      if (instagram_link.match(/\/\//)){
+        $(".media-instagram").parent().attr("href", company.instagram_link);
+      } else {
+        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+      }
+    }
+    if (company.website_link != null && company.website_link != ""){
+      if (company.website_link.match(/\/\//) === true){
+        $scope.comapny_website_link = company.website_link
+      } else {
+        $scope.comapny_website_link = "//" + company.website_link
       }
     }
     $(".company-description").text(company.description);

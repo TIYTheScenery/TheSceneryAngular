@@ -542,6 +542,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     localStorage.setItem("perfID", performaceID);
   }
 
+  $scope.tocompanyreviewer = function(){
+    // console.log($(this)[0].review.user_id);
+    localStorage.setItem("profID", $(this)[0].review.user_id);
+  }
+
 
   console.log("$scope.show");
   console.log($scope.show);

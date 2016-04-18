@@ -201,7 +201,8 @@
 .user-review {
   background: #efefef;
   width: 100%;
-  margin: auto; }
+  margin: auto;
+  margin-bottom: 25px; }
 
 .review-target-company {
   text-align: center;

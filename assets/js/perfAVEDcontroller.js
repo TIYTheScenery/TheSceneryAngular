@@ -430,6 +430,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   }
 
+  $scope.toperformancereviewer = function(){
+    // console.log($(this)[0])
+    localStorage.setItem("profID", JSON.stringify($(this)[0].review.user_id));
+  }
+
   console.log("tView");
   console.log(ourData.borrowData("tView"));
 

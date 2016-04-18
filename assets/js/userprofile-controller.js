@@ -18,7 +18,7 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
-  // console.log($scope.viewuser);
+  console.log($scope.viewuser);
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
@@ -248,6 +248,21 @@ $scope.usercompany = function(){
       ourData.shareData("companyCreate", false);
     }
 
+  }
+
+  $scope.toreviewee = function(){
+    console.log($(this)[0]);
+
+    if ($(this)[0].review.reviewee_type === "Company"){
+      // console.log($(this)[0].review.reviewee_type);
+      localStorage.setItem("compID", JSON.stringify($(this)[0].review.reviewee_id));
+      // $window.location.href = "#/company";
+    }
+    if ($(this)[0].review.reviewee_type === "Performance"){
+      // console.log($(this)[0].review.reviewee_type);
+      localStorage.setItem("perfID", JSON.stringify($(this)[0].review.reviewee_id));
+      // $window.location.href = "#/performance";
+    }
   }
 
 

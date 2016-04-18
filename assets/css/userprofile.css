@@ -211,7 +211,8 @@
   background: #efefef;
   width: 100%;
   margin: auto;
-  border: 3px solid #812742; }
+  border: 3px solid #812742;
+  margin-bottom: 25px; }
 
 .review-target-company {
   text-align: center;

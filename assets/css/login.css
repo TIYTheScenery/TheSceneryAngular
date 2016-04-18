@@ -1,8 +1,8 @@
 html {
-  background: #eeeeee; }
+  background: #c7cacc; }
 
 .header {
-  background: #eee;
+  background: #c7cacc;
   padding: 10px;
   height: 100px; }
 
@@ -67,7 +67,6 @@ a {
   width: 125px;
   margin-top: 5px;
   background: rgba(235, 235, 235, 0.8) !important;
-  border: 3px solid #812742 !important;
   color: #5a1b2e; }
   .login-btn:hover,
   .sign-up-btn:hover,
@@ -99,8 +98,7 @@ a {
   height: 300px;
   margin: 200px auto 0 auto;
   padding: 40px;
-  border-radius: 5px;
-  border: 1px solid #bbb; }
+  border-radius: 5px; }
 
 .modal-welcome {
   font-size: 26px;

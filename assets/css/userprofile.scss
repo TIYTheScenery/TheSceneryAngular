@@ -1,3 +1,7 @@
+$bgColor: #c7cacc;
+$cardColor: #efefef;
+// $cardColor: darken(#fcf8f3, 5%);
+$lightBlueish: #92A7BF;
 $inputColor: rgb(235, 242, 162);
 $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
@@ -5,12 +9,11 @@ $inputPlaceholder: rgb(77, 11, 11);
 $popCol1: rgb(166, 16, 63);
 
 .user-profile-wrapper{
-  background: #eeeeee;
+  background: $bgColor;
 }
 
 .action-buttons{
-  background: #eee;
-  border-top: 1px solid $popCol1;
+  background: $bgColor;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -22,10 +25,6 @@ $popCol1: rgb(166, 16, 63);
   display: inline-block;
   margin-right: 20px;
   vertical-align: top;
-  // &:last-child{
-  //   float: right;
-  //   margin-right: 100px;
-  // }
 }
 
 .user-btn{
@@ -36,7 +35,7 @@ $popCol1: rgb(166, 16, 63);
   font-family: helvetica, sans-serif;
   // width: 125px;
   background: rgba(235, 235, 235, 0.8) !important;
-  border: 3px solid $popCol1 !important;
+  // border: 3px solid $popCol1 !important;
   color: darken($popCol1, 10%);
   &:hover{
     background: rgba(255, 255, 255, 1) !important;
@@ -46,8 +45,7 @@ $popCol1: rgb(166, 16, 63);
 .user-profile-header{
   text-align: center;
   font-size: 50px;
-  background: #ddd;
-  background-image: linear-gradient(to bottom right, #ccc, #ddd);
+  background: $lightBlueish;
   padding: 35px 0;
   margin-bottom: 45px;
 }
@@ -60,7 +58,7 @@ $popCol1: rgb(166, 16, 63);
   background: rgba(235, 235, 235, 0.8);
   color: $inputBorder;
   padding: 7px;
-  border: 2px solid $inputBorder;
+  // border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: -20px;
@@ -74,7 +72,7 @@ $popCol1: rgb(166, 16, 63);
   background: rgba(235, 235, 235, 0.8);
   color: $inputBorder;
   padding: 7px;
-  border: 2px solid $inputBorder;
+  // border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px;
@@ -120,9 +118,9 @@ $popCol1: rgb(166, 16, 63);
 //User Information container
 
 .profile-user-info-wrapper{
-  background: #efefef;
+  background: $cardColor;
   width: 100%;
-  border: 3px solid $inputBorder;
+  // border: 3px solid $inputBorder;
   padding: 10px;
   margin: 0 auto 25px auto;
 }
@@ -152,7 +150,7 @@ $popCol1: rgb(166, 16, 63);
   a div{
     font-size: 25px;
     display: inline-block;
-    border: 1px solid #999;
+    // border: 1px solid #999;
     border-radius: 50%;
     background: #333;
     color: white;
@@ -218,7 +216,7 @@ $popCol1: rgb(166, 16, 63);
   border-radius: 3px;
   width: 60px;
   margin: 20px auto 25px auto;
-  border: 5px solid $inputBorder;
+  // border: 5px solid $inputBorder;
   &:hover{
     background: rgba(230,230,230,0.8);
   }
@@ -241,7 +239,7 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .associated-company-name{
-  border: 3px solid $inputBorder;
+  // border: 3px solid $inputBorder;
   padding: 5px;
   margin-bottom: 25px;
   background: #efefef;
@@ -278,7 +276,7 @@ $popCol1: rgb(166, 16, 63);
   background: #efefef;
   width: 100%;
   margin: auto;
-  border: 3px solid $inputBorder;
+  // border: 3px solid $inputBorder;
 }
 
 .review-target-company{
@@ -307,115 +305,3 @@ $popCol1: rgb(166, 16, 63);
   padding: 10px;
   // border: 1px solid blue;
 }
-
-
-
-//
-// .user-side-info-wrapper{
-//   // border: 5px solid blue;
-//   width: 39%;
-//   display: inline-block;
-//   border: 1px solid #666;
-//   vertical-align: top;
-// }
-//
-// .user-social-links-wrapper{
-//   // border: 5px solid blue;
-//   text-align: center;
-//   width: 60%;
-//   margin: 20px auto 30px auto;
-//   font-size: 20px;
-//   a div{
-//     display: inline-block;
-//     border: 1px solid #999;
-//     border-radius: 50%;
-//     background: #333;
-//     color: white;
-//     margin: 0 5px;
-//   }
-// }
-//
-// .user-youtube-link{
-//   padding: 5px 7px;
-// }
-//
-// .user-twitter-link{
-//   padding: 5px 6px;
-// }
-//
-// .user-facebook-link{
-//   padding: 5px 10px;
-// }
-//
-// .user-instagram-link{
-//   padding: 5px 7px;
-// }
-//
-// .side-info-display-name{
-//   text-align: center;
-//   font-size: 22px;
-// }
-//
-// .side-info-user-description{
-//   font-size: 16px;
-//   padding: 15px;
-//   margin-top: 15px;
-// }
-//
-
-//
-// .user-name-title-spacer{
-//   padding: 0 0 0 20px;
-// }
-//
-// .edit-social-link{
-//   display: block;
-//   font-size: 15px;
-//   width: 100%;
-//   line-height: 1.2;
-//   margin-bottom: 5px;
-// }
-//
-// .edit-user-description{
-//   display: block;
-//   width: 90%;
-//   max-width: 90%;
-//   margin: auto;
-//   font-size: 15px;
-//   line-height: 1.2;
-//   height: 120px;
-//   max-height: 120px;
-//   margin-bottom: 15px;
-// }
-//
-// .edit-user-description-label{
-//   width: 90%;
-//   margin: auto;
-//   margin-bottom: 10px;
-//   margin-top: 15px;
-// }
-//
-// .submit-profile-edits-button{
-//   font-size: 15px;
-//   background: #888;
-//   background-image: linear-gradient(to bottom right, #ccc, #888);
-//   padding: 7px 0 7px 30px;
-//   border-radius: 3px;
-//   width: 60px;
-//   margin: 20px auto 25px auto;
-// }
-//
-// .associated-user-company{
-//   text-align: center;
-//   font-size: 18px;
-//   margin: 15px 0 25px 0;
-// }
-//
-// .associated-company-name{
-//   margin: 10px auto;
-//   padding: 5px 10px;
-//   background: #999;
-//   border-radius: 3px;
-//   width: 50%;
-//   font-weight: bold;
-// }

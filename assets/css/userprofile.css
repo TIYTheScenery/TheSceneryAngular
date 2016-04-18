@@ -1,9 +1,8 @@
 .user-profile-wrapper {
-  background: #eeeeee; }
+  background: #c7cacc; }
 
 .action-buttons {
-  background: #eee;
-  border-top: 1px solid #a6103f;
+  background: #c7cacc;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -22,7 +21,6 @@
   font-size: 16px;
   font-family: helvetica, sans-serif;
   background: rgba(235, 235, 235, 0.8) !important;
-  border: 3px solid #a6103f !important;
   color: #770c2d; }
   .user-btn:hover {
     background: white !important; }
@@ -30,8 +28,7 @@
 .user-profile-header {
   text-align: center;
   font-size: 50px;
-  background: #ddd;
-  background-image: linear-gradient(to bottom right, #ccc, #ddd);
+  background: #92A7BF;
   padding: 35px 0;
   margin-bottom: 45px; }
 
@@ -41,7 +38,6 @@
   background: rgba(235, 235, 235, 0.8);
   color: #812742;
   padding: 7px;
-  border: 2px solid #812742;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: -20px; }
@@ -52,7 +48,6 @@
   background: rgba(235, 235, 235, 0.8);
   color: #812742;
   padding: 7px;
-  border: 2px solid #812742;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px; }
@@ -88,7 +83,6 @@
 .profile-user-info-wrapper {
   background: #efefef;
   width: 100%;
-  border: 3px solid #812742;
   padding: 10px;
   margin: 0 auto 25px auto; }
 
@@ -111,7 +105,6 @@
   .user-social-links-wrapper a div {
     font-size: 25px;
     display: inline-block;
-    border: 1px solid #999;
     border-radius: 50%;
     background: #333;
     color: white;
@@ -163,8 +156,7 @@
   padding: 7px 0 7px 30px;
   border-radius: 3px;
   width: 60px;
-  margin: 20px auto 25px auto;
-  border: 5px solid #812742; }
+  margin: 20px auto 25px auto; }
   .submit-profile-edits-button:hover {
     background: rgba(230, 230, 230, 0.8); }
 
@@ -181,7 +173,6 @@
   margin-bottom: 25px; }
 
 .associated-company-name {
-  border: 3px solid #812742;
   padding: 5px;
   margin-bottom: 25px;
   background: #efefef; }
@@ -210,8 +201,7 @@
 .user-review {
   background: #efefef;
   width: 100%;
-  margin: auto;
-  border: 3px solid #812742; }
+  margin: auto; }
 
 .review-target-company {
   text-align: center;

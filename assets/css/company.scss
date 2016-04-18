@@ -1,11 +1,14 @@
 //dark maroon
 // $popCol1: rgb(89, 25, 45);
+$bgColor: #c7cacc;
+$cardColor: #efefef;
+$lightBlueish: #92A7BF;
+$burgundy: #69110a;
 
 $popCol1: rgb(166, 16, 63);
 
 .action-buttons{
-  background: #eee;
-  border-top: 1px solid $popCol1;
+  background: $bgColor;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -26,13 +29,13 @@ $popCol1: rgb(166, 16, 63);
 .submit-review-btn,
 .company-btn{
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 5px;
   vertical-align: top;
   font-size: 16px;
   font-family: helvetica, sans-serif;
   // width: 125px;
   background: rgba(235, 235, 235, 0.8) !important;
-  border: 3px solid $popCol1 !important;
+  // border: 3px solid $popCol1 !important;
   color: darken($popCol1, 10%);
   &:hover{
     background: rgba(255, 255, 255, 1) !important;
@@ -47,7 +50,7 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .company-wrapper{
-  background: #eee;
+  background: $bgColor;
 }
 
 .company-header{
@@ -56,15 +59,16 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .company-hero-image{
-  background: $popCol1;
+  background: $lightBlueish;
   -webkit-filter: blur(1px) saturate(50%);
   height: 350px;
   width: 100%;
 }
 
 .company-name-type-wrapper{
+  z-index:-1;
   display: inline-block;
-  border: 5px solid $popCol1;
+  // border: 5px solid $popCol1;
   width: 100%;
   height: 350px;
   text-align: center;
@@ -72,8 +76,10 @@ $popCol1: rgb(166, 16, 63);
   //this is for the major page headings.
   h1{
     font-size: 50px;
+    color: $burgundy;
     font-family: impact, sans-serif;
     text-align:center;
+    //burgundy in color
   }
   //h2 and 3 are used on sub headings, and sub-sub headings.
   h2{
@@ -81,12 +87,14 @@ $popCol1: rgb(166, 16, 63);
     font-family: helvetica, sans-serif;
     font-weight: 900;
     text-align:center;
+    //darker version of the background blue
   }
   h3{
     font-size: 30px;
     font-family: helvetica, sans-serif;
     font-weight: 600;
     text-align:center;
+    //black, but bigger than standard text.
   }
   //h4 is used primarily on performance names when listed on a company page.
   h4{
@@ -94,19 +102,13 @@ $popCol1: rgb(166, 16, 63);
     font-family: helvetica, sans-serif;
     font-weight: 900;
     text-align:center;
-    -webkit-text-stroke-width: 1px;
-     -webkit-text-stroke-color: white;
   }
 
 .company-name{
-  -webkit-text-stroke-width: 3px;
-   -webkit-text-stroke-color: black;
   position: absolute;
   margin-left: 5%;
   margin-top:-300px;
   width: 40%;
-  font-size: 60px;
-  color: white;
 }
 
 .company-type{
@@ -133,6 +135,7 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .company-description{
+  z-index: 5;
   color: white;
   font-size: 25px;
   background: rgba(0,0,0,.5);
@@ -163,7 +166,7 @@ $popCol1: rgb(166, 16, 63);
 
 .media{
   font-size: 25px;
-  border: 3px solid darken($popCol1, 15%);
+  // border: 3px solid darken($popCol1, 15%);
   border-radius: 50%;
   background: $popCol1;
   // margin-top: 15px;
@@ -229,7 +232,7 @@ $popCol1: rgb(166, 16, 63);
   width: 100%;
   margin: auto;
   margin-bottom: 15px;
-  border: 1px solid #999;
+  // border: 1px solid #999;
   padding: 10px;
   border-radius: 5px;
 }
@@ -238,7 +241,7 @@ $popCol1: rgb(166, 16, 63);
 .company-review-img{
   width: 95px;
   height: 95px;
-  border: 3px solid $popCol1;
+  // border: 3px solid $popCol1;
   display: inline-block;
   background: #444;
 }
@@ -267,7 +270,7 @@ $popCol1: rgb(166, 16, 63);
   background: #fefefe;
   width: 90%;
   margin: 20px auto;
-  border: 3px solid $popCol1;
+  // border: 3px solid $popCol1;
   padding: 10px;
 }
 
@@ -287,7 +290,7 @@ $popCol1: rgb(166, 16, 63);
 
 .company-review{
   border-radius: 5px;
-  border: 3px solid #999;
+  // border: 3px solid #999;
   background: #eeeeee;
   padding: 10px;
   margin-bottom: 15px;
@@ -313,7 +316,8 @@ $popCol1: rgb(166, 16, 63);
 .edit-company-name,
 .create-company-name{
   position: absolute;
-  margin-top: 200px;
+  margin-top: 50px;
+  margin-left: -45%;
   display: inline-block;
   width: 300px;
   font-size: 16px;
@@ -362,11 +366,13 @@ $popCol1: rgb(166, 16, 63);
 
 .edit-company-description,
 .create-company-description{
-  width: 100%;
-  max-width: 100%;
+  z-index: 5;
+  width: 45%;
+  max-width: 45%;
   height: 100px;
   max-height: 100px;
   font-size: 17px;
+  margin-left: 50%;
 }
 
 .edit-company-media,
@@ -392,20 +398,21 @@ $popCol1: rgb(166, 16, 63);
   padding: 5px 10px 5px 30px;
   background: #aaa;
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  // border: 1px solid #999;
+  border-radius: 5px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
 .edit-company-hero-image,
 .create-company-hero-image{
+  z-index: -1;
   width: 100%;
-  height: 300px;
+  height: 350px;
   // margin-top:-200px;
   position: absolute;
   // margin: 40px 0 0 40px;
-  background: #ccc;
+  // background: #red;
   padding: 5px;
   border-radius: 5px;
 }
@@ -430,7 +437,7 @@ $popCol1: rgb(166, 16, 63);
   background: #444;
   margin-top: -150px;
   margin-left: 175px;
-  border: 5px solid $popCol1;
+  // border: 5px solid $popCol1;
   border-radius: 5px;
 }
 
@@ -508,7 +515,7 @@ $popCol1: rgb(166, 16, 63);
   background: #aaa;
   background-image: linear-gradient(to bottom right, #999, #aaa);
   padding: 8px;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 16px;
   &:hover{
     background: #999;
@@ -522,7 +529,7 @@ $popCol1: rgb(166, 16, 63);
   padding: 8px;
   background: red;
   background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0));
-  border-radius: 3px;
+  border-radius: 5px;
   float: right;
   &:hover{
     background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);

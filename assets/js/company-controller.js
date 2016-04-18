@@ -20,6 +20,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   $scope.show;
   $scope.create;
   $scope.edit;
+  $scope.comapny_website_link;
 
   $scope.companyCr = ourData.borrowData("companyCreate");
   if ($scope.companyCr === undefined)
@@ -78,16 +79,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     console.log(data.data.company);
     $scope.fillCompany(data.data.company)
 
-    if($(".media-youtube").parent().attr("href") === "//"){
+    if($(".media-youtube").parent().attr("href") === ""){
       $(".media-youtube").css("display", "none");
     }
-    if($(".media-facebook").parent().attr("href") === "//"){
+    if($(".media-facebook").parent().attr("href") === ""){
       $(".media-facebook").css("display", "none");
     }
-    if($(".media-instagram").parent().attr("href") === "//"){
+    if($(".media-instagram").parent().attr("href") === ""){
       $(".media-instagram").css("display", "none");
     }
-    if($(".media-twitter").parent().attr("href") === "//"){
+    if($(".media-twitter").parent().attr("href") === ""){
       $(".media-twitter").css("display", "none");
     }
     // $scope.fillCompany($scope.thisCompany)
@@ -101,27 +102,33 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
   $scope.goMakeAPerformance = function(){
     //this sets the view going into the perfAVED page.
+    console.log("here in go make");
     ourData.shareData("tAdd", false);
     ourData.shareData("tView", true);
     ourData.shareData("tEdit", true);
+    console.log("ended in go make");
+    console.log(ourData.borrowData("tView"));
   }
 
 
   // Set edit variables to current variables
 
   $scope.editcompany = function(){
+
+    console.log("company");
     console.log($scope.thisCompany);
     $(".edit-company-name").val($scope.thisCompany.name);
     $(".edit-company-location-address").val($scope.thisCompany.address);
     $(".edit-company-location-city").val($scope.thisCompany.city);
     $(".edit-company-location-state").prop("selectedIndex", 1);
     $(".edit-company-location-zip").val($scope.thisCompany.zip_code);
-    $(".edit-company-url").val($(".company-url").parent().attr("href"));
-    $(".edit-company-youtube").val($(".media-youtube").parent().attr("href"));
-    $(".edit-company-twitter").val($(".media-twitter").parent().attr("href"));
-    $(".edit-company-facebook").val($(".media-facebook").parent().attr("href"));
-    $(".edit-company-instagram").val($(".media-instagram").parent().attr("href"));
-    $(".edit-company-description").val($(".company-description").text());
+
+    $(".edit-company-url").val($scope.thisCompany.website_link);
+    $(".edit-company-youtube").val($scope.thisCompany.youtube_link);
+    $(".edit-company-twitter").val($scope.thisCompany.twitter_link);
+    $(".edit-company-facebook").val($scope.thisCompany.facebook_link);
+    $(".edit-company-instagram").val($scope.thisCompany.instagram_link);
+    $(".edit-company-description").val($scope.thisCompany.description);
   }
 
   // Set view variables to new edited variables.
@@ -287,27 +294,21 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
          };
 
         $.ajax(settings).done(function (data) {
-          console.log("Updated Company");
-          console.log(data);
+          if(data.success){
+            $scope.thisCompany = data.company
+            localStorage.setItem('compID', data.company.id)
+            $scope.toggle('SHOW');
+            $window.location.reload();
+          }else{
+            var errorText = "";
+            for(var i = 0; i < data.errors.length; i++){
+              errorText += data.errors[i] + "\n";
+            }
+            alert(errorText);
+          }
         });//end ajax.
 
-        $(".company-name").text($(".edit-company-name").val());
-        $(".edit-company-name").val("");
-        $(".company-location").text($(".edit-company-location").val());
-        $(".edit-company-location").val("");
-        $(".company-url").parent().attr("href", ($(".edit-company-url").val()));
-        $(".edit-company-url").val("");
-        $(".media-youtube").parent().attr("href", $(".edit-company-youtube").val());
-        $(".edit-company-youtube").val("");
-        $(".media-twitter").parent().attr("href", $(".edit-company-twitter").val());
-        $(".edit-company-twitter").val("");
-        $(".media-facebook").parent().attr("href", $(".edit-company-facebook").val());
-        $(".edit-company-facebook").val("");
-        $(".media-instagram").parent().attr("href", $(".edit-company-instagram").val());
-        $(".edit-company-instagram").val("");
-        $(".company-description").text($(".edit-company-description").val());
-        $(".edit-company-description").val("");
-
+        $scope.fillCompany($scope.thisCompany);
   }//End Save Company
 
   $scope.saveopportunity = function(){
@@ -343,7 +344,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     $.ajax(settings).done(function (data) {
       console.log("Opportunity");
       console.log(data);
-      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+      if(data.success){
+        $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+        $window.location.reload();
+      }else{
+        var errorText = "";
+        for(var i = 0; i < data.errors.length; i++){
+          errorText += data.errors[i] + "\n";
+        }
+        alert(errorText);
+      }
     });
   }
 
@@ -388,16 +398,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
        console.log(response);
        $window.location.href = "#/userprofile";
       });
-
-      // console.log(user_info);
-      // $http.delete('https://api.the-scenery.com/companies/'+compID, user_info).then(function(data){
-      //   console.log("performance DELETED!");
-      //   console.log(data);
-        // $window.location.href = "#/userprofile";
-      // },function(data){
-      //   console.log("performance delete failed...");
-      //   console.log(data);
-      // });//end http call.
 
     }//end confirm.
 
@@ -457,25 +457,51 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   $scope.fillCompany = function(company){
     $(".company-name").text(company.name);
     $(".company-location").text(company.address + " " + company.city + ", " + company.state + " " + company.zip_code);
-    if (company.youtube_link && company.youtube_link.match(/\/\//)) {
-      $(".media-youtube").parent().attr("href", company.youtube_link);
-    }else{
-      $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
+    var youtube_link = company.youtube_link
+    if (youtube_link != null && youtube_link != ""){
+      if (youtube_link.match(/\/\//)){
+        $(".media-youtube").parent().attr("href", company.youtube_link);
+      } else {
+        $(".media-youtube").parent().attr("href", "//" + company.youtube_link);
+      }
     }
-    if (company.twitter_link && company.twitter_link.match(/\/\//)) {
-      $(".media-twitter").parent().attr("href", company.twitter_link);
-    }else{
-      $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
+    var twitter_link = company.twitter_link
+    if (twitter_link != null && twitter_link != ""){
+      if (twitter_link.match(/\/\//)){
+        $(".media-twitter").parent().attr("href", company.twitter_link);
+      } else {
+        $(".media-twitter").parent().attr("href", "//" + company.twitter_link);
+      }
     }
-    if (company.facebook_link && company.facebook_link.match(/\/\//)) {
-      $(".media-facebook").parent().attr("href", company.facebook_link);
-    }else{
-      $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
+    var facebook_link = company.facebook_link
+    if (facebook_link != null && facebook_link != ""){
+      if (facebook_link.match(/\/\//)){
+        $(".media-facebook").parent().attr("href", company.facebook_link);
+      } else {
+        $(".media-facebook").parent().attr("href", "//" + company.facebook_link);
+      }
     }
-    if (company.instagram_link && company.instagram_link.match(/\/\//)) {
-      $(".media-instagram").parent().attr("href", company.instagram_link);
-    }else{
-      $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+    var instagram_link = company.instagram_link
+    if (instagram_link != null && instagram_link != ""){
+      if (instagram_link.match(/\/\//)){
+        $(".media-instagram").parent().attr("href", company.instagram_link);
+      } else {
+        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+      }
+    }
+    if (instagram_link != null && instagram_link != ""){
+      if (instagram_link.match(/\/\//)){
+        $(".media-instagram").parent().attr("href", company.instagram_link);
+      } else {
+        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
+      }
+    }
+    if (company.website_link != null && company.website_link != ""){
+      if (company.website_link.match(/\/\//) === true){
+        $scope.comapny_website_link = company.website_link
+      } else {
+        $scope.comapny_website_link = "//" + company.website_link
+      }
     }
     $(".company-description").text(company.description);
 

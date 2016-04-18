@@ -78,16 +78,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     console.log(data.data.company);
     $scope.fillCompany(data.data.company)
 
-    if($(".media-youtube").parent().attr("href") === "//"){
+    if($(".media-youtube").parent().attr("href") === ""){
       $(".media-youtube").css("display", "none");
     }
-    if($(".media-facebook").parent().attr("href") === "//"){
+    if($(".media-facebook").parent().attr("href") === ""){
       $(".media-facebook").css("display", "none");
     }
-    if($(".media-instagram").parent().attr("href") === "//"){
+    if($(".media-instagram").parent().attr("href") === ""){
       $(".media-instagram").css("display", "none");
     }
-    if($(".media-twitter").parent().attr("href") === "//"){
+    if($(".media-twitter").parent().attr("href") === ""){
       $(".media-twitter").css("display", "none");
     }
     // $scope.fillCompany($scope.thisCompany)
@@ -101,9 +101,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
   $scope.goMakeAPerformance = function(){
     //this sets the view going into the perfAVED page.
+    console.log("here in go make");
     ourData.shareData("tAdd", false);
     ourData.shareData("tView", true);
     ourData.shareData("tEdit", true);
+    console.log("ended in go make");
+    console.log(ourData.borrowData("tView"));
   }
 
 

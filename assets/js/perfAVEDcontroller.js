@@ -424,6 +424,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   }
 
+  console.log("tView");
+  console.log(ourData.borrowData("tView"));
+
   // });//end jquery function
 
 });

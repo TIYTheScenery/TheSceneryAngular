@@ -1,3 +1,7 @@
+$bgColor: #c7cacc;
+$cardColor: #efefef;
+// $cardColor: darken(#fcf8f3, 5%);
+$lightBlueish: #92A7BF;
 $inputColor: rgb(235, 242, 162);
 $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
@@ -5,12 +9,11 @@ $inputPlaceholder: rgb(77, 11, 11);
 $popCol1: rgb(166, 16, 63);
 
 .user-profile-wrapper{
-  background: #eeeeee;
+  background: $bgColor;
 }
 
 .action-buttons{
-  background: #eee;
-  border-top: 1px solid $popCol1;
+  background: $bgColor;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -22,10 +25,6 @@ $popCol1: rgb(166, 16, 63);
   display: inline-block;
   margin-right: 20px;
   vertical-align: top;
-  // &:last-child{
-  //   float: right;
-  //   margin-right: 100px;
-  // }
 }
 
 .user-btn{
@@ -36,7 +35,7 @@ $popCol1: rgb(166, 16, 63);
   font-family: helvetica, sans-serif;
   // width: 125px;
   background: rgba(235, 235, 235, 0.8) !important;
-  border: 3px solid $popCol1 !important;
+  // border: 3px solid $popCol1 !important;
   color: darken($popCol1, 10%);
   &:hover{
     background: rgba(255, 255, 255, 1) !important;
@@ -46,8 +45,7 @@ $popCol1: rgb(166, 16, 63);
 .user-profile-header{
   text-align: center;
   font-size: 50px;
-  background: #ddd;
-  background-image: linear-gradient(to bottom right, #ccc, #ddd);
+  background: $lightBlueish;
   padding: 35px 0;
   margin-bottom: 45px;
 }
@@ -60,7 +58,7 @@ $popCol1: rgb(166, 16, 63);
   background: rgba(235, 235, 235, 0.8);
   color: $inputBorder;
   padding: 7px;
-  border: 2px solid $inputBorder;
+  // border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: -20px;
@@ -74,7 +72,7 @@ $popCol1: rgb(166, 16, 63);
   background: rgba(235, 235, 235, 0.8);
   color: $inputBorder;
   padding: 7px;
-  border: 2px solid $inputBorder;
+  // border: 2px solid $inputBorder;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px;
@@ -120,9 +118,9 @@ $popCol1: rgb(166, 16, 63);
 //User Information container
 
 .profile-user-info-wrapper{
-  background: #efefef;
+  background: $cardColor;
   width: 100%;
-  border: 3px solid $inputBorder;
+  // border: 3px solid $inputBorder;
   padding: 10px;
   margin: 0 auto 25px auto;
 }
@@ -152,7 +150,7 @@ $popCol1: rgb(166, 16, 63);
   a div{
     font-size: 25px;
     display: inline-block;
-    border: 1px solid #999;
+    // border: 1px solid #999;
     border-radius: 50%;
     background: #333;
     color: white;
@@ -218,7 +216,7 @@ $popCol1: rgb(166, 16, 63);
   border-radius: 3px;
   width: 60px;
   margin: 20px auto 25px auto;
-  border: 5px solid $inputBorder;
+  // border: 5px solid $inputBorder;
   &:hover{
     background: rgba(230,230,230,0.8);
   }
@@ -241,7 +239,7 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .associated-company-name{
-  border: 3px solid $inputBorder;
+  // border: 3px solid $inputBorder;
   padding: 5px;
   margin-bottom: 25px;
   background: #efefef;
@@ -278,8 +276,8 @@ $popCol1: rgb(166, 16, 63);
   background: #efefef;
   width: 100%;
   margin: auto;
-  border: 3px solid $inputBorder;
   margin-bottom: 25px;
+
 }
 
 .review-target-company{

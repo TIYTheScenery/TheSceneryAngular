@@ -82,7 +82,7 @@
       </form></span>
     <!-- Display Company Hero Image -->
     <div class="company-name-type-wrapper">
-      <img src="https://s3.amazonaws.com/thescenery/uploads/CompanyHero{{thisCompany.id}}" width="800" height="300" class="company-hero-image" ng-show="show">
+      <img src="{{thisCompany.hero_image_url}}" width="800" height="300" class="company-hero-image" ng-show="show">
       <!-- Display Company Name -->
       <h1><div class="company-name" ng-show="show"></div></h1>
       <!-- Edit Company Name -->
@@ -102,11 +102,11 @@
   </header>
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
-    <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="250" height="250">
+    <img src="{{thisCompany.profile_image_url}}" width="250" height="250">
   </div>
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-    <img src="https://s3.amazonaws.com/thescenery/uploads/Company{{thisCompany.id}}" width="200" height="200">
+    <img src="{{thisCompany.profile_image_url}}" width="200" height="200">
     <form class="moveform" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
       <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">

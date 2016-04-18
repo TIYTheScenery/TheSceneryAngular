@@ -1,34 +1,56 @@
+$popCol1: rgb(89, 25, 45);
+$inputColor: rgb(235, 242, 162);
+$inputBG: rgba(255, 255, 255, .5);
+$inputBorder: rgb(129, 39, 66);
+$inputPlaceholder: rgb(77, 11, 11);
+
 .header{
   background: #eee;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  // border-bottom: 1px solid $popCol1;
+  height:100px
 }
 
-.scenery-logo,
-.header-user-portrait{
+.tohome{
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  vertical-align: middle;
+  font-size: 40px;
+  margin-left: 25px;
+}
+
+.scenery-logo{
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  background: black;
+  vertical-align: middle;
+  border-radius: 80px;
+}
+.header-user-portrait{
+  float:right;
+  display: inline-block;
   background: black;
   vertical-align: middle;
 }
 
-.btn{
-  display: inline-block;
-  padding: 10px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
-  vertical-align:middle;
-}
+// .btn{
+//   display: inline-block;
+//   padding: 10px 10px;
+//   background: $inputBG;
+//   background-image: linear-gradient(to bottom right, #ddd, #aaa);
+//   border: 2px solid $inputBorder;
+//   border-radius: 3px;
+//   vertical-align:bottom;
+// }
 
 .modal-close-btn{
   float: right;
-  background: red !important;
-  background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0)) !important;
+  background: $inputBorder !important;
+  color: #ddd;
+  // background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0)) !important;
   &:hover{
-    background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
+    background: lighten($inputBorder, 5%) !important;
+    // background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
     color: white;
   }
 }
@@ -38,27 +60,46 @@ a{
   color: black;
 }
 
-.login-btn,
-.sign-up-btn,
-.logout-btn{
-  float: right;
-  margin-right: 25px;
+.header-user-greeting{
+  font-size: 30px;
 }
 
 .header-user-wrapper{
+  float: right;
   display: inline-block;
   vertical-align: middle;
-  margin-left: 35px;
+  margin-right: 35px;
 }
 
-.header-user-greeting{
-  font-size: 18px;
-  padding-bottom: 5px;
+.noLogBtnBank,
+.subUserInfoHeader{
+  margin-left: 10px;
+  text-align: center;
+  float:right;
+  display: block;
 }
 
+
+
+.login-btn,
+.sign-up-btn,
+.logout-btn,
 .header-user-profile{
-  text-decoration: underline;
-  color: #666;
+  font-size: 16px;
+  width: 125px;
+  margin-top: 5px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  border: 3px solid $inputBorder !important;
+  color: darken($inputBorder, 10%);
+  &:hover{
+    background: rgba(230, 230, 230, 0.8) !important;
+  }
+}
+.logout-btn{
+  background: rgba(255, 235, 235, 0.8) !important;
+}
+.logout-btn:hover{
+  background: rgba(255, 100,100, 1) !important;
 }
 
 .logged-header{
@@ -124,11 +165,11 @@ a{
   margin-top: 35px;
 }
 
-.modal-facebook-btn{
-  float: right;
-  background: blue;
-  color: white;
-}
+// .modal-facebook-btn{
+//   float: right;
+//   background: blue;
+//   color: white;
+// }
 
 .modal-login-btn{
   display: block;

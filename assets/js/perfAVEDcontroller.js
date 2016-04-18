@@ -1,4 +1,6 @@
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+  $scope.showTimeDates
+
   $scope.isLogged = function()
   {
     var data = JSON.parse(localStorage.getItem('user'));
@@ -120,24 +122,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       } else {
         showTemplate._destroy= false;
       }
-      showTemplate.begin_time = $(this).find("#showtime-time").val();
+      showTemplate.begin_time = "7:00 PM";
       showTemplate.address = $(this).find("#showtime-address").val();
       showTemplate.city = $(this).find('#showtime-city').val();
       showTemplate.state = $(this).find('#showtime-state').val();
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showDate = $(this).find('#showtime-date').val();
-
-      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
-      {//MM/DD/YYYY
-        var dateArray = showDate.split('/');
-        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
-      }
-      else if (showDate != "")
-      {
-        alert("please enter all show dates in this format: MM/DD/YYYY");
-        dateBreak = true;
-      }
-      showTemplate.show_date = showDate;
+      showTemplate.show_date = $(this).find('#showtime-date-time').val();;
       allShowsJSON.push(showTemplate);
     });
 

@@ -1,4 +1,4 @@
-var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute','satellizer']);
+var TheSceneryapp = angular.module('TheSceneryapp', ['ngRoute','satellizer', 'angularjs-datetime-picker']);
 
 TheSceneryapp.service("ourData", function(){
   var userInfo="I GOT IT!";

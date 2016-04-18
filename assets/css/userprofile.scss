@@ -2,6 +2,46 @@ $inputColor: rgb(235, 242, 162);
 $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
 $inputPlaceholder: rgb(77, 11, 11);
+$popCol1: rgb(166, 16, 63);
+
+.user-profile-wrapper{
+  background: #eeeeee;
+}
+
+.action-buttons{
+  background: #eee;
+  border-top: 1px solid $popCol1;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.action{
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+  // &:last-child{
+  //   float: right;
+  //   margin-right: 100px;
+  // }
+}
+
+.user-btn{
+  padding: 5px 10px;
+  border-radius: 3px;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  // width: 125px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  border: 3px solid $popCol1 !important;
+  color: darken($popCol1, 10%);
+  &:hover{
+    background: rgba(255, 255, 255, 1) !important;
+  }
+}
 
 .user-profile-header{
   text-align: center;

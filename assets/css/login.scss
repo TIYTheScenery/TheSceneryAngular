@@ -4,6 +4,10 @@ $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
 $inputPlaceholder: rgb(77, 11, 11);
 
+html{
+  background: #eeeeee;
+}
+
 .header{
   background: #eee;
   padding: 10px;
@@ -16,6 +20,10 @@ $inputPlaceholder: rgb(77, 11, 11);
   vertical-align: middle;
   font-size: 40px;
   margin-left: 25px;
+  font-family: impact, sans-serif;
+  color: $inputColor;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 .scenery-logo{
@@ -85,6 +93,7 @@ a{
 .sign-up-btn,
 .logout-btn,
 .header-user-profile{
+  font-family: helvetica, sans-serif;
   font-size: 16px;
   width: 125px;
   margin-top: 5px;
@@ -92,7 +101,7 @@ a{
   border: 3px solid $inputBorder !important;
   color: darken($inputBorder, 10%);
   &:hover{
-    background: rgba(230, 230, 230, 0.8) !important;
+    background: rgba(255, 255, 255, 1) !important;
   }
 }
 .logout-btn{

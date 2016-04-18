@@ -172,7 +172,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
           ourData.shareData("tView", true);
           $window.location.reload();
         }else{
-          var errorText = "";
+          var errorText = " ";
           for(var i = 0; i < data.data.errors.length; i++){
             errorText += data.data.errors[i] + "\n";
           }

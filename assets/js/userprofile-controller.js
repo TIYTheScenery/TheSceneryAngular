@@ -254,12 +254,12 @@ $scope.usercompany = function(){
     console.log($(this)[0]);
 
     if ($(this)[0].review.reviewee_type === "Company"){
-      console.log($(this)[0].review.reviewee_type);
+      // console.log($(this)[0].review.reviewee_type);
       localStorage.setItem("compID", JSON.stringify($(this)[0].review.reviewee_id));
       // $window.location.href = "#/company";
     }
     if ($(this)[0].review.reviewee_type === "Performance"){
-      console.log($(this)[0].review.reviewee_type);
+      // console.log($(this)[0].review.reviewee_type);
       localStorage.setItem("perfID", JSON.stringify($(this)[0].review.reviewee_id));
       // $window.location.href = "#/performance";
     }

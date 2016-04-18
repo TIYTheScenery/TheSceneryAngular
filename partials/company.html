@@ -279,13 +279,13 @@
         <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
       </div>
 
-      <div class="company-review" ng-repeat= "review in thisCompany.reviews">
+      <div class="company-review" ng-repeat= "review in thisCompany.reviews" ng-click="tocompanyreviewer()">
         <div class="company-review-wrapper">
           <span>
             <div class="company-review-img"><img src="{{review.user_image}}" width="95" height="95"></div>
           </span>
           <span class="company-rnd-wrap">
-            On <span class="compReviewDate">{{review.created_at}}</span>, <span class="compReviewerName">{{review.display_name}}</span> wrote:
+            On <span class="compReviewDate">{{review.created_at}}</span>, <a href="#/userprofile"><span class="compReviewerName">{{review.display_name}}</span></a> wrote:
             <div class="company-review-text">{{review.opinion}}</div>
           </span>
         </div>

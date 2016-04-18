@@ -68,9 +68,8 @@
   margin: auto; }
 
 .user-main-info-wrapper {
-  width: 57%;
+  width: 100%;
   display: inline-block;
-  border: 1px solid #666;
   margin-right: 2%; }
 
 .user-image-wrapper {

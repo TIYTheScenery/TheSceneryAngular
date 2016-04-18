@@ -66,6 +66,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     console.log($(this)[0].id);
     localStorage.setItem("perfID", $(this)[0].id);
     localStorage.setItem("compID", $scope.thisCompany.id);
+    ourData.shareData("tAdd", true);
+    ourData.shareData("tEdit", true);
+    ourData.shareData("tView", false);
+    location.href = "/#/performance";
   });
 
   $http.get('https://api.the-scenery.com/companies/' + compID).then(function(data){
@@ -508,11 +512,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     // console.log(company.opportunities);
 
     for (var i=0; i<company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<a href='#/performance' ng-click='setPerformance(" + company.upcoming_performances[i].id + ")'><div class='company-performance' id='" + company.upcoming_performances[i].id + "'><div class='company-performance-box'><img src='"+ company.upcoming_performances[i].hero_image_url+"' class='performance-image'><div class='company-box-performance-name'><h4>" + company.upcoming_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div></a>");
+      $(".insert-upcoming-performance").append("<div class='company-performance' id='" + company.upcoming_performances[i].id + "'><div class='company-performance-box'><img src='"+ company.upcoming_performances[i].hero_image_url+"' class='performance-image'><div class='company-box-performance-name'><h4>" + company.upcoming_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.past_performances.length; i++){
-      $(".insert-past-performance").append("<a href='#/performance' ng-click='setPerformance(" + company.past_performances[i].id + ")'><div class='company-performance' id='" + company.past_performances[i].id + "''><div class='company-performance-box'><img src='"+ company.past_performances[i].hero_image_url+"' class='performance-image'><div class='company-box-performance-name'><h4>" + company.past_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
+      $(".insert-past-performance").append("<div class='company-performance' id='" + company.past_performances[i].id + "''><div class='company-performance-box'><img src='"+ company.past_performances[i].hero_image_url+"' class='performance-image'><div class='company-box-performance-name'><h4>" + company.past_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.opportunities.length; i++){

@@ -132,7 +132,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
         var dateArray = showDate.split('/');
         showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
       }
-      else
+      else if (showDate != "")
       {
         alert("please enter all show dates in this format: MM/DD/YYYY");
         dateBreak = true;
@@ -181,9 +181,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
         if(data.success){
           $scope.thisPerformance = data.performance
           localStorage.setItem('perfID', data.performance.id)
-          ourData.shareData("tAdd", false);
-          ourData.shareData("tEdit", false);
-          ourData.shareData("tView", true);
+          ourData.shareData("tAdd", true);
+          ourData.shareData("tEdit", true);
+          ourData.shareData("tView", false);
           $window.location.reload();
         }else{
 
@@ -229,7 +229,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
         var dateArray = showDate.split('/');
         showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
       }
-      else
+      else if (showDate != "")
       {
         alert("please enter all show dates in this format: MM/DD/YYYY");
         dateBreak = true;
@@ -270,9 +270,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       if(data.data.success){
         $scope.thisPerformance = data.data.performance;
         localStorage.setItem('perfID', $scope.thisPerformance .id);
-        ourData.shareData("tAdd", false);
-        ourData.shareData("tEdit", false);
-        ourData.shareData("tView", true);
+        ourData.shareData("tAdd", true);
+        ourData.shareData("tEdit", true);
+        ourData.shareData("tView", false);
         $window.location.reload();
       } else {
         // $scope.toggle("EDIT");

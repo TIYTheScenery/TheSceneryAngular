@@ -213,7 +213,8 @@ h4 {
   width: 90%;
   margin: 20px auto;
   border: 3px solid #a6103f;
-  padding: 10px; }
+  padding: 10px;
+  cursor: pointer;}
 
 .past-performances-label {
   margin: 0 auto; }

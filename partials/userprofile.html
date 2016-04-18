@@ -32,8 +32,9 @@
 
   <header class="user-profile-header">
     <div class="user-header-txt-wrapper">
-      
-      <img src = "{{viewuser.image_url}}" width="200" height="200">
+    
+      <img src = "{{viewuser.image_url}}" width="500" height="500">
+
       <label class="user-header-displayname"></label>
       <label class="user-header-professional"></label>
     </div>
@@ -129,13 +130,15 @@
 
       <div class="user-review-wrapper" ng-hide="show">
         <label class="user-review-label">Reviews:</label>
-        <div class="user-review" ng-repeat="review in viewuser.reviews">
-          <!-- <div class="review-target-company">
-            {{review.name}}
-          </div>
+        <div class="user-review" ng-repeat="review in viewuser.reviews" id="{{review.reviewee_type}}-{{review.reviewee_id}}">
+          <a href="#/{{review.reviewee_type.toLowerCase()}}">
+            <div class="review-target-company" ng-click="toreviewee()">
+              {{review.reviewee_name}}
+            </div>
+          </a>
           <div class="review-time-placed">
             {{review.created_at}}
-          </div> -->
+          </div>
           <div class="review-text">
             {{review.opinion}}
           </div>

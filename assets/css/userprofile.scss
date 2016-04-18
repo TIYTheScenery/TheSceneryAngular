@@ -46,8 +46,8 @@ $popCol1: rgb(166, 16, 63);
 .user-profile-header{
   text-align: center;
   font-size: 50px;
-  background: #888;
-  background-image: linear-gradient(to bottom right, #888, #aaa);
+  background: #ddd;
+  background-image: linear-gradient(to bottom right, #ccc, #ddd);
   padding: 35px 0;
   margin-bottom: 45px;
 }
@@ -101,66 +101,63 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .user-image-wrapper{
-  width: 130px;
-  height: 130px;
   display: inline-block;
-  background: #444;
-  margin-right: -4px;
-}
-.add-user-image-wrapper{
-  width: 130px;
-  height: 130px;
-  display: inline-block;
-  margin-right: -4px;
   vertical-align: top;
-  text-align: center;
-  div{
-    margin-top: 50px;
-  }
+  width: 200px;
+  height: 200px;
+  background: #444;
+  color: white;
+  font-size: 16px;
 }
 
-.user-name-title-wrapper{
-  width: 60%;
-  display: inline-block;
-  vertical-align: top;
-  padding-top: 15px;
+//Begin styling for main section
+
+.profile-container{
+  width: 80%;
+  margin: auto;
+}
+
+//User Information container
+
+.profile-user-info-wrapper{
+  background: #efefef;
+  width: 100%;
+  border: 3px solid $inputBorder;
+  padding: 10px;
+  margin: 0 auto 25px auto;
 }
 
 .display-user-name{
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
 .display-user-titles{
-  font-size: 18px;
+  font-size: 21px;
   margin-bottom: 20px;
 }
 
-.display-user-creation-date{
-  margin-bottom: 15px;
+.profile-user-info-name-title-date{
+  display: inline-block;
+  width: 49%;
+  // border: 1px solid purple;
 }
 
-.user-side-info-wrapper{
-  // border: 5px solid blue;
-  width: 39%;
-  display: inline-block;
-  border: 1px solid #666;
-  vertical-align: top;
-}
+//Social
 
 .user-social-links-wrapper{
-  // border: 5px solid blue;
-  text-align: center;
-  width: 60%;
-  margin: 20px auto 30px auto;
-  font-size: 20px;
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
   a div{
+    font-size: 25px;
     display: inline-block;
     border: 1px solid #999;
     border-radius: 50%;
     background: #333;
     color: white;
     margin: 0 5px;
+    margin-right: 15%;
   }
 }
 
@@ -180,16 +177,12 @@ $popCol1: rgb(166, 16, 63);
   padding: 5px 7px;
 }
 
-.side-info-display-name{
-  text-align: center;
-  font-size: 22px;
+.side-info-user-description{
+  font-size: 18px;
+  margin-top: 45px;
 }
 
-.side-info-user-description{
-  font-size: 16px;
-  padding: 15px;
-  margin-top: 15px;
-}
+//Edit user information container
 
 .user-profile-input{
   display: block;
@@ -198,58 +191,231 @@ $popCol1: rgb(166, 16, 63);
   margin-bottom: 20px;
 }
 
-.user-name-title-spacer{
-  padding: 0 0 0 20px;
-}
-
 .edit-social-link{
   display: block;
   font-size: 15px;
-  width: 100%;
+  width: 50%;
   line-height: 1.2;
   margin-bottom: 5px;
 }
 
-.edit-user-description{
-  display: block;
-  width: 90%;
-  max-width: 90%;
-  margin: auto;
-  font-size: 15px;
-  line-height: 1.2;
-  height: 120px;
-  max-height: 120px;
-  margin-bottom: 15px;
+.edit-user-description-label{
+  margin: 15px 0;
 }
 
-.edit-user-description-label{
-  width: 90%;
-  margin: auto;
-  margin-bottom: 10px;
-  margin-top: 15px;
+.edit-user-description{
+  width: 100%;
+  height: 120px;
+  font-size: 16px;
+  max-height: 120px;
+  max-width: 100%;
 }
 
 .submit-profile-edits-button{
   font-size: 15px;
-  background: #888;
-  background-image: linear-gradient(to bottom right, #ccc, #888);
+  background: rgba(240,240,240,0.8);
   padding: 7px 0 7px 30px;
   border-radius: 3px;
   width: 60px;
   margin: 20px auto 25px auto;
+  border: 5px solid $inputBorder;
+  &:hover{
+    background: rgba(230,230,230,0.8);
+  }
 }
 
-.associated-user-company{
+//Start user-company styles
+
+.user-company-wrapper{
+  width: 49%;
+  display: inline-block;
+  margin-right: 1%;
+}
+
+.user-company-label,
+.user-review-label{
+  display: block;
+  font-size: 20px;
   text-align: center;
-  font-size: 18px;
-  margin: 15px 0 25px 0;
+  margin-bottom: 25px;
 }
 
 .associated-company-name{
-  margin: 10px auto;
-  padding: 5px 10px;
-  background: #999;
-  border-radius: 3px;
-  width: 50%;
-  font-weight: bold;
+  border: 3px solid $inputBorder;
+  padding: 5px;
+  margin-bottom: 25px;
+  background: #efefef;
 }
+
+.user-company-image-wrapper{
+  width: 50px;
+  height: 50px;
+  background: #666;
+  display: inline-block;
+}
+
+.user-company-image{
+  width: 50px;
+  height: 50px;
+}
+
+.user-company-name{
+  font-size: 25px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 0 0 25px;
+}
+
+//Start User reviews
+
+.user-review-wrapper{
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.user-review{
+  background: #efefef;
+  width: 100%;
+  margin: auto;
+  border: 3px solid $inputBorder;
+}
+
+.review-target-company{
+  text-align: center;
+  font-size: 22px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.review-time-placed{
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.review-text{
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+//container for reviews and companies
+
+.company-and-reviews-container{
+  width: 100%;
+  padding: 10px;
+  // border: 1px solid blue;
+}
+
+
+
+//
+// .user-side-info-wrapper{
+//   // border: 5px solid blue;
+//   width: 39%;
+//   display: inline-block;
+//   border: 1px solid #666;
+//   vertical-align: top;
+// }
+//
+// .user-social-links-wrapper{
+//   // border: 5px solid blue;
+//   text-align: center;
+//   width: 60%;
+//   margin: 20px auto 30px auto;
+//   font-size: 20px;
+//   a div{
+//     display: inline-block;
+//     border: 1px solid #999;
+//     border-radius: 50%;
+//     background: #333;
+//     color: white;
+//     margin: 0 5px;
+//   }
+// }
+//
+// .user-youtube-link{
+//   padding: 5px 7px;
+// }
+//
+// .user-twitter-link{
+//   padding: 5px 6px;
+// }
+//
+// .user-facebook-link{
+//   padding: 5px 10px;
+// }
+//
+// .user-instagram-link{
+//   padding: 5px 7px;
+// }
+//
+// .side-info-display-name{
+//   text-align: center;
+//   font-size: 22px;
+// }
+//
+// .side-info-user-description{
+//   font-size: 16px;
+//   padding: 15px;
+//   margin-top: 15px;
+// }
+//
+
+//
+// .user-name-title-spacer{
+//   padding: 0 0 0 20px;
+// }
+//
+// .edit-social-link{
+//   display: block;
+//   font-size: 15px;
+//   width: 100%;
+//   line-height: 1.2;
+//   margin-bottom: 5px;
+// }
+//
+// .edit-user-description{
+//   display: block;
+//   width: 90%;
+//   max-width: 90%;
+//   margin: auto;
+//   font-size: 15px;
+//   line-height: 1.2;
+//   height: 120px;
+//   max-height: 120px;
+//   margin-bottom: 15px;
+// }
+//
+// .edit-user-description-label{
+//   width: 90%;
+//   margin: auto;
+//   margin-bottom: 10px;
+//   margin-top: 15px;
+// }
+//
+// .submit-profile-edits-button{
+//   font-size: 15px;
+//   background: #888;
+//   background-image: linear-gradient(to bottom right, #ccc, #888);
+//   padding: 7px 0 7px 30px;
+//   border-radius: 3px;
+//   width: 60px;
+//   margin: 20px auto 25px auto;
+// }
+//
+// .associated-user-company{
+//   text-align: center;
+//   font-size: 18px;
+//   margin: 15px 0 25px 0;
+// }
+//
+// .associated-company-name{
+//   margin: 10px auto;
+//   padding: 5px 10px;
+//   background: #999;
+//   border-radius: 3px;
+//   width: 50%;
+//   font-weight: bold;
+// }

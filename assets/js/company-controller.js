@@ -110,11 +110,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   // Set edit variables to current variables
 
   $scope.editcompany = function(){
-    $(".edit-company-name").val($(".company-name").text());
-    $(".edit-company-location-address").val($(".company-location").text().split(" ")[0]);
-    $(".edit-company-location-city").val($(".company-location").text().split(" ")[1].substring(0, $(".company-location").text().split(" ")[1].length - 1));
+    console.log($scope.thisCompany);
+    $(".edit-company-name").val($scope.thisCompany.name);
+    $(".edit-company-location-address").val($scope.thisCompany.address);
+    $(".edit-company-location-city").val($scope.thisCompany.city);
     $(".edit-company-location-state").prop("selectedIndex", 1);
-    $(".edit-company-location-zip").val($(".company-location").text().split(" ")[3]);
+    $(".edit-company-location-zip").val($scope.thisCompany.zip_code);
     $(".edit-company-url").val($(".company-url").parent().attr("href"));
     $(".edit-company-youtube").val($(".media-youtube").parent().attr("href"));
     $(".edit-company-twitter").val($(".media-twitter").parent().attr("href"));

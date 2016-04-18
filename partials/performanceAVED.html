@@ -303,11 +303,11 @@
           <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
         </div>
         <ul class="AVED-reviews-holder">
-          <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews">
+          <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
             <div class="review-wrapper">
               <div class="review-img"><img src=""></div>
               <div class="rnd-wrap">
-                <div class="review-name">{{review.display_name}}</div>
+                <a href="#/userprofile"><div class="review-name">{{review.display_name}}</div></a>
                 <div class="review-date">{{review.created_at}}</div>
               </div>
               <div class="review-text">{{review.opinion}}</div>

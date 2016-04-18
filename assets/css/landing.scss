@@ -1,8 +1,11 @@
-$inputColor: rgb(235, 242, 162);
-$inputBG: rgba(255, 255, 255, .5);
+$inputColor: #92A7BF;
+$lightBlueish: #92A7BF;
+$cardColor: #efefef;
+//rgb(235, 242, 162);
+$inputBG: rgba(245, 245, 245, .95);
 $inputBorder: rgb(129, 39, 66);
 $inputPlaceholder: rgb(77, 11, 11);
-$bgColor: #ddd;
+$bgColor: #e6d6da;
 $footerBG: rgb(159, 127, 73);
 
 //this is all here to make the placeholder text a different color.
@@ -83,7 +86,7 @@ html{
     font-size: 25px;
     margin-right: 20px;
     border-radius: 3px;
-    border: 5px solid $inputBorder;
+    // border: 5px solid $inputBorder;
     padding: 20px 20px 20px 20px;
     background: $inputBG;
     color: $inputPlaceholder;
@@ -96,20 +99,20 @@ html{
     height: 65px;
     display: inline-block;
     padding: 10px 10px;
-    border: 5px solid $inputBorder;
-    background: rgba(255, 255, 255, .5);
+    // border: 5px solid $inputBorder;
+    background: $inputBG;
     color: $inputColor;
     font-size: 40px;
+    // text-align:center;
     vertical-align: middle;
     // background-image: linear-gradient(to bottom right, #ddd, #aaa);
     //border: 1px solid #999;
     border-radius: 3px;
-    margin-left: 2%;
+    // margin-left: 2%;
     box-sizing: border-box;
   }
   .landing-search-btn:hover{
-    width: 150px;
-    height: 70px;
+
   }
 .name-search{
   width: 70%;
@@ -189,7 +192,7 @@ html{
   width: 100%;
   margin-bottom: 20px;
   padding: 5px;
-  background: darken($bgColor, 10%);
+  background: rgba(255,255,255,0);
   text-align: center;
 }
 
@@ -200,7 +203,7 @@ html{
 .performance-box{
   width: 250px;
   height: 250px;
-  background: $bgColor;
+  background: #913D39;
   padding: 10px;
   margin: 10px;
   border-radius: 2px;

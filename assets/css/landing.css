@@ -13,7 +13,7 @@ input:-ms-input-placeholder {
   color: #4d0b0b; }
 
 .landing-wrapper {
-  background: #ddd;
+  background: #e6d6da;
   z-index: -5;
   color: #ddd; }
 
@@ -24,7 +24,7 @@ input:-ms-input-placeholder {
   vertical-align: middle; }
 
 html {
-  background: #ddd; }
+  background: #e6d6da; }
 
 .landingColMid {
   font-size: 30px;
@@ -60,9 +60,8 @@ html {
     font-size: 25px;
     margin-right: 20px;
     border-radius: 3px;
-    border: 5px solid #812742;
     padding: 20px 20px 20px 20px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(245, 245, 245, 0.95);
     color: #4d0b0b;
     outline: none; }
 
@@ -71,18 +70,12 @@ html {
   height: 65px;
   display: inline-block;
   padding: 10px 10px;
-  border: 5px solid #812742;
-  background: rgba(255, 255, 255, 0.5);
-  color: #ebf2a2;
+  background: rgba(245, 245, 245, 0.95);
+  color: #92A7BF;
   font-size: 40px;
   vertical-align: middle;
   border-radius: 3px;
-  margin-left: 2%;
   box-sizing: border-box; }
-
-.landing-search-btn:hover {
-  width: 150px;
-  height: 70px; }
 
 .name-search {
   width: 70%; }
@@ -112,7 +105,7 @@ html {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  color: #ebf2a2; }
+  color: #92A7BF; }
 .landing-header h5 {
   font-size: 30px;
   text-align: center;
@@ -131,7 +124,7 @@ html {
   width: 100%;
   margin-bottom: 20px;
   padding: 5px;
-  background: #c4c4c4;
+  background: rgba(255, 255, 255, 0);
   text-align: center; }
 
 .hidden {
@@ -140,7 +133,7 @@ html {
 .performance-box {
   width: 250px;
   height: 250px;
-  background: #ddd;
+  background: #913D39;
   padding: 10px;
   margin: 10px;
   border-radius: 2px;
@@ -154,7 +147,7 @@ html {
 
 .box-performance-name {
   margin-top: 10px;
-  color: #ebf2a2; }
+  color: #92A7BF; }
 
 li {
   display: inline-block;

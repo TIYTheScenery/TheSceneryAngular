@@ -111,6 +111,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var ownerID = $scope.currentUser.user_info.id;
 
     var allShowsJSON=[];
+    var dateBreak = false;
     var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
     $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
       if($(this).find(".deleteCheck").is(':checked') === true)
@@ -124,10 +125,23 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       showTemplate.city = $(this).find('#showtime-city').val();
       showTemplate.state = $(this).find('#showtime-state').val();
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showTemplate.show_date = $(this).find('#showtime-date').val();
+      showDate = $(this).find('#showtime-date').val();
+
+      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
+      {//MM/DD/YYYY
+        var dateArray = showDate.split('/');
+        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
+      }
+      else
+      {
+        alert("please enter all show dates in this format: MM/DD/YYYY");
+        dateBreak = true;
+      }
+      showTemplate.show_date = showDate;
       allShowsJSON.push(showTemplate);
     });
 
+    if(dateBreak){return;}
     var performance = JSON.stringify({
     "performance": {
       "owner_id": ownerID,
@@ -172,9 +186,15 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
           ourData.shareData("tView", true);
           $window.location.reload();
         }else{
+
+          // var errorText = " ";
+          // for(var i = 0; i < data.data.errors.length; i++){
+          //   errorText += data.data.errors[i] + "\n";
+
           var errorText = "";
-          for(var i = 0; i < data.data.errors.length; i++){
-            errorText += data.data.errors[i] + "\n";
+          for(var i = 0; i < data.errors.length; i++){
+            errorText += data.errors[i] + "\n";
+
           }
           alert(errorText);
         }
@@ -204,7 +224,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
       showDate = $(this).find('#showtime-date').val();
 
-      if(showDate.match(/^\d{2}\/\d{2}\/\d{4}$/))
+      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
       {//MM/DD/YYYY
         var dateArray = showDate.split('/');
         showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
@@ -409,6 +429,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       });//end ajax.
 
   }
+
+  $scope.toperformancereviewer = function(){
+    // console.log($(this)[0])
+    localStorage.setItem("profID", JSON.stringify($(this)[0].review.user_id));
+  }
+
+  console.log("tView");
+  console.log(ourData.borrowData("tView"));
 
   // });//end jquery function
 

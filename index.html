@@ -40,6 +40,11 @@
     <script src="assets/js/userprofile-controller.js"></script>
     <script src="assets/js/company-controller.js"></script>
     <link href ="assets/css/preformanceAVED.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+    
   </head>
 
   <body ng-app="TheSceneryapp" ng-cloak>
@@ -47,22 +52,30 @@
     <div ng-controller="login-cont">
 
       <header class="header no-log-header">
-        <!-- {{message2}} -->
-        <a href =""><div class="scenery-logo"></div></a>
-        <a href=""><div class="btn login-btn">Log In</div></a>
-        <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
+        <a href ="#/"><div class="scenery-logo"></div></a>
+        <a href = "#/"><div class="tohome">The Scenery</div></a>
+        <div class="noLogBtnBank">
+          <a href=""><div class="btn login-btn">Log In</div></a><br>
+          <a href=""><div class="btn sign-up-btn">Sign Up</div></a>
+        </div>
       </header>
 
       <header class="header logged-header">
-
-        <a href ="#/userprofile"><img src="{{gUserInfo.user_info.image_url}}" width="75" height="75"></a>
+        <a href ="#/"><div class="scenery-logo"></div></a>
+        <a href = "#/"><div class="tohome">The Scenery</div></a>
 
         <div class="header-user-wrapper">
-          <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
-          <a href="#/userprofile" ng-click="viewprofile()"><div class="header-user-profile">My Profile</div></a>
+          <a href ="#/userprofile" ng-click="viewprofile()"><img src="{{gUserInfo.user_info.image_url}}" width="95" height="95"></a>
+          <span class="subUserInfoHeader">
+
+              <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
+              <a href="#/userprofile" ng-click="viewprofile()"><div class="btn header-user-profile">My Profile</div></a><br>
+              <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
+            </ul>
+          </span>
         </div>
 
-        <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
+
       </header>
 
       <div class="modal-wrapper" id="log-in-modal" style="z-index: 1;">

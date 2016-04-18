@@ -1,95 +1,130 @@
 .action-buttons {
+  background: #c7cacc;
+  width: 80%;
+  margin: auto;
+  text-align: center;
   padding: 10px 0;
-  padding-left: 50px; }
+  padding-left: 10px; }
 
 .action {
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 20px;
   vertical-align: top; }
-  .action:last-child {
-    float: right;
-    margin-right: 100px; }
 
+.submit-review-btn,
 .company-btn {
   padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
-  vertical-align: top; }
+  border-radius: 5px;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  background: rgba(235, 235, 235, 0.8) !important;
+  color: #770c2d; }
+  .submit-review-btn:hover,
+  .company-btn:hover {
+    background: white !important; }
 
 .delete-company-btn {
-  background: red;
-  background-image: linear-gradient(to bottom right, red, #c80000);
-  font-weight: bold; }
+  background: rgba(255, 235, 235, 0.8) !important; }
   .delete-company-btn:hover {
-    background-image: linear-gradient(to bottom right, #c80000, red);
-    color: #ccc; }
+    background: #ff6464 !important; }
+
+.company-wrapper {
+  background: #c7cacc; }
 
 .company-header {
   border-bottom: #999;
   position: relative; }
 
 .company-hero-image {
-  background: #666;
+  background: #92A7BF;
+  -webkit-filter: blur(1px) saturate(50%);
   height: 350px;
   width: 100%; }
 
 .company-name-type-wrapper {
+  z-index: -1;
   display: inline-block;
-  width: 99%;
-  height: 300px;
+  width: 100%;
+  height: 350px;
+  text-align: center; }
+
+h1 {
+  font-size: 50px;
+  color: #991010;
+  font-family: impact, sans-serif;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); }
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: bold; }
+
+h2 {
+  font-size: 40px;
+  font-family: helvetica, sans-serif;
+  font-weight: 900;
+  text-align: center; }
+
+h3 {
+  font-size: 30px;
+  font-family: helvetica, sans-serif;
+  font-weight: 600;
+  text-align: center; }
+
+h4 {
+  font-size: 30px;
+  font-family: helvetica, sans-serif;
+  font-weight: 900;
+  text-align: center; }
 
 .company-name {
   position: absolute;
-  margin-top: -250px;
-  font-size: 60px;
-  color: #eee; }
+  margin-left: 5%;
+  margin-top: -300px;
+  width: 40%; }
 
 .company-type {
   font-size: 30px;
-  color: #eee;
   margin-top: 15px; }
 
 .company-location {
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
-  margin: 27px 0 10px 0; }
+  display: inline-block; }
 
 .company-details-wrapper {
-  width: 90%;
-  margin: 20px auto; }
+  position: relative;
+  text-align: center;
+  margin-top: 20px; }
 
 .company-description {
-  background: #ccc;
+  z-index: 5;
+  color: white;
+  font-size: 25px;
+  background: rgba(0, 0, 0, 0.5);
+  margin-left: 50%;
+  position: absolute;
+  margin-top: -300px;
+  width: 40%;
   border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 25px; }
+  padding: 10px; }
 
-.company-social div {
-  display: inline-block; }
+.company-social {
+  bottom: 17px; }
+  .company-social div {
+    display: inline-block; }
 
 .company-website {
   padding-left: 10px;
-  width: 50%;
+  width: 100px;
   overflow: hidden; }
 
-.company-url {
-  padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
-  font-size: 18px; }
+.mediaWrapper {
+  margin-top: 300px; }
 
 .media {
   font-size: 25px;
-  border: 1px solid #bbb;
   border-radius: 50%;
-  background: #999;
-  margin-right: 30px;
+  background: #a6103f;
+  margin-right: 5px;
   margin-left: 15px; }
 
 .media-youtube {
@@ -105,23 +140,30 @@
   padding: 5px 7px; }
 
 .O-p-R-wrapper {
-  width: 90%;
-  margin: 40px auto; }
+  width: 80%;
+  margin: 100px auto; }
 
-.opportunities-wrapper,
+.opportunities-wrapper {
+  display: inline-block;
+  width: 100%;
+  margin-right: -4px;
+  vertical-align: top; }
+
 .company-performances-wrapper,
 .company-reviews-holder {
   display: inline-block;
-  width: 33%;
+  width: 50%;
   margin-right: -4px;
   vertical-align: top; }
+
+.performance-image {
+  -webkit-filter: blur(2px) saturate(30%);
+  overflow: hidden; }
 
 .opportunities-label,
 .company-performances-label,
 .company-reviews-label {
-  font-size: 25px;
-  width: 150px;
-  margin: 10px auto 20px auto;
+  text-align: center;
   border-radius: 5px; }
 
 .company-performances-label {
@@ -129,17 +171,16 @@
 
 .company-opportunity {
   background: #bbb;
-  width: 90%;
+  width: 100%;
   margin: auto;
   margin-bottom: 15px;
-  border: 1px solid #999;
   padding: 10px;
   border-radius: 5px; }
 
 .company-opportunity-poster-image-wrapper,
 .company-review-img {
-  width: 130px;
-  height: 130px;
+  width: 95px;
+  height: 95px;
   display: inline-block;
   background: #444; }
 
@@ -161,18 +202,17 @@
 
 .company-performance {
   border-radius: 5px;
-  background: #bbb;
+  background: #fefefe;
   width: 90%;
-  margin: 15px auto;
-  border: 1px solid #999;
-  padding: 45px 10px 45px 10px; }
+  margin: 20px auto;
+  padding: 10px; }
 
 .past-performances-label {
   margin: 0 auto; }
 
 .company-performance-box {
   font-size: 20px;
-  width: 200px;
+  text-align: center;
   margin: auto; }
 
 .company-box-performance-name {
@@ -180,10 +220,16 @@
 
 .company-review {
   border-radius: 5px;
-  border: 1px solid #999;
-  background: #bbb;
+  background: #eeeeee;
   padding: 10px;
   margin-bottom: 15px; }
+
+.compReviewDate {
+  font-size: 20px; }
+
+.compReviewerName {
+  font-size: 25px;
+  color: #a6103f; }
 
 .company-new-review {
   font-size: 16px;
@@ -196,7 +242,8 @@
 .edit-company-name,
 .create-company-name {
   position: absolute;
-  margin-top: 200px;
+  margin-top: 50px;
+  margin-left: -45%;
   display: inline-block;
   width: 300px;
   font-size: 16px; }
@@ -206,8 +253,7 @@
   font-size: 16px; }
 
 .company-location-input-wrapper {
-  width: 70%;
-  margin: 45px auto 15px auto; }
+  width: 70%; }
 
 .edit-company-location-address,
 .create-company-location-address {
@@ -236,11 +282,13 @@
 
 .edit-company-description,
 .create-company-description {
-  width: 100%;
-  max-width: 100%;
+  z-index: 5;
+  width: 45%;
+  max-width: 45%;
   height: 100px;
   max-height: 100px;
-  font-size: 17px; }
+  font-size: 17px;
+  margin-left: 50%; }
 
 .edit-company-media,
 .create-company-media {
@@ -263,34 +311,32 @@
   padding: 5px 10px 5px 30px;
   background: #aaa;
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-top: 30px;
   margin-bottom: 30px; }
 
 .edit-company-hero-image,
 .create-company-hero-image {
+  z-index: -1;
   width: 100%;
-  height: 300px;
+  height: 350px;
   position: absolute;
-  background: #ccc;
   padding: 5px;
   border-radius: 5px; }
 
 .company-profile-pic {
   position: absolute;
-  height: 175px;
-  width: 175px;
   background: #444;
   margin-top: -150px;
   margin-left: 175px;
   border-radius: 5px; }
-  .company-profile-pic img {
-    width: 175px !important;
-    height: 175px !important; }
 
 .moveform {
   margin-top: -105px;
+  color: white; }
+
+.editformcolor {
+  margin-top: 40px;
   color: white; }
 
 .company-create-opportunity-modal-wrapper {
@@ -349,7 +395,7 @@
   background: #aaa;
   background-image: linear-gradient(to bottom right, #999, #aaa);
   padding: 8px;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 16px; }
   .opportunity-save-btn:hover {
     background: #999;
@@ -361,7 +407,7 @@
   padding: 8px;
   background: red;
   background-image: linear-gradient(to bottom right, red, #c80000);
-  border-radius: 3px;
+  border-radius: 5px;
   float: right; }
   .opportunity-cancel-btn:hover {
     background-image: linear-gradient(to bottom right, #c80000, red);

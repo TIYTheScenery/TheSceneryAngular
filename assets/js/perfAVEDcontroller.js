@@ -112,8 +112,8 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     var allShowsJSON=[];
     var dateBreak = false;
-    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
     $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
+      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
       if($(this).find(".deleteCheck").is(':checked') === true)
       {
         showTemplate._destroy= true;

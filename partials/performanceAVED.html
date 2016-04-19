@@ -139,15 +139,12 @@
 
 <!--BEGINS VIEWING SHOWTIMES-------------------------------------------------->
     <div class="evt-times" ng-hide="tView">
-      <label class="AVED-label">Event Times</label>
+      <label class="AVED-label-event">Event Times</label>
 
       <ul class="AVED-events-holder" ng-repeat="show in thisPerformance.show_times">
         <li class="AVED-event">
           <div class="event-wrapper">
             <div class="drop-down-wrapper">
-              <div class="drop-down-icon">
-                <i class="fa fa-arrow-right"></i>
-              </div>
               <div class="event-info">
               {{show.show_date}}, at {{show.address}} {{show.city}}, {{show.state}}.
               </div>
@@ -161,9 +158,6 @@
                     {{cast.name}} as {{cast.role}}
                   </li>
                 </ul>
-              </div>
-              <div class="google-map">
-                Google map here.
               </div>
             </div>
           </div>
@@ -181,7 +175,7 @@
     </label>
     <a href="">
       <span class="create-new-showtime">
-        New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(2)"></i></a>
+        New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(2)" style="padding-left: 10px;"></i></a>
       </span>
     </a>
   </div>
@@ -190,18 +184,19 @@
     <div class="EDIT-showtime-info-wrapper" ng-repeat="show in thisPerformance.show_times">
       <div class="date-time-location-wrapper-EDIT">
         <input type="hidden" id="showtime-id" value="{{show.id}}">
-        <input class="showtime-date-time" init-edit="show" type="text" value="{{show.show_date}}">
+        <label>Date: </label><input class="showtime-date-time" init-edit="show" type="text" value="{{show.show_date}}">
         <!-- <input class="EDIT-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time" value="{{show.show_date | date : fullDate}}"> -->
-        <input class="EDIT-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
-        <input class="EDIT-showtime-city-input" id="showtime-city" placeholder="City" value="{{show.city}}">
+        <label>Address: </label><input class="EDIT-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
+        <label>City: </label><input class="EDIT-showtime-city-input" id="showtime-city" placeholder="City" value="{{show.city}}"><br>
+        <label>State: </label>
         <select class="EDIT-showtime-state-input" id="showtime-state">
           <option value="">Pick A State</option>
           <option value="NC" selected="selected">NC</option>
-        </select>
-        <input class="EDIT-showtime-zip-input" id="showtime-zip" placeholder="Zip Code" value="{{show.zip_code}}">
-        <span style="color: red;" class="removeShowtime">
+        </select><br>
+        <label>Zip Code: </label><input class="EDIT-showtime-zip-input" id="showtime-zip" placeholder="Zip Code" value="{{show.zip_code}}">
+        <div style="color: red;" class="removeShowtime">
           <input type="checkbox" class="deleteCheck" id="delete-check" value="true"><i class="fa fa-trash"></i>Delete This Showtime
-        </span>
+        </div>
       </div>
       <!-- <div>
         Cast:
@@ -227,12 +222,15 @@
 
 <!--BEGIN VIEWING REVIEWS-->
     <div class="reviews" ng-hide="tView">
-      <label class="AVED-label">Reviews</label>
+      <label class="AVED-label-reviews">Reviews</label>
       <div class="AVED-review-wrapper">
-        <div class="AVED-new-review">
-          <div class="review-img"><img src=""></div>
-          <textarea class="new-review" id = "new-review"></textarea>
-          <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
+        <div class="AVED-new-review-border" ng-show="newreview">
+          <div class="AVED-new-review">
+            <div class="review-img"><img src=""></div>
+            <textarea class="new-review" id = "new-review"></textarea>
+            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+          </div>
         </div>
         <ul class="AVED-reviews-holder">
           <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
@@ -257,24 +255,24 @@
           Event Times
         </label>
         <a href="">
-          <span class="create-new-showtime">
-            New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(1)"></i></a>
-          </span>
+          <div class="create-new-showtime">
+            New Show Time <a href=""><i class="fa fa-plus-circle" ng-click="addNewShow(1)" style="padding-left: 10px;"></i></a>
+          </div>
         </a>
       </div>
       <div class="new-showtime-wrapper">
         <!--THIS STARTS THE SHOWTIME-->
         <div class="new-showtime-info-wrapper">
           <div class="date-time-location-wrapper">
-            <input id="showtime-date-time" class="showtime-date-time" type="text" >
+            <label>Date: </label><input id="showtime-date-time" class="showtime-date-time" type="text" >
             <!-- <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time"> -->
-            <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
-            <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
-            <select class="new-showtime-state-input" id="showtime-state">
+            <label>Address: </label><input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
+            <label>City: </label><input class="new-showtime-city-input" id="showtime-city" placeholder="City"><br>
+            <label>State: </label><select class="new-showtime-state-input" id="showtime-state">
               <option value="">Pick A State</option>
               <option value="NC">NC</option>
-            </select>
-            <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
+            </select><br>
+            <label>Zip Code</label><input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
           </div>
           <!-- <div>
             Cast:
@@ -297,18 +295,18 @@
           <div class="new-showtime-info-wrapper">
             <div class="date-time-location-wrapper">
               <input type="hidden" id="showtime-id">
-              <input class="showtime-date-time" type="text" >
+              <label>Date: </label><input class="showtime-date-time" type="text" >
               <!-- <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time"> -->
-              <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
-              <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
-              <select class="new-showtime-state-input" id="showtime-state">
+              <label>Address: </label><input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
+              <label>City: </label><input class="new-showtime-city-input" id="showtime-city" placeholder="City"><br>
+              <label>State: </label><select class="new-showtime-state-input" id="showtime-state">
                 <option value="">Pick A State</option>
                 <option value="NC">NC</option>
-              </select>
-              <input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
-              <span style="color: red;" class="removeShowtime">
+              </select></br>
+              <label>Zip Code: </label><input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
+              <div style="color: red;" class="removeShowtime">
                 <input type="checkbox" class="deleteCheck" id="delete-check"><i class="fa fa-trash" ></i>Delete This Showtime
-              </span>
+              </div>
             </div>
             <!-- <div>
               Cast:
@@ -330,32 +328,30 @@
       </div><!--end all the showtimes-->
     <!--end the showtimes ADD-->
 
+      <div class="edit-add-performance-button-wrapper">
 
-      <a href="">
-        <div class="btn AVED-submit-button" ng-click="addperformance()" ng-hide="tAdd">
-          Create Performance
-        </div>
-      </a>
-      <a href="#/company">
-        <div class="btn AVED-submit-button" ng-click="toggle('VIEW')" ng-hide="tAdd">
-          Dont Create
-        </div>
-      </a>
+        <a href="">
+          <div class="btn AVED-submit-button" id="create-performance"ng-click="addperformance()" ng-hide="tAdd">
+            Create Performance
+          </div>
+        </a>
+        <a href="#/company">
+          <div class="btn AVED-submit-button" id="dont-create-performance" ng-click="toggle('VIEW')" ng-hide="tAdd">
+            Dont Create
+          </div>
+        </a>
 
-      <a href="">
-        <div class="btn AVED-submit-button" ng-click="updatePerformance();" ng-hide="tEdit">
-          Update Performance
-        </div>
-      </a>
-      <a href="">
-        <div class="btn AVED-submit-button" ng-click="toggle('VIEW')" ng-hide="tEdit">
-          Discard Changes
-        </div>
-      </a>
+        <a href="">
+          <div class="btn AVED-submit-button" id="update-performance" ng-click="updatePerformance();" ng-hide="tEdit">
+            Update Performance
+          </div>
+        </a>
+        <a href="">
+          <div class="btn AVED-submit-button" id="discard-performance-changes" ng-click="toggle('VIEW')" ng-hide="tEdit">
+            Discard Changes
+          </div>
+        </a>
+      </div>
 
 
-    </div><!-- does this end the controller?-->
-
-  </div>
-  </div>
-</div>
+</div><!-- Ends Controller -->

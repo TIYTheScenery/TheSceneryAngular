@@ -8,7 +8,7 @@
   vertical-align: middle; }
 
 body {
-  background: #ddd; }
+  background: #c7cacc; }
 
 a {
   text-decoration: none;
@@ -19,76 +19,153 @@ a {
 
 .heroImg {
   width: 100%;
-  height: 350px;
-  -webkit-filter: sepia(75%); }
+  height: 500px;
+  -webkit-filter: sepia(50%); }
 
 .heroImgWordsContainer {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
   padding: 10px;
   color: white;
-  font-size: 40px;
-  width: 50%;
-  margin: auto;
-  margin-top: -300px;
+  width: 70%;
+  margin-top: -450px;
+  margin-left: 15%;
   position: absolute;
-  text-align: center;
-  margin-left: 27%; }
+  height: 400px; }
 
-.performanceInfoContainer {
-  width: 80%;
-  margin: 15px auto;
-  background: #aaa;
-  padding: 10px; }
+.this-performance-names {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: 'Merriweather Sans', sans-serif; }
+
+.this-performance-company-name {
+  font-size: 20px; }
+
+.presents {
+  font-size: 18px; }
+
+.this-performance-name {
+  font-size: 35px; }
+
+.this-performance-company-name div {
+  font-size: 16px;
+  margin: 10px 0 15px 0; }
 
 .performanceDescription {
-  padding: 10px 60px; }
+  margin: 25px auto 0 auto;
+  width: 80%;
+  color: #eee;
+  font-size: 16px;
+  font-family: 'Merriweather', serif;
+  border-bottom: 1px solid #999;
+  padding-bottom: 25px; }
 
-.rightCol {
+.this-performance-link-wrapper {
   display: inline-block;
-  margin: 15px;
-  margin-right: 10%;
-  float: right; }
+  width: 80%;
+  margin: 25px 0 0 10%; }
 
-.leftCol {
+.AVED-trailer-link {
+  color: #444;
+  background: rgba(235, 235, 235, 0.8);
   display: inline-block;
-  margin: 15px;
+  padding: 10px;
+  border-radius: 5px; }
+
+.AVED-genre {
+  display: inline-block;
+  font-size: 20px; }
+
+.AVED-ticket-btn {
+  display: inline-block;
+  color: #eee;
+  background: rgba(0, 185, 0, 0.9);
+  padding: 10px;
+  border-radius: 5px; }
+
+.performance-genre-wrapper {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top; }
+
+.performance-trailer-wrapper {
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top; }
+
+.performance-ticket-wrapper {
+  width: 33%;
+  text-align: right;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 6px; }
+
+.AVED-ticket-link {
+  font-size: 16px;
+  width: 50%; }
+
+.hero-img-performance-name {
+  width: 300px;
+  font-size: 16px;
+  margin: 20px 0; }
+
+.edit-hero-Img-Words-Container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  width: 70%;
+  margin-top: -500px;
+  margin-left: 15%;
+  position: absolute;
+  height: 450px; }
+
+.edit-genre-wrapper {
+  font-size: 18px;
+  margin-bottom: 10px; }
+
+.edit-performanceDescription {
+  display: block;
+  width: 80%;
+  max-width: 90%;
+  font-size: 14px;
+  height: 150px;
+  max-height: 150px;
+  margin: auto; }
+
+.edit-perf-desc-label {
+  display: block;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   margin-left: 10%; }
+
+.hidden {
+  display: none; }
+
+.edit-AVED-trailer-link {
+  margin: 25px 0; }
+
+.edit-AVED-trailer-link-input {
+  width: 50%;
+  font-size: 16px; }
+
+.add-image-container {
+  position: absolute;
+  margin-top: -65px;
+  margin-left: 65%; }
+  .add-image-container label {
+    display: block;
+    font-size: 15px;
+    padding-bottom: 10px; }
 
 .AVED-event {
   border: 1px solid #888;
   background: #bbb;
   width: 100%; }
-
-.AVED-genre,
-.AVED-tags {
-  padding: 5px 10px;
-  font-size: 18px;
-  margin: 25px 0 15px 0; }
-
-.AVED-tags {
-  padding-left: 0; }
-
-.AVED-trailer-link,
-.AVED-prod-images,
-.AVED-ticket-btn {
-  padding: 5px 10px;
-  font-size: 18px;
-  background: #bbb;
-  border-radius: 5px;
-  margin: 10px 0; }
-
-.AVED-trailer-link,
-.AVED-prod-images,
-.AVED-ticket-btn {
-  background: #bbb;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa); }
-
-.AVED-trailer-link {
-  width: 100px; }
-
-.AVED-prod-images {
-  width: 170px; }
 
 .AVED-upload-img {
   display: inline-block;
@@ -98,17 +175,6 @@ a {
   background: #333;
   color: white;
   margin-right: 5px; }
-
-.AVED-ticket-btn {
-  width: 20%;
-  text-align: center;
-  margin: 25px auto; }
-
-.AVED-ticket-link {
-  display: block;
-  font-size: 14px;
-  width: 350px;
-  margin: auto; }
 
 .AVED-label {
   display: block;
@@ -209,40 +275,5 @@ a {
   font-size: 17px;
   display: inline-block;
   vertical-align: top; }
-
-.edit-AVED-genre {
-  width: 125px;
-  height: 20px; }
-
-.edit-performanceDescription {
-  display: block;
-  width: 90%;
-  max-width: 90%;
-  font-size: 14px;
-  height: 150px;
-  max-height: 150px;
-  margin: auto; }
-
-.edit-perf-desc-label {
-  display: block;
-  font-size: 18px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  margin-left: 5%; }
-
-.edit-AVED-trailer-link-input {
-  font-size: 14px;
-  width: 250px; }
-
-.edit-AVED-tags-input {
-  font-size: 14px;
-  width: 250px; }
-
-.hero-img-performance-name {
-  width: 300px;
-  font-size: 16px; }
-
-.hidden {
-  display: none; }
 
 /*# sourceMappingURL=preformanceAVED.css.map */

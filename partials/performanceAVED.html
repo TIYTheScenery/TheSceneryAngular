@@ -24,7 +24,7 @@
     </div>
 <!--THIS IS FOR VIEWING THE HERO IMAGE AND INFO-->
   <div class="heroImgContainer">
-    <img src="assets/images/lesmis-2.jpg" class ="heroImg">
+    <img ng-src="{{heroImage}}" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
       <div class="this-performance-names">
         <div class="this-performance-company-name">{{thisPerformance.company_name}} <div>presents</div></div>
@@ -91,7 +91,7 @@
       </div> <!--End link container-->
       <div class="add-image-container">
         <label>Add Performance Background Image</label>
-        <input name="file" type="file" profile-image="profileUpload"><br>
+        <input name="file" type="file" profile-image-create="profileUploadCreate"><br>
           <br>
         </form>
       </div>
@@ -131,7 +131,7 @@
     </div>
     <div class="add-image-container">
       <label>Add Performance Background Image</label>
-      <input name="file" type="file" profile-image="profileUpload"><br>
+      <input name="file" type="file" profile-image-edit="profileUploadEdit"><br>
       <br>
     </div>
   </div>

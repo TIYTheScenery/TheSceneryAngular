@@ -63,6 +63,11 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
   $scope.message2="bestmattever";
   $scope.userinfo;
   $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
+  if($scope.gUserInfo.image_url != null && !$scope.gUserInfo.image_url.match("/missing.png")){
+    $scope.headerProfileImage = $scope.gUserInfo.image_url;
+  }else{
+    $scope.headerProfileImage = "assets/images/generic_user.jpg";
+  }
   var thing;
 
   //localStorage.setItem('user', "{}");

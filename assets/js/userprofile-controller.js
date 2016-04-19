@@ -19,6 +19,11 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   // console.log(data);
   $scope.viewuser = data.data.user_info;
   console.log($scope.viewuser);
+  if ($scope.viewuser.image_url.match("missing.png")){
+    $scope.profileImageUrl = "assets/images/generic_user.jpg";
+  }else{
+    $scope.profileImageUrl = $scope.viewuser.image_url;
+  }
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
@@ -146,17 +151,6 @@ $scope.usercompany = function(){
 
   $scope.saveuser = function()
   {
-    // var thing = jQuery.Event( "submit" );
-    // if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
-    // {
-    //   console.log("no file uploaded, dont send to amazon...");
-    // }
-    // else//there IS a file that the user wants to upload... so click our hidden submit button.
-    // {
-    //   console.log("we have a file! Upload beggining!");
-    //   $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
-    // }
-
     var names = $(".edit-display-user-name").val().split(" ");
     var firstname = names[0];
     var lastname = names[1];
@@ -208,8 +202,15 @@ $scope.usercompany = function(){
       }).then(function successCallback(response){
         console.log("Updated User");
         console.log(response);
+        localStorage.setItem('user', response.data);
+        location.reload();
       }, function errorCallback(response){
         console.log('user not updated', response);
+        var errorText = "";
+        for(var i = 0; i < response.errors.length; i++){
+          errorText += response.errors[i] + "\n";
+        }
+        alert(errorText);
     });
   }
 

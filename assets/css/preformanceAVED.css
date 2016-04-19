@@ -60,7 +60,8 @@ a {
   font-size: 16px;
   font-family: 'Merriweather', serif;
   border-bottom: 1px solid #999;
-  padding-bottom: 25px; }
+  padding-bottom: 25px;
+  min-height: 170px; }
 
 .this-performance-link-wrapper {
   display: inline-block;

@@ -33,21 +33,21 @@
   <header class="user-profile-header">
     <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
       <div>
-        <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+        <!-- <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="key" value="uploads/User{{currentuser.user_info.id}}">
           <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
           <input type="hidden" name="acl" value="public-read">
           <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
           <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
           <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
-          <input type="hidden" name="Content-Type" value="$Content-Type">
+          <input type="hidden" name="Content-Type" value="$Content-Type"> -->
           <!-- Include any additional input fields here U{{currUserId}}-->
 
           Add Image
-          <input name="file" type="file" id="fileBtn"><br>
-          <br>
+          <input name="file" type="file" profile-image="profileUpload"><br>
+          <!-- <br>
           <input type="submit" style="display:none;" id="imgSubmitBtn" value="Upload File to S3">
-        </form>
+        </form> -->
      </div>
    </div>
     <div class="user-header-image-wrapper" ng-hide="show">

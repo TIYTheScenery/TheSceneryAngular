@@ -163,31 +163,44 @@ $scope.usercompany = function(){
 
     console.log("this is the user ID: "+$scope.currentuser.user_info.id);
 
-    var updatedUser = JSON.stringify({
-      "user_info":{
-      "description": $("#user-desc").val(),
-      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
-      "first_name": firstname,
-      "last_name": lastname,
-      "facebook_link": $("#edit-facebook").val(),
-      "twitter_link": $("#edit-twitter").val(),
-      "instagram_link": $("#edit-instagram").val(),
-      "youtube_link": $("#edit-youtube").val(),
-      "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token,
-      "email": $scope.currentuser.user_info.email,
-      "id": $scope.currentuser.user_info.id,
-      "display_name": $scope.currentuser.user_info.display_name,
-      "is_professional": $scope.currentuser.user_info.is_professional,
-      "titles_attributes": [
-	       { "id": $("#user-titles-id").text(),
-           "title": $("#user-titles").val()}
-       ]
-      }
-    });
+    var updatedUserFD = new FormData();
+    updatedUserFD.append('user_info[description]', $("#user-desc").val());
+    updatedUserFD.append('user_info[image_url]', $scope.profileImage);
+    updatedUserFD.append('user_info[first_name]', firstname);
+    updatedUserFD.append('user_info[last_name]', lastname);
+    updatedUserFD.append('user_info[facebook_link]', $("#edit-facebook").val());
+    updatedUserFD.append('user_info[twitter_link]', $("#edit-twitter").val());
+    updatedUserFD.append('user_info[instagram_link]', $("#edit-instagram").val());
+    updatedUserFD.append('user_info[youtube_link]', $("#edit-youtube").val());
+    updatedUserFD.append('user_info[login_token]', JSON.parse(localStorage.getItem('user')).user_info.login_token);
+    updatedUserFD.append('user_info[email]', $scope.currentuser.user_info.email);
+    updatedUserFD.append('user_info[id]', $scope.currentuser.user_info.id);
+    updatedUserFD.append('user_info[display_name]', $scope.currentuser.user_info.display_name);
+    updatedUserFD.append('user_info[is_professional]', $scope.currentuser.user_info.is_professional);
+    updatedUserFD.append('user_info[titles_attributes][0][id]', $("#user-titles-id").text());
+    updatedUserFD.append('user_info[titles_attributes][0][title]', $("#user-titles").val());
 
-    console.log("sending this user info");
-    console.log(updatedUser);
-
+    // var updatedUser = JSON.stringify({
+    //   "user_info":{
+    //   "description": $("#user-desc").val(),
+    //   "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
+    //   "first_name": firstname,
+    //   "last_name": lastname,
+    //   "facebook_link": $("#edit-facebook").val(),
+    //   "twitter_link": $("#edit-twitter").val(),
+    //   "instagram_link": $("#edit-instagram").val(),
+    //   "youtube_link": $("#edit-youtube").val(),
+    //   "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token,
+    //   "email": $scope.currentuser.user_info.email,
+    //   "id": $scope.currentuser.user_info.id,
+    //   "display_name": $scope.currentuser.user_info.display_name,
+    //   "is_professional": $scope.currentuser.user_info.is_professional,
+    //   "titles_attributes": [
+	  //      { "id": $("#user-titles-id").text(),
+    //        "title": $("#user-titles").val()}
+    //    ]
+    //   }
+    // });
 
     $(".display-user-name").text($(".edit-display-user-name").val());
     $(".edit-display-user-name").val("");
@@ -205,27 +218,40 @@ $scope.usercompany = function(){
     $("#user-desc").val("");
 
     // console.log($scope.currentuser.user_info.id);
-
-    //AJAX CALL
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.the-scenery.com/users",
-        "method": "PATCH",
-        "headers": {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        "processData": false,
-        "data": updatedUser
-         };
-
-        $.ajax(settings).done(function (data) {
+    var uploadUrl = "https://api.the-scenery.com/users"
+    $http.patch(uploadUrl, updatedUserFD, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(data){
           console.log("Updated User");
           console.log(data);
           localStorage.setItem("user", JSON.stringify(data));
+        })
+        .error(function(){
+          console.log("failure");
+          console.log(data);
+        });
 
-        });//end ajax.
+    // //AJAX CALL
+    //   var settings = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": "https://api.the-scenery.com/users",
+    //     "method": "PATCH",
+    //     "headers": {
+    //       "content-type": "Undefined"
+    //     },
+    //     "processData": false,
+    //     "data": updatedUser
+    //      };
+    //
+    //     $.ajax(settings).done(function (data) {
+    //       console.log("Updated User");
+    //       console.log(data);
+    //       localStorage.setItem("user", JSON.stringify(data));
+    //
+    //     });//end ajax.
 
 
   //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
@@ -266,4 +292,19 @@ $scope.usercompany = function(){
   }
 
 
+})
+.directive('profileImage', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
 });

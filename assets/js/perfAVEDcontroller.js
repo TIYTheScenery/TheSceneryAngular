@@ -11,9 +11,10 @@ $.datetimepicker.setDateFormatter({
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
   window.onload = $('#showtime-date-time').datetimepicker({
-    format:'YYYY-M-D h:mm a',
+    format:'YYYY-M-DD h:mm a',
     formatTime:'h:mm a',
-    formatDate:'YYYY-M-D'
+    formatDate:'YYYY-M-DD',
+    step: 15
   });
   $scope.isLogged = function()
   {
@@ -54,6 +55,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   if($scope.tAdd){
     //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
     $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+      console.log(data);
       ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
       $scope.thisPerformance = data.data.performance;
       // this need to happen whenever a user is logged in and not creating a performance
@@ -349,9 +351,10 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     else{console.log("I dont understand where im supposed to put the new showtime...");}
 
     $('#' + newID).datetimepicker({
-      format:'YYYY-M-D h:mm a',
+      format:'YYYY-M-DD h:mm a',
       formatTime:'h:mm a',
-      formatDate:'YYYY-M-D'
+      formatDate:'YYYY-M-DD',
+      step: 15
     });
   //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
   }//end addnewshow
@@ -449,9 +452,10 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     link: function(scope, element, attrs) {
       element[0].id = 'showtime-date-time' + Date.now();
       $('#' + element[0].id).datetimepicker({
-        format:'YYYY-M-D h:mm a',
+        format:'YYYY-M-DD h:mm a',
         formatTime:'h:mm a',
-        formatDate:'YYYY-M-D'
+        formatDate:'YYYY-M-DD',
+        step: 15
       });
     }
   };

@@ -138,196 +138,99 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   // Set view variables to new edited variables.
 
   $scope.createcompany = function(){
-
-    //THIS CODE MAKES THE IMAGE UPLOAD FOR TWO FILES WORK...KINDA.
     var profileImgURL = "assets/images/companyDefaultProfile.png";
     var splashImgURL = "assets/images/companyDefaultSplash.jpg";
 
-    var thing = jQuery.Event( "submit" );
-    if($("#fileBtn2Add").val() === "")//if there isnt a value in the file upload for the splash image
-    {
-      console.log("no company splash added, dont send to amazon...");
-      //then check to see if there is a file to upload for the profile image
-      if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
-      {console.log("no company profile added, dont send to amazon...");}
-      else//there IS a file that the user wants to upload... so click our hidden submit button.
-      {
-        profileImgURL ="https://s3.amazonaws.com/thescenery/uploads/Company"+thisCompany.id;
-        console.log("we have a profile img! Upload beggining!");
-        $("#imgSubmitBtn1Add").trigger("click");//send profile image to AWS
-      }
-    }
-    else//there IS a splash image that the user wants to upload...
-    {
-      //first we check to upload a possible profile image
-      if($("#fileBtn1Add").val() === "")//if there isnt a value in the profile upload button1
-      {console.log("no company profile added, dont send to amazon...");}
-      else//there IS a file that the user wants to upload... so click our hidden submit button.
-      {
-        profileImgURL ="https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id;
-        console.log("we have a profile img! Upload beggining!");
-        $("#imgSubmitBtn1Add").trigger("click");
-      }
-      setTimeout(function(){
-        //then we finally upload the splash, and get redirected back to the company page.
-        console.log("we have a splash img! Upload beggining!");
-        splashImgURL = "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scope.thisCompany.id;
-        $("#imgSubmitBtn2Add").trigger("click");
-      }, 50);
+    var createCompanyFD = new FormData();
+    createCompanyFD.append('company[user_id]', ownerID);
+    createCompanyFD.append('company[name]', $(".create-company-name").val());
+    createCompanyFD.append('company[profile_image_url]', $scope.profileImageUploadCreate);
+    createCompanyFD.append('company[hero_image_url]', $scope.heroImageUploadCreate);
+    createCompanyFD.append('company[description]', $(".create-company-description").val());
+    createCompanyFD.append('company[website_link]', $(".create-company-url").val());
+    createCompanyFD.append('company[facebook_link]', $(".create-company-facebook").val());
+    createCompanyFD.append('company[twitter_link]', $(".create-company-twitter").val());
+    createCompanyFD.append('company[instagram_link]', $(".create-company-instagram").val());
+    createCompanyFD.append('company[youtube_link]', $(".create-company-youtube").val());
+    createCompanyFD.append('company[address]', $(".create-company-location-address").val());
+    createCompanyFD.append('company[city]', $(".create-company-location-city").val());
+    createCompanyFD.append('company[state]', $(".create-company-location-state option:selected").text());
+    createCompanyFD.append('company[zip_code]', $(".create-company-location-zip").val());
+    createCompanyFD.append('user_info[login_token]', token);
 
-    }
-
-    var createCompany = JSON.stringify({
-    "company": {
-      "id": "",
-      "user_id": ownerID,
-      "name": $(".create-company-name").val(),
-      "profile_image_url": profileImgURL,
-      "hero_image_url": splashImgURL,
-      "description": $(".create-company-description").val(),
-      "website_link": $(".create-company-url").val(),
-      "facebook_link": $(".create-company-facebook").val(),
-      "twitter_link": $(".create-company-twitter").val(),
-      "instagram_link": $(".create-company-instagram").val(),
-      "youtube_link": $(".create-company-youtube").val(),
-      "address": $(".create-company-location-address").val(),
-      "city": $(".create-company-location-city").val(),
-      "state": $(".create-company-location-state option:selected").text(),
-      "zip_code": $(".create-company-location-zip").val()
-    },
-    "user_info": {
-      "login_token": token
-    }
-    });
-    console.log(createCompany);
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://api.the-scenery.com/companies",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": createCompany
-    };
-
-    $.ajax(settings).done(function (data) {
-      console.log(data);
-      if (data.success) {
-        localStorage.setItem('compID', JSON.stringify(data.company.id));
-        $scope.thisCompany = data.company;
+    var uploadUrl = "https://api.the-scenery.com/companies"
+    $http({
+        method: "POST",
+        url: uploadUrl,
+        data: createCompanyFD,
+        headers: {'Content-Type': undefined}
+      }).then(function successCallback(response){
+        console.log("Updated User");
+        console.log(response);
+        localStorage.setItem('compID', JSON.stringify(response.company.id));
+        $scope.thisCompany = response.company;
         ourData.shareData("companyCreate", false);
         location.reload();
-      } else {
+      }, function errorCallback(response){
+        console.log('post not created', response);
         var errorText = "";
-        for(var i = 0; i < data.errors.length; i++){
-          errorText += data.errors[i] + "\n";
+        for(var i = 0; i < response.errors.length; i++){
+          errorText += response.errors[i] + "\n";
         }
         alert(errorText);
-      }
-    });//end ajax.
+    });
   }//End Create Company
 
 
   $scope.savecompany = function(){
+    var profileImgURL = $scope.thisCompany.profile_image_url;
+    var splashImgURL = $scope.thisCompany.hero_image_url;
 
-  //THIS CODE MAKES THE IMAGE UPLOAD FOR TWO FILES WORK...KINDA.
-
-  var profileImgURL = $scope.thisCompany.profile_image_url;
-  var splashImgURL = $scope.thisCompany.hero_image_url;
-
-  var thing = jQuery.Event( "submit" );
-  if($("#fileBtn2").val() === "")//if there isnt a value in the file upload for the splash image
-  {
-    console.log("no company splash added, dont send to amazon...");
-    //then check to see if there is a file to upload for the profile image
-    if($("#fileBtn1").val() === "")//if there isnt a value in the profile upload button1
-    {console.log("no company profile added, dont send to amazon...");}
-    else//there IS a profile img that the user wants to upload... so click our hidden submit button.
-    {
-      profileImgURL = "https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id;
-      console.log("we have a profile img! Upload beggining!");
-      $("#imgSubmitBtn1").trigger("click");//send profile image to AWS
+    var createCompanyFD = new FormData();
+    createCompanyFD.append('company[id]', $scope.thisCompany.id);
+    createCompanyFD.append('company[user_id]', ownerID);
+    createCompanyFD.append('company[name]', $(".create-company-name").val());
+    if($scope.profileImageUploadEdit === null){
+      createCompanyFD.append('company[profile_image_url]', $scope.profileImageUploadEdit);
     }
-  }
-  else//there IS a splash image that the user wants to upload...
-  {
-    //first we check to upload a possible profile image
-    if($("#fileBtn1").val() === "")//if there isnt a value in the profile upload button1
-    {console.log("no company profile added, dont send to amazon...");}
-    else//there IS a file that the user wants to upload... so click our hidden submit button.
-    {
-      profileImgURL = "https://s3.amazonaws.com/thescenery/uploads/Company"+$scope.thisCompany.id;
-      console.log("we have a profile img! Upload beggining!");
-      $("#imgSubmitBtn1").trigger("click");
+    if($scope.heroImageUploadEdit === null){
+      createCompanyFD.append('company[hero_image_url]', $scope.heroImageUploadEdit);
     }
-    setTimeout(function(){
-      //then we finally upload the splash, and get redirected back to the company page.
-      splashImgURL = "https://s3.amazonaws.com/thescenery/uploads/CompanyHero"+$scope.thisCompany.id;
-      console.log("we have a splash img! Upload beggining!");
-      $("#imgSubmitBtn2").trigger("click");
-    }, 50);
+    createCompanyFD.append('company[description]', $(".create-company-description").val());
+    createCompanyFD.append('company[website_link]', $(".create-company-url").val());
+    createCompanyFD.append('company[facebook_link]', $(".create-company-facebook").val());
+    createCompanyFD.append('company[twitter_link]', $(".create-company-twitter").val());
+    createCompanyFD.append('company[instagram_link]', $(".create-company-instagram").val());
+    createCompanyFD.append('company[youtube_link]', $(".create-company-youtube").val());
+    createCompanyFD.append('company[address]', $(".create-company-location-address").val());
+    createCompanyFD.append('company[city]', $(".create-company-location-city").val());
+    createCompanyFD.append('company[state]', $(".create-company-location-state option:selected").text());
+    createCompanyFD.append('company[zip_code]', $(".create-company-location-zip").val());
+    createCompanyFD.append('user_info[login_token]', token);
 
-  }//end of company image stuff.
-
-    var companyid = JSON.parse(localStorage.getItem('companyid'));
-
-    var editcompany = JSON.stringify({
-      "company": {
-        "id": companyid,
-        "user_id": ownerID,
-        "profile_img_url": profileImgURL,
-        "hero_img_url": splashImgURL,
-        "name": $(".edit-company-name").val(),
-        "description": $(".edit-company-description").val(),
-        "website_link": $(".edit-company-url").val(),
-        "facebook_link": $(".edit-company-facebook").val(),
-        "twitter_link": $(".edit-company-twitter").val(),
-        "instagram_link": $(".edit-company-instagram").val(),
-        "youtube_link": $(".edit-company-youtube").val(),
-        "address": $(".edit-company-location-address").val(),
-        "city": $(".edit-company-location-city").val(),
-        "state": $(".edit-company-location-state option:selected").text(),
-        "zip_code": $(".edit-company-location-zip").val()
-      },
-      "user_info": {
-        "login_token": token
+    var uploadUrl = "https://api.the-scenery.com/companies/"
+    $http({
+      method: "PATCH",
+      url: uploadUrl,
+      data: updatedUserFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Updated User");
+      console.log(response);
+      localStorage.setItem('compID', JSON.stringify(response.company.id));
+      $scope.thisCompany = response.company;
+      ourData.shareData("companyCreate", false);
+      location.reload();
+    }, function errorCallback(response){
+      console.log('post not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.errors.length; i++){
+        errorText += response.errors[i] + "\n";
       }
+      alert(errorText);
     });
 
-    // AJAX CALL
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.the-scenery.com/companies/" + companyid,
-        "method": "PATCH",
-        "headers": {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        "processData": false,
-        "data": editcompany
-         };
-
-        $.ajax(settings).done(function (data) {
-          if(data.success){
-            $scope.thisCompany = data.company
-            localStorage.setItem('compID', data.company.id)
-            $scope.toggle('SHOW');
-            $window.location.reload();
-          }else{
-            var errorText = "";
-            for(var i = 0; i < data.errors.length; i++){
-              errorText += data.errors[i] + "\n";
-            }
-            alert(errorText);
-          }
-        });//end ajax.
-
-        $scope.fillCompany($scope.thisCompany);
+    $scope.fillCompany($scope.thisCompany);
   }//End Save Company
 
   $scope.saveopportunity = function(){
@@ -558,4 +461,64 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   console.log("scope.create");
   console.log($scope.create);
 
-});
+})
+.directive('profileImageEdit', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+})
+.directive('heroImageEdit', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+})
+.directive('profileImageCreate', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+})
+.directive('heroImageCreate', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+});;

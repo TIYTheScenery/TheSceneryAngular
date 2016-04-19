@@ -180,28 +180,6 @@ $scope.usercompany = function(){
     updatedUserFD.append('user_info[titles_attributes][0][id]', $("#user-titles-id").text());
     updatedUserFD.append('user_info[titles_attributes][0][title]', $("#user-titles").val());
 
-    // var updatedUser = JSON.stringify({
-    //   "user_info":{
-    //   "description": $("#user-desc").val(),
-    //   "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
-    //   "first_name": firstname,
-    //   "last_name": lastname,
-    //   "facebook_link": $("#edit-facebook").val(),
-    //   "twitter_link": $("#edit-twitter").val(),
-    //   "instagram_link": $("#edit-instagram").val(),
-    //   "youtube_link": $("#edit-youtube").val(),
-    //   "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token,
-    //   "email": $scope.currentuser.user_info.email,
-    //   "id": $scope.currentuser.user_info.id,
-    //   "display_name": $scope.currentuser.user_info.display_name,
-    //   "is_professional": $scope.currentuser.user_info.is_professional,
-    //   "titles_attributes": [
-	  //      { "id": $("#user-titles-id").text(),
-    //        "title": $("#user-titles").val()}
-    //    ]
-    //   }
-    // });
-
     $(".display-user-name").text($(".edit-display-user-name").val());
     $(".edit-display-user-name").val("");
     $(".display-user-titles").text($(".edit-display-user-titles").val());
@@ -217,7 +195,6 @@ $scope.usercompany = function(){
     $(".side-info-user-description").text($("#user-desc").val());
     $("#user-desc").val("");
 
-    console.log(updatedUserFD);
 
     // console.log($scope.currentuser.user_info.id);
     var uploadUrl = "https://api.the-scenery.com/users"
@@ -232,51 +209,6 @@ $scope.usercompany = function(){
       }, function errorCallback(response){
         console.log('post not created', response);
     });
-
-    //
-    // $http.patch(uploadUrl, updatedUserFD, {
-    //         transformRequest: angular.identity,
-    //         headers:
-    //     })
-    //     .success(function(data){
-    //       console.log("Updated User");
-    //       console.log(data);
-    //       localStorage.setItem("user", JSON.stringify(data));
-    //     })
-    //     .error(function(){
-    //       console.log("failure");
-    //       console.log(data);
-    //     });
-
-    // //AJAX CALL
-    //   var settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "https://api.the-scenery.com/users",
-    //     "method": "PATCH",
-    //     "headers": {
-    //       "content-type": "Undefined"
-    //     },
-    //     "processData": false,
-    //     "data": updatedUser
-    //      };
-    //
-    //     $.ajax(settings).done(function (data) {
-    //       console.log("Updated User");
-    //       console.log(data);
-    //       localStorage.setItem("user", JSON.stringify(data));
-    //
-    //     });//end ajax.
-
-
-  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
-  //     console.log("user updated!");
-  //     console.log(data);
-  //   },function(data){
-  //     console.log("user update failed...");
-  //     console.log(data);
-  // });//end http call.
-
   }
 
   $scope.tocompany = function(what){

@@ -34,7 +34,7 @@ a {
   height: 400px; }
 
 .this-performance-names {
-  width: 40%;
+  width: 60%;
   margin: auto;
   text-align: center;
   margin-bottom: 25px;
@@ -61,7 +61,8 @@ a {
   font-family: 'Merriweather', serif;
   border-bottom: 1px solid #999;
   padding-bottom: 25px;
-  min-height: 170px; }
+  min-height: 170px;
+  height: 170px; }
 
 .this-performance-link-wrapper {
   display: inline-block;
@@ -192,15 +193,26 @@ a {
   background: #efefef;
   width: 100%; }
 
-.AVED-label {
+.AVED-label-reviews,
+.AVED-label-event {
   display: block;
   font-size: 22px;
   margin-top: 45px; }
+
+.AVED-label-reviews {
+  margin-left: 45px; }
+
+.AVED-label-event {
+  margin-left: -45px; }
 
 .AVED-new-review,
 .review-wrapper {
   background: #efefef;
   padding: 5px; }
+
+.AVED-new-review-border {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #92A7BF; }
 
 .event-info {
   display: inline-block;

@@ -42,7 +42,7 @@ a{
 }
 
 .this-performance-names{
-  width: 40%;
+  width: 60%;
   margin: auto;
   text-align: center;
   margin-bottom: 25px;
@@ -77,6 +77,7 @@ a{
   border-bottom: 1px solid #999;
   padding-bottom: 25px;
   min-height: 170px;
+  height: 170px;
 }
 
 .this-performance-link-wrapper{
@@ -233,16 +234,30 @@ a{
   width: 100%;
 }
 
-.AVED-label{
+.AVED-label-reviews,
+.AVED-label-event{
   display: block;
   font-size: 22px;
   margin-top: 45px;
+}
+
+.AVED-label-reviews{
+  margin-left: 45px;
+}
+
+.AVED-label-event{
+  margin-left: -45px;
 }
 
 .AVED-new-review,
 .review-wrapper{
   background: $cardColor;
   padding: 5px;
+}
+
+.AVED-new-review-border{
+  padding-bottom: 30px;
+  border-bottom: 2px solid $lightBlueish;
 }
 
 .event-info{

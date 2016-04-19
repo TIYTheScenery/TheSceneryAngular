@@ -31,55 +31,35 @@
     </div><!--ends actions-->
 
   <header class="user-profile-header">
-    <div class="user-header-txt-wrapper">
-    
+    <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
+      <div>
+        <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="key" value="uploads/User{{currentuser.user_info.id}}">
+          <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+          <input type="hidden" name="acl" value="public-read">
+          <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
+          <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+          <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
+          <input type="hidden" name="Content-Type" value="$Content-Type">
+          <!-- Include any additional input fields here U{{currUserId}}-->
+
+          Add Image
+          <input name="file" type="file" id="fileBtn"><br>
+          <br>
+          <input type="submit" style="display:none;" id="imgSubmitBtn" value="Upload File to S3">
+        </form>
+     </div>
+   </div>
+    <div class="user-header-image-wrapper" ng-hide="show">
       <img src = "{{viewuser.image_url}}" width="500" height="500">
-
-      <label class="user-header-displayname"></label>
-      <label class="user-header-professional"></label>
-    </div>
-  </header>
-
-  <div class="user-profile-info-wrapper">
-    <div class="user-main-info-wrapper">
-      <!-- <div class="user-image-wrapper" ng-hide="show">
-        <img src="" class="user-profile-image">
-      </div> -->
-
-        <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
-          <div>
-            <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="key" value="uploads/User{{currentuser.user_info.id}}">
-              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-              <input type="hidden" name="acl" value="public-read">
-              <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
-              <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-              <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
-              <input type="hidden" name="Content-Type" value="$Content-Type">
-              <!-- Include any additional input fields here U{{currUserId}}-->
-
-              Add Image
-              <input name="file" type="file" id="fileBtn"><br>
-              <br>
-              <input type="submit" style="display:none;" id="imgSubmitBtn" value="Upload File to S3">
-            </form>
-         </div>
-       </div>
-
-
-  <div class="profile-container">
-    <div class="profile-user-info-wrapper">
-
-      <div class="profile-user-info-name-title-date">
+    </div><!--
+    --><div class="profile-user-info-wrapper">
         <div class="display-user-name" ng-hide="show">First Name Last Name</div>
         <input class="user-profile-input edit-display-user-name" placeholder="First Name Last Name" id="user-name" ng-show="show">
         <div class="display-user-titles" ng-hide="show"></div>
         <input type="hidden" class="edit-display-user-titles-id" id="user-titles-id" ng-show="show">
         <input class="user-profile-input edit-display-user-titles" placeholder="Add Titles Here" id="user-titles" ng-show="show">
-        <div class="display-user-creation-date"></div>
-      </div>  <!--End name-title-date-->
-
-      <div class="user-social-links-wrapper">
+        <div class="display-user-creation-date" ng-hide="show"></div>
         <input class="edit-social-link" id="edit-youtube" placeholder="Add youtube link" ng-show="show">
         <input class="edit-social-link" id="edit-twitter" placeholder="Add twitter link" ng-show="show">
         <input class="edit-social-link" id="edit-facebook" placeholder="Add facebook link" ng-show="show">
@@ -109,10 +89,15 @@
           Add Description:
         </div>
         <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
-      </div>  <!--End Social Links Wrapper-->
+
+        <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
 
     </div>  <!--End user info wrapper-->
+  </header>
 
+  <div class="user-profile-info-wrapper">
+    <div class="user-main-info-wrapper">
+  <div class="profile-container">
     <div class="company-and-reviews-container">
       <div class="user-company-wrapper" ng-hide="show">
         <label class="user-company-label">Companies:</label>
@@ -145,8 +130,6 @@
         </div>
       </div>
     </div>
-
-    <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
   </div>
 
 

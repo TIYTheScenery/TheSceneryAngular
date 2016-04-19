@@ -21,91 +21,104 @@
         </div>
       </a>
       </div><!--end islogged button bank-->
-
-
-
     </div>
 <!--THIS IS FOR VIEWING THE HERO IMAGE AND INFO-->
   <div class="heroImgContainer">
     <img src="assets/images/lesmis-2.jpg" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
-      {{thisPerformance.company_name}} presents <br> {{thisPerformance.name}}
-    </div>
-    <!--this ends the viewing-->
-    <!-- <a href="">
-      <div class="new-hero-image" ng-hide="tAdd">
-        Add New Hero Image
+      <div class="this-performance-names">
+        <div class="this-performance-company-name">{{thisPerformance.company_name}} <div>presents</div></div>
+        <div class="this-performance-name">{{thisPerformance.name}}</div>
       </div>
-    </a> -->
+      <div class="performanceDescription" ng-hide="tView">
+        {{thisPerformance.description}}
+      </div>
+      <div class="this-performance-link-wrapper">
+        <div class="performance-genre-wrapper">
+          <div class="AVED-genre" ng-hide="tView">
+            Genre: {{thisPerformance.genre_id[0].category}}.
+          </div>
+        </div><!--
+        --><div class="performance-trailer-wrapper">
+          <a href="http://{{thisPerformance.trailer_link}}">
+            <div class="AVED-trailer-link" ng-hide="tView">
+              View Trailers
+            </div>
+          </a>
+        </div><!--
+        --><div class="performance-ticket-wrapper">
+          <a href="{{thisPerformance.ticket_link}}">
+            <div class="AVED-ticket-btn" ng-hide="tView">
+              Buy Tickets!!
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
 <!--THIS IS FOR ADDING THE HERO IMAGE AND INFO-->
     <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tAdd">
-      <span class="hero-img-create-dropdown-wrapper"></span>
-      <!-- <select class="hero-img-creator-dropdown" id="performance-company-add">
-        <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>
-      </select> -->
-      <span> presents </span><br>
-      <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
-    </div>
+      <div class="this-performance-names">
+        <span class="hero-img-create-dropdown-wrapper"></span>
+        <span> presents </span><br>
+        <input class="hero-img-performance-name" id="performance-name" placeholder="Performance Name" name="name">
+      </div>
+      <label class="edit-perf-desc-label" ng-hide="tAdd">Performance Description:</label>
+      <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
+      <div class="this-performance-link-wrapper">
+
+        <div class="edit-genre-wrapper" ng-hide="tAdd">
+          Genre:
+          <select class="edit-AVED-genre" ng-hide="tAdd">
+            <option selected disabled>Genre</option>
+            <option value="1">Theatre</option>
+            <option value ="2">Improv</option>
+            <option value ="3">Dance</option>
+            <option value ="4">Film</option>
+          </select>
+        </div>
+
+        <div class="edit-AVED-trailer-link" ng-hide="tAdd">
+          Trailer Link:
+          <input class="edit-AVED-trailer-link-input" id="trailer-link" placeholder="Place Trailer Link Here" name="trailer_link">
+        </div>
+
+        <div class="edit-AVED-ticket-link" ng-hide="tAdd">
+          Ticket Link:
+          <input class="AVED-ticket-link" id="ticket-link" name="ticket_link" placeholder="Place Ticket Link Here">
+        </div>
+      </div> <!--End link container-->
+      <div class="add-image-container">
+        <label>Add Performance Background Image</label>
+        <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="key" value="uploads/PerfHero{{thisPerformance.id}}">
+          <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+          <input type="hidden" name="acl" value="public-read">
+          <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+          <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
+          <input type="hidden" name="Content-Type" value="$Content-Type">
+          <!-- Include any additional input fields here U{{currUserId}} -->
+          <input name="file" type="file" id="fileBtn2Add"><br>
+          <br>
+          <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
+        </form>
+      </div>
+    </div> <!-- End hero image words container-->
   </div>
   <!--this ends the adding-->
 
 <!--THIS IS FOR EDITING THE HERO IMAGE AND INFO-->
   <div class="heroImgWordsContainer edit-hero-Img-Words-Container" ng-hide="tEdit">
-    <span class="hero-img-edit-dropdown-wrapper"></span>
-    <!-- <select class="hero-img-creator-dropdown" id="performance-company-edit">
-      <option ng-repeat="company in currentUser.user_info.companies" value="{{company.id}}">{{company.name}}</option>
-    </select> -->
-    <span> presents </span><br>
-    <input class="hero-img-performance-name" id="performance-name-edit" placeholder="Performance Name" name="name" value="{{thisPerformance.name}}">
-  </div>
-  <!--this ends the editing-->
-
-
-  <div class="performanceInfoContainer">
-    <div class="authorized">
-      <!--if user is on the authorized user list for any company involved in this production then, display an option to edit this prodcution-->
+    <div class="this-performance-names">
+      <span class="hero-img-edit-dropdown-wrapper"></span>
+      <span class="presents"> presents </span><br>
+      <input class="hero-img-performance-name" id="performance-name-edit" placeholder="Performance Name" name="name" value="{{thisPerformance.name}}">
     </div>
-
-<!--THIS IS FOR VIEWING PERFORMANCE DESCRIPTIONS-->
-    <div class="performanceDescription" ng-hide="tView">
-      {{thisPerformance.description}}
-    </div>
-    <!--end viewing-->
-
-<!--THIS IS FOR ADDING PERFORMANCE DESCRIPTIONS-->
-    <label class="edit-perf-desc-label" ng-hide="tAdd">Performance Description:</label>
-
-    <textarea class="edit-performanceDescription" id="perf-desc" ng-hide="tAdd"></textarea>
-    <!--end adding-->
-
-<!--THIS IS FOR EDITING PERFORMANCE DESCRIPTIONS-->
     <label class="edit-perf-desc-label" ng-hide="tEdit">Performance Description:</label>
-
     <textarea class="edit-performanceDescription" id="perf-desc-edit" ng-hide="tEdit">{{thisPerformance.description}}</textarea>
-    <!--end editing-->
 
-
-    <div class="leftCol">
-<!--THIS IS FOR VIEWING PERFORMANCE GENRES-->
-      <div class="AVED-genre" ng-hide="tView">
-        Genre: {{thisPerformance.genre_id[0].category}}.
-      </div>
-      <!--this ends viewing-->
-
-<!--THIS BEGINS ADDING GENREs-->
-      <div class="edit-genre-wrapper" ng-hide="tAdd">
-        Genre:
-        <select class="edit-AVED-genre" ng-hide="tAdd">
-          <option selected disabled>Genre</option>
-          <option value="1">Theatre</option>
-          <option value ="2">Improv</option>
-          <option value ="3">Dance</option>
-          <option value ="4">Film</option>
-        </select>
-      </div>
-      <!--this ends adding-->
-
-<!--THIS BEGINS EDITING GENRES-->
+    <div class="this-performance-link-wrapper">
       <div class="edit-genre-wrapper" ng-hide="tEdit">
         Genre:
         <select class="edit-AVED-genre-edit" ng-hide="tEdit">
@@ -116,94 +129,32 @@
           <option value ="4">Film</option>
         </select>
       </div>
-      <!--this ends editing-->
-
-<!--THIS BEGINS VIEWING THE TRAILER LINK-->
-      <a href="http://{{thisPerformance.trailer_link}}">
-        <div class="AVED-trailer-link" ng-hide="tView">
-          View Trailers
-        </div>
-      </a>
-      <!--end view-->
-
-<!--THIS BEGINS ADDING A TRAILER LINK-->
-      <div class="edit-AVED-trailer-link" ng-hide="tAdd">
-        Trailer Link:
-        <input class="edit-AVED-trailer-link-input" id="trailer-link" name="trailer_link">
-      </div>
-      <!--this ends adding-->
-
-<!--THIS BEGINS EDITING TRAILER LINK-->
       <div class="edit-AVED-trailer-link" ng-hide="tEdit">
         Trailer Link:
-        <input class="edit-AVED-trailer-link-input" id="trailer-link-edit" name="trailer_link" value="{{thisPerformance.trailer_link}}">
+        <input class="edit-AVED-trailer-link-input" id="trailer-link-edit" name="trailer_link" placeholder="Place Trailer Link Here" value="{{thisPerformance.trailer_link}}">
       </div>
-      <!--end editing-->
-
-    </div><!--ends left col-->
-
-    <div class="rightCol">
-<!--THIS BEGINS VIEWING TAGS-->
-      <div class="AVED-tags" ng-hide="tView">
-        Tags: tags here
+      <div class="edit-AVED-ticket-link" ng-hide="tEdit">
+        Ticket Link:
+        <input class="AVED-ticket-link" id="ticket-link-edit" name="ticket_link" placeholder="Place Ticket Link Here" value="{{thisPerformance.ticket_link}}">
       </div>
-      <!--ends viewing-->
-
-<!--THIS BEGINS ADDING TAGS-->
-      <div class="edit-AVED-tags" ng-hide="tAdd">
-        Tags: <input class="edit-AVED-tags-input" id="tags">
-      </div>
-      <a href="">
-      <!--this ends adding-->
-<!--THIS BEGINS EDITING TAGS-->
-      <div class="edit-AVED-tags" ng-hide="tEdit">
-        Tags: <input class="edit-AVED-tags-input" id="tags-edit">
-      </div>
-
-      <!--this ends editing-->
-
-<!--THIS BEGINS ADDING PRODUCTION IMAGES-->
-      <!-- <a href="">
-        <div class="AVED-prod-images" ng-hide="tView">
-          View Prodution Images
-        </div>
-      </a>
-      <a href="">
-        <div class="AVED-upload-img" id="AVED-img-1" ng-hide="tAdd">
-          Upload Production Images
-        </div>
-      </a>
-      <a href="">
-        <div class="AVED-upload-img" id="AVED-img-2" ng-hide="tAdd">
-          Upload Production Images
-        </div>
-      </a>
-      <a href="">
-        <div class="AVED-upload-img" id="AVED-img-3" ng-hide="tAdd">
-          Upload Production Images
-        </div>
-      </a> -->
-      <!--this ends adding-->
-    </div><!--ends right col-->
-
-<!--BEGINS VIEWING TICKET LINK-->
-    <div class="AVED-tickets">
-      <a href="{{thisPerformance.ticket_link}}">
-        <div class="AVED-ticket-btn" ng-hide="tView">
-          Buy Tickets!!
-        </div>
-      </a>
-      <!--ends viewing-->
-
-<!--BEGINS ADDING TICKET LINK-->
-      <input class="AVED-ticket-link" id="ticket-link" name="ticket_link" placeholder="Place Ticket Link Here" ng-hide="tAdd">
     </div>
-    <!--ends adding-->
-
-<!--BEGINS EDITING TICKET LINK-->
-    <input class="AVED-ticket-link" id="ticket-link-edit" name="ticket_link" placeholder="Place Ticket Link Here" value="{{thisPerformance.ticket_link}}" ng-hide="tEdit">
+    <div class="add-image-container">
+      <label>Add Performance Background Image</label>
+      <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="uploads/PerfHero{{thisPerformance.id}}">
+        <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+        <input type="hidden" name="acl" value="public-read">
+        <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+        <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
+        <input type="hidden" name="Content-Type" value="$Content-Type">
+        <!-- Include any additional input fields here U{{currUserId}} -->
+        <input name="file" type="file" id="fileBtn2Add"><br>
+        <br>
+        <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
+      </form>
+    </div>
   </div>
-  <!--ends editing-->
+  <!--this ends the editing-->
 
 <!--BEGINS VIEWING SHOWTIMES-------------------------------------------------->
     <div class="evt-times" ng-hide="tView">

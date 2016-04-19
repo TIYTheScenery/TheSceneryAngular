@@ -8,7 +8,7 @@
   vertical-align: middle; }
 
 body {
-  background: #ddd; }
+  background: #c7cacc; }
 
 a {
   text-decoration: none;
@@ -19,125 +19,210 @@ a {
 
 .heroImg {
   width: 100%;
-  height: 350px;
-  -webkit-filter: sepia(75%); }
+  height: 500px;
+  -webkit-filter: sepia(50%); }
 
 .heroImgWordsContainer {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
   padding: 10px;
   color: white;
-  font-size: 40px;
-  width: 50%;
-  margin: auto;
-  margin-top: -300px;
+  width: 70%;
+  margin-top: -450px;
+  margin-left: 15%;
   position: absolute;
+  height: 400px; }
+
+.this-performance-names {
+  width: 60%;
+  margin: auto;
   text-align: center;
-  margin-left: 27%; }
+  margin-bottom: 25px;
+  font-family: 'Merriweather Sans', sans-serif; }
 
-.performanceInfoContainer {
-  width: 80%;
-  margin: 15px auto;
-  background: #aaa;
-  padding: 10px; }
+.this-performance-company-name {
+  font-size: 20px; }
 
-.performanceDescription {
-  padding: 10px 60px; }
-
-.rightCol {
-  display: inline-block;
-  margin: 15px;
-  margin-right: 10%;
-  float: right; }
-
-.leftCol {
-  display: inline-block;
-  margin: 15px;
-  margin-left: 10%; }
-
-.AVED-event {
-  border: 1px solid #888;
-  background: #bbb;
-  width: 100%; }
-
-.AVED-genre,
-.AVED-tags {
-  padding: 5px 10px;
-  font-size: 18px;
-  margin: 25px 0 15px 0; }
-
-.AVED-tags {
-  padding-left: 0; }
-
-.AVED-trailer-link,
-.AVED-prod-images,
-.AVED-ticket-btn {
-  padding: 5px 10px;
-  font-size: 18px;
-  background: #bbb;
-  border-radius: 5px;
-  margin: 10px 0; }
-
-.AVED-trailer-link,
-.AVED-prod-images,
-.AVED-ticket-btn {
-  background: #bbb;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa); }
-
-.AVED-trailer-link {
-  width: 100px; }
-
-.AVED-prod-images {
-  width: 170px; }
-
-.AVED-upload-img {
-  display: inline-block;
-  text-align: center;
-  width: 75px;
-  padding: 13px 0;
-  background: #333;
-  color: white;
-  margin-right: 5px; }
-
-.AVED-ticket-btn {
-  width: 20%;
-  text-align: center;
-  margin: 25px auto; }
-
-.AVED-ticket-link {
-  display: block;
-  font-size: 14px;
-  width: 350px;
-  margin: auto; }
-
-.AVED-label {
-  display: block;
-  font-size: 22px;
-  margin-top: 45px; }
-
-.event-info {
-  display: inline-block;
+.presents {
   font-size: 18px; }
 
-.drop-down-icon {
-  display: inline-block;
-  font-size: 18px;
-  padding: 5px 10px 5px 0; }
+.this-performance-name {
+  font-size: 35px; }
 
-.drop-down-wrapper {
-  border-bottom: 1px solid #888;
-  width: 100%; }
+.this-performance-company-name div {
+  font-size: 16px;
+  margin: 10px 0 15px 0; }
+
+.performanceDescription {
+  margin: 25px auto 0 auto;
+  width: 80%;
+  color: #eee;
+  font-size: 16px;
+  font-family: 'Merriweather', serif;
+  border-bottom: 1px solid #999;
+  padding-bottom: 25px;
+  min-height: 170px;
+  height: 170px; }
+
+.this-performance-link-wrapper {
+  display: inline-block;
+  width: 80%;
+  margin: 25px 0 0 10%; }
+
+.AVED-trailer-link {
+  color: #444;
+  background: rgba(235, 235, 235, 0.8);
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px; }
+
+.AVED-genre {
+  display: inline-block;
+  font-size: 20px; }
+
+.AVED-ticket-btn {
+  display: inline-block;
+  color: #eee;
+  background: rgba(0, 185, 0, 0.9);
+  padding: 10px;
+  border-radius: 5px; }
+
+.performance-genre-wrapper {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top; }
+
+.performance-trailer-wrapper {
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top; }
+
+.performance-ticket-wrapper {
+  width: 33%;
+  text-align: right;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 6px; }
+
+.AVED-ticket-link {
+  font-size: 16px;
+  width: 50%; }
+
+.hero-img-performance-name {
+  width: 300px;
+  font-size: 16px;
+  margin: 20px 0; }
+
+.edit-hero-Img-Words-Container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  width: 70%;
+  margin-top: -500px;
+  margin-left: 15%;
+  position: absolute;
+  height: 450px; }
+
+.edit-genre-wrapper {
+  font-size: 18px;
+  margin-bottom: 10px; }
+
+.edit-performanceDescription {
+  display: block;
+  width: 80%;
+  max-width: 90%;
+  font-size: 14px;
+  height: 150px;
+  max-height: 150px;
+  margin: auto; }
+
+.edit-perf-desc-label {
+  display: block;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 10%; }
+
+.hidden {
+  display: none; }
+
+.edit-AVED-trailer-link {
+  margin: 25px 0; }
+
+.edit-AVED-trailer-link-input {
+  width: 50%;
+  font-size: 16px; }
+
+.add-image-container {
+  position: absolute;
+  margin-top: -65px;
+  margin-left: 65%; }
+  .add-image-container label {
+    display: block;
+    font-size: 15px;
+    padding-bottom: 10px; }
 
 .evt-times,
 .reviews {
   display: inline-block;
-  width: 50%;
+  width: 35%;
   text-align: center;
   vertical-align: top;
-  margin-right: -2px; }
+  margin-bottom: 40px; }
   .evt-times label,
   .reviews label {
     margin-bottom: 15px; }
+
+.evt-times {
+  margin-left: 15%; }
+
+.reviews {
+  width: 36%; }
+
+.AVED-review-wrapper {
+  width: 90%;
+  float: right;
+  text-align: left; }
+
+.AVED-events-holder {
+  width: 90%; }
+
+.AVED-event {
+  background: #efefef;
+  width: 100%; }
+
+.AVED-label-reviews,
+.AVED-label-event {
+  display: block;
+  font-size: 22px;
+  margin-top: 45px; }
+
+.AVED-label-reviews {
+  margin-left: 45px; }
+
+.AVED-label-event {
+  margin-left: -45px; }
+
+.AVED-new-review,
+.review-wrapper {
+  background: #efefef;
+  padding: 5px; }
+
+.AVED-new-review-border {
+  padding-bottom: 30px;
+  border-bottom: 2px solid #92A7BF; }
+
+.event-info {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1.3; }
+
+.drop-down-wrapper {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #888;
+  width: 100%; }
 
 .event-wrapper {
   text-align: left;
@@ -157,21 +242,9 @@ a {
   .cast-wrapper label {
     display: block; }
 
-.AVED-review-wrapper {
-  width: 90%;
-  margin: auto;
-  text-align: left; }
-
-.AVED-new-review,
-.review-wrapper {
-  border: 1px solid #999;
-  background: #bbb;
-  padding: 5px; }
-
 .review-img {
   height: 75px;
   width: 75px;
-  border: 1px solid #ccc;
   background: #555;
   display: inline-block;
   vertical-align: top; }
@@ -210,39 +283,53 @@ a {
   display: inline-block;
   vertical-align: top; }
 
-.edit-AVED-genre {
-  width: 125px;
-  height: 20px; }
+.edit-AVED-event-times-header {
+  width: 30%;
+  margin: 25px auto 15px auto;
+  text-align: center; }
+  .edit-AVED-event-times-header label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 22px; }
 
-.edit-performanceDescription {
-  display: block;
-  width: 90%;
-  max-width: 90%;
-  font-size: 14px;
-  height: 150px;
-  max-height: 150px;
+.create-new-showtime {
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 5px; }
+
+.EDIT-showtime-wrapper,
+.new-showtime-wrapper {
+  width: 40%;
   margin: auto; }
+  .EDIT-showtime-wrapper label,
+  .new-showtime-wrapper label {
+    display: inline-block;
+    width: 20%; }
+  .EDIT-showtime-wrapper input,
+  .new-showtime-wrapper input {
+    width: 60%;
+    margin: 7px 0;
+    font-size: 16px; }
 
-.edit-perf-desc-label {
-  display: block;
-  font-size: 18px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  margin-left: 5%; }
+.EDIT-showtime-info-wrapper,
+.new-showtime-info-wrapper {
+  background: #efefef;
+  margin-bottom: 20px;
+  padding: 10px; }
 
-.edit-AVED-trailer-link-input {
-  font-size: 14px;
-  width: 250px; }
+.removeShowtime {
+  vertical-align: top; }
+  .removeShowtime .deleteCheck {
+    width: auto !important;
+    margin-right: 5px; }
 
-.edit-AVED-tags-input {
-  font-size: 14px;
-  width: 250px; }
+.edit-add-performance-button-wrapper {
+  width: 40%;
+  margin: 25px auto 45px auto; }
 
-.hero-img-performance-name {
-  width: 300px;
-  font-size: 16px; }
-
-.hidden {
-  display: none; }
+#dont-create-performance,
+#discard-performance-changes {
+  float: right; }
 
 /*# sourceMappingURL=preformanceAVED.css.map */

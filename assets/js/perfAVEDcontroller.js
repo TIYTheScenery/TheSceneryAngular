@@ -1,4 +1,21 @@
+$.datetimepicker.setDateFormatter({
+  parseDate: function (date, format) {
+      var d = moment(date, format);
+      return d.isValid() ? d.toDate() : false;
+  },
+
+  formatDate: function (date, format) {
+      return moment(date).format(format);
+  }
+});
+
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+  window.onload = $('#showtime-date-time').datetimepicker({
+    format:'YYYY-M-DD h:mm a',
+    formatTime:'h:mm a',
+    formatDate:'YYYY-M-DD',
+    step: 15
+  });
   $scope.isLogged = function()
   {
     var data = JSON.parse(localStorage.getItem('user'));
@@ -16,6 +33,22 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       $scope.$apply();
     }
   }//end islogged
+
+
+  $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
+    if($(this)[0].checked === true){
+      // console.log(this);
+      // console.log($(this));
+      // console.log(this.closest(".EDIT-showtime-info-wrapper"));
+      var deletebox = $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#C43939");
+    }
+    else{
+      $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#efefef")
+    }
+  });
+  // if ($("#delete-check").is(":checked")){
+  //   console.log("food");
+  // }
 
   //these poll ourdata for what the view should be on this page: view, edit, or add.
   $scope.tAdd=ourData.borrowData("tAdd");
@@ -38,8 +71,14 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   if($scope.tAdd){
     //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
     $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+      console.log(data);
       ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
       $scope.thisPerformance = data.data.performance;
+      if (data.data.performance.hero_image_url.match("missing.png")){
+        $scope.heroImage = "assets/images/lesmis-2.jpg";
+      }else{
+        $scope.heroImage = data.data.performance.hero_image_url;
+      }
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){
         //if logged in user doesn't match owner of performance then hide edit buttons
@@ -110,182 +149,113 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var token = $scope.currentUser.user_info.login_token;
     var ownerID = $scope.currentUser.user_info.id;
 
-    var allShowsJSON=[];
-    var dateBreak = false;
-    var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
-    $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
-      if($(this).find(".deleteCheck").is(':checked') === true)
+    var createPerformanceFD = new FormData();
+    createPerformanceFD.append("performance[owner_id]", ownerID);
+    createPerformanceFD.append("performance[hero_image]", $scope.profileUploadCreate);
+    createPerformanceFD.append("performance[company_id]", $('#performance-company-add').val());
+    createPerformanceFD.append("performance[name]", $('#performance-name').val());
+    createPerformanceFD.append("performance[description]",$('#perf-desc').val());
+    createPerformanceFD.append("performance[trailer_link]", $('#trailer-link').val());
+    createPerformanceFD.append("performance[ticket_link]", $('#ticket-link').val());
+    createPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre").val());
+    createPerformanceFD.append('user_info[login_token]', token);
+
+    $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(index){
+      if($(this).find("#delete-check").is(':checked'))
       {
-        showTemplate._destroy= true;
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
       } else {
-        showTemplate._destroy= false;
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
       }
-      showTemplate.begin_time = $(this).find("#showtime-time").val();
-      showTemplate.address = $(this).find("#showtime-address").val();
-      showTemplate.city = $(this).find('#showtime-city').val();
-      showTemplate.state = $(this).find('#showtime-state').val();
-      showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showDate = $(this).find('#showtime-date').val();
-
-      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
-      {//MM/DD/YYYY
-        var dateArray = showDate.split('/');
-        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
-      }
-      else
-      {
-        alert("please enter all show dates in this format: MM/DD/YYYY");
-        dateBreak = true;
-      }
-      showTemplate.show_date = showDate;
-      allShowsJSON.push(showTemplate);
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
     });
 
-    if(dateBreak){return;}
-    var performance = JSON.stringify({
-    "performance": {
-      "owner_id": ownerID,
-      "company_id": $('#performance-company-add').val(),
-      "name": $('#performance-name').val(),
-      "description": $('#perf-desc').val(),
-      "trailer_link": $('#trailer-link').val(),
-      "ticket_link": $('#ticket-link').val(),
-      "genre_performances_attributes":[
-       {
-         "genre_id": $(".edit-AVED-genre").val()
-       }
-     ],
-      "show_times_attributes": allShowsJSON
-    },
-    "user_info": {
-      "login_token": token //response.user_info.login_token
-    }
-
-    });
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://api.the-scenery.com/performances",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": performance
-       };
-
-      $.ajax(settings).done(function (data) {
-        console.log(data);
-        if(data.success){
-          $scope.thisPerformance = data.performance
-          localStorage.setItem('perfID', data.performance.id)
-          ourData.shareData("tAdd", false);
-          ourData.shareData("tEdit", false);
-          ourData.shareData("tView", true);
-          $window.location.reload();
-        }else{
-
-          // var errorText = " ";
-          // for(var i = 0; i < data.data.errors.length; i++){
-          //   errorText += data.data.errors[i] + "\n";
-
-          var errorText = "";
-          for(var i = 0; i < data.errors.length; i++){
-            errorText += data.errors[i] + "\n";
-
-          }
-          alert(errorText);
-        }
-      });//end ajax.
+    var uploadUrl = 'https://api.the-scenery.com/performances'
+    $http({
+      method: "POST",
+      url: uploadUrl,
+      data: createPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Created performance");
+      console.log(response);
+      $scope.thisPerformance = response.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance.id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('performance not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.errors.length; i++){
+        errorText += response.errors[i] + "\n";
+      }
+      alert(errorText);
+    });//end http call
   }//End addperformance
 
   $scope.updatePerformance = function(){
     var token = $scope.currentUser.user_info.login_token;
     var ownerID = $scope.currentUser.user_info.id;
 
-    var allEditedShowsJSON=[];
+    var updatedPerformanceFD = new FormData();
+    updatedPerformanceFD.append("performance[id]", thisPerformanceID);
+    updatedPerformanceFD.append("performance[owner_id]", ownerID);
+    if($scope.profileUploadEdit != null){
+      updatedPerformanceFD.append("performance[hero_image]", $scope.profileUploadEdit);
+    }
+    updatedPerformanceFD.append("performance[company_id]", $('#performance-company-edit').val());
+    updatedPerformanceFD.append("performance[name]", $('#performance-name-edit').val());
+    updatedPerformanceFD.append("performance[description]",$('#perf-desc-edit').val());
+    updatedPerformanceFD.append("performance[trailer_link]", $('#trailer-link-edit').val());
+    updatedPerformanceFD.append("performance[ticket_link]", $('#ticket-link-edit').val());
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][id]", $scope.thisPerformance.genre_id[0].id);
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre-edit").val());
+    updatedPerformanceFD.append('user_info[login_token]', token);
 
-    var dateBreak = false;
-    $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(){
-      var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+    $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(index){
       if($(this).find("#delete-check").is(':checked'))
       {
-        showTemplate._destroy = true;
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
       } else {
-        showTemplate._destroy = false;
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
       }
-      showTemplate.id = $(this).find("#showtime-id").val();
-      showTemplate.begin_time = $(this).find("#showtime-time").val();
-      showTemplate.address = $(this).find("#showtime-address").val();
-      showTemplate.city = $(this).find('#showtime-city').val()
-      showTemplate.state = $(this).find('#showtime-state').val()
-      showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showDate = $(this).find('#showtime-date').val();
-
-      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
-      {//MM/DD/YYYY
-        var dateArray = showDate.split('/');
-        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
-      }
-      else
-      {
-        alert("please enter all show dates in this format: MM/DD/YYYY");
-        dateBreak = true;
-      }
-      showTemplate.show_date = showDate;
-
-      allEditedShowsJSON.push(showTemplate);
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][id]", $(this).find("#showtime-id").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
     });
 
-    if(dateBreak){return;}
-    var performance = JSON.stringify({
-      "performance": {
-        "id": thisPerformanceID,
-        "owner_id": ownerID,
-        "company_id": $('#performance-company-edit').val(),
-        "name": $('#performance-name-edit').val(),
-        "description": $('#perf-desc-edit').val(),
-        "trailer_link": $('#trailer-link-edit').val(),
-        "ticket_link": $('#ticket-link-edit').val(),
-        "genre_performances_attributes":[
-         {
-           "id": $scope.thisPerformance.genre_id[0].id,
-           "genre_id": $(".edit-AVED-genre-edit").val()
-         }
-        ],
-        "show_times_attributes": allEditedShowsJSON
-      },
-      "user_info": {
-        "login_token": token
+    var uploadUrl = 'https://api.the-scenery.com/performances/' + thisPerformanceID
+    $http({
+      method: "PUT",
+      url: uploadUrl,
+      data: updatedPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Updated performance");
+      console.log(response);
+      $scope.thisPerformance = response.data.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance .id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('post not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.data.errors.length; i++){
+        errorText += response.data.errors[i] + "\n";
       }
-    });
-
-    console.log(performance);
-
-    //THIS IS THE ANGULAR CALL
-    $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
-      console.log(data);
-      if(data.data.success){
-        $scope.thisPerformance = data.data.performance;
-        localStorage.setItem('perfID', $scope.thisPerformance .id);
-        ourData.shareData("tAdd", false);
-        ourData.shareData("tEdit", false);
-        ourData.shareData("tView", true);
-        $window.location.reload();
-      } else {
-        // $scope.toggle("EDIT");
-        var errorText = "";
-        for(var i = 0; i < data.data.errors.length; i++){
-          errorText += data.data.errors[i] + "\n";
-        }
-        alert(errorText);
-      }
-      },function(){console.log("performance update failed...");
-    });//end http call.
-
-
+      alert(errorText);
+    });//end http call
   }//end updatePerformance
 
 
@@ -341,6 +311,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       theClone.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
       // theClone.find('.new-showtime-date-input').datepicker();
     }
+    newID = 'showtime-date-time' + Date.now();
+    theClone.find('.showtime-date-time').attr("id", newID);
+
 
     if(where == 1)//1 is for adding a showtime while initilally creating.
     {
@@ -354,6 +327,12 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
     else{console.log("I dont understand where im supposed to put the new showtime...");}
 
+    $('#' + newID).datetimepicker({
+      format:'YYYY-M-DD h:mm a',
+      formatTime:'h:mm a',
+      formatDate:'YYYY-M-DD',
+      step: 15
+    });
   //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
   }//end addnewshow
 
@@ -440,4 +419,51 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   // });//end jquery function
 
+})
+.directive('initEdit', function(){
+  return {
+    restrict: "A",
+    scope: {
+      initEdit: '='
+    },
+    link: function(scope, element, attrs) {
+      element[0].id = 'showtime-date-time' + Date.now();
+      $('#' + element[0].id).datetimepicker({
+        format:'YYYY-M-DD h:mm a',
+        formatTime:'h:mm a',
+        formatDate:'YYYY-M-DD',
+        step: 15
+      });
+    }
+  };
+})
+.directive('profileImageCreate', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImageCrete);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+})
+.directive('profileImageEdit', function ($parse) {
+  return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+          var model = $parse(attrs.profileImageEdit);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+              scope.$apply(function(){
+                  modelSetter(scope, element[0].files[0]);
+              });
+          });
+      }
+  };
 });

@@ -221,7 +221,8 @@ h4 {
   background: #fefefe;
   width: 90%;
   margin: 20px auto;
-  padding: 10px; }
+  padding: 10px;
+  cursor: pointer;}
 
 .past-performances-label {
   margin: 0 auto; }

@@ -101,8 +101,6 @@ a{
   display: block;
 }
 
-
-
 .login-btn,
 .sign-up-btn,
 .logout-btn,
@@ -142,12 +140,18 @@ a{
 
 .modal-box{
   background: #ccc;
-  width: 650px;
-  height: 300px;
+  width: 500px;
+  height: 330px;
   margin: 200px auto 0 auto;
   padding: 40px;
   border-radius: 5px;
   // border: 1px solid #bbb;
+}
+
+#log-in-modal{
+  .modal-box{
+    height: 220px;
+  }
 }
 
 .modal-welcome{
@@ -162,7 +166,7 @@ a{
 .modal-label-wrapper{
   display: inline-block;
   vertical-align: top;
-  margin-left: 115px;
+  margin-left: 25px;
   margin-right: 15px;
   label{
     display: block;
@@ -196,10 +200,7 @@ a{
 // }
 
 .modal-login-btn{
-  display: block;
-  padding-left: 17px;
-  width: 50px;
-  margin: 0 auto;
+  display: inline-block;
 }
 
 .hidden{

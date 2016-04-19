@@ -54,54 +54,39 @@
 
     <!-- Edit Company Hero Image -->
     <div class="edit-company-hero-image" ng-show="edit">
-      <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="key" value="uploads/CompanyHero{{thisCompany.id}}">
-        <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-        <input type="hidden" name="acl" value="public-read">
-        <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-        <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
-        <input type="hidden" name="Content-Type" value="$Content-Type">
 
-        Add splash Image
-        <input name="file" type="file" id="fileBtn2"><br>
-        <br>
-        <input type="submit" style="display:none;" id="imgSubmitBtn2" value="Upload File to S3">
-      </form>
+      <input type="file" hero-image-edit="heroImageUploadEdit"><br>
+      <br>
     </div>
 
     <!-- Create Company Hero Image -->
     <span class="create-company-hero-image" ng-show="create">Add Company Banner
-      <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="key" value="uploads/CompanyHero{{thisCompany.id}}">
-        <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-        <input type="hidden" name="acl" value="public-read">
-        <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-        <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
-        <input type="hidden" name="Content-Type" value="$Content-Type">
-        <!-- Include any additional input fields here U{{currUserId}} -->
 
-        <input name="file" type="file" id="fileBtn2Add"><br>
-        <br>
-        <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
-      </form></span>
-
+      <input type="file" hero-image-create="heroImageUploadCreate"><br>
+      <br>
+    </span>
+    <!-- Display Company Hero Image -->
     <div class="company-name-type-wrapper">
 
-      <!-- Display company profile picture -->
-      <div class="company-profile-pic" ng-show="show">
-        <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
-      </div>
+<!--THIS IS FOR PROFILE IMAGES! -->
+  <!-- Display company profile picture -->
+  <div class="company-profile-pic" ng-show="show">
+    <img src="{{thisCompany.profile_image_url}}" width="250" height="250">
+  </div>
+  <!-- Edit company profile picture -->
+  <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
+    <img src="{{thisCompany.profile_image_url}}" width="200" height="200">
+    Add profile Image
+    <input type="file" profile-image-edit="profileImageUploadEdit"><br>
+    <br>
+  </span>
+  <!-- Create company profile picture -->
+  <span class="company-profile-pic create-company-profile-pic" ng-show="create">
+    Add profile Image
+    <input type="file" profile-image-create="profileImageUploadCreate"><br>
+    <br>
+  </span>
 
-      <!-- Edit company profile picture -->
-      <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-        <img src="{{thisCompany.profile_image_url}}" width="200" height="200">
-        <form class="moveform" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
-          <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-          <input type="hidden" name="acl" value="public-read">
-          <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-          <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
-          <input type="hidden" name="Content-Type" value="$Content-Type">
 
           Add profile Image
           <input name="file" type="file" id="fileBtn1"><br>

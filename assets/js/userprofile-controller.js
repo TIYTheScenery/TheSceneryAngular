@@ -165,7 +165,9 @@ $scope.usercompany = function(){
 
     var updatedUserFD = new FormData();
     updatedUserFD.append('user_info[description]', $("#user-desc").val());
-    updatedUserFD.append('user_info[profile_image]', $scope.profileUpload);
+    if($scope.profileUpload != null){
+      updatedUserFD.append('user_info[profile_image]', $scope.profileUpload);
+    }
     updatedUserFD.append('user_info[first_name]', firstname);
     updatedUserFD.append('user_info[last_name]', lastname);
     updatedUserFD.append('user_info[facebook_link]', $("#edit-facebook").val());
@@ -207,7 +209,7 @@ $scope.usercompany = function(){
         console.log("Updated User");
         console.log(response);
       }, function errorCallback(response){
-        console.log('post not created', response);
+        console.log('user not updated', response);
     });
   }
 

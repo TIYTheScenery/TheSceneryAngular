@@ -211,74 +211,57 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var token = $scope.currentUser.user_info.login_token;
     var ownerID = $scope.currentUser.user_info.id;
 
-    var allEditedShowsJSON=[];
+    var updatedPerformanceFD = new FormData();
+    updatedPerformanceFD.append("performance[id]", thisPerformanceID);
+    updatedPerformanceFD.append("performance[owner_id]", ownerID);
+    updatedPerformanceFD.append("performance[hero_image]", $scope.profileUpload);
+    updatedPerformanceFD.append("performance[company_id]", $('#performance-company-edit').val());
+    updatedPerformanceFD.append("performance[name]", $('#performance-name-edit').val());
+    updatedPerformanceFD.append("performance[description]",$('#perf-desc-edit').val());
+    updatedPerformanceFD.append("performance[trailer_link]", $('#trailer-link-edit').val());
+    updatedPerformanceFD.append("performance[ticket_link]", $('#ticket-link-edit').val());
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][id]", $scope.thisPerformance.genre_id[0].id);
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre-edit").val());
+    updatedPerformanceFD.append('user_info[login_token]', token);
 
-    var dateBreak = false;
-    $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(){
-      var showTemplate = {"id": '', "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+    $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(index){
       if($(this).find("#delete-check").is(':checked'))
       {
-        showTemplate._destroy = true;
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
       } else {
-        showTemplate._destroy = false;
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
       }
-      showTemplate.id = $(this).find("#showtime-id").val();
-      showTemplate.address = $(this).find("#showtime-address").val();
-      showTemplate.city = $(this).find('#showtime-city').val()
-      showTemplate.state = $(this).find('#showtime-state').val()
-      showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showTemplate.show_date = $(this).find('.showtime-date-time').val();
-
-      allEditedShowsJSON.push(showTemplate);
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][id]", $(this).find("#showtime-id").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
     });
 
-    if(dateBreak){return;}
-    var performance = JSON.stringify({
-      "performance": {
-        "id": thisPerformanceID,
-        "owner_id": ownerID,
-        "company_id": $('#performance-company-edit').val(),
-        "name": $('#performance-name-edit').val(),
-        "description": $('#perf-desc-edit').val(),
-        "trailer_link": $('#trailer-link-edit').val(),
-        "ticket_link": $('#ticket-link-edit').val(),
-        "genre_performances_attributes":[
-         {
-           "id": $scope.thisPerformance.genre_id[0].id,
-           "genre_id": $(".edit-AVED-genre-edit").val()
-         }
-        ],
-        "show_times_attributes": allEditedShowsJSON
-      },
-      "user_info": {
-        "login_token": token
+    var uploadUrl = 'https://api.the-scenery.com/performances/' + thisPerformanceID
+    $http({
+      method: "PUT",
+      url: uploadUrl,
+      data: updatedPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Updated performance");
+      console.log(response);
+      $scope.thisPerformance = response.data.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance .id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('post not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.data.errors.length; i++){
+        errorText += response.data.errors[i] + "\n";
       }
-    });
-
-    console.log(performance);
-
-    //THIS IS THE ANGULAR CALL
-    $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
-      console.log(data);
-      if(data.data.success){
-        $scope.thisPerformance = data.data.performance;
-        localStorage.setItem('perfID', $scope.thisPerformance .id);
-        ourData.shareData("tAdd", true);
-        ourData.shareData("tEdit", true);
-        ourData.shareData("tView", false);
-        $window.location.reload();
-      } else {
-        // $scope.toggle("EDIT");
-        var errorText = "";
-        for(var i = 0; i < data.data.errors.length; i++){
-          errorText += data.data.errors[i] + "\n";
-        }
-        alert(errorText);
-      }
-      },function(){console.log("performance update failed...");
-    });//end http call.
-
-
+      alert(errorText);
+    });//end http call
   }//end updatePerformance
 
 
@@ -459,4 +442,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       });
     }
   };
+})
+.directive('profileImage', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
 });

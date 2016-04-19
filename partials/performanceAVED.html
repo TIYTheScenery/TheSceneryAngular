@@ -91,17 +91,8 @@
       </div> <!--End link container-->
       <div class="add-image-container">
         <label>Add Performance Background Image</label>
-        <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="key" value="uploads/PerfHero{{thisPerformance.id}}">
-          <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-          <input type="hidden" name="acl" value="public-read">
-          <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-          <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
-          <input type="hidden" name="Content-Type" value="$Content-Type">
-          <!-- Include any additional input fields here U{{currUserId}} -->
-          <input name="file" type="file" id="fileBtn2Add"><br>
+        <input name="file" type="file" profile-image="profileUpload"><br>
           <br>
-          <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
         </form>
       </div>
     </div> <!-- End hero image words container-->
@@ -140,18 +131,8 @@
     </div>
     <div class="add-image-container">
       <label>Add Performance Background Image</label>
-      <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="key" value="uploads/PerfHero{{thisPerformance.id}}">
-        <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-        <input type="hidden" name="acl" value="public-read">
-        <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-        <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
-        <input type="hidden" name="Content-Type" value="$Content-Type">
-        <!-- Include any additional input fields here U{{currUserId}} -->
-        <input name="file" type="file" id="fileBtn2Add"><br>
-        <br>
-        <input type="submit" style="display:none;" id="imgSubmitBtn2Add" value="Upload File to S3">
-      </form>
+      <input name="file" type="file" profile-image="profileUpload"><br>
+      <br>
     </div>
   </div>
   <!--this ends the editing-->

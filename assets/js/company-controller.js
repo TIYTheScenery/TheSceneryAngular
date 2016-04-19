@@ -165,14 +165,14 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         data: createCompanyFD,
         headers: {'Content-Type': undefined}
       }).then(function successCallback(response){
-        console.log("Updated User");
+        console.log("Created Company");
         console.log(response);
         localStorage.setItem('compID', JSON.stringify(response.company.id));
         $scope.thisCompany = response.company;
         ourData.shareData("companyCreate", false);
         location.reload();
       }, function errorCallback(response){
-        console.log('post not created', response);
+        console.log('Company not created', response);
         var errorText = "";
         for(var i = 0; i < response.errors.length; i++){
           errorText += response.errors[i] + "\n";
@@ -190,10 +190,10 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     createCompanyFD.append('company[id]', $scope.thisCompany.id);
     createCompanyFD.append('company[user_id]', ownerID);
     createCompanyFD.append('company[name]', $(".create-company-name").val());
-    if($scope.profileImageUploadEdit === null){
+    if($scope.profileImageUploadEdit != null){
       createCompanyFD.append('company[profile_image_url]', $scope.profileImageUploadEdit);
     }
-    if($scope.heroImageUploadEdit === null){
+    if($scope.heroImageUploadEdit != null){
       createCompanyFD.append('company[hero_image_url]', $scope.heroImageUploadEdit);
     }
     createCompanyFD.append('company[description]', $(".create-company-description").val());
@@ -212,17 +212,17 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     $http({
       method: "PATCH",
       url: uploadUrl,
-      data: updatedUserFD,
+      data: createCompanyFD,
       headers: {'Content-Type': undefined}
     }).then(function successCallback(response){
-      console.log("Updated User");
+      console.log("Updated company");
       console.log(response);
       localStorage.setItem('compID', JSON.stringify(response.company.id));
       $scope.thisCompany = response.company;
       ourData.shareData("companyCreate", false);
       location.reload();
     }, function errorCallback(response){
-      console.log('post not created', response);
+      console.log('company not updated', response);
       var errorText = "";
       for(var i = 0; i < response.errors.length; i++){
         errorText += response.errors[i] + "\n";
@@ -466,7 +466,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.profileImage);
+            var model = $parse(attrs.profileImageEdit);
             var modelSetter = model.assign;
 
             element.bind('change', function(){
@@ -481,7 +481,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.profileImage);
+            var model = $parse(attrs.heroImageEdit);
             var modelSetter = model.assign;
 
             element.bind('change', function(){
@@ -496,7 +496,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.profileImage);
+            var model = $parse(attrs.profileImageCreate);
             var modelSetter = model.assign;
 
             element.bind('change', function(){
@@ -511,7 +511,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.profileImage);
+            var model = $parse(attrs.heroImageCreate);
             var modelSetter = model.assign;
 
             element.bind('change', function(){

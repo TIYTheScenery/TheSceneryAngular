@@ -146,16 +146,16 @@ $scope.usercompany = function(){
 
   $scope.saveuser = function()
   {
-    var thing = jQuery.Event( "submit" );
-    if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
-    {
-      console.log("no file uploaded, dont send to amazon...");
-    }
-    else//there IS a file that the user wants to upload... so click our hidden submit button.
-    {
-      console.log("we have a file! Upload beggining!");
-      $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
-    }
+    // var thing = jQuery.Event( "submit" );
+    // if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
+    // {
+    //   console.log("no file uploaded, dont send to amazon...");
+    // }
+    // else//there IS a file that the user wants to upload... so click our hidden submit button.
+    // {
+    //   console.log("we have a file! Upload beggining!");
+    //   $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
+    // }
 
     var names = $(".edit-display-user-name").val().split(" ");
     var firstname = names[0];
@@ -165,7 +165,7 @@ $scope.usercompany = function(){
 
     var updatedUserFD = new FormData();
     updatedUserFD.append('user_info[description]', $("#user-desc").val());
-    updatedUserFD.append('user_info[image_url]', $scope.profileImage);
+    updatedUserFD.append('user_info[profile_image]', $scope.profileUpload);
     updatedUserFD.append('user_info[first_name]', firstname);
     updatedUserFD.append('user_info[last_name]', lastname);
     updatedUserFD.append('user_info[facebook_link]', $("#edit-facebook").val());
@@ -217,21 +217,36 @@ $scope.usercompany = function(){
     $(".side-info-user-description").text($("#user-desc").val());
     $("#user-desc").val("");
 
+    console.log(updatedUserFD);
+
     // console.log($scope.currentuser.user_info.id);
     var uploadUrl = "https://api.the-scenery.com/users"
-    $http.patch(uploadUrl, updatedUserFD, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        })
-        .success(function(data){
-          console.log("Updated User");
-          console.log(data);
-          localStorage.setItem("user", JSON.stringify(data));
-        })
-        .error(function(){
-          console.log("failure");
-          console.log(data);
-        });
+    $http({
+        method: "PATCH",
+        url: uploadUrl,
+        data: updatedUserFD,
+        headers: {'Content-Type': undefined}
+      }).then(function successCallback(response){
+        console.log("Updated User");
+        console.log(response);
+      }, function errorCallback(response){
+        console.log('post not created', response);
+    });
+
+    //
+    // $http.patch(uploadUrl, updatedUserFD, {
+    //         transformRequest: angular.identity,
+    //         headers:
+    //     })
+    //     .success(function(data){
+    //       console.log("Updated User");
+    //       console.log(data);
+    //       localStorage.setItem("user", JSON.stringify(data));
+    //     })
+    //     .error(function(){
+    //       console.log("failure");
+    //       console.log(data);
+    //     });
 
     // //AJAX CALL
     //   var settings = {

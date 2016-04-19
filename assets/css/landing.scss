@@ -135,11 +135,9 @@ html{
 .landingFunctional{
   position: absolute;
   top: 200px;
-  bottom: 0;
   // margin-top: -100%;
-  // overflow: hidden;
+  overflow: hidden;
   width: 100%;
-  background: rgba(0,0,0,0.3);
 }
 
 .landing-header{

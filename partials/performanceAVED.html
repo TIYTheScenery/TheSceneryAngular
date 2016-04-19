@@ -217,7 +217,7 @@
                 <i class="fa fa-arrow-right"></i>
               </div>
               <div class="event-info">
-              {{show.begin_time}} on {{show.show_date}}, at {{show.address}} {{show.city}}, {{show.state}}.
+              {{show.show_date}}, at {{show.address}} {{show.city}}, {{show.state}}.
               </div>
             </div>
             <!-- hide casts for now since they aren't working -->
@@ -258,7 +258,8 @@
     <div class="EDIT-showtime-info-wrapper" ng-repeat="show in thisPerformance.show_times">
       <div class="date-time-location-wrapper-EDIT">
         <input type="hidden" id="showtime-id" value="{{show.id}}">
-        <input class="EDIT-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time" value="{{show.show_date | date : fullDate}}">
+        <input class="showtime-date-time" init-edit="show" type="text" value="{{show.show_date}}">
+        <!-- <input class="EDIT-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time" value="{{show.show_date | date : fullDate}}"> -->
         <input class="EDIT-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd" value="{{show.address}}">
         <input class="EDIT-showtime-city-input" id="showtime-city" placeholder="City" value="{{show.city}}">
         <select class="EDIT-showtime-state-input" id="showtime-state">
@@ -333,7 +334,8 @@
         <!--THIS STARTS THE SHOWTIME-->
         <div class="new-showtime-info-wrapper">
           <div class="date-time-location-wrapper">
-            <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time">
+            <input id="showtime-date-time" class="showtime-date-time" type="text" >
+            <!-- <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time"> -->
             <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
             <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
             <select class="new-showtime-state-input" id="showtime-state">
@@ -363,7 +365,8 @@
           <div class="new-showtime-info-wrapper">
             <div class="date-time-location-wrapper">
               <input type="hidden" id="showtime-id">
-              <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time">
+              <input class="showtime-date-time" type="text" >
+              <!-- <input class="new-showtime-date-input" datetime-picker ng-model="showTimeDates" date-format="yyyy-MM-dd HH:mm Z" id="showtime-date-time"> -->
               <input class="new-showtime-address-input" id="showtime-address" placeholder="Address: ex. 123 Example Rd">
               <input class="new-showtime-city-input" id="showtime-city" placeholder="City">
               <select class="new-showtime-state-input" id="showtime-state">

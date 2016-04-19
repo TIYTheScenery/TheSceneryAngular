@@ -1,6 +1,20 @@
-TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
-  $scope.showTimeDates
+$.datetimepicker.setDateFormatter({
+  parseDate: function (date, format) {
+      var d = moment(date, format);
+      return d.isValid() ? d.toDate() : false;
+  },
 
+  formatDate: function (date, format) {
+      return moment(date).format(format);
+  }
+});
+
+TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
+  window.onload = $('#showtime-date-time').datetimepicker({
+    format:'YYYY-M-D h:mm a',
+    formatTime:'h:mm a',
+    formatDate:'YYYY-M-D'
+  });
   $scope.isLogged = function()
   {
     var data = JSON.parse(localStorage.getItem('user'));
@@ -115,19 +129,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var allShowsJSON=[];
     var dateBreak = false;
     $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
-      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+      var showTemplate = {"address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
       if($(this).find(".deleteCheck").is(':checked') === true)
       {
         showTemplate._destroy= true;
       } else {
         showTemplate._destroy= false;
       }
-      showTemplate.begin_time = "7:00 PM";
+
       showTemplate.address = $(this).find("#showtime-address").val();
       showTemplate.city = $(this).find('#showtime-city').val();
       showTemplate.state = $(this).find('#showtime-state').val();
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showTemplate.show_date = $(this).find('#showtime-date-time').val();;
+      showTemplate.show_date = $(this).find('.showtime-date-time').val();
       allShowsJSON.push(showTemplate);
     });
 
@@ -199,7 +213,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     var dateBreak = false;
     $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(){
-      var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
+      var showTemplate = {"id": '', "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
       if($(this).find("#delete-check").is(':checked'))
       {
         showTemplate._destroy = true;
@@ -207,24 +221,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
         showTemplate._destroy = false;
       }
       showTemplate.id = $(this).find("#showtime-id").val();
-      showTemplate.begin_time = $(this).find("#showtime-time").val();
       showTemplate.address = $(this).find("#showtime-address").val();
       showTemplate.city = $(this).find('#showtime-city').val()
       showTemplate.state = $(this).find('#showtime-state').val()
       showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showDate = $(this).find('#showtime-date').val();
-
-      if(showDate.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/))
-      {//MM/DD/YYYY
-        var dateArray = showDate.split('/');
-        showDate = dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1];
-      }
-      else if (showDate != "")
-      {
-        alert("please enter all show dates in this format: MM/DD/YYYY");
-        dateBreak = true;
-      }
-      showTemplate.show_date = showDate;
+      showTemplate.show_date = $(this).find('.showtime-date-time').val();
 
       allEditedShowsJSON.push(showTemplate);
     });
@@ -331,6 +332,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       theClone.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
       // theClone.find('.new-showtime-date-input').datepicker();
     }
+    newID = 'showtime-date-time' + Date.now();
+    theClone.find('.showtime-date-time').attr("id", newID);
+
 
     if(where == 1)//1 is for adding a showtime while initilally creating.
     {
@@ -344,6 +348,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
     else{console.log("I dont understand where im supposed to put the new showtime...");}
 
+    $('#' + newID).datetimepicker({
+      format:'YYYY-M-D h:mm a',
+      formatTime:'h:mm a',
+      formatDate:'YYYY-M-D'
+    });
   //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
   }//end addnewshow
 
@@ -430,4 +439,20 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   // });//end jquery function
 
+})
+.directive('initEdit', function(){
+  return {
+    restrict: "A",
+    scope: {
+      initEdit: '='
+    },
+    link: function(scope, element, attrs) {
+      element[0].id = 'showtime-date-time' + Date.now();
+      $('#' + element[0].id).datetimepicker({
+        format:'YYYY-M-D h:mm a',
+        formatTime:'h:mm a',
+        formatDate:'YYYY-M-D'
+      });
+    }
+  };
 });

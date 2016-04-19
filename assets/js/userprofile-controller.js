@@ -105,6 +105,7 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
       $(".display-user-titles").css("display", "none");
       $(".edit-display-user-titles").css("display", "none");
       $(".user-social-links-wrapper").css("display", "none");
+      $(".edit-social-link").css("display", "none");
       //$("#createcompanybutton").css("display", "none");
     }
 

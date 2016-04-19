@@ -5,6 +5,12 @@ $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
 $inputPlaceholder: rgb(77, 11, 11);
 
+$burgundy: #991010;
+$lightBlueish: #92A7BF;
+
+
+
+
 //#b6aba2
 
 html{
@@ -13,7 +19,16 @@ html{
 }
 
 .header{
-  background: $bgColor;
+
+  h1{
+    font-size: 30px;
+    color: $burgundy;
+    text-align:center;
+    font-family: 'Holtwood One SC', serif;
+    font-weight: bold;
+  }
+  
+  background: rgba(199,202,204,.5);//$bgColor;
   padding: 10px;
   // border-bottom: 1px solid $popCol1;
   height:100px
@@ -22,12 +37,7 @@ html{
 .tohome{
   display: inline-block;
   vertical-align: middle;
-  font-size: 40px;
   margin-left: 25px;
-  font-family: impact, sans-serif;
-  color: $inputColor;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
 }
 
 .scenery-logo{
@@ -117,6 +127,7 @@ a{
 
 .logged-header{
   display: none;
+  // background: rgba(199,202,204,.5);
 }
 
 .modal-wrapper{

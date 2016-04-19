@@ -6,15 +6,15 @@
         <div class="landing-header-desc">
 
           <span class="landingColSide">
-            Sign up to review performances and performance companies!
+            <h4>Sign up to review performances and performance companies!</h4>
           </span>
 
           <span class="landingColMid">
-              All the local live entertainment is now available with a quick search!
+              <h3>All your local live entertainment is now available with a quick search!</h3>
           </span>
 
           <span class="landingColSide">
-            Sign up as a professional to create Performances that will be instantly searchable.
+            <h4>Sign up as a professional to create Performances that will be instantly searchable.</h4>
           </span>
         <br><br>
       </div>
@@ -22,7 +22,9 @@
 
   <div class="landing-input-wrapper">
 
-    <input class="landing-search name-search" id="name-search" placeholder="Search Term"><br><br>
+    <input class="landing-search name-search" id="name-search" placeholder="Search Term"><span class="landing-search-genre-wrapper">
+      <!-- spot where genre dropdown goes -->
+    </span><br><br>
 
     <a href="">
       <div class="advanced" ng-click="toggleAdvanced()">
@@ -37,9 +39,6 @@
       <option value="ZIP">Search By Zip Code</option>
       <option value="NC">NC</option>
     </select>
-    <span class="landing-search-genre-wrapper">
-      <!-- spot where genre dropdown goes -->
-    </span>
     <select class="landing-search type-search" id="type-search">
       <option value="1" selected="selected">Performance</option>
       <option value="2">Professional</option>
@@ -65,28 +64,6 @@
         </li> -->
       </ul>
   </div>
-
-  <!-- <footer class="landing-footer">
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recently Added Performances
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Popular Performances Near You
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recent Reviews
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recent Opprotunities.
-      </div></a>
-    </div>
-  </footer> -->
   </span>
+</span>
 </section>

@@ -518,7 +518,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $scope.comapny_website_link = "//" + company.website_link
       }
     }
-    $(".company-description").text(company.description);
+    $(".company-description").append(company.description);
 
     // console.log(company.opportunities);
 
@@ -547,6 +547,43 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     localStorage.setItem("profID", $(this)[0].review.user_id);
   }
 
+  $scope.revTab = false;
+  $scope.perfTab = true;
+  $scope.oppsTab = false;
+
+  $scope.setTabs = function(whichTab){
+    console.log("setting the tabs");
+    if(whichTab === 'REV')
+    {
+      console.log("setting REV");
+      $scope.revTab = true;
+      $scope.perfTab = false;
+      $scope.oppsTab = false;
+      $(".R").addClass("TabSelected");
+      $(".P").removeClass("TabSelected");
+      $(".O").removeClass("TabSelected");
+    }
+    else if(whichTab === 'OPPS')
+    {
+      console.log("setting OPPS");
+      $scope.revTab = false;
+      $scope.perfTab = false;
+      $scope.oppsTab = true;
+      $(".R").removeClass("TabSelected");
+      $(".P").removeClass("TabSelected");
+      $(".O").addClass("TabSelected");
+    }
+    else if(whichTab === 'PERF')
+    {
+      console.log("setting PERF");
+      $scope.revTab = false;
+      $scope.perfTab = true;
+      $scope.oppsTab = false;
+      $(".R").removeClass("TabSelected");
+      $(".P").addClass("TabSelected");
+      $(".O").removeClass("TabSelected");
+    }
+  }//end setTabs
 
   console.log("$scope.show");
   console.log($scope.show);

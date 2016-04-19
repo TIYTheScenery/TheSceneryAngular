@@ -33,6 +33,22 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end islogged
 
+
+  $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
+    if($(this)[0].checked === true){
+      // console.log(this);
+      // console.log($(this));
+      // console.log(this.closest(".EDIT-showtime-info-wrapper"));
+      var deletebox = $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#C43939");
+    }
+    else{
+      $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#efefef")
+    }
+  });
+  // if ($("#delete-check").is(":checked")){
+  //   console.log("food");
+  // }
+
   //these poll ourdata for what the view should be on this page: view, edit, or add.
   $scope.tAdd=ourData.borrowData("tAdd");
   $scope.tEdit=ourData.borrowData("tEdit");

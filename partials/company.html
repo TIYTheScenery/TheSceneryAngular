@@ -48,36 +48,27 @@
     </div>
   </nav>
   <header class="company-header">
+
+    <!-- Display Company Hero Image -->
+    <img src="{{thisCompany.hero_image_url}}" width="800" height="600" class="company-hero-image" ng-show="show">
+
     <!-- Edit Company Hero Image -->
     <div class="edit-company-hero-image" ng-show="edit">
+
       <input type="file" hero-image-edit="heroImageUploadEdit"><br>
       <br>
     </div>
+
     <!-- Create Company Hero Image -->
     <span class="create-company-hero-image" ng-show="create">Add Company Banner
+
       <input type="file" hero-image-create="heroImageUploadCreate"><br>
       <br>
     </span>
     <!-- Display Company Hero Image -->
     <div class="company-name-type-wrapper">
-      <img src="{{thisCompany.hero_image_url}}" width="800" height="300" class="company-hero-image" ng-show="show">
-      <!-- Display Company Name -->
-      <h1><div class="company-name" ng-show="show"></div></h1>
-      <!-- Edit Company Name -->
-      <input class="edit-company-name" placeholder="edit company name" ng-show="edit">
-      <!-- Create Company Name -->
-      <input class="create-company-name" placeholder="add company name" ng-show="create">
 
-      <!-- Display Company Description -->
-      <div class="company-description" ng-show="show"></div>
-      <!-- Edit Company Description -->
-      <div class="edit-company-description-label" ng-show="edit">Edit Company Description</div>
-      <textarea class="edit-company-description" ng-show="edit"></textarea>
-      <!-- Create Company Description -->
-      <div class="create-company-description-label" ng-show="create">Add Company Description</div>
-      <textarea class="create-company-description" ng-show="create"></textarea>
-    </div>
-  </header>
+<!--THIS IS FOR PROFILE IMAGES! -->
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
     <img src="{{thisCompany.profile_image_url}}" width="250" height="250">
@@ -96,99 +87,161 @@
     <br>
   </span>
 
+
+          Add profile Image
+          <input name="file" type="file" id="fileBtn1"><br>
+          <br>
+          <input type="submit" style="display:none;" id="imgSubmitBtn1" value="Upload File to S3">
+        </form>
+      </span>
+
+      <!-- Create company profile picture -->
+      <span class="company-profile-pic create-company-profile-pic" ng-show="create">
+        <form class="editformcolor" action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="key" value="uploads/Company{{thisCompany.id}}">
+          <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
+          <input type="hidden" name="acl" value="public-read">
+          <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICAKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
+          <input type="hidden" name="signature" value="4fVastxkguNyuyXVSysUNbR8DUQ=">
+          <input type="hidden" name="Content-Type" value="$Content-Type">
+
+          Add profile Image
+          <input name="file" type="file" id="fileBtn1Add"><br>
+          <br>
+          <input type="submit" style="display:none;" id="imgSubmitBtn1Add" value="Upload File to S3">
+        </form></span>
+
+
+<!--================THIS HOLDS ALL THE CREATE EDIT AND VIEW FOR COMPANY DETAILS===================-->
     <div class="company-details-wrapper">
 
-      <div class="company-social">
-        <!-- Display Company Website Button -->
-        <span class="company-website">
-          <a href="{{comapny_website_link}}" target="_blank">
-            <div class="company-btn" ng-show="show">Visit The Website!</div>
+<!--THIS IS FOR CREATING COMPANY DETAILS-->
+      <div class="create-company-details" ng-show="create">
+        <!-- Create Company Name -->
+        <input class="create-company-name" placeholder="add company name" ng-show="create">
+        <!-- Create Company Media -->
+        <input class="create-company-media create-company-url" placeholder="add company url" ng-show="create">
+        <input class="create-company-media create-company-youtube" placeholder="add youtube link" ng-show="create">
+        <input class="create-company-media create-company-twitter" placeholder="add twitter link" ng-show="create">
+        <input class="create-company-media create-company-facebook" placeholder="add facebook link" ng-show="create">
+        <input class="create-company-media create-company-instagram" placeholder="add instagram link" ng-show="create">
 
-          </a>
-        </span>
-        <span class="company-media-wrapper">
+        <!-- Create company location -->
+        <input class="company-location-input create-company-location-address" placeholder="Company Address" ng-show="create">
+        <input class="company-location-input create-company-location-city" placeholder="Company City" ng-show="create">
+        <select class="company-location-input create-company-location-state" ng-show="create">
+          <option selected disabled>Pick A State</option>
+          <option>NC</option>
+        </select>
+        <input class="company-location-input create-company-location-zip" placeholder="Company Zip Code" ng-show="create">
+      </div>
+
+<!--THIS IS FOR EDITING THE COMPANY DETAILS-->
+      <!-- Display Company Description -->
+      <div class="EDIT-company-description-wrapper" ng-show"edit">
+        <!-- Edit Company Name -->
+        <input class="edit-company-name" placeholder="edit company name" ng-show="edit">
+
+          <span class="company-media-wrapper">
           <!-- Edit Company Media -->
           <input class="edit-company-media edit-company-url" placeholder="edit company url" ng-show="edit">
           <input class="edit-company-media edit-company-youtube" placeholder="edit youtube link" ng-show="edit">
           <input class="edit-company-media edit-company-twitter" placeholder="edit twitter link" ng-show="edit">
           <input class="edit-company-media edit-company-facebook" placeholder="edit facebook link" ng-show="edit">
           <input class="edit-company-media edit-company-instagram" placeholder="edit instagram link" ng-show="edit">
-          <!-- Create Company Media -->
-          <input class="create-company-media create-company-url" placeholder="add company url" ng-show="create">
-          <input class="create-company-media create-company-youtube" placeholder="add youtube link" ng-show="create">
-          <input class="create-company-media create-company-twitter" placeholder="add twitter link" ng-show="create">
-          <input class="create-company-media create-company-facebook" placeholder="add facebook link" ng-show="create">
-          <input class="create-company-media create-company-instagram" placeholder="add instagram link" ng-show="create">
-          <!-- Display Company Media -->
-          <span class="mediaWrapper">
-            <div class="company-media-youtube" ng-show="show">
-              <a href="" target="_blank">
-                <div class="media media-youtube">
-                  <i class="fa fa-youtube"></i>
-                </div>
-              </a>
-            </div>
-            <div class="company-media-twitter" ng-show="show">
-              <a href="" target="_blank">
-                <div class="media media-twitter">
-                  <i class="fa fa-twitter"></i>
-                </div>
-              </a>
-            </div>
-            <div class="company-media-facebook" ng-show="show">
-              <a href="" target="_blank">
-                <div class="media media-facebook">
-                  <i class="fa fa-facebook"></i>
-                </div>
-              </a>
-            </div>
-            <div class="company-media-instagram" ng-show="show">
-              <a href="" target="_blank">
-                <div class="media media-instagram">
-                  <i class="fa fa-instagram"></i>
-                </div>
-              </a>
-            </div> <!--end instagram-->
 
-            <!-- Display company location -->
-            <div class="company-location" ng-show="show"></div>
+          <!-- Edit company location -->
+          <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="edit">
+          <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="edit">
+          <select class="company-location-input edit-company-location-state" ng-show="edit">
+            <option selected disabled>Pick A State</option>
+            <option>NC</option>
+          </select>
+          <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="edit">
 
-            <div class="company-location-input-wrapper">
+          <!-- Edit Company Description -->
+          <div class="edit-company-description-label" ng-show="edit">Edit Company Description</div>
+          <textarea class="edit-company-description" ng-show="edit"></textarea>
 
-              <!-- Edit company location -->
-              <input class="company-location-input edit-company-location-address" placeholder="Company Address" ng-show="edit">
-              <input class="company-location-input edit-company-location-city" placeholder="Company City" ng-show="edit">
-              <select class="company-location-input edit-company-location-state" ng-show="edit">
-                <option selected disabled>Pick A State</option>
-                <option>NC</option>
-              </select>
-              <input class="company-location-input edit-company-location-zip" placeholder="Company Zip Code" ng-show="edit">
+          <!-- Company Save Edits Button -->
+          <div class="company-save-btn-wrapper" ng-show="edit">
+            <a href="">
+              <div class="company-save-btn" ng-click="savecompany()">
+                Save
+              </div>
+            </a>
+          </div>
+      </div><!--end EDIT-company-description-wrapper-->
 
-              <!-- Create company location -->
-              <input class="company-location-input create-company-location-address" placeholder="Company Address" ng-show="create">
-              <input class="company-location-input create-company-location-city" placeholder="Company City" ng-show="create">
-              <select class="company-location-input create-company-location-state" ng-show="create">
-                <option selected disabled>Pick A State</option>
-                <option>NC</option>
-              </select>
-              <input class="company-location-input create-company-location-zip" placeholder="Company Zip Code" ng-show="create">
+<!--THIS IS FOR VIEWING THE COMPANY DETAILS-->
+      <div class="company-description" ng-show="show">
 
-          </span><!--end social wrapper-->
-        </span> <!--end media wrapper-->
-        </div> <!--end company social-->
-    </div> <!--end company detail wrapper-->
-
-  </div>
+        <!-- Display Company Name -->
+        <h1><div class="company-name" ng-show="show"></div></h1>
 
 
-  <!-- Company Save Edits Button -->
-  <div class="company-save-btn-wrapper" ng-show="edit">
-    <a href="">
-      <div class="company-save-btn" ng-click="savecompany()">
-        Save
-      </div>
-    </a>
-  </div>
+        <div class="company-social">
+          <!-- Display Company Website Button -->
+          <span class="company-website">
+            <a href="{{thisCompany.website_link}}">
+              <div class="company-btn" ng-show="show">Visit The Website!</div>
+            </a>
+          </span>
+
+            <!-- Display Company Media -->
+            <span class="mediaWrapper">
+              <div class="company-media-youtube" ng-show="show">
+                <a href="" target="_blank">
+                  <div class="media media-youtube">
+                    <i class="fa fa-youtube"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="company-media-twitter" ng-show="show">
+                <a href="" target="_blank">
+                  <div class="media media-twitter">
+                    <i class="fa fa-twitter"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="company-media-facebook" ng-show="show">
+                <a href="" target="_blank">
+                  <div class="media media-facebook">
+                    <i class="fa fa-facebook"></i>
+                  </div>
+                </a>
+              </div>
+              <div class="company-media-instagram" ng-show="show">
+                <a href="" target="_blank">
+                  <div class="media media-instagram">
+                    <i class="fa fa-instagram"></i>
+                  </div>
+                </a>
+              </div> <!--end instagram-->
+
+              <!-- Display company location -->
+              <div class="company-location" ng-show="show"></div>
+
+              <div class="company-location-input-wrapper">
+
+            </span><!--end social wrapper-->
+          </span> <!--end media wrapper-->
+          </div> <!--end company social-->
+      </div> <!-- ? its not broke... -->
+
+    </div><!--end VIEW company detail wrapper-->
+
+  </div><!--end company description-->
+
+
+      <!-- Create Company Description -->
+      <div class="create-company-description-label" ng-show="create">Add Company Description</div>
+      <textarea class="create-company-description" ng-show="create"></textarea>
+    </div>
+  </header>
+
+
+
   <!-- Company Save Create Button -->
   <div class="company-create-btn-wrapper" ng-show="create">
     <a href="">
@@ -199,9 +252,15 @@
   </div>
   <div class="O-p-R-wrapper" ng-show="show">  <!--Wrapper for opportunities, performances, and reviews-->
 
-    <div class="company-performances-wrapper">
+    <div class="tabBox">
+      <span class="R TabActual" ng-click="setTabs('REV')">Reviews</span>
+      <span class="P TabActual TabSelected" ng-click="setTabs('PERF')">Performances</span>
+      <span class="O TabActual" ng-click="setTabs('OPPS')">Opporutnities</span>
+    </div><br><br>
+
+    <div class="company-performances-wrapper" ng-show="perfTab">
       <div class="company-performances-label">
-        <h2>Upcoming Performances:<h2>
+        <h3>Upcoming Performances:<h3>
       </div>
       <div class="insert-upcoming-performance">
         <!-- <div class="company-performance">
@@ -218,19 +277,20 @@
         </div> -->
       </div>
       <div class="company-performances-label past-performances-label">
-        <h2>Past Performances:</h2>
+        <h3>Past Performances:</h3>
       </div>
 
       <div class="insert-past-performance">
       </div>
 
     </div>
-    <div class="company-reviews-holder">
+
+    <div class="company-reviews-holder" ng-show="revTab">
       <div class="company-reviews-label">
         <h2>Reviews:</h2>
       </div>
 
-      <div class="company-review">
+      <div class="company-review" ng-show="person != null">
         <div class="company-review-img"><img src="{{person.user_info.image_url}}" width="95" height="95"></div>
         <textarea class="company-new-review" id = "company-new-review"></textarea>
         <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
@@ -249,7 +309,7 @@
       </div>
     </div>
 
-    <div class="opportunities-wrapper">
+    <div class="opportunities-wrapper" ng-show="oppsTab">
       <div class="opportunities-label">
         <h2>Opportunities:<h2>
       </div>
@@ -257,6 +317,7 @@
 
       </div>
     </div>
+
   </div><!--end ORP wrapper-->
 
 

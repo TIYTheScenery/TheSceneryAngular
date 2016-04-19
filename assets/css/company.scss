@@ -60,24 +60,25 @@ $popCol1: rgb(166, 16, 63);
 
 .company-hero-image{
   background: $lightBlueish;
-  -webkit-filter: blur(1px) saturate(50%);
-  height: 350px;
+  // -webkit-filter: blur(1px) saturate(50%);
+  height: 600px;
   width: 100%;
 }
 
 .company-name-type-wrapper{
-  z-index:-1;
-  display: inline-block;
+  // z-index:-1;
+  // display: inline-block;
   // border: 5px solid $popCol1;
+  position: absolute;
+  top:50px;
   width: 100%;
-  height: 350px;
+  height: 550px;
   text-align: center;
 }
   //this is for the major page headings.
   h1{
     font-size: 50px;
     color: $burgundy;
-    font-family: impact, sans-serif;
     text-align:center;
     font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
@@ -107,10 +108,10 @@ $popCol1: rgb(166, 16, 63);
   }
 
 .company-name{
-  position: absolute;
   margin-left: 5%;
-  margin-top:-300px;
-  width: 40%;
+  padding-bottom: 10px;
+  border-bottom: 1px $lightBlueish solid;
+  // margin-top:-300px;
 }
 
 .company-type{
@@ -128,29 +129,39 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .company-details-wrapper{
-  // width: 90%;
-  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  position:relative;
+  width: 50%;
+  margin-left:50px;
+  //  width: 40%;
+  //  display: inline-block;
+  // position: relative;
   // margin-left: 440px;
-  text-align: center;
-  margin-top: 20px;
+  // text-align: center;
+  // margin-top: 50%;
   // background: red;
 }
 
 .company-description{
-  z-index: 5;
+  display: inline-block;
+  float:right;
+  height: 480px;
+  z-index: 4;
   color: white;
   font-size: 25px;
   background: rgba(0,0,0,.5);
-  margin-left: 50%;
-  position: absolute;
-  margin-top: -300px;
-  width: 40%;
+  // margin-left: 50%;
+  // position: absolute;
+  // margin-top: -300px;
+  width: 100%;
   border-radius: 5px;
   padding: 10px;
 }
 
 .company-social{
-  bottom: 17px;
+  // bottom: 17px;
+  margin-top: 20px;
   div{
     display: inline-block;
   }
@@ -193,23 +204,51 @@ $popCol1: rgb(166, 16, 63);
 }
 
 .O-p-R-wrapper{
-  width: 80%;
-  margin: 100px auto;
+  width: 90%;
+  margin: 50px auto;
+  text-align: center;
 }
 
-.opportunities-wrapper{
-  display: inline-block;
-  width: 100%;
-  margin-right: -4px;
-  vertical-align: top;
+.tabBox{
+  width:90%;
+  // padding-bottom: 11px;
+  margin: auto;
+  border-bottom: 1px solid  $burgundy;
+  text-align: center;
 }
+
+.TabActual{
+  display: inline-block;
+  padding: 10px;
+  background: $lightBlueish;
+  border-bottom: $burgundy 1px solid;
+  margin-bottom: -1px;
+
+}
+
+.TabSelected{
+  background: $cardColor;
+  border-left: 1px $burgundy solid;
+  border-top: 1px $burgundy solid;
+  border-right: 1px $burgundy solid;
+  border-bottom: #c7cacc 1px solid;
+  margin-bottom: -1px;
+
+}
+
+
+//   display: inline-block;
+//   width: 100%;
+//   margin-right: -4px;
+//   vertical-align: top;
+// }
+.opportunities-wrapper,
 .company-performances-wrapper,
 .company-reviews-holder{
   display: inline-block;
-  width: 50%;
-  margin-right: -4px;
+  width: 90%;
+  // margin: auto;
   vertical-align: top;
-  // border: 1px solid green;
 }
 
 .performance-image
@@ -231,6 +270,7 @@ $popCol1: rgb(166, 16, 63);
 
 .company-opportunity{
   background: #bbb;
+  text-align: left;
   width: 100%;
   margin: auto;
   margin-bottom: 15px;
@@ -290,6 +330,10 @@ $popCol1: rgb(166, 16, 63);
   margin-bottom: 20px;
 }
 
+.company-review-wrapper{
+  text-align: left;
+}
+
 .company-review{
   border-radius: 5px;
   // border: 3px solid #999;
@@ -317,12 +361,13 @@ $popCol1: rgb(166, 16, 63);
 
 .edit-company-name,
 .create-company-name{
-  position: absolute;
+  // position: absolute;
   margin-top: 50px;
-  margin-left: -45%;
+  // margin-left: -45%;
   display: inline-block;
   width: 300px;
   font-size: 16px;
+  margin-bottom: 20px;
   // margin-left: 30%;
 }
 
@@ -366,27 +411,30 @@ $popCol1: rgb(166, 16, 63);
   margin: 25px 0 10px 0;
 }
 
-.edit-company-description,
+.edit-company-description
+{
+
+}
+
+.edit-company-description-wrapper,
 .create-company-description{
+  display: inline-block;
   z-index: 5;
   width: 45%;
   max-width: 45%;
   height: 100px;
   max-height: 100px;
   font-size: 17px;
-  margin-left: 50%;
+  // margin-left: 50%;
 }
 
 .edit-company-media,
 .create-company-media{
   vertical-align: top;
   display: block;
-  width: 250%;
+  width: 100%;
   font-size: 16px;
   margin-bottom: 10px;
-  &:first-child{
-    margin-top: 50px;
-  }
 }
 
 .company-save-btn-wrapper,
@@ -408,9 +456,10 @@ $popCol1: rgb(166, 16, 63);
 
 .edit-company-hero-image,
 .create-company-hero-image{
-  z-index: -1;
+  // z-index: -1;
   width: 100%;
-  height: 350px;
+  height: 600px;
+  background: $lightBlueish;
   // margin-top:-200px;
   position: absolute;
   // margin: 40px 0 0 40px;
@@ -433,12 +482,13 @@ $popCol1: rgb(166, 16, 63);
 //
 // }
 
-
+.edit-company-profile-pic,
 .company-profile-pic{
-  position: absolute;
+  display: inline-block;
+  width:500px;
+  height:500px;
   background: #444;
-  margin-top: -150px;
-  margin-left: 175px;
+  margin-right: 20px;
   // border: 5px solid $popCol1;
   border-radius: 5px;
 }

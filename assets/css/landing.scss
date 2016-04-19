@@ -1,6 +1,7 @@
 $inputColor: #92A7BF;
 $lightBlueish: #92A7BF;
 $cardColor: #efefef;
+$burgundy: #991010;
 //rgb(235, 242, 162);
 $inputBG: rgba(245, 245, 245, .95);
 $inputBorder: rgb(129, 39, 66);
@@ -36,12 +37,13 @@ color: $inputPlaceholder;
   color: #ddd;
 }
 
-
 .landing-header-desc{
   z-index:1;
   display: inline-block;
-  // width:100%;
-  margin-left:9%;
+  width:70%;
+  margin-top: 15px;
+  margin-left:15%;
+  // text-align: center;
   // margin-right:5%;
   vertical-align:middle;
   // margin-bottom: 20px;
@@ -50,7 +52,7 @@ html{
   background: $bgColor;
 }
 .landingColMid{
-  font-size: 30px;
+  // font-size: 30px;
   float: left;
   width: 29%;
   margin-left:20px;
@@ -61,7 +63,7 @@ html{
 }
 .landingColSide{
   margin-top:20px;
-  font-size: 25px;
+  // font-size: 25px;
   float: left;
   width: 29%;
   margin-left:20px;
@@ -115,7 +117,7 @@ html{
 
   }
 .name-search{
-  width: 70%;
+  width: 60%;
 }
 .location-search{
   width: 140px;
@@ -133,8 +135,11 @@ html{
 }
 
 .landingFunctional{
+  background: rgba(0,0,0,.3);
+  height: 100%;
+  // border-radius: 5px;
   position: absolute;
-  top: 200px;
+  top: 150px;
   // margin-top: -100%;
   overflow: hidden;
   width: 100%;
@@ -143,18 +148,39 @@ html{
 .landing-header{
 
   h1{
-    font-size: 80px;
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: $inputColor;
+    font-size: 90px;
+    color: $burgundy;
+    text-align:center;
+    font-family: 'Holtwood One SC', serif;
+    //font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    //burgundy in color
+  }
+  h2{
+    font-size: 40px;
+    font-family: helvetica, sans-serif;
+    font-weight: 900;
+    text-align:center;
+    color: darken($lightBlueish, 20%);
+    //darker version of the background blue
+  }
+  h3{
+    font-size: 30px;
+    font-family: helvetica, sans-serif;
+    font-weight: 600;
+    text-align:center;
+    //black, but bigger than standard text.
+  }
+  h4{
+    font-size: 20px;
+    font-family: helvetica, sans-serif;
+    font-weight: 900;
+    text-align:center;
   }
   h5{
-    font-size: 30px;
+    font-size: 15px;
     text-align: center;
     width: 90%;
-    // margin: auto;
-    margin-bottom: 20px;
   }
 }
 
@@ -201,9 +227,9 @@ html{
 }
 
 .performance-box{
-  width: 250px;
-  height: 250px;
-  background: #913D39;
+  width: 200px;
+  height: 200px;
+  background: $cardColor;
   padding: 10px;
   margin: 10px;
   border-radius: 2px;
@@ -219,7 +245,10 @@ html{
 
 .box-performance-name{
   margin-top: 10px;
-  color: $inputColor;
+  color: $burgundy;
+  font-family: 'Holtwood One SC', serif;
+  font-size: 18px;
+  border-bottom: 1px $lightBlueish solid;
 }
 
 li{

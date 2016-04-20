@@ -153,7 +153,8 @@ html {
   padding: 10px;
   margin: 10px;
   border-radius: 2px;
-  display: inline-block; }
+  display: inline-block;
+  overflow: hidden; }
 
 .box {
   font-size: 14px;

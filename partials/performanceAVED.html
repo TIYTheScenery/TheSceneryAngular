@@ -26,7 +26,7 @@
   </div>
 <!--THIS IS FOR VIEWING THE HERO IMAGE AND INFO-->
   <div class="heroImgContainer">
-    <img ng-src="{{heroImage}}" class ="heroImg">
+    <img ng-src="{{thisPerformance.hero_image_url}}" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
       <div class="this-performance-names">
         <div class="this-performance-company-name">{{thisPerformance.company_name}} <div>presents</div></div>
@@ -42,14 +42,14 @@
           </div>
         </div><!--
         --><div class="performance-trailer-wrapper">
-          <a href="http://{{thisPerformance.trailer_link}}">
+          <a href="{{viewTrailer}}" target="_blank">
             <div class="AVED-trailer-link" ng-hide="tView">
               View Trailers
             </div>
           </a>
         </div><!--
         --><div class="performance-ticket-wrapper">
-          <a href="{{thisPerformance.ticket_link}}">
+          <a href="{{buyTickets}}" target="_blank">
             <div class="AVED-ticket-btn" ng-hide="tView">
               Buy Tickets!!
             </div>

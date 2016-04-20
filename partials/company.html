@@ -268,12 +268,6 @@
         <h2>Reviews:</h2>
       </div>
 
-      <div class="company-review" ng-show="person != null">
-        <div class="company-review-img"><img src="{{person.user_info.image_url}}" width="95" height="95"></div>
-        <textarea class="company-new-review" id = "company-new-review"></textarea>
-        <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
-      </div>
-
       <div class="company-review" ng-repeat= "review in thisCompany.reviews">
         <div class="company-review-wrapper">
           <span>
@@ -284,6 +278,11 @@
             <div class="company-review-text">{{review.opinion}}</div>
           </span>
         </div>
+      </div>
+      <div class="company-review" ng-show="person != null">
+        <div class="company-review-img"><img src="{{person.user_info.image_url}}" width="95" height="95"></div>
+        <textarea class="company-new-review" id = "company-new-review"></textarea>
+        <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
       </div>
     </div>
 

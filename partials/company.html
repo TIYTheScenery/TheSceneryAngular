@@ -50,7 +50,7 @@
   <header class="company-header">
 
     <!-- Display Company Hero Image -->
-    <img src="{{thisCompany.hero_image_url}}" width="800" height="600" class="company-hero-image" ng-show="show">
+    <img ng-src="{{thisCompany.hero_image_url}}" width="800" height="600" class="company-hero-image" ng-show="show">
 
     <!-- Edit Company Hero Image -->
     <div class="edit-company-hero-image" ng-show="edit">
@@ -71,11 +71,11 @@
 <!--THIS IS FOR PROFILE IMAGES! -->
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
-    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
+    <img ng-src="{{thisCompany.profile_image_url}}" width="500" height="500">
   </div>
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
+    <img ng-src="{{thisCompany.profile_image_url}}" width="500" height="500">
     Add profile Image
     <input type="file" profile-image-edit="profileImageUploadEdit"><br>
     <br>
@@ -275,7 +275,7 @@
       <div class="company-review" ng-repeat= "review in thisCompany.reviews">
         <div class="company-review-wrapper">
           <span>
-            <div class="company-review-img"><img src="{{review.image_url}}" width="95" height="95"></div>
+            <div class="company-review-img"><img ng-src="{{review.image_url}}" width="95" height="95"></div>
           </span>
           <span class="company-rnd-wrap">
             On <span class="compReviewDate">{{review.created_at}}</span>, <a href="#/userprofile"><span class="compReviewerName" ng-click="tocompanyreviewer()">{{review.display_name}}</span></a> wrote:

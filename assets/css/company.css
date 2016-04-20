@@ -158,7 +158,8 @@ h4 {
   width: 90%;
   margin: auto;
   border-bottom: 1px solid #991010;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: -31px; }
 
 .TabActual {
   display: inline-block;

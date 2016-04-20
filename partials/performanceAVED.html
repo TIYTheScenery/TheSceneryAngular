@@ -29,7 +29,7 @@
     <img ng-src="{{thisPerformance.hero_image_url}}" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
       <div class="this-performance-names">
-        <div class="this-performance-company-name" ng-click="tocompany()">{{thisPerformance.company_name}}<div>presents</div></div>
+        <div class="this-performance-company-name" ng-click="tocompany()">{{thisPerformance.company_name}}</div><div>presents</div>
         <div class="this-performance-name">{{thisPerformance.name}}</div>
       </div>
       <div class="performanceDescription" ng-hide="tView">
@@ -149,13 +149,13 @@
           <div class="event-wrapper">
             <div class="drop-down-wrapper">
               <div class="event-info">
-              {{show.show_date}}, at {{show.address}} {{show.city}}, {{show.state}}.
+              <div class="showtimeDateTime">{{show.show_date}} at</div> {{show.address}} {{show.city}}, {{show.state}}.
               </div>
             </div>
             <!-- hide casts for now since they aren't working -->
             <div class="event-adv">
               <div class="cast-wrapper">
-                <label>Cast</label>
+                <!-- <label>Cast</label> -->
                 <ul class="event-cast" ng-repeat="cast in show.cast_members">
                   <li class="cast-member"> <!--ADD ng-repeat!!!-->
                     {{cast.name}} as {{cast.role}}

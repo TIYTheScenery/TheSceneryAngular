@@ -27,7 +27,7 @@ html{
     font-family: 'Holtwood One SC', serif;
     font-weight: bold;
   }
-  
+
   background: rgba(199,202,204,.5);//$bgColor;
   padding: 10px;
   // border-bottom: 1px solid $popCol1;
@@ -47,6 +47,8 @@ html{
   background: black;
   vertical-align: middle;
   border-radius: 80px;
+  overflow: hidden;
+  // text-align: center;
 }
 .header-user-portrait{
   float:right;

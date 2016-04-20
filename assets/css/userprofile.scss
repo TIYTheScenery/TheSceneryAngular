@@ -2,6 +2,9 @@ $bgColor: #c7cacc;
 $cardColor: #efefef;
 // $cardColor: darken(#fcf8f3, 5%);
 $lightBlueish: #92A7BF;
+$btnBlue: rgb(125, 192, 217);
+$burgundy: #991010;
+
 $inputColor: rgb(235, 242, 162);
 $inputBG: rgba(255, 255, 255, .5);
 $inputBorder: rgb(129, 39, 66);
@@ -29,7 +32,7 @@ $popCol1: rgb(166, 16, 63);
 
 .user-btn{
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 5px;
   vertical-align: top;
   font-size: 16px;
   font-family: helvetica, sans-serif;

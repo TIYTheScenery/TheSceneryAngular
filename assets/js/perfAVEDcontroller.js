@@ -186,7 +186,7 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }).then(function successCallback(response){
       console.log("Created performance");
       console.log(response);
-      $scope.thisPerformance = response.performance;
+      $scope.thisPerformance = response.data.performance;
       localStorage.setItem('perfID', $scope.thisPerformance.id);
       ourData.shareData("tAdd", true);
       ourData.shareData("tEdit", true);
@@ -195,8 +195,8 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }, function errorCallback(response){
       console.log('performance not created', response);
       var errorText = "";
-      for(var i = 0; i < response.errors.length; i++){
-        errorText += response.errors[i] + "\n";
+      for(var i = 0; i < response.data.errors.length; i++){
+        errorText += response.data.errors[i] + "\n";
       }
       alert(errorText);
     });//end http call

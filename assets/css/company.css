@@ -17,12 +17,16 @@
   border-radius: 5px;
   vertical-align: top;
   font-size: 16px;
-  font-family: helvetica, sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   background: rgba(235, 235, 235, 0.8) !important;
   color: #770c2d; }
   .submit-review-btn:hover,
   .company-btn:hover {
     background: white !important; }
+
+.submit-review-btn {
+  width: 125px;
+  margin: 10px auto; }
 
 .delete-company-btn {
   background: rgba(255, 235, 235, 0.8) !important; }
@@ -63,14 +67,15 @@ h2 {
   color: #577394; }
 
 h3 {
-  font-size: 30px;
-  font-family: helvetica, sans-serif;
+  font-size: 25px;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 600;
-  text-align: center; }
+  text-align: center;
+  color: #999; }
 
 h4 {
   font-size: 30px;
-  font-family: helvetica, sans-serif;
+  font-family: "Holtwood One SC", sans-serif;
   font-weight: 900;
   text-align: center; }
 
@@ -78,7 +83,8 @@ h4 {
   margin-left: 5%;
   padding-bottom: 10px;
   border-bottom: 1px #92A7BF solid;
-  text-align: left; }
+  text-align: left;
+  font-family: "Holtwood One SC", sans-serif; }
 
 .company-type {
   font-size: 30px;
@@ -152,7 +158,9 @@ h4 {
   background: #efefef;
   height: 100%;
   width: 90%;
-  margin: auto; }
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px; }
 
 .tabBox {
   width: 90%;
@@ -166,7 +174,8 @@ h4 {
   padding: 10px;
   background: #92A7BF;
   border-bottom: #991010 1px solid;
-  margin-bottom: -1px; }
+  margin-bottom: -1px;
+  font-size: 25px; }
 
 .TabSelected {
   background: #efefef;
@@ -174,7 +183,8 @@ h4 {
   border-top: 1px #991010 solid;
   border-right: 1px #991010 solid;
   border-bottom: #efefef 2px solid;
-  margin-bottom: -1px; }
+  margin-bottom: -1px;
+  font-size: 30px; }
 
 .opportunities-wrapper,
 .company-performances-wrapper,

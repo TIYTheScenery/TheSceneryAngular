@@ -1,17 +1,17 @@
 html {
   background: #d7d9db;
-  font-family: 'Merriweather', serif; }
+  font-family: 'Merriweather Sans', sans-serif; }
 
 .header {
   background: #d7d9db;
   padding: 10px;
   height: 100px; }
   .header h1 {
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 900;
     color: #991010;
     text-align: center;
-    font-family: 'raconteur_nfregular', arial, sans-serif;
+    font-family: 'Oleo Script', arial, sans-serif;
     font-weight: bold; }
 
 .tohome {
@@ -47,7 +47,7 @@ a {
   color: black; }
 
 .header-user-greeting {
-  font-size: 30px; }
+  font-size: 20px; }
 
 .header-user-wrapper {
   float: right;

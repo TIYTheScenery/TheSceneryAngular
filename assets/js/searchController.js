@@ -45,6 +45,7 @@ $scope.searchDB = function()
 
   $.ajax(settings).done(function (response) {
    console.log(response);
+   $(".landingFunctional").css("height", "inherit");
    //console.log(response.performances);
 
    //var iClickedDis = response.performances[clickedPerformance];

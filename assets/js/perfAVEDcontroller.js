@@ -76,11 +76,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       $scope.thisPerformance = data.data.performance;
       $scope.buyTickets = data.data.performance.ticket_link;
       if (!$scope.buyTickets.match(/\/\//) && $scope.buyTickets != null && $scope.buyTickets != ""){
-        $scope.buyTickets = "//" + $scope.buyTickets;
+        $scope.buyTickets = "http://" + $scope.buyTickets;
       }
       $scope.viewTrailer = data.data.performance.trailer_link;
       if (!$scope.viewTrailer.match(/\/\//) && $scope.viewTrailer != null && $scope.viewTrailer != ""){
-        $scope.viewTrailer = "//" + $scope.viewTrailer;
+        $scope.viewTrailer = "http://" + $scope.viewTrailer;
       }
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){
@@ -411,6 +411,13 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       location.reload();
       });//end ajax.
 
+  }
+
+  $scope.tocompany = function(){
+    console.log($(this)[0].thisPerformance.company_id);
+    var perfcompid = $(this)[0].thisPerformance.company_id;
+    localStorage.setItem("compID", JSON.stringify(perfcompid));
+    location.href = "#/company";
   }
 
   $scope.toperformancereviewer = function(){

@@ -292,7 +292,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://infinite-reef-76606.herokuapp.com/companies/"+compID,
+        "url": "https://api.the-scenery.com/companies/"+compID,
         "method": "DELETE",
         "headers": {
           "content-type": "application/json",
@@ -310,8 +310,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
           $window.location.href = "#/userprofile";
         }else{
           var errorText = "";
-          for(var i = 0; i < data.errors.length; i++){
-            errorText += data.errors[i] + "\n";
+          for(var i = 0; i < response.errors.length; i++){
+            errorText += response.errors[i] + "\n";
           }
           alert(errorText);
         }
@@ -401,7 +401,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     }
     $scope.company_website_link = company.website_link
     if ($scope.company_website_link != null && $scope.company_website_link != "" && !$scope.company_website_link.match(/\/\//)){
-      $scope.company_website_link = "//" + $scope.company_website_link
+      $scope.company_website_link = "http://" + $scope.company_website_link
     }
     $(".company-description").append(company.description);
 
@@ -417,7 +417,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     }
 
     for (var i=0; i<company.opportunities.length; i++){
-      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src=''></div><div class='company-ndt-wrapper'><div class='company-opportunity-poster-name'>" + company.opportunities[i].contact_info + "</div><div class='company-opportunity-date-posted'>" + company.opportunities[i].created_at + "</div><div class='company-opportunity-title'>" + company.opportunities[i].name + "</div></div><div class='company-opportunity-description'>" + company.opportunities[i].description + "</div></div>")
+      $(".insert-company-opportunity").append("<div class='company-opportunity'><div class='company-opportunity-poster-image-wrapper'><img src='"+ company.profile_image_url +"' width='95' height='95'></div><div class='company-ndt-wrapper'><div class='company-opportunity-title'>" + company.opportunities[i].name + "</div><div class='company-opportunity-date-posted'>" + company.opportunities[i].created_at + "</div><div class='company-opportunity-poster-name'>" + company.opportunities[i].contact_info + "</div></div><div class='company-opportunity-description'>" + company.opportunities[i].description + "</div></div>")
     }
 
     localStorage.setItem("companyid", JSON.stringify(company.id));

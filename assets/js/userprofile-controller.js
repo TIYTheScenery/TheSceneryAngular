@@ -18,6 +18,12 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
+  console.log($scope.viewuser);
+  if ($scope.viewuser.image_url.match("missing.png")){
+    $scope.profileImageUrl = "assets/images/generic_user.jpg";
+  }else{
+    $scope.profileImageUrl = $scope.viewuser.image_url;
+  }
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
@@ -145,48 +151,30 @@ $scope.usercompany = function(){
 
   $scope.saveuser = function()
   {
-    var thing = jQuery.Event( "submit" );
-    if($("#fileBtn").val() === "")//if there isnt a value in the file upload button
-    {
-      console.log("no file uploaded, dont send to amazon...");
-    }
-    else//there IS a file that the user wants to upload... so click our hidden submit button.
-    {
-      console.log("we have a file! Upload beggining!");
-      $("#imgSubmitBtn").trigger("click");//this sends a 'submit' event from this button. which uploads the file to AWS
-    }
-
     var names = $(".edit-display-user-name").val().split(" ");
     var firstname = names[0];
     var lastname = names[1];
 
     console.log("this is the user ID: "+$scope.currentuser.user_info.id);
 
-    var updatedUser = JSON.stringify({
-      "user_info":{
-      "description": $("#user-desc").val(),
-      "image_url": "https://s3.amazonaws.com/thescenery/uploads/User"+$scope.currUserId,
-      "first_name": firstname,
-      "last_name": lastname,
-      "facebook_link": $("#edit-facebook").val(),
-      "twitter_link": $("#edit-twitter").val(),
-      "instagram_link": $("#edit-instagram").val(),
-      "youtube_link": $("#edit-youtube").val(),
-      "login_token": JSON.parse(localStorage.getItem('user')).user_info.login_token,
-      "email": $scope.currentuser.user_info.email,
-      "id": $scope.currentuser.user_info.id,
-      "display_name": $scope.currentuser.user_info.display_name,
-      "is_professional": $scope.currentuser.user_info.is_professional,
-      "titles_attributes": [
-	       { "id": $("#user-titles-id").text(),
-           "title": $("#user-titles").val()}
-       ]
-      }
-    });
-
-    console.log("sending this user info");
-    console.log(updatedUser);
-
+    var updatedUserFD = new FormData();
+    updatedUserFD.append('user_info[description]', $("#user-desc").val());
+    if($scope.profileUpload != null){
+      updatedUserFD.append('user_info[profile_image]', $scope.profileUpload);
+    }
+    updatedUserFD.append('user_info[first_name]', firstname);
+    updatedUserFD.append('user_info[last_name]', lastname);
+    updatedUserFD.append('user_info[facebook_link]', $("#edit-facebook").val());
+    updatedUserFD.append('user_info[twitter_link]', $("#edit-twitter").val());
+    updatedUserFD.append('user_info[instagram_link]', $("#edit-instagram").val());
+    updatedUserFD.append('user_info[youtube_link]', $("#edit-youtube").val());
+    updatedUserFD.append('user_info[login_token]', JSON.parse(localStorage.getItem('user')).user_info.login_token);
+    updatedUserFD.append('user_info[email]', $scope.currentuser.user_info.email);
+    updatedUserFD.append('user_info[id]', $scope.currentuser.user_info.id);
+    updatedUserFD.append('user_info[display_name]', $scope.currentuser.user_info.display_name);
+    updatedUserFD.append('user_info[is_professional]', $scope.currentuser.user_info.is_professional);
+    updatedUserFD.append('user_info[titles_attributes][0][id]', $("#user-titles-id").text());
+    updatedUserFD.append('user_info[titles_attributes][0][title]', $("#user-titles").val());
 
     $(".display-user-name").text($(".edit-display-user-name").val());
     $(".edit-display-user-name").val("");
@@ -203,38 +191,27 @@ $scope.usercompany = function(){
     $(".side-info-user-description").text($("#user-desc").val());
     $("#user-desc").val("");
 
+
     // console.log($scope.currentuser.user_info.id);
-
-    //AJAX CALL
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.the-scenery.com/users",
-        "method": "PATCH",
-        "headers": {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        "processData": false,
-        "data": updatedUser
-         };
-
-        $.ajax(settings).done(function (data) {
-          console.log("Updated User");
-          console.log(data);
-          localStorage.setItem("user", JSON.stringify(data));
-
-        });//end ajax.
-
-
-  //   $http.put('https://api.the-scenery.com/users/'+$scope.currentuser.user_info.id, updatedUser).then(function(data){
-  //     console.log("user updated!");
-  //     console.log(data);
-  //   },function(data){
-  //     console.log("user update failed...");
-  //     console.log(data);
-  // });//end http call.
-
+    var uploadUrl = "https://api.the-scenery.com/users"
+    $http({
+        method: "PATCH",
+        url: uploadUrl,
+        data: updatedUserFD,
+        headers: {'Content-Type': undefined}
+      }).then(function successCallback(response){
+        console.log("Updated User");
+        console.log(response);
+        localStorage.setItem('user', response.data);
+        location.reload();
+      }, function errorCallback(response){
+        console.log('user not updated', response);
+        var errorText = "";
+        for(var i = 0; i < response.errors.length; i++){
+          errorText += response.errors[i] + "\n";
+        }
+        alert(errorText);
+    });
   }
 
   $scope.tocompany = function(what){
@@ -249,5 +226,35 @@ $scope.usercompany = function(){
 
   }
 
+  $scope.toreviewee = function(){
+    console.log($(this)[0]);
 
+    if ($(this)[0].review.reviewee_type === "Company"){
+      // console.log($(this)[0].review.reviewee_type);
+      localStorage.setItem("compID", JSON.stringify($(this)[0].review.reviewee_id));
+      // $window.location.href = "#/company";
+    }
+    if ($(this)[0].review.reviewee_type === "Performance"){
+      // console.log($(this)[0].review.reviewee_type);
+      localStorage.setItem("perfID", JSON.stringify($(this)[0].review.reviewee_id));
+      // $window.location.href = "#/performance";
+    }
+  }
+
+
+})
+.directive('profileImage', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImage);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
 });

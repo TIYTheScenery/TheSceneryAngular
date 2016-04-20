@@ -1,41 +1,50 @@
 <section class="landing-wrapper" ng-controller="searchController">
-  <header class="landing-header">
-    <img src="">
-    <h1 class="landing-header-text">The Scenery{{messsage3}}</h1>
-    <div class="landing-header-desc">
+  <img src="assets/images/thescenery.jpg" style="-webkit-filter: saturate(100%) grayscale(0%) brightness(100%); z-index: -5; position: fixed; top:0;left:0;right:0;bottom:0;" width="100%" height="100%">
+  <span class="landingFunctional">
+    <header class="landing-header">
+        <h1 class="landing-header-text">The Scenery</h1>
+        <div class="landing-header-desc">
 
-      <span class="landingColSide">
-        Participate in the scene! Sign up to review performances and mark your favorite performers and theatre troupes.
-      </span>
+          <span class="landingColSide">
+            <h4>Sign up to review performances and performance companies!</h4>
+          </span>
 
-      <span class="landingColMid">
-          All the live entertainment in your area is now available with a quick search! Be in the know in your area. Be There.
-      </span>
+          <span class="landingColMid">
+              <h3>All your local live entertainment is now available with a quick search!</h3>
+          </span>
 
-      <span class="landingColSide">
-        If you want the world to know about your work, it mark yourself as a professional and create a Performance that will be instantly searchable.
-      </span>
-      <br><br>
-    </div>
-  </header>
+          <span class="landingColSide">
+            <h4>Sign up as a professional to create Performances that will be instantly searchable.</h4>
+          </span>
+        <br><br>
+      </div>
+    </header>
 
   <div class="landing-input-wrapper">
 
-    <input class="landing-search name-search" id="name-search" placeholder="Search Term">
-    <input class="landing-search location-search" id="city-search" placeholder="City Or Zip Code">
+    <input class="landing-search name-search" id="name-search" placeholder="Search Term"><span class="landing-search-genre-wrapper">
+      <!-- spot where genre dropdown goes -->
+    </span><br><br>
+
+    <a href="">
+      <div class="advanced" ng-click="toggleAdvanced()">
+        <i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Advanced Search
+      </div>
+    </a>
+
+    <div class="advancedSearch" ng-show="ADV"><br>
+    <input class="landing-search location-search" id="city-search" placeholder="City Or Zip">
     <select class="landing-search location-state-search" id="state-search">
       <option selected disabled>Pick A State</option>
       <option value="ZIP">Search By Zip Code</option>
       <option value="NC">NC</option>
     </select>
-    <span class="landing-search-genre-wrapper">
-      <!-- spot where genre dropdown goes -->
-    </span>
     <select class="landing-search type-search" id="type-search">
       <option value="1" selected="selected">Performance</option>
       <option value="2">Professional</option>
       <option value="3">Company</option>
     </select>
+  </div><!--end advanced search--><br>
     <a href=""><div class="landing-search-btn" id="landingSearchBtn" ng-click="searchDB()">Search</div></a>
   </div>
 
@@ -55,28 +64,6 @@
         </li> -->
       </ul>
   </div>
-
-  <!-- <footer class="landing-footer">
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recently Added Performances
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Popular Performances Near You
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recent Reviews
-      </div></a>
-    </div>
-    <div class="column-4">
-      <a href=""><div class="footer-box">
-        Recent Opprotunities.
-      </div></a>
-    </div>
-  </footer> -->
-
+  </span>
+</span>
 </section>

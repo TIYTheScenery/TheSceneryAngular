@@ -1,78 +1,21 @@
+$.datetimepicker.setDateFormatter({
+  parseDate: function (date, format) {
+      var d = moment(date, format);
+      return d.isValid() ? d.toDate() : false;
+  },
 
+  formatDate: function (date, format) {
+      return moment(date).format(format);
+  }
+});
 
 TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $window, $route){
-
-  // console.log("this works!");
-  $scope.message = "you are now working with angular";
-  var perfcompid = JSON.parse(localStorage.getItem('companyid'));
-
-  //use these for defaulting to view when you get on this page.
-  // $scope.tAdd=true;
-  // $scope.tEdit=true;
-  // $scope.tView=false;
-
-  //these poll ourdata for what the view should be on this page: view, edit, or add.
-  $scope.tAdd=ourData.borrowData("tAdd");
-  $scope.tEdit=ourData.borrowData("tEdit");
-  $scope.tView=ourData.borrowData("tView");
-
-  console.log("id from local storage:");
-
-  console.log(JSON.parse(localStorage.getItem('perfID')));
-
-  //gets the performance ID from localstorage
-  if($scope.tAdd)
-  {
-  var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
-
-  //var thisPerformanceID = ourData.borrowData("searchResults").id;//gets the performance id from the data service
-
-  $scope.performanceTimes;
-  $scope.thisPerformance;
-
-//this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
-  $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
-    ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
-    console.log("current performance:");
-    console.log(ourData.borrowData("viewingPerf"));//the results in the data service...
-
-    console.log(data.data.performance.owner_id);
-
-    if(person){
-      if (person.user_info.id != data.data.performance.owner_id){
-        console.log("happening");
-        $("#performance-edit-btn").addClass("hidden");
-        $("#performance-delete-btn").addClass("hidden");
-      }
-    }
-
-    $scope.thisPerformance = ourData.borrowData("viewingPerf");//pulling results from data service to scope variable...
-    //sets the default for the genre dropdown menu when editing
-    var lastinarray = $scope.thisPerformance.genre_id.length-1;
-    var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
-
-    //these two calls will fill in the dropdowns for the user to select the company for the performance
-    userCompanyCreate(person, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
-    userCompanyCreate(person, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
-    //set default value for the edit to the current company
-    $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
-    
-    // lastinarray = lastinarray.genre_id;
-    // console.log("defaultGenre:")
-    // console.log(defaultGenre);
-    $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
-
-    //sets the default for the creator dropdown menu when editing
-    var creator = $scope.thisPerformance.owner_id;
-    $(".hero-img-creator-dropdown-edit option").last().attr("selected", true);
-
-  },function(){console.log("performance get failed...");
-});//end http call.
-}//end the check to see if we're adding. 
-
-  $('#showtime-date').pickadate();
-  $('#showtime-time').pickatime();
-
+  window.onload = $('#showtime-date-time').datetimepicker({
+    format:'YYYY-M-DD h:mm a',
+    formatTime:'h:mm a',
+    formatDate:'YYYY-M-DD',
+    step: 15
+  });
   $scope.isLogged = function()
   {
     var data = JSON.parse(localStorage.getItem('user'));
@@ -90,6 +33,93 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       $scope.$apply();
     }
   }//end islogged
+
+
+  $(".edit-AVED-event-times-wrapper-edit").on("click", ".deleteCheck", function(){
+    if($(this)[0].checked === true){
+      // console.log(this);
+      // console.log($(this));
+      // console.log(this.closest(".EDIT-showtime-info-wrapper"));
+      var deletebox = $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#C43939");
+    }
+    else{
+      $(this).closest(".EDIT-showtime-info-wrapper").css("background", "#efefef")
+    }
+  });
+  // if ($("#delete-check").is(":checked")){
+  //   console.log("food");
+  // }
+
+  //these poll ourdata for what the view should be on this page: view, edit, or add.
+  $scope.tAdd=ourData.borrowData("tAdd");
+  $scope.tEdit=ourData.borrowData("tEdit");
+  $scope.tView=ourData.borrowData("tView");
+  // $('.edit-AVED-tags-input').datepicker();
+
+  //these need to happen whenever a user is not logged in
+  if($scope.isLogged()){
+    $scope.editPowers = false;
+  }
+
+  var thisPerformanceID = JSON.parse(localStorage.getItem('perfID'));
+  // if we aren't creating a new performance and there is no performance_id then redirect back to home page
+  if(thisPerformanceID === null && $scope.tAdd){
+    $window.location = "/";
+  }
+  //we need to call this every time except for a create
+  //tAdd is used on ng-hide and will only be false when creating
+  if($scope.tAdd){
+    //this api call gets all the information for the performance indicated by ThisPerformanceID and puts it into ThisPerformance.
+    $http.get('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
+      console.log(data);
+      ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
+      $scope.thisPerformance = data.data.performance;
+      if (data.data.performance.hero_image_url.match("missing.png")){
+        $scope.heroImage = "assets/images/lesmis-2.jpg";
+      }else{
+        $scope.heroImage = data.data.performance.hero_image_url;
+      }
+      // this need to happen whenever a user is logged in and not creating a performance
+      if($scope.isLogged() === false){
+        //if logged in user doesn't match owner of performance then hide edit buttons
+        if($scope.currentUser){
+          if ($scope.currentUser.user_info.id != data.data.performance.owner_id){
+            $scope.editPowers = false;
+          } else {  //otherwise fill in drop down for the edit
+            //these two calls will fill in the dropdowns for the user to select the company for the performance
+            userCompanyCreate($scope.currentUser, $('.hero-img-edit-dropdown-wrapper'), 'hero-img-edit-dropdown', 'performance-company-edit');
+            //set default value for the edit to the current company only works if there is a perofrmance id coming in
+            if($scope.thisPerformance){
+              $('.hero-img-edit-dropdown').val(parseInt($scope.thisPerformance.company_id));
+            }
+            //sets the default for the genre dropdown menu when editing
+            var lastinarray = $scope.thisPerformance.genre_id.length-1;
+            var defaultGenre = $scope.thisPerformance.genre_id[lastinarray].genre_id;
+            $(".edit-AVED-genre-edit option[value='"+defaultGenre+"']").attr("selected", true);
+            $scope.editPowers = true;
+          }
+        }
+      }//end the check to see if we're adding.
+    });
+  }
+
+  // set up for create
+  if($scope.tAdd === false && $scope.isLogged() === false){
+    //create dropdown for performance creation and set default to company that user came from
+    //if that company is in localStorage
+    userCompanyCreate($scope.currentUser, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
+    var company_id = JSON.parse(localStorage.getItem('compID'));
+    if(company_id){
+      $('.hero-img-creator-dropdown').val(company_id);
+    }
+    $scope.editPowers = false;
+  }
+
+
+// $(".Invisible-Showtime-wrapper").find('.EDIT-showtime-date-input').datepicker();
+  //assign pickadate to the showtime fields
+    // $('#showtime-date').pickadate();
+    // $('#showtime-time').pickatime();
 
   $scope.toggle = function(turnOn){
     if(turnOn === 'ADD')
@@ -115,227 +145,119 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   }//end scope.toggle
 
-  var person = JSON.parse(localStorage.getItem('user'));
-
-  // localStorage.setItem("user", JSON.stringify(person));
-
-  console.log("This is the current user");
-  console.log(person);
-
-
-$scope.updatePerformance = function(){
-
-  var token = person.user_info.login_token;
-  var ownerID = person.user_info.id;
-
-  var allEditedShowsJSON=[];
-
-  //the next 6 lines gets all the known show ids for this performance and puts them in an array for use later.
-  var allShowIDs=[];
-  for(var k=0;k<$scope.thisPerformance.show_times.length;k++)
-  {
-    console.log("show in this performance:");
-    console.log($scope.thisPerformance.show_times[k]);
-    allShowIDs.push($scope.thisPerformance.show_times[k].id);//this grabs the indivigual showtime ids and puts them into an array.
-  }
-
-  console.log("number of shows previously in this performance:")
-  console.log(allShowIDs.length);
-
-  var allEditedShows = $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper");
-
-  console.log("the number of all edited shows:")
-  console.log(allEditedShows.length);
-
-  for(var i=0; i<allEditedShows.length;i++)
-  {
-    var showTemplate = {"id": '', "begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
-
-    //the next 9 lines check to see if there is a show id for the show we're currently building JSON for. if not (ie: the user added a show), then it just makes the show ID an empty string.
-    var thisShowID;
-    if(allShowIDs[i]=== undefined)
-    {
-       thisShowID = '';
-    }
-    else
-    {
-      thisShowID= allShowIDs[i];
-    }
-
-    if($(allEditedShows[i]).find(".deleteCheck").is(':checked') === true)
-    {
-      console.log(allEditedShows[i]);
-      //console.log(".re-addshowtime not found in allShows[i]");
-      showTemplate._destroy = true;
-    }
-    else
-    {
-      console.log("alleditedshows["+i+"]");
-      //do nothing because the default is false.
-    }
-
-    showTemplate.begin_time = $(allEditedShows[i]).find("#showtime-time").val();
-    showTemplate.address = $(allEditedShows[i]).find("#showtime-address").val();
-    // console.log(allEditedShows[i]);
-    var temp = $(allEditedShows[i]).find('#showtime-city-state').val().split(', ');
-    showTemplate.city = temp[0];
-    showTemplate.state = temp[1];
-    showTemplate.zip_code = $(allEditedShows[i]).find('#showtime-zip').val();
-    showTemplate.show_date = $(allEditedShows[i]).find('#showtime-date').val();
-    showTemplate.id = thisShowID;
-
-    //console.log(showTemplate);
-    allEditedShowsJSON.push(showTemplate);
-  }//end the build shows for
-
-  console.log("all shows JSON");
-  console.log(allEditedShows.length);
-  console.log(allEditedShowsJSON);
-
-  var performance = JSON.stringify({
-  "performance": {
-    "id": thisPerformanceID,
-    "owner_id": ownerID,
-    "company_id": $('#performance-company-edit').val(),
-    "name": $('#performance-name-edit').val(),
-    "description": $('#perf-desc-edit').val(),
-    "trailer_link": $('#trailer-link-edit').val(),
-    "ticket_link": $('#ticket-link-edit').val(),
-    "genre_performances_attributes":[
-     {
-       "id": $scope.thisPerformance.genre_id[0].id,
-       "genre_id": $(".edit-AVED-genre-edit").val()
-     }
-   ],
-    "show_times_attributes": allEditedShowsJSON
-  },
-  "user_info": {
-    "login_token": token  //"butts"      //response.user_info.login_token
-    }
-  });
-
-  console.log(performance);
-
-//MODIFIED ANGULAR CALL
-// $http({ method: 'PUT', url: 'https://api.the-scenery.com/performances/'+thisPerformanceID, data: performance});
-
-//AJAX CALL
-  // var settings = {
-  //   "async": true,
-  //   "crossDomain": true,
-  //   "url": "https://api.the-scenery.com/performances",
-  //   "method": "PATCH",
-  //   "headers": {
-  //     "content-type": "application/json",
-  //     "cache-control": "no-cache"
-  //   },
-  //   "processData": false,
-  //   "data": performance
-  //    };
-  //
-  //   $.ajax(settings).done(function (data) {
-  //   console.log(data);
-  //   });//end ajax.
-
-
-//THIS IS THE ANGULAR CALL
-  $http.put('https://api.the-scenery.com/performances/'+thisPerformanceID, performance).then(function(data){
-    console.log("performance updated!");
-    console.log(data);
-  },function(){console.log("performance update failed...");
-});//end http call.
-
-  $scope.thisPerformance = performance;
-
-}//end updatePerformance
-
   $scope.addperformance = function(){
-    // console.log($('.hero-img-creator-dropdown option:selected').text());
-    // console.log($('#showtime-city-state').val())
+    var token = $scope.currentUser.user_info.login_token;
+    var ownerID = $scope.currentUser.user_info.id;
 
-    var token = person.user_info.login_token;
-    var ownerID = person.user_info.id;
+    var createPerformanceFD = new FormData();
+    createPerformanceFD.append("performance[owner_id]", ownerID);
+    createPerformanceFD.append("performance[hero_image]", $scope.profileUploadCreate);
+    createPerformanceFD.append("performance[company_id]", $('#performance-company-add').val());
+    createPerformanceFD.append("performance[name]", $('#performance-name').val());
+    createPerformanceFD.append("performance[description]",$('#perf-desc').val());
+    createPerformanceFD.append("performance[trailer_link]", $('#trailer-link').val());
+    createPerformanceFD.append("performance[ticket_link]", $('#ticket-link').val());
+    createPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre").val());
+    createPerformanceFD.append('user_info[login_token]', token);
 
-    var allShowsJSON=[];
-
-    var allShows = $(".new-showtime-wrapper").children(".new-showtime-info-wrapper");
-
-    for(var i=0; i<allShows.length;i++)
-    {
-      var showTemplate = {"begin_time": 0, "address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
-
-      if($(allShows[i]).find(".deleteCheck").is(':checked') === true)
+    $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(index){
+      if($(this).find("#delete-check").is(':checked'))
       {
-        console.log(".re-addshowtime not found in allShows[i]");
-        showTemplate._destroy= true;
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
+      } else {
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
       }
-      else
-      {
-        //do nothing because the default is false.
-      }
-
-      showTemplate.begin_time = $(allShows[i]).find("#showtime-time").val();
-      showTemplate.address = $(allShows[i]).find("#showtime-address").val();
-
-      console.log("we get this far");
-      console.log(allShows[i]);
-
-      var temp = $(allShows[i]).find('#showtime-city-state').val().split(', ');
-      showTemplate.city = temp[0];
-      showTemplate.state = temp[1];
-
-      showTemplate.zip_code = $(allShows[i]).find('#showtime-zip').val();
-      showTemplate.show_date = $(allShows[i]).find('#showtime-date').val();
-
-      console.log(showTemplate);
-      allShowsJSON.push(showTemplate);
-    }
-
-    console.log("all shows JSON");
-    console.log(allShowsJSON);
-
-    var performance = JSON.stringify({
-    "performance": {
-      "owner_id": ownerID,
-      "company_id": $('#performance-company-add').val(),
-      "name": $('#performance-name').val(),
-      "description": $('#perf-desc').val(),
-      "trailer_link": $('#trailer-link').val(),
-      "ticket_link": $('#ticket-link').val(),
-      "genre_performances_attributes":[
-       {
-         "genre_id": $(".edit-AVED-genre").val()
-       }
-     ],
-      "show_times_attributes": allShowsJSON
-    },
-    "user_info": {
-      "login_token": token //response.user_info.login_token
-    }
-
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
     });
 
-    console.log(performance);
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://api.the-scenery.com/performances",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": performance
-       };
-
-      $.ajax(settings).done(function (data) {
-        console.log(data);
-        $scope.thisPerformance = data
-        localStorage.setItem('perfID', data.performance.id)
-      });//end ajax.
+    var uploadUrl = 'https://api.the-scenery.com/performances'
+    $http({
+      method: "POST",
+      url: uploadUrl,
+      data: createPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Created performance");
+      console.log(response);
+      $scope.thisPerformance = response.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance.id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('performance not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.errors.length; i++){
+        errorText += response.errors[i] + "\n";
+      }
+      alert(errorText);
+    });//end http call
   }//End addperformance
+
+  $scope.updatePerformance = function(){
+    var token = $scope.currentUser.user_info.login_token;
+    var ownerID = $scope.currentUser.user_info.id;
+
+    var updatedPerformanceFD = new FormData();
+    updatedPerformanceFD.append("performance[id]", thisPerformanceID);
+    updatedPerformanceFD.append("performance[owner_id]", ownerID);
+    if($scope.profileUploadEdit != null){
+      updatedPerformanceFD.append("performance[hero_image]", $scope.profileUploadEdit);
+    }
+    updatedPerformanceFD.append("performance[company_id]", $('#performance-company-edit').val());
+    updatedPerformanceFD.append("performance[name]", $('#performance-name-edit').val());
+    updatedPerformanceFD.append("performance[description]",$('#perf-desc-edit').val());
+    updatedPerformanceFD.append("performance[trailer_link]", $('#trailer-link-edit').val());
+    updatedPerformanceFD.append("performance[ticket_link]", $('#ticket-link-edit').val());
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][id]", $scope.thisPerformance.genre_id[0].id);
+    updatedPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre-edit").val());
+    updatedPerformanceFD.append('user_info[login_token]', token);
+
+    $(".EDIT-showtime-wrapper").children(".EDIT-showtime-info-wrapper").each(function(index){
+      if($(this).find("#delete-check").is(':checked'))
+      {
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
+      } else {
+        updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
+      }
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][id]", $(this).find("#showtime-id").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      updatedPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
+    });
+
+    var uploadUrl = 'https://api.the-scenery.com/performances/' + thisPerformanceID
+    $http({
+      method: "PUT",
+      url: uploadUrl,
+      data: updatedPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Updated performance");
+      console.log(response);
+      $scope.thisPerformance = response.data.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance .id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('post not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.data.errors.length; i++){
+        errorText += response.data.errors[i] + "\n";
+      }
+      alert(errorText);
+    });//end http call
+  }//end updatePerformance
+
 
   $scope.deletePerformance = function()
   {
@@ -344,17 +266,25 @@ $scope.updatePerformance = function(){
 
     if(doit)
     {
+      var token = $scope.currentUser.user_info.login_token;
       //confirm delete, delete performance, go back to landing page.
       alert("Performance deleted. The show will go on... just... at another time.")
 
-      //THIS IS THE ANGULAR CALL
-        $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID).then(function(data){
-          console.log("performance DELETED!");
-          console.log(data);
-        },function(){console.log("performance delete failed...");
-      });//end http call.
+      var user_info = JSON.stringify({
+        "user_info": {
+          "login_token": token
+        }
+      });
 
-      $window.location.href = "/";
+      //THIS IS THE ANGULAR CALL
+      $http.delete('https://api.the-scenery.com/performances/'+thisPerformanceID, user_info).then(function(data){
+        console.log("performance DELETED!");
+        console.log(data);
+        $window.location.href = "/";
+      },function(data){
+        console.log("performance delete failed...");
+        console.log(data);
+      });//end http call.
     }
     else
     {
@@ -364,36 +294,45 @@ $scope.updatePerformance = function(){
 
   $scope.addNewShow = function(where){
     console.log("we're in add showtimes");
-    if(where===1)
+    if(where == 1)
     {
       var theParent = $(".new-showtime-wrapper");
     }
-    else if(where === 2)
+    else if(where == 2)
     {
       var theParent = $(".EDIT-showtime-wrapper");
     }
     var section = $(".Invisible-Showtime-wrapper").find(".new-showtime-info-wrapper").last();
 
-    if(where === 2)
+    var theClone = section.clone(true);
+    if(where == 2)
     {// if this is an edit and not an add we change the class of the clone so that when we scrape the page during the edit update, we can find the right thing.
       console.log("changing classes...");
-      section.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
+      theClone.removeClass("new-showtime-info-wrapper").addClass("EDIT-showtime-info-wrapper");
+      // theClone.find('.new-showtime-date-input').datepicker();
     }
-    //var theClone = section.clone(true);
-    // $(".invisible-showtime-wrapper .new-showtime-info-wrapper").last();
+    newID = 'showtime-date-time' + Date.now();
+    theClone.find('.showtime-date-time').attr("id", newID);
 
-    if(where === 1)//1 is for adding a showtime while initilally creating.
+
+    if(where == 1)//1 is for adding a showtime while initilally creating.
     {
-      theParent.append(section.wrap('<p/>').parent().html());
-      section.unwrap();
+      theParent.append(theClone.wrap('<p/>').parent().html());
+      theClone.unwrap();
     }
-    else if(where === 2)//2 is for adding a showtime while editing..
+    else if(where == 2)//2 is for adding a showtime while editing..
     {
-      theParent.append(section.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
-      section.unwrap();
+      theParent.append(theClone.attr("ng-hide", "tEdit").wrap('<p/>').parent().html());
+      theClone.unwrap();
     }
     else{console.log("I dont understand where im supposed to put the new showtime...");}
 
+    $('#' + newID).datetimepicker({
+      format:'YYYY-M-DD h:mm a',
+      formatTime:'h:mm a',
+      formatDate:'YYYY-M-DD',
+      step: 15
+    });
   //  $(".new-showtime-wrapper").append("<br>THIS IS A NEW SHOW<br>");
   }//end addnewshow
 
@@ -470,7 +409,61 @@ $scope.updatePerformance = function(){
 
   }
 
+  $scope.toperformancereviewer = function(){
+    // console.log($(this)[0])
+    localStorage.setItem("profID", JSON.stringify($(this)[0].review.user_id));
+  }
+
+  console.log("tView");
+  console.log(ourData.borrowData("tView"));
 
   // });//end jquery function
 
+})
+.directive('initEdit', function(){
+  return {
+    restrict: "A",
+    scope: {
+      initEdit: '='
+    },
+    link: function(scope, element, attrs) {
+      element[0].id = 'showtime-date-time' + Date.now();
+      $('#' + element[0].id).datetimepicker({
+        format:'YYYY-M-DD h:mm a',
+        formatTime:'h:mm a',
+        formatDate:'YYYY-M-DD',
+        step: 15
+      });
+    }
+  };
+})
+.directive('profileImageCreate', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.profileImageCrete);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+})
+.directive('profileImageEdit', function ($parse) {
+  return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+          var model = $parse(attrs.profileImageEdit);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+              scope.$apply(function(){
+                  modelSetter(scope, element[0].files[0]);
+              });
+          });
+      }
+  };
 });

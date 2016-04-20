@@ -1,55 +1,86 @@
+html {
+  background: #c7cacc;
+  font-family: 'Merriweather', serif; }
+
 .header {
-  background: #eee;
+  background: rgba(199, 202, 204, 0.5);
   padding: 10px;
-  border-bottom: 1px solid #ddd; }
+  height: 100px; }
+  .header h1 {
+    font-size: 30px;
+    color: #991010;
+    text-align: center;
+    font-family: 'Holtwood One SC', serif;
+    font-weight: bold; }
 
-.scenery-logo,
-.header-user-portrait {
+.tohome {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  vertical-align: middle;
+  margin-left: 25px; }
+
+.scenery-logo {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
   background: black;
-  vertical-align: middle; }
+  vertical-align: middle;
+  border-radius: 80px; }
 
-.btn {
+.header-user-portrait {
+  float: right;
   display: inline-block;
-  padding: 10px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  background: black;
   vertical-align: middle; }
 
 .modal-close-btn {
   float: right;
-  background: red !important;
-  background-image: linear-gradient(to bottom right, red, #c80000) !important; }
+  background: #812742 !important;
+  color: #ddd; }
   .modal-close-btn:hover {
-    background-image: linear-gradient(to bottom right, #c80000, red);
+    background: #952d4c !important;
     color: white; }
 
 a {
   text-decoration: none;
   color: black; }
 
-.login-btn,
-.sign-up-btn,
-.logout-btn {
-  float: right;
-  margin-right: 25px; }
+.header-user-greeting {
+  font-size: 30px; }
 
 .header-user-wrapper {
+  float: right;
   display: inline-block;
   vertical-align: middle;
-  margin-left: 35px; }
+  margin-right: 35px; }
 
-.header-user-greeting {
-  font-size: 18px;
-  padding-bottom: 5px; }
+.noLogBtnBank,
+.subUserInfoHeader {
+  margin-left: 10px;
+  text-align: center;
+  float: right;
+  display: block; }
 
+.login-btn,
+.sign-up-btn,
+.logout-btn,
 .header-user-profile {
-  text-decoration: underline;
-  color: #666; }
+  font-family: helvetica, sans-serif;
+  font-size: 16px;
+  width: 125px;
+  margin-top: 5px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  color: #5a1b2e; }
+  .login-btn:hover,
+  .sign-up-btn:hover,
+  .logout-btn:hover,
+  .header-user-profile:hover {
+    background: white !important; }
+
+.logout-btn {
+  background: rgba(255, 235, 235, 0.8) !important; }
+
+.logout-btn:hover {
+  background: #ff6464 !important; }
 
 .logged-header {
   display: none; }
@@ -65,12 +96,14 @@ a {
 
 .modal-box {
   background: #ccc;
-  width: 650px;
-  height: 300px;
+  width: 500px;
+  height: 330px;
   margin: 200px auto 0 auto;
   padding: 40px;
-  border-radius: 5px;
-  border: 1px solid #bbb; }
+  border-radius: 5px; }
+
+#log-in-modal .modal-box {
+  height: 220px; }
 
 .modal-welcome {
   font-size: 26px;
@@ -82,7 +115,7 @@ a {
 .modal-label-wrapper {
   display: inline-block;
   vertical-align: top;
-  margin-left: 115px;
+  margin-left: 25px;
   margin-right: 15px; }
   .modal-label-wrapper label {
     display: block;
@@ -104,16 +137,8 @@ a {
   margin: auto;
   margin-top: 35px; }
 
-.modal-facebook-btn {
-  float: right;
-  background: blue;
-  color: white; }
-
 .modal-login-btn {
-  display: block;
-  padding-left: 17px;
-  width: 50px;
-  margin: 0 auto; }
+  display: inline-block; }
 
 .hidden {
   display: none; }

@@ -1,16 +1,45 @@
-.user-profile-header {
+.user-profile-wrapper {
+  background: #c7cacc; }
+
+.action-buttons {
+  background: #c7cacc;
+  width: 80%;
+  margin: auto;
   text-align: center;
-  font-size: 50px;
-  background: #888;
-  background-image: linear-gradient(to bottom right, #888, #aaa);
+  padding: 10px 0;
+  padding-left: 10px; }
+
+.action {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top; }
+
+.user-btn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  background: rgba(235, 235, 235, 0.8) !important;
+  color: #770c2d; }
+  .user-btn:hover {
+    background: white !important; }
+
+.user-header-image-wrapper {
+  width: 40%;
+  text-align: right;
+  display: inline-block; }
+
+.user-profile-header {
+  background: #92A7BF;
   padding: 35px 0;
   margin-bottom: 45px; }
 
 .to-search-btn {
   position: absolute;
   font-size: 15px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  background: rgba(235, 235, 235, 0.8);
+  color: #812742;
   padding: 7px;
   border-radius: 3px;
   margin-left: 10px;
@@ -19,78 +48,67 @@
 .edit-profile-btn {
   position: absolute;
   font-size: 15px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
+  background: rgba(235, 235, 235, 0.8);
+  color: #812742;
   padding: 7px;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px; }
-
-.user-header-displayname {
-  display: block; }
-
-.user-header-professional {
-  font-size: 35px; }
 
 .user-profile-info-wrapper {
   width: 80%;
   margin: auto; }
 
 .user-main-info-wrapper {
-  width: 57%;
+  width: 100%;
   display: inline-block;
-  border: 1px solid #666;
   margin-right: 2%; }
 
 .user-image-wrapper {
-  width: 130px;
-  height: 130px;
   display: inline-block;
+  vertical-align: top;
+  width: 500px;
+  height: 500px;
   background: #444;
-  margin-right: -4px; }
+  color: white;
+  font-size: 16px;
+  margin-left: 5%; }
 
-.add-user-image-wrapper {
-  width: 130px;
-  height: 130px;
+.profile-container {
+  width: 80%;
+  margin: auto; }
+
+.profile-user-info-wrapper {
+  background: #efefef;
   display: inline-block;
-  margin-right: -4px;
-  vertical-align: top;
-  text-align: center; }
-  .add-user-image-wrapper div {
-    margin-top: 50px; }
-
-.user-name-title-wrapper {
-  width: 60%;
-  display: inline-block;
-  vertical-align: top;
-  padding-top: 15px; }
-
-.display-user-name {
-  font-size: 20px;
-  margin-bottom: 20px; }
-
-.display-user-titles {
-  font-size: 18px;
-  margin-bottom: 20px; }
-
-.user-side-info-wrapper {
-  width: 39%;
-  display: inline-block;
-  border: 1px solid #666;
+  width: 56%;
+  height: 480px;
+  padding: 10px;
   vertical-align: top; }
 
-.user-social-links-wrapper {
+.display-user-name {
   text-align: center;
-  width: 60%;
-  margin: 20px auto 30px auto;
-  font-size: 20px; }
-  .user-social-links-wrapper a div {
-    display: inline-block;
-    border: 1px solid #999;
-    border-radius: 50%;
-    background: #333;
-    color: white;
-    margin: 0 5px; }
+  font-size: 40px;
+  margin-bottom: 40px; }
+
+.display-user-titles {
+  text-align: center;
+  font-size: 28px;
+  color: #666;
+  margin-bottom: 40px; }
+
+.display-user-creation-date {
+  text-align: center;
+  font-size: 18px;
+  color: #666; }
+
+.profile-user-info-wrapper a div {
+  font-size: 25px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  margin: 40px 0 40px 15%; }
 
 .user-youtube-link {
   padding: 5px 7px; }
@@ -104,68 +122,111 @@
 .user-instagram-link {
   padding: 5px 7px; }
 
-.side-info-display-name {
-  text-align: center;
-  font-size: 22px; }
-
 .side-info-user-description {
-  font-size: 16px;
-  padding: 15px;
-  margin-top: 15px; }
+  font-size: 18px;
+  margin-top: 30px;
+  margin-left: 25px; }
 
 .user-profile-input {
   display: block;
-  width: 90%;
+  width: 50%;
   font-size: 19px;
   margin-bottom: 20px; }
-
-.user-name-title-spacer {
-  padding: 0 0 0 20px; }
 
 .edit-social-link {
   display: block;
   font-size: 15px;
-  width: 100%;
+  width: 50%;
   line-height: 1.2;
   margin-bottom: 5px; }
 
-.edit-user-description {
-  display: block;
-  width: 90%;
-  max-width: 90%;
-  margin: auto;
-  font-size: 15px;
-  line-height: 1.2;
-  height: 120px;
-  max-height: 120px;
-  margin-bottom: 15px; }
-
 .edit-user-description-label {
-  width: 90%;
-  margin: auto;
-  margin-bottom: 10px;
-  margin-top: 15px; }
+  margin: 15px 0; }
+
+.edit-user-description {
+  width: 100%;
+  height: 120px;
+  font-size: 16px;
+  max-height: 120px;
+  max-width: 100%; }
 
 .submit-profile-edits-button {
-  font-size: 15px;
-  background: #888;
-  background-image: linear-gradient(to bottom right, #ccc, #888);
-  padding: 7px 0 7px 30px;
+  border-radius: 5px !important;
+  font-size: 15px !important;
+  background: #92A7BF !important;
+  padding: 7px 25px;
   border-radius: 3px;
-  width: 60px;
-  margin: 20px auto 25px auto; }
+  width: 40px;
+  margin: 25px 0 0 0 !important; }
 
-.associated-user-company {
+.user-company-wrapper {
+  width: 43%;
+  display: inline-block;
+  margin-right: 7%; }
+
+.user-company-label,
+.user-review-label {
+  display: block;
+  font-size: 20px;
   text-align: center;
-  font-size: 18px;
-  margin: 15px 0 25px 0; }
+  margin-bottom: 25px; }
 
 .associated-company-name {
-  margin: 10px auto;
-  padding: 5px 10px;
-  background: #999;
-  border-radius: 3px;
-  width: 50%;
-  font-weight: bold; }
+  padding: 10px 5px;
+  margin-bottom: 25px;
+  background: #efefef;
+  border-radius: 5px; }
+
+.user-company-image-wrapper {
+  width: 50px;
+  height: 50px;
+  background: #666;
+  display: inline-block;
+  vertical-align: top; }
+
+.user-company-image {
+  width: 50px;
+  height: 50px; }
+
+.user-company-name {
+  font-size: 22px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 3px 0 0 25px;
+  width: 70%; }
+
+.user-review-wrapper {
+  width: 43%;
+  margin-left: 6%;
+  display: inline-block;
+  vertical-align: top; }
+
+.user-review {
+  background: #efefef;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 25px;
+  padding: 10px 0;
+  border-radius: 5px; }
+
+.review-target-company {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 12px;
+  margin-bottom: 10px; }
+
+.review-time-placed {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px; }
+
+.review-text {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 10px; }
+
+.company-and-reviews-container {
+  width: 100%;
+  padding: 10px; }
 
 /*# sourceMappingURL=userprofile.css.map */

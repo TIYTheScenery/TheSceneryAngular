@@ -16,6 +16,11 @@ $scope.message3 ="GO!"
 // ourData.shareData("userInfo","something else");
 // console.log(ourData.borrowData("userInfo"));
 
+//function for toggling advanced search
+$scope.toggleAdvanced = function()
+{
+  $scope.ADV = !$scope.ADV;
+}
 
 $scope.searchDB = function()
 {
@@ -49,7 +54,7 @@ $scope.searchDB = function()
    $('li').remove();
   //  Append Performances
    for (var i=0; i<response.performances.length; i++){
-     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>Company Name</div></div></a></li>");
+     $('.performance-show-container').append("<li id='"+i+"'><a href='#/performance'><div class='performance-box'><div class='box box-performance-name'>"+ response.performances[i].name + "</div><div class='box box-performance-date'>"+response.performances[i].company_name+"</div></div></a></li>");
    }
   //  Append companies
    for (var i=0; i<response.companies.length; i++){

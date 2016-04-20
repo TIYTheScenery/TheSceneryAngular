@@ -1,34 +1,36 @@
 input::-webkit-input-placeholder {
-  color: #b0ba49; }
+  color: #4d0b0b; }
 
 input:-moz-placeholder {
   /* Firefox 18- */
-  color: #b0ba49; }
+  color: #4d0b0b; }
 
 input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #b0ba49; }
+  color: #4d0b0b; }
 
 input:-ms-input-placeholder {
-  color: #b0ba49; }
+  color: #4d0b0b; }
 
 .landing-wrapper {
-  background: #832441;
+  background: #e6d6da;
+  z-index: -5;
   color: #ddd; }
 
 .landing-header-desc {
+  z-index: 1;
   display: inline-block;
-  margin-left: 4%;
-  margin-right: 4%;
+  width: 70%;
+  margin-top: 15px;
+  margin-left: 15%;
   vertical-align: middle; }
 
 html {
-  background: #5b192d; }
+  background: #e6d6da; }
 
 .landingColMid {
-  font-size: 40px;
   float: left;
-  width: 30%;
+  width: 29%;
   margin-left: 20px;
   margin-right: 20px;
   display: inline-block;
@@ -37,76 +39,95 @@ html {
 
 .landingColSide {
   margin-top: 20px;
-  font-size: 30px;
   float: left;
-  width: 30%;
+  width: 29%;
   margin-left: 20px;
   margin-right: 20px;
   display: inline-block;
   text-align: left;
   vertical-align: middle; }
 
+.advanced {
+  color: white;
+  font-size: 20px; }
+
 .landing-input-wrapper {
+  z-index: 1;
   margin-top: 30px;
   width: 100%;
-  text-align: center;
-  padding-bottom: 25%; }
+  text-align: center; }
   .landing-input-wrapper input, .landing-input-wrapper select {
     font-size: 25px;
     margin-right: 20px;
     border-radius: 3px;
-    border: 1px solid #9f7f49;
     padding: 20px 20px 20px 20px;
-    background: #9f7f49;
-    color: #ebf2a2;
+    background: rgba(245, 245, 245, 0.95);
+    color: #4d0b0b;
     outline: none; }
 
 .landing-search-btn {
-  width: 10%;
+  width: 152px;
   height: 65px;
   display: inline-block;
   padding: 10px 10px;
-  border: 2px solid #9f7f49;
-  background: #b0ba49;
-  color: #ebf2a2;
+  background: rgba(245, 245, 245, 0.95);
+  color: #92A7BF;
   font-size: 40px;
   vertical-align: middle;
   border-radius: 3px;
-  margin-left: 2%;
   box-sizing: border-box; }
 
 .name-search {
-  width: 50%; }
+  width: 60%; }
 
 .location-search {
-  width: 10%; }
+  width: 140px;
+  height: 18px; }
 
 .genre-search {
-  width: 10%;
+  width: 140px;
   height: 70px; }
 
-.landing-header {
-  background: #832441; }
-  .landing-header h1 {
-    font-size: 80px;
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: #ebf2a2; }
-  .landing-header h5 {
-    font-size: 30px;
-    text-align: center;
-    width: 90%;
-    margin-bottom: 20px; }
+.location-state-search {
+  height: 70px; }
 
-.landing-footer {
-  position: fixed;
-  display: inline-block;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: #9f7f49; }
+#type-search {
+  height: 70px; }
+
+.landingFunctional {
+  background: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  position: absolute;
+  top: 150px;
+  overflow: hidden;
+  width: 100%; }
+
+.landing-header h1 {
+  font-size: 90px;
+  color: #991010;
+  text-align: center;
+  font-family: 'Holtwood One SC', serif;
+  font-weight: bold; }
+.landing-header h2 {
+  font-size: 40px;
+  font-family: helvetica, sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: #577394; }
+.landing-header h3 {
+  font-size: 30px;
+  font-family: helvetica, sans-serif;
+  font-weight: 600;
+  text-align: center; }
+.landing-header h4 {
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+  font-weight: 900;
+  text-align: center; }
+.landing-header h5 {
+  font-size: 15px;
+  text-align: center;
+  width: 90%; }
 
 .column-4 {
   width: 25%;
@@ -116,30 +137,20 @@ html {
   padding-bottom: 25px;
   border-top: 1px solid #777; }
 
-.footer-box {
-  display: inline-block;
-  background: #aaa;
-  width: 225px;
-  height: 100px;
-  margin-left: 10%;
-  border-radius: 3px;
-  padding: 10px;
-  border: 1px solid #333; }
-
 .performance-show-wrapper {
   width: 100%;
   margin-bottom: 20px;
   padding: 5px;
-  background: #5b192d;
+  background: rgba(255, 255, 255, 0);
   text-align: center; }
 
 .hidden {
   display: none; }
 
 .performance-box {
-  width: 250px;
-  height: 250px;
-  background: #832441;
+  width: 200px;
+  height: 200px;
+  background: #efefef;
   padding: 10px;
   margin: 10px;
   border-radius: 2px;
@@ -153,7 +164,10 @@ html {
 
 .box-performance-name {
   margin-top: 10px;
-  color: #ebf2a2; }
+  color: #991010;
+  font-family: 'Holtwood One SC', serif;
+  font-size: 18px;
+  border-bottom: 1px #92A7BF solid; }
 
 li {
   display: inline-block;

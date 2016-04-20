@@ -1,35 +1,56 @@
+//dark maroon
+// $popCol1: rgb(89, 25, 45);
+$bgColor: #c7cacc;
+$cardColor: #efefef;
+$lightBlueish: #92A7BF;
+$burgundy: #991010;
+
+$popCol1: rgb(166, 16, 63);
+
 .action-buttons{
+  background: $bgColor;
+  width: 80%;
+  margin: auto;
+  text-align: center;
   padding: 10px 0;
-  padding-left: 50px;
+  padding-left: 10px;
 }
 
 .action{
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 20px;
   vertical-align: top;
-  &:last-child{
-    float: right;
-    margin-right: 100px;
-  }
+  // &:last-child{
+  //   float: right;
+  //   margin-right: 100px;
+  // }
 }
 
+.submit-review-btn,
 .company-btn{
   padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  border-radius: 5px;
   vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  // width: 125px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  // border: 3px solid $popCol1 !important;
+  color: darken($popCol1, 10%);
+  &:hover{
+    background: rgba(255, 255, 255, 1) !important;
+  }
 }
 
 .delete-company-btn{
-  background: red;
-  background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0));
-  font-weight: bold;
+  background: rgba(255, 235, 235, 0.8) !important;
   &:hover{
-    background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);
-    color: #ccc;
+    background: rgba(255, 100,100, 1) !important;
   }
+}
+
+.company-wrapper{
+  background: $bgColor;
 }
 
 .company-header{
@@ -38,56 +59,109 @@
 }
 
 .company-hero-image{
-  background: #666;
-  height: 350px;
+  background: $lightBlueish;
+  // -webkit-filter: blur(1px) saturate(50%);
+  height: 600px;
   width: 100%;
 }
 
 .company-name-type-wrapper{
+  // z-index:-1;
+  // display: inline-block;
+  // border: 5px solid $popCol1;
   position: absolute;
+  top:50px;
+  width: 100%;
+  height: 550px;
   text-align: center;
-  margin-top: -250px;
-  background: rgba(0,0,0,0.5);
-  border-radius: 10px;
-  margin-left: 33%;
-  padding: 10px;
 }
+  //this is for the major page headings.
+  h1{
+    font-size: 50px;
+    color: $burgundy;
+    text-align:center;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    //burgundy in color
+  }
+  //h2 and 3 are used on sub headings, and sub-sub headings.
+  h2{
+    font-size: 40px;
+    font-family: helvetica, sans-serif;
+    font-weight: 900;
+    text-align:center;
+    //darker version of the background blue
+  }
+  h3{
+    font-size: 30px;
+    font-family: helvetica, sans-serif;
+    font-weight: 600;
+    text-align:center;
+    //black, but bigger than standard text.
+  }
+  //h4 is used primarily on performance names when listed on a company page.
+  h4{
+    font-size: 30px;
+    font-family: helvetica, sans-serif;
+    font-weight: 900;
+    text-align:center;
+  }
 
 .company-name{
-  font-size: 60px;
-  color: #eee;
-  margin-bottom: 15px;
+  margin-left: 5%;
+  padding-bottom: 10px;
+  border-bottom: 1px $lightBlueish solid;
+  // margin-top:-300px;
 }
 
 .company-type{
   font-size: 30px;
-  color: #eee;
+  // color: #eee;
   margin-top: 15px;
 }
 
 .company-location{
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
+  display: inline-block;
   // border: 1px solid blue;
-  margin: 27px 0 10px 0;
+  // margin: 27px 0 10px 0;
 }
 
 .company-details-wrapper{
-  width: 90%;
-  margin: 20px auto;
+  vertical-align: top;
+  display: inline-block;
+  position:relative;
+  width: 50%;
+  margin-left:50px;
+  //  width: 40%;
+  //  display: inline-block;
+  // position: relative;
+  // margin-left: 440px;
+  // text-align: center;
+  // margin-top: 50%;
+  // background: red;
 }
 
 .company-description{
-  background: #ccc;
+  display: inline-block;
+  float:right;
+  height: 480px;
+  z-index: 4;
+  color: white;
+  font-size: 25px;
+  background: rgba(0,0,0,.5);
+  // margin-left: 50%;
+  // position: absolute;
+  // margin-top: -300px;
+  width: 100%;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 25px;
 }
 
 .company-social{
-  // padding: 10px;
-  // border: 1px solid #999;
-  // border-radius: 5px;
+  // bottom: 17px;
+  margin-top: 20px;
   div{
     display: inline-block;
   }
@@ -95,25 +169,21 @@
 
 .company-website{
   padding-left: 10px;
-  width: 50%;
+  width: 100px;
   overflow: hidden;
 }
 
-.company-url{
-  padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
-  font-size: 18px;
+.mediaWrapper{
+  margin-top: 300px;
 }
 
 .media{
   font-size: 25px;
-  border: 1px solid #bbb;
+  // border: 3px solid darken($popCol1, 15%);
   border-radius: 50%;
-  background: #999;
-  margin-right: 30px;
+  background: $popCol1;
+  // margin-top: 15px;
+  margin-right: 5px;
   margin-left: 15px;
 }
 
@@ -135,26 +205,62 @@
 
 .O-p-R-wrapper{
   width: 90%;
-  margin: 40px auto;
+  margin: 50px auto;
+  text-align: center;
 }
 
+.tabBox{
+  width:90%;
+  // padding-bottom: 11px;
+  margin: auto;
+  border-bottom: 1px solid  $burgundy;
+  text-align: center;
+}
+
+.TabActual{
+  display: inline-block;
+  padding: 10px;
+  background: $lightBlueish;
+  border-bottom: $burgundy 1px solid;
+  margin-bottom: -1px;
+
+}
+
+.TabSelected{
+  background: $cardColor;
+  border-left: 1px $burgundy solid;
+  border-top: 1px $burgundy solid;
+  border-right: 1px $burgundy solid;
+  border-bottom: #c7cacc 1px solid;
+  margin-bottom: -1px;
+
+}
+
+
+//   display: inline-block;
+//   width: 100%;
+//   margin-right: -4px;
+//   vertical-align: top;
+// }
 .opportunities-wrapper,
 .company-performances-wrapper,
 .company-reviews-holder{
   display: inline-block;
-  width: 33%;
-  margin-right: -4px;
+  width: 90%;
+  // margin: auto;
   vertical-align: top;
-  // border: 1px solid green;
+}
+
+.performance-image
+{
+  -webkit-filter: blur(2px) saturate(30%);
+  overflow: hidden;
 }
 
 .opportunities-label,
 .company-performances-label,
 .company-reviews-label{
-  // border: 1px solid green;
-  font-size: 25px;
-  width: 150px;
-  margin: 10px auto 20px auto;
+  text-align: center;
   border-radius: 5px;
 }
 
@@ -164,18 +270,20 @@
 
 .company-opportunity{
   background: #bbb;
-  width: 90%;
+  text-align: left;
+  width: 100%;
   margin: auto;
   margin-bottom: 15px;
-  border: 1px solid #999;
+  // border: 1px solid #999;
   padding: 10px;
   border-radius: 5px;
 }
 
 .company-opportunity-poster-image-wrapper,
 .company-review-img{
-  width: 130px;
-  height: 130px;
+  width: 95px;
+  height: 95px;
+  // border: 3px solid $popCol1;
   display: inline-block;
   background: #444;
 }
@@ -201,11 +309,11 @@
 
 .company-performance{
   border-radius: 5px;
-  background: #bbb;
+  background: #fefefe;
   width: 90%;
-  margin: 15px auto;
-  border: 1px solid #999;
-  padding: 45px 10px 45px 10px;
+  margin: 20px auto;
+  // border: 3px solid $popCol1;
+  padding: 10px;
 }
 
 .past-performances-label{
@@ -213,9 +321,8 @@
 }
 
 .company-performance-box{
-  // border: 1px solid green;
   font-size: 20px;
-  width: 200px;
+  text-align: center;
   margin: auto;
 }
 
@@ -223,12 +330,24 @@
   margin-bottom: 20px;
 }
 
+.company-review-wrapper{
+  text-align: left;
+}
+
 .company-review{
   border-radius: 5px;
-  border: 1px solid #999;
-  background: #bbb;
+  // border: 3px solid #999;
+  background: #eeeeee;
   padding: 10px;
   margin-bottom: 15px;
+}
+
+.compReviewDate{
+  font-size: 20px;
+}
+.compReviewerName{
+  font-size: 25px;
+  color: $popCol1;
 }
 
 .company-new-review{
@@ -242,9 +361,14 @@
 
 .edit-company-name,
 .create-company-name{
+  // position: absolute;
+  margin-top: 50px;
+  // margin-left: -45%;
+  display: inline-block;
   width: 300px;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  // margin-left: 30%;
 }
 
 .edit-company-type,
@@ -254,7 +378,7 @@
 
 .company-location-input-wrapper{
   width: 70%;
-  margin: 45px auto 15px auto;
+  // margin: 45px auto 15px auto;
 }
 
 .edit-company-location-address,
@@ -287,25 +411,30 @@
   margin: 25px 0 10px 0;
 }
 
-.edit-company-description,
+.edit-company-description
+{
+
+}
+
+.edit-company-description-wrapper,
 .create-company-description{
-  width: 100%;
-  max-width: 100%;
+  display: inline-block;
+  z-index: 5;
+  width: 45%;
+  max-width: 45%;
   height: 100px;
   max-height: 100px;
   font-size: 17px;
+  // margin-left: 50%;
 }
 
 .edit-company-media,
 .create-company-media{
   vertical-align: top;
   display: block;
-  width: 250%;
+  width: 100%;
   font-size: 16px;
   margin-bottom: 10px;
-  &:first-child{
-    margin-top: 50px;
-  }
 }
 
 .company-save-btn-wrapper,
@@ -319,31 +448,59 @@
   padding: 5px 10px 5px 30px;
   background: #aaa;
   background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  // border: 1px solid #999;
+  border-radius: 5px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
 .edit-company-hero-image,
 .create-company-hero-image{
+  // z-index: -1;
   width: 100%;
-  height: 300px;
-  // position: absolute;
-  margin: 40px 0 0 40px;
-  background: #ccc;
+  height: 600px;
+  background: $lightBlueish;
+  // margin-top:-200px;
+  position: absolute;
+  // margin: 40px 0 0 40px;
+  // background: #red;
   padding: 5px;
   border-radius: 5px;
 }
 
+// #filebtn2{
+//   background: rgba(0,0,0,0);
+//   color: white;
+//   font-family: impact, sans-serif;
+//   font-size: 20px;
+//   border: 2px solid white;
+//   height: 100%;
+//   width:300px;
+//   z-index:2;
+// }
+// #filebtn2:hover{
+//
+// }
+
+.edit-company-profile-pic,
 .company-profile-pic{
-  position: absolute;
-  height: 175px;
-  width: 175px;
+  display: inline-block;
+  width:500px;
+  height:500px;
   background: #444;
-  margin-top: -150px;
-  margin-left: 175px;
+  margin-right: 20px;
+  // border: 5px solid $popCol1;
   border-radius: 5px;
+}
+
+.moveform{
+  margin-top: -105px;
+  color: white;
+}
+
+.editformcolor{
+  margin-top: 40px;
+  color: white;
 }
 
 .company-create-opportunity-modal-wrapper{
@@ -410,7 +567,7 @@
   background: #aaa;
   background-image: linear-gradient(to bottom right, #999, #aaa);
   padding: 8px;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 16px;
   &:hover{
     background: #999;
@@ -424,7 +581,7 @@
   padding: 8px;
   background: red;
   background-image:linear-gradient(to bottom right, red, rgb(200, 0, 0));
-  border-radius: 3px;
+  border-radius: 5px;
   float: right;
   &:hover{
     background-image: linear-gradient(to bottom right, rgb(200, 0, 0), red);

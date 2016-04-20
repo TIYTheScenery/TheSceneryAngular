@@ -1,80 +1,53 @@
 <section class="user-profile-wrapper" ng-controller="profileCont" ng-cloak>
+    <div class="action-buttons">
+      <span class="action">
+        <a href="#/">
+          <div class="user-btn">
+            Back To Search
+          </div>
+        </a>
+      </span>
+      <span class="action">
+        <a href="">
+          <div class="user-btn" id="editprofilebutton" ng-click="show = !show; edituser()" ng-hide="show">
+            Edit Profile
+          </div>
+        </a>
+      </span>
+      <span class="action">
+        <a href="">
+          <div class="user-btn" ng-click="show = !show" ng-show="show">
+            View Profile
+          </div>
+        </a>
+      </span>
+      <span class="action">
+        <a href="#/company" ng-show="{{currentuser.user_info.is_professional}}">
+          <div class="user-btn" id="createcompanybutton" ng-click="show = !show; tocompany('CREATE')">
+            Create Company
+          </div>
+        </a>
+      </span>
+    </div><!--ends actions-->
+
   <header class="user-profile-header">
-    <a href="#/">
-      <div class="to-search-btn">
-        Back To Search
-      </div>
-    </a>
-    <a href="">
-      <div class="edit-profile-btn" id="editprofilebutton" ng-click="show = !show; edituser()" ng-hide="show">
-        Edit Profile
-      </div>
-    </a>
-    <a href="">
-      <div class="edit-profile-btn" ng-click="show = !show" ng-show="show">
-        View Profile
-      </div>
-    </a>
-    <br>
-    <a href="#/company" ng-show="{{currentuser.user_info.is_professional}}">
-      <div class="edit-profile-btn" id="createcompanybutton" ng-click="show = !show; tocompany('CREATE')">
-        Create Company
-      </div>
-    </a>
-
-    <div class="user-header-txt-wrapper">
-      <img src="{{currentuser.user_info.image_url}}" width="200" height="200">
-      <label class="user-header-displayname"></label>
-      <label class="user-header-professional"></label>
-    </div>
-  </header>
-  <div class="user-profile-info-wrapper">
-    <div class="user-main-info-wrapper">
-      <div class="user-image-wrapper" ng-hide="show">
-        <img src="" class="user-profile-image">
-      </div>
-
-        <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
-          <div>
-            <form action="https://thescenery.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="key" value="uploads/User{{currentuser.user_info.id}}">
-              <input type="hidden" name="AWSAccessKeyId" value="AKIAIOKFFWZFAUYDGXHQ">
-              <input type="hidden" name="acl" value="public-read">
-              <input type="hidden" name="success_action_redirect" value="https://the-scenery.com/#/userprofile">
-              <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICJjb25kaXRpb25zIjogWwogICB7ImJ1Y2tldCI6ICJ0aGVzY2VuZXJ5In0sCiAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICB7ImFjbCI6ICJwdWJsaWMtcmVhZCJ9LAogICB7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHBzOi8vdGhlLXNjZW5lcnkuY29tLyMvdXNlcnByb2ZpbGUifSwKICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiBdCn0=">
-              <input type="hidden" name="signature" value="UvllgEwT5zVLMOwiTQkmSuMbFTE=">
-              <input type="hidden" name="Content-Type" value="$Content-Type">
-              <!-- Include any additional input fields here U{{currUserId}}-->
-
-              Add Image
-              <input name="file" type="file" id="fileBtn"><br>
-              <br>
-              <input type="submit" style="display:none;" id="imgSubmitBtn" value="Upload File to S3">
-            </form>
-         </div>
-       </div>
-
-
-          <!-- signature hash -->
-      <!-- Me1pr7UvYelg4jAxyn+NEHXBFss= -->
-
-       <!--policy hash eyJleHBpcmF0aW9uIjogIjIwMTktMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogInRoZXNjZW5lcnktYXR0YWNobWVudHMifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICJ1cGxvYWRzLyJdLAogICAgeyJhY2wiOiAicHJpdmF0ZSJ9LAogICAgeyJzdWNjZXNzX2FjdGlvbl9yZWRpcmVjdCI6ICJodHRwczovL3RoZS1zY2VuZXJ5LmNvbSJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgIiJdCiAgXQp9 -->
-
-
-
-      <div class="user-name-title-wrapper">
-        <div class="user-name-title-spacer">
-          <div class="display-user-name" ng-hide="show">First Name Last Name</div>
-          <input class="user-profile-input edit-display-user-name" placeholder="First Name Last Name" id="user-name" ng-show="show">
-          <div class="display-user-titles" ng-hide="show"></div>
-          <input type="hidden" class="edit-display-user-titles-id" id="user-titles-id" ng-show="show">
-          <input class="user-profile-input edit-display-user-titles" placeholder="Add Titles Here" id="user-titles" ng-show="show">
-          <div class="display-user-creation-date"></div>
-        </div>
-      </div>
-    </div>
-    <div class="user-side-info-wrapper">
-      <div class="user-social-links-wrapper">
+    <div class="add-user-image-wrapper user-image-wrapper" ng-show="show">
+      <div>
+        Add Image
+        <input name="file" type="file" profile-image="profileUpload"><br>
+        <br>
+     </div>
+   </div>
+    <div class="user-header-image-wrapper" ng-hide="show">
+      <img ng-src="{{profileImageUrl}}" width="500" height="500">
+    </div><!--
+    --><div class="profile-user-info-wrapper">
+        <div class="display-user-name" ng-hide="show">First Name Last Name</div>
+        <input class="user-profile-input edit-display-user-name" placeholder="First Name Last Name" id="user-name" ng-show="show">
+        <div class="display-user-titles" ng-hide="show"></div>
+        <input type="hidden" class="edit-display-user-titles-id" id="user-titles-id" ng-show="show">
+        <input class="user-profile-input edit-display-user-titles" placeholder="Add Titles Here" id="user-titles" ng-show="show">
+        <div class="display-user-creation-date" ng-hide="show"></div>
         <input class="edit-social-link" id="edit-youtube" placeholder="Add youtube link" ng-show="show">
         <input class="edit-social-link" id="edit-twitter" placeholder="Add twitter link" ng-show="show">
         <input class="edit-social-link" id="edit-facebook" placeholder="Add facebook link" ng-show="show">
@@ -99,26 +72,53 @@
             <i class="fa fa-instagram"></i>
           </div>
         </a>
-      </div>
-      <div class="side-info-display-name">
-        Display Name
-      </div>
-      <div class="side-info-user-description" ng-hide="show"></div>
-      <div class="edit-user-description-label" ng-show="show">
-        Add Description:
-      </div>
-      <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
-      <div class="associated-user-companies-wrapper">
-        <div class="associated-user-company">
-          My Companies:
-          <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
-            <a href="#/company" ng-click="tocompany('SHOW')">
+        <div class="side-info-user-description" ng-hide="show"></div>
+        <div class="edit-user-description-label" ng-show="show">
+          Add Description:
+        </div>
+        <textarea class="edit-user-description" id="user-desc" ng-show="show"></textarea>
+
+        <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
+
+    </div>  <!--End user info wrapper-->
+  </header>
+
+  <div class="user-profile-info-wrapper">
+    <div class="user-main-info-wrapper">
+  <div class="profile-container">
+    <div class="company-and-reviews-container">
+      <div class="user-company-wrapper" ng-hide="show">
+        <label class="user-company-label">Companies:</label>
+        <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
+          <a href="#/company" ng-click="tocompany('SHOW')">
+            <div class="user-company-image-wrapper">
+              <img class="user-company-image" src="{{profile_image_url}}">
+            </div>
+            <div class="user-company-name">
               {{company.name}}
-            </a>
+            </div>
+          </a>
+        </div>
+      </div>  <!--End user company wrapper-->
+
+      <div class="user-review-wrapper" ng-hide="show">
+        <label class="user-review-label">Reviews:</label>
+        <div class="user-review" ng-repeat="review in viewuser.reviews" id="{{review.reviewee_type}}-{{review.reviewee_id}}">
+          <a href="#/{{review.reviewee_type.toLowerCase()}}">
+            <div class="review-target-company" ng-click="toreviewee()">
+              {{review.reviewee_name}}
+            </div>
+          </a>
+          <div class="review-time-placed">
+            {{review.created_at}}
+          </div>
+          <div class="review-text">
+            {{review.opinion}}
           </div>
         </div>
       </div>
     </div>
-    <a href="#/userprofile" ng-click="show = !show; saveuser()" ng-show="show"><div class="submit-profile-edits-button">Save</div></a>
   </div>
+
+
 </section>

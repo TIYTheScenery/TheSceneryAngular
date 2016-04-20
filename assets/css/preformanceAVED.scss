@@ -1,4 +1,4 @@
-$bgColor: #c7cacc;
+$bgColor: #d7d9db;
 $cardColor: #efefef;
 $lightBlueish: #92A7BF;
 $burgundy: #991010;
@@ -28,6 +28,7 @@ $popCol1: rgb(166, 16, 63);
 .btn{
   padding: 5px 10px;
   border-radius: 5px;
+  display: inline-block;
   vertical-align: top;
   font-size: 16px;
   font-family: helvetica, sans-serif;
@@ -290,11 +291,6 @@ a{
   padding: 5px;
 }
 
-.AVED-new-review-border{
-  padding-bottom: 30px;
-  border-bottom: 2px solid $lightBlueish;
-}
-
 .event-info{
   display: inline-block;
   font-size: 18px;
@@ -344,9 +340,11 @@ a{
 }
 
 .new-review{
-  width: 77%;
+  width: 70%;
+  max-width: 70%;
   font-size: 18px;
   height: 140px;
+  max-height: 140px;
 }
 
 .AVED-review{
@@ -366,7 +364,7 @@ a{
 }
 
 .review-wrapper{
-  margin-top: 30px;
+  margin-bottom: 30px;
   min-height: 90px;
   padding: 10px;
 }

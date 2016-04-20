@@ -1,5 +1,5 @@
 .action-buttons {
-  background: #c7cacc;
+  background: #d7d9db;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -30,7 +30,7 @@
     background: #ff6464 !important; }
 
 .company-wrapper {
-  background: #c7cacc; }
+  background: #d7d9db; }
 
 .company-header {
   border-bottom: #999;
@@ -125,7 +125,7 @@ h4 {
 .media {
   font-size: 25px;
   border-radius: 50%;
-  background: #c7cacc;
+  background: #d7d9db;
   margin-right: 5px;
   margin-left: 15px; }
 
@@ -191,7 +191,7 @@ h4 {
   display: inline-block; }
 
 .company-opportunity {
-  background: #c7cacc;
+  background: #d7d9db;
   text-align: left;
   width: 100%;
   margin: auto;
@@ -234,7 +234,7 @@ h4 {
 .company-performance {
   display: inline-block;
   border-radius: 5px;
-  background: #c7cacc;
+  background: #d7d9db;
   width: 90%;
   margin: 20px auto;
   padding: 10px; }
@@ -258,7 +258,7 @@ h4 {
 
 .company-review {
   border-radius: 5px;
-  background: #c7cacc;
+  background: #d7d9db;
   padding: 10px;
   margin-bottom: 15px; }
 

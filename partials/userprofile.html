@@ -3,28 +3,28 @@
       <span class="action">
         <a href="#/">
           <div class="user-btn">
-            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>&nbsp;Back To Search
+            Back To Search
           </div>
         </a>
       </span>
       <span class="action">
         <a href="">
           <div class="user-btn" id="editprofilebutton" ng-click="show = !show; edituser()" ng-hide="show">
-            <i class="fa fa-pencil-square"></i>&nbsp;Edit Profile
+            Edit Profile
           </div>
         </a>
       </span>
       <span class="action">
         <a href="">
           <div class="user-btn" ng-click="show = !show" ng-show="show">
-            <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View Profile
+            View Profile
           </div>
         </a>
       </span>
       <span class="action">
         <a href="#/company" ng-show="{{currentuser.user_info.is_professional}}">
           <div class="user-btn" id="createcompanybutton" ng-click="show = !show; tocompany('CREATE')">
-            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;Create Company
+            Create Company
           </div>
         </a>
       </span>
@@ -42,7 +42,7 @@
       <img ng-src="{{viewuser.image_url}}" width="500" height="500">
     </div><!--
     --><div class="profile-user-info-wrapper">
-        <div class="display-user-name" ng-hide="show">First Name Last Name</div>
+        <div class="display-user-name" ng-hide="show"></div>
         <input class="user-profile-input edit-display-user-name" placeholder="First Name Last Name" id="user-name" ng-show="show">
         <div class="display-user-titles" ng-hide="show"></div>
         <input type="hidden" class="edit-display-user-titles-id" id="user-titles-id" ng-show="show">

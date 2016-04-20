@@ -13,12 +13,12 @@
 
       <a href="">
         <div class="btn action" id="performance-edit-btn" ng-show="editPowers" ng-click="toggle('EDIT')">
-          <i class="fa fa-pencil-square"></i>&nbsp;Edit Performance
+          Edit Performance
         </div>
       </a>
       <a href ="">
         <div class="btn action" id="performance-delete-btn" ng-show="editPowers" ng-click="deletePerformance()">
-        <i class="fa fa-trash"></i></i>&nbsp;Delete Performance
+          Delete Performance
         </div>
       </a>
       </div><!--end islogged button bank-->
@@ -197,7 +197,7 @@
         </select><br>
         <label>Zip Code: </label><input class="EDIT-showtime-zip-input" id="showtime-zip" placeholder="Zip Code" value="{{show.zip_code}}">
         <div style="color: red;" class="removeShowtime">
-          <input type="checkbox" class="deleteCheck" id="delete-check" value="true"><i class="fa fa-trash"></i>Delete This Showtime
+          <input type="checkbox" class="deleteCheck" id="delete-check" value="true">Delete This Showtime
         </div>
       </div>
       <!-- <div>
@@ -226,18 +226,11 @@
     <div class="reviews" ng-hide="tView">
       <label class="AVED-label-reviews">Reviews</label>
       <div class="AVED-review-wrapper">
-        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
-        <div class="AVED-new-review-border" ng-show="newreview">
-          <div class="AVED-new-review">
-            <div class="review-img"><img src="{{review.image_url}}"></div>
-            <textarea class="new-review" id = "new-review"></textarea>
-            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
-          </div>
-        </div>
+
         <ul class="AVED-reviews-holder">
           <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
             <div class="review-wrapper">
-              <div class="review-img"><img src="{{review.image_url}}" width="95" height="95"></div>
+              <div class="review-img"><img ng-src="{{review.image_url}}" width="95" height="95"></div>
               <div class="rnd-wrap">
                 <a href="#/userprofile"><div class="review-name">{{review.display_name}}</div></a>
                 <div class="review-date">{{review.created_at}}</div>
@@ -246,6 +239,14 @@
             </div>
           </li>
         </ul>
+        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
+        <div class="AVED-new-review-border" ng-show="newreview">
+          <div class="AVED-new-review">
+            <div class="review-img"><img src="{{review.image_url}}"></div>
+            <textarea class="new-review" id = "new-review"></textarea>
+            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+          </div>
+        </div>
       </div>
     </div>
     <!--end the viewing-->
@@ -307,7 +308,7 @@
               </select></br>
               <label>Zip Code: </label><input class="new-showtime-zip-input" id="showtime-zip" placeholder="Zip Code">
               <div style="color: red;" class="removeShowtime">
-                <input type="checkbox" class="deleteCheck" id="delete-check"><i class="fa fa-trash" ></i>Delete This Showtime
+                <input type="checkbox" class="deleteCheck" id="delete-check">Delete This Showtime
               </div>
             </div>
             <!-- <div>

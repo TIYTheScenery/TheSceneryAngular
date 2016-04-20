@@ -212,20 +212,8 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
   }//end authenticate
 
   $scope.createUser = function(){
-    // var email = $('#sign-user-email').val();
     var password = $('#sign-user-password').val();
     var password2 = $("#confirm-user-password").val();
-    // var displayname = $('#user-display-name').val();
-    // var professional = $('input:radio:checked[name=is_professional]').val();
-    // if(professional)
-    // {
-    //   professional = true;
-    // }
-    // else
-    // {
-    //   professional = false;
-    // }
-    // console.log(dynamicJSON(["user_info", "user-info-create"]))
 
     if(password === password2)//if the password fields match...
     {
@@ -233,24 +221,32 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
       var createdUser = "{" + dynamicJSON(["user_info", "user-info-create"]) + "}";
 
       var settings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "https://api.the-scenery.com/users",
-       "method": "POST",
-       "headers": {
-         "content-type": "application/json",
-         "cache-control": "no-cache"
-       },
-       "processData": false,
-      "data": createdUser
-        };
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.the-scenery.com/users",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        "processData": false,
+        "data": createdUser
+      };
 
-        console.log(createdUser);
-
+      console.log(createdUser);
       $.ajax(settings).done(function (response) {
-        localStorage.setItem("user", JSON.stringify(response));
-        console.log(response);
-        location.reload();
+        if(response.success){
+          localStorage.setItem("user", JSON.stringify(response));
+          console.log(response);
+          location.reload();
+          $window.location.reload();
+        }else{
+          var errorText = "";
+          for(var i = 0; i < data.errors.length; i++){
+            errorText += data.errors[i] + "\n";
+          }
+          alert(errorText);
+        }
       });
 
       $('.no-log-header').addClass('hidden');

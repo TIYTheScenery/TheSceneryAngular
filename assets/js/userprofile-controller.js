@@ -18,12 +18,6 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
-  console.log($scope.viewuser);
-  if ($scope.viewuser.image_url.match("missing.png")){
-    $scope.profileImageUrl = "assets/images/generic_user.jpg";
-  }else{
-    $scope.profileImageUrl = $scope.viewuser.image_url;
-  }
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 
@@ -110,6 +104,8 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
       $(".display-user-titles").css("display", "none");
       $(".edit-display-user-titles").css("display", "none");
       $(".user-social-links-wrapper").css("display", "none");
+      $(".edit-social-link").css("display", "none");
+      $(".user-company-wrapper").css("display", "none");
       //$("#createcompanybutton").css("display", "none");
     }
 
@@ -202,7 +198,7 @@ $scope.usercompany = function(){
       }).then(function successCallback(response){
         console.log("Updated User");
         console.log(response);
-        localStorage.setItem('user', response.data);
+        localStorage.setItem('user', JSON.stringify(response.data));
         location.reload();
       }, function errorCallback(response){
         console.log('user not updated', response);

@@ -66,16 +66,16 @@
       <br>
     </span>
     <!-- Display Company Hero Image -->
-    <div class="company-name-type-wrapper">
+<div class="company-name-type-wrapper">
 
 <!--THIS IS FOR PROFILE IMAGES! -->
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
-    <img src="{{thisCompany.profile_image_url}}" width="250" height="250">
+    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
   </div>
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-    <img src="{{thisCompany.profile_image_url}}" width="200" height="200">
+    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
     Add profile Image
     <input type="file" profile-image-edit="profileImageUploadEdit"><br>
     <br>
@@ -208,16 +208,10 @@
 
     </div><!--end VIEW company detail wrapper-->
 
-  </div><!--end company description-->
-
-
-      <!-- Create Company Description -->
-      <div class="create-company-description-label" ng-show="create">Add Company Description</div>
-      <textarea class="create-company-description" ng-show="create"></textarea>
-    </div>
-  </header>
-
-
+    <!-- Create Company Description -->
+    <div class="create-company-description-label" ng-show="create">Add Company Description</div>
+    <textarea class="create-company-description" ng-show="create"></textarea>
+  </div>
 
   <!-- Company Save Create Button -->
   <div class="company-create-btn-wrapper" ng-show="create">
@@ -227,6 +221,16 @@
       </div>
     </a>
   </div>
+
+  </div><!--end company description-->
+
+
+
+  </header>
+
+
+
+
   <div class="O-p-R-wrapper" ng-show="show">  <!--Wrapper for opportunities, performances, and reviews-->
 
     <div class="tabBox">

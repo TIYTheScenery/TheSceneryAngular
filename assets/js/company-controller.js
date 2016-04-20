@@ -144,8 +144,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     var createCompanyFD = new FormData();
     createCompanyFD.append('company[user_id]', ownerID);
     createCompanyFD.append('company[name]', $(".create-company-name").val());
-    createCompanyFD.append('company[profile_image_url]', $scope.profileImageUploadCreate);
-    createCompanyFD.append('company[hero_image_url]', $scope.heroImageUploadCreate);
+    createCompanyFD.append('company[profile_image]', $scope.profileImageUploadCreate);
+    createCompanyFD.append('company[hero_image]', $scope.heroImageUploadCreate);
     createCompanyFD.append('company[description]', $(".create-company-description").val());
     createCompanyFD.append('company[website_link]', $(".create-company-url").val());
     createCompanyFD.append('company[facebook_link]', $(".create-company-facebook").val());
@@ -189,23 +189,23 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     var createCompanyFD = new FormData();
     createCompanyFD.append('company[id]', $scope.thisCompany.id);
     createCompanyFD.append('company[user_id]', ownerID);
-    createCompanyFD.append('company[name]', $(".create-company-name").val());
+    createCompanyFD.append('company[name]', $(".edit-company-name").val());
     if($scope.profileImageUploadEdit != null){
-      createCompanyFD.append('company[profile_image_url]', $scope.profileImageUploadEdit);
+      createCompanyFD.append('company[profile_image]', $scope.profileImageUploadEdit);
     }
     if($scope.heroImageUploadEdit != null){
-      createCompanyFD.append('company[hero_image_url]', $scope.heroImageUploadEdit);
+      createCompanyFD.append('company[hero_image]', $scope.heroImageUploadEdit);
     }
-    createCompanyFD.append('company[description]', $(".create-company-description").val());
-    createCompanyFD.append('company[website_link]', $(".create-company-url").val());
-    createCompanyFD.append('company[facebook_link]', $(".create-company-facebook").val());
-    createCompanyFD.append('company[twitter_link]', $(".create-company-twitter").val());
-    createCompanyFD.append('company[instagram_link]', $(".create-company-instagram").val());
-    createCompanyFD.append('company[youtube_link]', $(".create-company-youtube").val());
-    createCompanyFD.append('company[address]', $(".create-company-location-address").val());
-    createCompanyFD.append('company[city]', $(".create-company-location-city").val());
-    createCompanyFD.append('company[state]', $(".create-company-location-state option:selected").text());
-    createCompanyFD.append('company[zip_code]', $(".create-company-location-zip").val());
+    createCompanyFD.append('company[description]', $(".edit-company-description").val());
+    createCompanyFD.append('company[website_link]', $(".edit-company-url").val());
+    createCompanyFD.append('company[facebook_link]', $(".edit-company-facebook").val());
+    createCompanyFD.append('company[twitter_link]', $(".edit-company-twitter").val());
+    createCompanyFD.append('company[instagram_link]', $(".edit-company-instagram").val());
+    createCompanyFD.append('company[youtube_link]', $(".edit-company-youtube").val());
+    createCompanyFD.append('company[address]', $(".edit-company-location-address").val());
+    createCompanyFD.append('company[city]', $(".edit-company-location-city").val());
+    createCompanyFD.append('company[state]', $(".edit-company-location-state option:selected").text());
+    createCompanyFD.append('company[zip_code]', $(".edit-company-location-zip").val());
     createCompanyFD.append('user_info[login_token]', token);
 
     var uploadUrl = "https://api.the-scenery.com/companies/"+$scope.thisCompany.id;
@@ -217,8 +217,8 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     }).then(function successCallback(response){
       console.log("Updated company");
       console.log(response);
-      localStorage.setItem('compID', JSON.stringify(response.company.id));
-      $scope.thisCompany = response.company;
+      localStorage.setItem('compID', JSON.stringify(response.data.company.id));
+      $scope.thisCompany = response.data.company;
       ourData.shareData("companyCreate", false);
       location.reload();
     }, function errorCallback(response){

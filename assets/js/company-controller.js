@@ -124,8 +124,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     var createCompanyFD = new FormData();
     createCompanyFD.append('company[user_id]', ownerID);
     createCompanyFD.append('company[name]', $(".create-company-name").val());
-    createCompanyFD.append('company[profile_image]', $scope.profileImageUploadCreate);
-    createCompanyFD.append('company[hero_image]', $scope.heroImageUploadCreate);
+    if ($scope.profileImageUploadCreate != null){
+      createCompanyFD.append('company[profile_image]', $scope.profileImageUploadCreate);
+    }
+    if ($scope.heroImageUploadCreate != null){
+      createCompanyFD.append('company[hero_image]', $scope.heroImageUploadCreate);
+    }
     createCompanyFD.append('company[description]', $(".create-company-description").val());
     createCompanyFD.append('company[website_link]', $(".create-company-url").val());
     createCompanyFD.append('company[facebook_link]', $(".create-company-facebook").val());
@@ -147,15 +151,15 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       }).then(function successCallback(response){
         console.log("Created Company");
         console.log(response);
-        localStorage.setItem('compID', JSON.stringify(response.company.id));
-        $scope.thisCompany = response.company;
+        localStorage.setItem('compID', JSON.stringify(response.data.company.id));
+        $scope.thisCompany = response.data.company;
         ourData.shareData("companyCreate", false);
         location.reload();
       }, function errorCallback(response){
         console.log('Company not created', response);
         var errorText = "";
-        for(var i = 0; i < response.errors.length; i++){
-          errorText += response.errors[i] + "\n";
+        for(var i = 0; i < response.data.errors.length; i++){
+          errorText += response.data.errors[i] + "\n";
         }
         alert(errorText);
     });

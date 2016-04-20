@@ -151,7 +151,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
     var createPerformanceFD = new FormData();
     createPerformanceFD.append("performance[owner_id]", ownerID);
-    createPerformanceFD.append("performance[hero_image]", $scope.profileUploadCreate);
+    if ($scope.profileUploadCreate != null){
+      createPerformanceFD.append("performance[hero_image]", $scope.profileUploadCreate);
+    }
     createPerformanceFD.append("performance[company_id]", $('#performance-company-add').val());
     createPerformanceFD.append("performance[name]", $('#performance-name').val());
     createPerformanceFD.append("performance[description]",$('#perf-desc').val());

@@ -1,11 +1,32 @@
-.btn {
+.action-buttons {
+  background: #c7cacc;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding: 10px 0;
+  padding-left: 10px; }
+
+.action {
   display: inline-block;
-  padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  margin-right: 20px;
   vertical-align: middle; }
+
+.btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  background: rgba(235, 235, 235, 0.8) !important;
+  color: #770c2d; }
+  .btn:hover {
+    background: white !important; }
+
+#performance-delete-btn {
+  background: rgba(255, 235, 235, 0.8) !important; }
+  #performance-delete-btn:hover {
+    background: #ff6464 !important; }
 
 body {
   background: #c7cacc; }
@@ -243,8 +264,8 @@ a {
     display: block; }
 
 .review-img {
-  height: 75px;
-  width: 75px;
+  height: 95px;
+  width: 95px;
   background: #555;
   display: inline-block;
   vertical-align: top; }

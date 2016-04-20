@@ -1,16 +1,52 @@
 $bgColor: #c7cacc;
 $cardColor: #efefef;
 $lightBlueish: #92A7BF;
+$burgundy: #991010;
+$btnBlue: rgb(125, 192, 217);
 
-.btn{
+$inputColor: rgb(235, 242, 162);
+$inputBG: rgba(255, 255, 255, .5);
+$inputBorder: rgb(129, 39, 66);
+$inputPlaceholder: rgb(77, 11, 11);
+$popCol1: rgb(166, 16, 63);
+
+.action-buttons{
+  background: $bgColor;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
+.action{
   display: inline-block;
-  padding: 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
+  margin-right: 20px;
   vertical-align: middle;
 }
+
+.btn{
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  // width: 125px;
+  background: rgba(235, 235, 235, 0.8) !important;
+  // border: 3px solid $popCol1 !important;
+  color: darken($popCol1, 10%);
+  &:hover{
+    background: rgba(255, 255, 255, 1) !important;
+  }
+}
+#performance-delete-btn{
+  background: rgba(255, 235, 235, 0.8) !important;
+  &:hover{
+    background: rgba(255, 100,100, 1) !important;
+  }
+}
+
 
 body{
   background: $bgColor;
@@ -296,8 +332,8 @@ a{
 }
 
 .review-img{
-  height: 75px;
-  width: 75px;
+  height: 95px;
+  width: 95px;
   background: #555;
   display: inline-block;
   vertical-align: top;

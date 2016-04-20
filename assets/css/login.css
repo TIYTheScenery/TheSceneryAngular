@@ -24,7 +24,8 @@ html {
   height: 90px;
   background: black;
   vertical-align: middle;
-  border-radius: 80px; }
+  border-radius: 80px;
+  overflow: hidden; }
 
 .header-user-portrait {
   float: right;

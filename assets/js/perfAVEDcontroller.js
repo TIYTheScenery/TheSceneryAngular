@@ -76,11 +76,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       $scope.thisPerformance = data.data.performance;
       $scope.buyTickets = data.data.performance.ticket_link;
       if (!$scope.buyTickets.match(/\/\//) && $scope.buyTickets != null && $scope.buyTickets != ""){
-        $scope.buyTickets = "//" + $scope.buyTickets;
+        $scope.buyTickets = "http://" + $scope.buyTickets;
       }
       $scope.viewTrailer = data.data.performance.trailer_link;
       if (!$scope.viewTrailer.match(/\/\//) && $scope.viewTrailer != null && $scope.viewTrailer != ""){
-        $scope.viewTrailer = "//" + $scope.viewTrailer;
+        $scope.viewTrailer = "http://" + $scope.viewTrailer;
       }
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){

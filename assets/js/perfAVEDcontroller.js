@@ -74,11 +74,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       console.log(data);
       ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
       $scope.thisPerformance = data.data.performance;
-      if (data.data.performance.hero_image_url.match("missing.png")){
-        $scope.heroImage = "assets/images/lesmis-2.jpg";
-      }else{
-        $scope.heroImage = data.data.performance.hero_image_url;
-      }
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){
         //if logged in user doesn't match owner of performance then hide edit buttons

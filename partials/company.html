@@ -3,14 +3,14 @@
     <div class="action">
       <a href="#/performance">
         <div class="create-performance-btn company-btn" ng-click="goMakeAPerformance()">
-          Create Performance
+          <i class="fa fa-star" aria-hidden="true"></i>&nbsp;Create Performance
         </div>
       </a>
     </div>
     <div class="action">
       <a href="">
         <div class="create-opportunity-btn company-btn">
-          Create Opportunity
+          <i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;Create Opportunity
         </div>
       </a>
     </div>
@@ -35,14 +35,14 @@
     <div class="action" ng-show="show" ng-click="toggle('EDIT'); editcompany()">
       <a href="">
         <div class="edit-company-btn company-btn">
-          Edit Company
+          <i class="fa fa-pencil-square"></i>&nbsp;Edit Company
         </div>
       </a>
     </div>
     <div class="action">
       <a href="">
         <div class="delete-company-btn company-btn" ng-click="deleteComp()">
-          Delete Company
+          <i class="fa fa-trash"></i></i>&nbsp;Delete Company
         </div>
       </a>
     </div>
@@ -71,11 +71,11 @@
 <!--THIS IS FOR PROFILE IMAGES! -->
   <!-- Display company profile picture -->
   <div class="company-profile-pic" ng-show="show">
-    <img src="{{thisCompany.profile_image_url}}" width="250" height="250">
+    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
   </div>
   <!-- Edit company profile picture -->
   <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-    <img src="{{thisCompany.profile_image_url}}" width="200" height="200">
+    <img src="{{thisCompany.profile_image_url}}" width="500" height="500">
     Add profile Image
     <input type="file" profile-image-edit="profileImageUploadEdit"><br>
     <br>
@@ -234,6 +234,7 @@
       <span class="P TabActual TabSelected" ng-click="setTabs('PERF')">Performances</span>
       <span class="O TabActual" ng-click="setTabs('OPPS')">Opporutnities</span>
     </div><br><br>
+    <div class="allTabContents">
 
     <div class="company-performances-wrapper" ng-show="perfTab">
       <div class="company-performances-label">
@@ -276,7 +277,7 @@
       <div class="company-review" ng-repeat= "review in thisCompany.reviews">
         <div class="company-review-wrapper">
           <span>
-            <div class="company-review-img"><img src="{{review.user_image}}" width="95" height="95"></div>
+            <div class="company-review-img"><img src="{{review.image_url}}" width="95" height="95"></div>
           </span>
           <span class="company-rnd-wrap">
             On <span class="compReviewDate">{{review.created_at}}</span>, <a href="#/userprofile"><span class="compReviewerName" ng-click="tocompanyreviewer()">{{review.display_name}}</span></a> wrote:
@@ -294,6 +295,7 @@
 
       </div>
     </div>
+  </div><!--end alltabcontents-->
 
   </div><!--end ORP wrapper-->
 

@@ -2,26 +2,28 @@
 
     <div class="killme" ng-hide="false">
         <!-- {{message}}<br> -->
-
-    <div ng-hide="isLogged()">
+    <div class="action-buttons">
+      <div ng-hide="isLogged()">
       <!-- <a href="">
         <div class="btn" ng-click="toggle('ADD')">
           Add&nbsp;<i class="fa fa-plus-square-o fa-2x"></i>
         </div>
       </a> -->
       <!-- <div class="btn" ng-click="toggle('VIEW')">View</div> -->
+
       <a href="">
-        <div class="btn" id="performance-edit-btn" ng-show="editPowers" ng-click="toggle('EDIT')">
-          EDIT&nbsp;<i class="fa fa-pencil-square fa-2x"></i>
+        <div class="btn action" id="performance-edit-btn" ng-show="editPowers" ng-click="toggle('EDIT')">
+          <i class="fa fa-pencil-square"></i>&nbsp;Edit Performance
         </div>
       </a>
       <a href ="">
-        <div class="btn" id="performance-delete-btn" ng-show="editPowers" ng-click="deletePerformance()">
-          Delete Performance&nbsp;<i class="fa fa-trash fa-2x"></i></i>
+        <div class="btn action" id="performance-delete-btn" ng-show="editPowers" ng-click="deletePerformance()">
+        <i class="fa fa-trash"></i></i>&nbsp;Delete Performance
         </div>
       </a>
       </div><!--end islogged button bank-->
     </div>
+  </div>
 <!--THIS IS FOR VIEWING THE HERO IMAGE AND INFO-->
   <div class="heroImgContainer">
     <img ng-src="{{heroImage}}" class ="heroImg">
@@ -227,7 +229,7 @@
         <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
         <div class="AVED-new-review-border" ng-show="newreview">
           <div class="AVED-new-review">
-            <div class="review-img"><img src=""></div>
+            <div class="review-img"><img src="{{review.image_url}}"></div>
             <textarea class="new-review" id = "new-review"></textarea>
             <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
           </div>
@@ -235,7 +237,7 @@
         <ul class="AVED-reviews-holder">
           <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
             <div class="review-wrapper">
-              <div class="review-img"><img src=""></div>
+              <div class="review-img"><img src="{{review.image_url}}" width="95" height="95"></div>
               <div class="rnd-wrap">
                 <a href="#/userprofile"><div class="review-name">{{review.display_name}}</div></a>
                 <div class="review-date">{{review.created_at}}</div>

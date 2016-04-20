@@ -104,6 +104,8 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
       $(".display-user-titles").css("display", "none");
       $(".edit-display-user-titles").css("display", "none");
       $(".user-social-links-wrapper").css("display", "none");
+      $(".edit-social-link").css("display", "none");
+      $(".user-company-wrapper").css("display", "none");
       //$("#createcompanybutton").css("display", "none");
     }
 
@@ -196,7 +198,7 @@ $scope.usercompany = function(){
       }).then(function successCallback(response){
         console.log("Updated User");
         console.log(response);
-        localStorage.setItem('user', response.data);
+        localStorage.setItem('user', JSON.stringify(response.data));
         location.reload();
       }, function errorCallback(response){
         console.log('user not updated', response);

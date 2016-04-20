@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>The Scenery</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
@@ -49,7 +50,7 @@
     <div ng-controller="login-cont">
 
       <header class="header no-log-header">
-        <a href ="#/"><div class="scenery-logo"></div></a>
+        <a href ="#/"><div class="scenery-logo"><img src="assets/images/SceneryLogo.png" height="94" width="94"></div></a>
         <a href = "#/"><div class="tohome"><h1>The Scenery</h1></div></a>
         <div class="noLogBtnBank">
           <a href=""><div class="btn login-btn">Log In</div></a><br>
@@ -58,7 +59,7 @@
       </header>
 
       <header class="header logged-header">
-        <a href ="#/"><div class="scenery-logo"></div></a>
+        <a href ="#/"><div class="scenery-logo"><img src="assets/images/SceneryLogo.png" height="94" width="94"></div></a>
         <a href = "#/"><div class="tohome"><h1>The Scenery</h1></div></a>
 
         <div class="header-user-wrapper">
@@ -66,8 +67,8 @@
           <span class="subUserInfoHeader">
 
               <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>
-              <a href="#/userprofile" ng-click="viewprofile()"><div class="btn header-user-profile">My Profile</div></a><br>
-              <a href="#/"><div class="btn logout-btn" ng-click="logout()">Log Out</div></a>
+              <a href="#/userprofile" ng-click="viewprofile()"><div class="btn header-user-profile"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;My Profile</div></a><br>
+              <a href="#/"><div class="btn logout-btn" ng-click="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Log Out</div></a>
             </ul>
           </span>
         </div>

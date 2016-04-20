@@ -62,7 +62,15 @@ TheSceneryapp.controller('login-cont', function($scope, $http, ourData){
   // console.log("WAAAGH");
   $scope.message2="bestmattever";
   $scope.userinfo;
-  $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
+  if(localStorage.getItem('user')==="")
+  {
+    //do nothing.
+  }
+  else
+  {
+    $scope.gUserInfo = JSON.parse(localStorage.getItem('user')); //if there is already a user in the localstorage, this will grab it.
+  }
+
   var thing;
 
   //localStorage.setItem('user', "{}");

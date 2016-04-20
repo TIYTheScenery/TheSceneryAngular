@@ -229,7 +229,7 @@
         <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
         <div class="AVED-new-review-border" ng-show="newreview">
           <div class="AVED-new-review">
-            <div class="review-img"><img src="{{review.image_url}}"></div>
+            <div class="review-img"><img ng-src="{{review.image_url}}"></div>
             <textarea class="new-review" id = "new-review"></textarea>
             <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
           </div>
@@ -237,7 +237,7 @@
         <ul class="AVED-reviews-holder">
           <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
             <div class="review-wrapper">
-              <div class="review-img"><img src="{{review.image_url}}" width="95" height="95"></div>
+              <div class="review-img"><img ng-src="{{review.image_url}}" width="95" height="95"></div>
               <div class="rnd-wrap">
                 <a href="#/userprofile"><div class="review-name">{{review.display_name}}</div></a>
                 <div class="review-date">{{review.created_at}}</div>

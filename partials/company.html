@@ -74,12 +74,17 @@
     <img ng-src="{{thisCompany.profile_image_url}}" width="500" height="500">
   </div>
   <!-- Edit company profile picture -->
-  <span class="company-profile-pic edit-company-profile-pic" ng-show="edit">
-    <img ng-src="{{thisCompany.profile_image_url}}" width="500" height="500">
-    Add profile Image
-    <input type="file" profile-image-edit="profileImageUploadEdit"><br>
-    <br>
-  </span>
+  <div class="company-profile-pic edit-company-profile-pic" ng-show="edit">
+    <div>
+      <img ng-src="{{thisCompany.profile_image_url}}" width="400" height="400">
+    </div><br><br>
+    <div>
+      Add profile Image
+      <input type="file" profile-image-edit="profileImageUploadEdit"><br>
+      <br>
+    </div>
+  </div>
+
   <!-- Create company profile picture -->
   <span class="company-profile-pic create-company-profile-pic" ng-show="create">
     Add profile Image
@@ -160,7 +165,7 @@
         <div class="company-social">
           <!-- Display Company Website Button -->
           <span class="company-website">
-            <a href="{{comapny_website_link}">
+            <a href="{{company_website_link}}" target="_blank">
               <div class="company-btn" ng-show="show">Visit The Website!</div>
             </a>
           </span>

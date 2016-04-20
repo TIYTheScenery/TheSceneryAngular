@@ -380,20 +380,9 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
       }
     }
-    if (instagram_link != null && instagram_link != ""){
-      if (instagram_link.match(/\/\//)){
-        $(".media-instagram").parent().attr("href", company.instagram_link);
-      } else {
-        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
-      }
-    }
-    $scope.comapny_website_link = company.website_link
-    if ($scope.comapny_website_link != null && $scope.comapny_website_link != ""){
-      if ($scope.comapny_website_link.match(/\/\//) === true){
-        $scope.comapny_website_link = $scope.comapny_website_link
-      } else {
-        $scope.comapny_website_link = "//" + $scope.comapny_website_link
-      }
+    $scope.company_website_link = company.website_link
+    if ($scope.company_website_link != null && $scope.company_website_link != "" && !$scope.company_website_link.match(/\/\//)){
+      $scope.company_website_link = "//" + $scope.company_website_link
     }
     $(".company-description").append(company.description);
 

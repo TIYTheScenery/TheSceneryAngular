@@ -18,12 +18,6 @@ $http.get('https://api.the-scenery.com/users/' + searcheduserid).then(function(d
   // console.log($scope.thisCompany);
   // console.log(data);
   $scope.viewuser = data.data.user_info;
-  console.log($scope.viewuser);
-  if ($scope.viewuser.image_url.match("missing.png")){
-    $scope.profileImageUrl = "assets/images/generic_user.jpg";
-  }else{
-    $scope.profileImageUrl = $scope.viewuser.image_url;
-  }
 
   ourData.shareData("associatedCompany", data.data.user_info.companies);
 

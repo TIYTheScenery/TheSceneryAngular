@@ -383,11 +383,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
       }
     }
-    if (company.website_link != null && company.website_link != ""){
-      if (company.website_link.match(/\/\//) === true){
-        $scope.comapny_website_link = company.website_link
+    $scope.comapny_website_link = company.website_link
+    if ($scope.comapny_website_link != null && $scope.comapny_website_link != ""){
+      if ($scope.comapny_website_link.match(/\/\//) === true){
+        $scope.comapny_website_link = $scope.comapny_website_link
       } else {
-        $scope.comapny_website_link = "//" + company.website_link
+        $scope.comapny_website_link = "//" + $scope.comapny_website_link
       }
     }
     $(".company-description").append(company.description);

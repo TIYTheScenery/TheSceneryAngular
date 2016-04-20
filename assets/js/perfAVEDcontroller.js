@@ -107,7 +107,6 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
   if($scope.tAdd === false && $scope.isLogged() === false){
     //create dropdown for performance creation and set default to company that user came from
     //if that company is in localStorage
-    console.log($scope.currentUser);
     userCompanyCreate($scope.currentUser, $('.hero-img-create-dropdown-wrapper'), 'hero-img-creator-dropdown', 'performance-company-add');
     var company_id = JSON.parse(localStorage.getItem('compID'));
     if(company_id){
@@ -195,8 +194,8 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }, function errorCallback(response){
       console.log('performance not created', response);
       var errorText = "";
-      for(var i = 0; i < response.data.errors.length; i++){
-        errorText += response.data.errors[i] + "\n";
+      for(var i = 0; i < response.errors.length; i++){
+        errorText += response.errors[i] + "\n";
       }
       alert(errorText);
     });//end http call

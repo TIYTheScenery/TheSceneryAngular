@@ -74,6 +74,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
       console.log(data);
       ourData.shareData("viewingPerf", data.data.performance);//this sends the results of the get to the ourdata service
       $scope.thisPerformance = data.data.performance;
+      if (data.data.performance.hero_image_url.match("missing.png")){
+        $scope.heroImage = "assets/images/lesmis-2.jpg";
+      }else{
+        $scope.heroImage = data.data.performance.hero_image_url;
+      }
       // this need to happen whenever a user is logged in and not creating a performance
       if($scope.isLogged() === false){
         //if logged in user doesn't match owner of performance then hide edit buttons
@@ -144,83 +149,54 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var token = $scope.currentUser.user_info.login_token;
     var ownerID = $scope.currentUser.user_info.id;
 
-    var allShowsJSON=[];
-    var dateBreak = false;
-    $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(){
-      var showTemplate = {"address": 0, "city": 0, "state": 0, "zip_code": 0, "show_date":0, "_destroy": false};
-      if($(this).find(".deleteCheck").is(':checked') === true)
+    var createPerformanceFD = new FormData();
+    createPerformanceFD.append("performance[owner_id]", ownerID);
+    createPerformanceFD.append("performance[hero_image]", $scope.profileUploadCreate);
+    createPerformanceFD.append("performance[company_id]", $('#performance-company-add').val());
+    createPerformanceFD.append("performance[name]", $('#performance-name').val());
+    createPerformanceFD.append("performance[description]",$('#perf-desc').val());
+    createPerformanceFD.append("performance[trailer_link]", $('#trailer-link').val());
+    createPerformanceFD.append("performance[ticket_link]", $('#ticket-link').val());
+    createPerformanceFD.append("performance[genre_performances_attributes][0][genre_id]", $(".edit-AVED-genre").val());
+    createPerformanceFD.append('user_info[login_token]', token);
+
+    $(".new-showtime-wrapper").children(".new-showtime-info-wrapper").each(function(index){
+      if($(this).find("#delete-check").is(':checked'))
       {
-        showTemplate._destroy= true;
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", true);
       } else {
-        showTemplate._destroy= false;
+        createPerformanceFD.append("performance[show_times_attributes][" + index + "][_destroy]", false);
       }
-
-      showTemplate.address = $(this).find("#showtime-address").val();
-      showTemplate.city = $(this).find('#showtime-city').val();
-      showTemplate.state = $(this).find('#showtime-state').val();
-      showTemplate.zip_code = $(this).find('#showtime-zip').val();
-      showTemplate.show_date = $(this).find('.showtime-date-time').val();
-      allShowsJSON.push(showTemplate);
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][address]", $(this).find("#showtime-address").val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][city]", $(this).find('#showtime-city').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][state]", $(this).find('#showtime-state').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][zip_code]", $(this).find('#showtime-zip').val());
+      createPerformanceFD.append("performance[show_times_attributes][" + index + "][show_date]", $(this).find('.showtime-date-time').val());
     });
 
-    if(dateBreak){return;}
-    var performance = JSON.stringify({
-    "performance": {
-      "owner_id": ownerID,
-      "company_id": $('#performance-company-add').val(),
-      "name": $('#performance-name').val(),
-      "description": $('#perf-desc').val(),
-      "trailer_link": $('#trailer-link').val(),
-      "ticket_link": $('#ticket-link').val(),
-      "genre_performances_attributes":[
-       {
-         "genre_id": $(".edit-AVED-genre").val()
-       }
-     ],
-      "show_times_attributes": allShowsJSON
-    },
-    "user_info": {
-      "login_token": token //response.user_info.login_token
-    }
-
-    });
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://api.the-scenery.com/performances",
-      "method": "POST",
-      "headers": {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": performance
-       };
-
-      $.ajax(settings).done(function (data) {
-        console.log(data);
-        if(data.success){
-          $scope.thisPerformance = data.performance
-          localStorage.setItem('perfID', data.performance.id)
-          ourData.shareData("tAdd", true);
-          ourData.shareData("tEdit", true);
-          ourData.shareData("tView", false);
-          $window.location.reload();
-        }else{
-
-          // var errorText = " ";
-          // for(var i = 0; i < data.data.errors.length; i++){
-          //   errorText += data.data.errors[i] + "\n";
-
-          var errorText = "";
-          for(var i = 0; i < data.errors.length; i++){
-            errorText += data.errors[i] + "\n";
-
-          }
-          alert(errorText);
-        }
-      });//end ajax.
+    var uploadUrl = 'https://api.the-scenery.com/performances'
+    $http({
+      method: "POST",
+      url: uploadUrl,
+      data: createPerformanceFD,
+      headers: {'Content-Type': undefined}
+    }).then(function successCallback(response){
+      console.log("Created performance");
+      console.log(response);
+      $scope.thisPerformance = response.performance;
+      localStorage.setItem('perfID', $scope.thisPerformance.id);
+      ourData.shareData("tAdd", true);
+      ourData.shareData("tEdit", true);
+      ourData.shareData("tView", false);
+      $window.location.reload();
+    }, function errorCallback(response){
+      console.log('performance not created', response);
+      var errorText = "";
+      for(var i = 0; i < response.errors.length; i++){
+        errorText += response.errors[i] + "\n";
+      }
+      alert(errorText);
+    });//end http call
   }//End addperformance
 
   $scope.updatePerformance = function(){
@@ -230,7 +206,9 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     var updatedPerformanceFD = new FormData();
     updatedPerformanceFD.append("performance[id]", thisPerformanceID);
     updatedPerformanceFD.append("performance[owner_id]", ownerID);
-    updatedPerformanceFD.append("performance[hero_image]", $scope.profileUpload);
+    if($scope.profileUploadEdit != null){
+      updatedPerformanceFD.append("performance[hero_image]", $scope.profileUploadEdit);
+    }
     updatedPerformanceFD.append("performance[company_id]", $('#performance-company-edit').val());
     updatedPerformanceFD.append("performance[name]", $('#performance-name-edit').val());
     updatedPerformanceFD.append("performance[description]",$('#perf-desc-edit').val());
@@ -459,11 +437,11 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
     }
   };
 })
-.directive('profileImage', function ($parse) {
+.directive('profileImageCreate', function ($parse) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var model = $parse(attrs.profileImage);
+            var model = $parse(attrs.profileImageCrete);
             var modelSetter = model.assign;
 
             element.bind('change', function(){
@@ -473,4 +451,19 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
             });
         }
     };
+})
+.directive('profileImageEdit', function ($parse) {
+  return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+          var model = $parse(attrs.profileImageEdit);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+              scope.$apply(function(){
+                  modelSetter(scope, element[0].files[0]);
+              });
+          });
+      }
+  };
 });

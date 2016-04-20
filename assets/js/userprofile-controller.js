@@ -204,7 +204,7 @@ $scope.usercompany = function(){
       }).then(function successCallback(response){
         console.log("Updated User");
         console.log(response);
-        localStorage.setItem('user', response.data);
+        localStorage.setItem('user', JSON.stringify(response.data));
         location.reload();
       }, function errorCallback(response){
         console.log('user not updated', response);

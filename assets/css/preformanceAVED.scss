@@ -36,9 +36,12 @@ $popCol1: rgb(166, 16, 63);
   background: rgba(235, 235, 235, 0.8) !important;
   // border: 3px solid $popCol1 !important;
   color: darken($popCol1, 10%);
-  &:hover{
-    background: rgba(255, 255, 255, 1) !important;
-  }
+    .AVED-ticket-btn{
+      background: rgba(0, 185, 0, 0.9);
+    }
+    &:hover{
+      background: rgba(255, 255, 255, 1) !important;
+    }
 }
 #performance-delete-btn{
   background: rgba(255, 235, 235, 0.8) !important;
@@ -122,27 +125,20 @@ a{
   margin: 25px 0 0 10%;
 }
 
-.AVED-trailer-link{
-  color: #444;
-  background: rgba(235, 235, 235, 0.8);
-  display: inline-block;
-  padding: 10px;
-  border-radius: 5px;
-}
+// .AVED-trailer-link{
+//   color: #444;
+//   background: rgba(235, 235, 235, 0.8);
+//   display: inline-block;
+//   padding: 10px;
+//   border-radius: 5px;
+// }
 
 .AVED-genre{
   display: inline-block;
   font-size: 20px;
 }
 
-.AVED-ticket-btn{
-  display: inline-block;
-  color: #eee;
-  // background: rgba(235, 235, 235, 0.8);
-  background: rgba(0, 185, 0, 0.9);
-  padding: 10px;
-  border-radius: 5px;
-}
+
 
 .performance-genre-wrapper{
   width: 33%;
@@ -351,17 +347,17 @@ a{
   display: block;
 }
 
-.submit-review-btn{
-  width: 88px;
-  margin: auto;
-  margin-top: 20px;
-  padding: 5px 5px 5px 10px;
-  background: #aaa;
-  background-image: linear-gradient(to bottom right, #ddd, #aaa);
-  border: 1px solid #999;
-  border-radius: 3px;
-  vertical-align: middle;
-}
+// .submit-review-btn{
+//   width: 88px;
+//   margin: auto;
+//   margin-top: 20px;
+//   padding: 5px 5px 5px 10px;
+//   background: #aaa;
+//   background-image: linear-gradient(to bottom right, #ddd, #aaa);
+//   border: 1px solid #999;
+//   border-radius: 3px;
+//   vertical-align: middle;
+// }
 
 .review-wrapper{
   margin-bottom: 30px;

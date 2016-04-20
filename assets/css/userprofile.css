@@ -1,8 +1,37 @@
-.user-profile-header {
+.user-profile-wrapper {
+  background: #c7cacc; }
+
+.action-buttons {
+  background: #c7cacc;
+  width: 80%;
+  margin: auto;
   text-align: center;
-  font-size: 50px;
-  background: #ddd;
-  background-image: linear-gradient(to bottom right, #ccc, #ddd);
+  padding: 10px 0;
+  padding-left: 10px; }
+
+.action {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top; }
+
+.user-btn {
+  padding: 5px 10px;
+  border-radius: 3px;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: helvetica, sans-serif;
+  background: rgba(235, 235, 235, 0.8) !important;
+  color: #770c2d; }
+  .user-btn:hover {
+    background: white !important; }
+
+.user-header-image-wrapper {
+  width: 40%;
+  text-align: right;
+  display: inline-block; }
+
+.user-profile-header {
+  background: #92A7BF;
   padding: 35px 0;
   margin-bottom: 45px; }
 
@@ -12,7 +41,6 @@
   background: rgba(235, 235, 235, 0.8);
   color: #812742;
   padding: 7px;
-  border: 2px solid #812742;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: -20px; }
@@ -23,35 +51,28 @@
   background: rgba(235, 235, 235, 0.8);
   color: #812742;
   padding: 7px;
-  border: 2px solid #812742;
   border-radius: 3px;
   margin-left: 10px;
   margin-top: 20px; }
-
-.user-header-displayname {
-  display: block; }
-
-.user-header-professional {
-  font-size: 35px; }
 
 .user-profile-info-wrapper {
   width: 80%;
   margin: auto; }
 
 .user-main-info-wrapper {
-  width: 57%;
+  width: 100%;
   display: inline-block;
-  border: 1px solid #666;
   margin-right: 2%; }
 
 .user-image-wrapper {
   display: inline-block;
   vertical-align: top;
-  width: 200px;
-  height: 200px;
+  width: 500px;
+  height: 500px;
   background: #444;
   color: white;
-  font-size: 16px; }
+  font-size: 16px;
+  margin-left: 5%; }
 
 .profile-container {
   width: 80%;
@@ -59,36 +80,35 @@
 
 .profile-user-info-wrapper {
   background: #efefef;
-  width: 100%;
-  border: 3px solid #812742;
+  display: inline-block;
+  width: 56%;
+  height: 480px;
   padding: 10px;
-  margin: 0 auto 25px auto; }
+  vertical-align: top; }
 
 .display-user-name {
-  font-size: 24px;
-  margin-bottom: 20px; }
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 40px; }
 
 .display-user-titles {
-  font-size: 21px;
-  margin-bottom: 20px; }
+  text-align: center;
+  font-size: 28px;
+  color: #666;
+  margin-bottom: 40px; }
 
-.profile-user-info-name-title-date {
-  display: inline-block;
-  width: 49%; }
+.display-user-creation-date {
+  text-align: center;
+  font-size: 18px;
+  color: #666; }
 
-.user-social-links-wrapper {
+.profile-user-info-wrapper a div {
+  font-size: 25px;
   display: inline-block;
-  width: 49%;
-  vertical-align: top; }
-  .user-social-links-wrapper a div {
-    font-size: 25px;
-    display: inline-block;
-    border: 1px solid #999;
-    border-radius: 50%;
-    background: #333;
-    color: white;
-    margin: 0 5px;
-    margin-right: 15%; }
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  margin: 40px 0 40px 15%; }
 
 .user-youtube-link {
   padding: 5px 7px; }
@@ -104,11 +124,12 @@
 
 .side-info-user-description {
   font-size: 18px;
-  margin-top: 45px; }
+  margin-top: 30px;
+  margin-left: 25px; }
 
 .user-profile-input {
   display: block;
-  width: 90%;
+  width: 50%;
   font-size: 19px;
   margin-bottom: 20px; }
 
@@ -130,20 +151,18 @@
   max-width: 100%; }
 
 .submit-profile-edits-button {
-  font-size: 15px;
-  background: rgba(240, 240, 240, 0.8);
-  padding: 7px 0 7px 30px;
+  border-radius: 5px !important;
+  font-size: 15px !important;
+  background: #92A7BF !important;
+  padding: 7px 25px;
   border-radius: 3px;
-  width: 60px;
-  margin: 20px auto 25px auto;
-  border: 5px solid #812742; }
-  .submit-profile-edits-button:hover {
-    background: rgba(230, 230, 230, 0.8); }
+  width: 40px;
+  margin: 25px 0 0 0 !important; }
 
 .user-company-wrapper {
-  width: 49%;
+  width: 43%;
   display: inline-block;
-  margin-right: 1%; }
+  margin-right: 7%; }
 
 .user-company-label,
 .user-review-label {
@@ -153,29 +172,32 @@
   margin-bottom: 25px; }
 
 .associated-company-name {
-  border: 3px solid #812742;
-  padding: 5px;
+  padding: 10px 5px;
   margin-bottom: 25px;
-  background: #efefef; }
+  background: #efefef;
+  border-radius: 5px; }
 
 .user-company-image-wrapper {
   width: 50px;
   height: 50px;
   background: #666;
-  display: inline-block; }
+  display: inline-block;
+  vertical-align: top; }
 
 .user-company-image {
   width: 50px;
   height: 50px; }
 
 .user-company-name {
-  font-size: 25px;
+  font-size: 22px;
   display: inline-block;
   vertical-align: top;
-  margin: 15px 0 0 25px; }
+  margin: 3px 0 0 25px;
+  width: 70%; }
 
 .user-review-wrapper {
-  width: 49%;
+  width: 43%;
+  margin-left: 6%;
   display: inline-block;
   vertical-align: top; }
 
@@ -183,7 +205,9 @@
   background: #efefef;
   width: 100%;
   margin: auto;
-  border: 3px solid #812742; }
+  margin-bottom: 25px;
+  padding: 10px 0;
+  border-radius: 5px; }
 
 .review-target-company {
   text-align: center;

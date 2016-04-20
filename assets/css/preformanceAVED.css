@@ -1,5 +1,5 @@
 .action-buttons {
-  background: #c7cacc;
+  background: #d7d9db;
   width: 80%;
   margin: auto;
   text-align: center;
@@ -29,7 +29,7 @@
     background: #ff6464 !important; }
 
 body {
-  background: #c7cacc; }
+  background: #d7d9db; }
 
 a {
   text-decoration: none;
@@ -231,10 +231,6 @@ a {
   background: #efefef;
   padding: 5px; }
 
-.AVED-new-review-border {
-  padding-bottom: 30px;
-  border-bottom: 2px solid #92A7BF; }
-
 .event-info {
   display: inline-block;
   font-size: 18px;
@@ -275,7 +271,7 @@ a {
   padding-left: 1px; }
 
 .new-review {
-  width: 77%;
+  width: 70%;
   font-size: 18px;
   height: 140px; }
 
@@ -294,7 +290,7 @@ a {
   vertical-align: middle; }
 
 .review-wrapper {
-  margin-top: 30px;
+  margin-bottom: 30px;
   min-height: 90px;
   padding: 10px; }
 

@@ -1,4 +1,4 @@
-$bgColor: #c7cacc;
+$bgColor: #d7d9db;
 $popCol1: rgb(89, 25, 45);
 $inputColor: rgb(235, 242, 162);
 $inputBG: rgba(255, 255, 255, .5);
@@ -28,7 +28,7 @@ html{
     font-weight: bold;
   }
 
-  background: rgba(199,202,204,.5);//$bgColor;
+  background: $bgColor;//$bgColor;
   padding: 10px;
   // border-bottom: 1px solid $popCol1;
   height:100px

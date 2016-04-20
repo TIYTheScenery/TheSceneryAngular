@@ -13,7 +13,7 @@ input:-ms-input-placeholder {
   color: #4d0b0b; }
 
 .landing-wrapper {
-  background: #e6d6da;
+  background: #d7d9db;
   z-index: -5;
   color: #ddd; }
 
@@ -26,7 +26,7 @@ input:-ms-input-placeholder {
   vertical-align: middle; }
 
 html {
-  background: #e6d6da; }
+  background: #d7d9db; }
 
 .landingColMid {
   float: left;

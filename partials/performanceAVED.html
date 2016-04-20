@@ -226,14 +226,6 @@
     <div class="reviews" ng-hide="tView">
       <label class="AVED-label-reviews">Reviews</label>
       <div class="AVED-review-wrapper">
-        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
-        <div class="AVED-new-review-border" ng-show="newreview">
-          <div class="AVED-new-review">
-            <div class="review-img"><img src="{{review.image_url}}"></div>
-            <textarea class="new-review" id = "new-review"></textarea>
-            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
-          </div>
-        </div>
         <ul class="AVED-reviews-holder">
           <li class="AVED-review"  ng-repeat="review in thisPerformance.reviews" ng-click="toperformancereviewer()">
             <div class="review-wrapper">
@@ -246,6 +238,14 @@
             </div>
           </li>
         </ul>
+        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
+        <div class="AVED-new-review-border" ng-show="newreview">
+          <div class="AVED-new-review">
+            <div class="review-img"><img src="{{review.image_url}}"></div>
+            <textarea class="new-review" id = "new-review"></textarea>
+            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+          </div>
+        </div>
       </div>
     </div>
     <!--end the viewing-->

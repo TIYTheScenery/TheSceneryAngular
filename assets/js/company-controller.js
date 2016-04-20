@@ -380,13 +380,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
       }
     }
-    if (instagram_link != null && instagram_link != ""){
-      if (instagram_link.match(/\/\//)){
-        $(".media-instagram").parent().attr("href", company.instagram_link);
-      } else {
-        $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
-      }
-    }
     $scope.comapny_website_link = company.website_link
     if ($scope.comapny_website_link != null && $scope.comapny_website_link != ""){
       if ($scope.comapny_website_link.match(/\/\//) === true){

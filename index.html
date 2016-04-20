@@ -5,16 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-all.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-shim.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-messages.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
     <script src="https://cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.3.3/aws-sdk.js"></script>
 
     <script src="/bower_components/moment/min/moment-with-locales.js"></script>
     <script src="/bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
@@ -67,7 +63,7 @@
         <a href = "#/"><div class="tohome"><h1>The Scenery</h1></div></a>
 
         <div class="header-user-wrapper">
-          <a href ="#/userprofile" ng-click="viewprofile()"><img src="{{gUserInfo.user_info.image_url}}" width="95" height="95"></a>
+          <a href ="#/userprofile" ng-click="viewprofile()"><img ng-src="{{gUserInfo.user_info.image_url}}" width="95" height="95"></a>
           <span class="subUserInfoHeader">
 
               <div class="header-user-greeting">Hi {{gUserInfo.user_info.display_name}}</div>

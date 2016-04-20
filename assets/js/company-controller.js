@@ -95,32 +95,17 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     if($(".media-twitter").parent().attr("href") === ""){
       $(".media-twitter").css("display", "none");
     }
-    // $scope.fillCompany($scope.thisCompany)
   });
-
-
-  $("#filebtn1").on("click", function(){
-    console.log("i clicked file button 1");
-  });
-
 
   $scope.goMakeAPerformance = function(){
     //this sets the view going into the perfAVED page.
-    console.log("here in go make");
     ourData.shareData("tAdd", false);
     ourData.shareData("tView", true);
     ourData.shareData("tEdit", true);
-    console.log("ended in go make");
-    console.log(ourData.borrowData("tView"));
   }
 
-
   // Set edit variables to current variables
-
   $scope.editcompany = function(){
-
-    console.log("company");
-    console.log($scope.thisCompany);
     $(".edit-company-name").val($scope.thisCompany.name);
     $(".edit-company-location-address").val($scope.thisCompany.address);
     $(".edit-company-location-city").val($scope.thisCompany.city);
@@ -135,12 +120,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     $(".edit-company-description").val($scope.thisCompany.description);
   }
 
-  // Set view variables to new edited variables.
-
   $scope.createcompany = function(){
-    var profileImgURL = "assets/images/companyDefaultProfile.png";
-    var splashImgURL = "assets/images/companyDefaultSplash.jpg";
-
     var createCompanyFD = new FormData();
     createCompanyFD.append('company[user_id]', ownerID);
     createCompanyFD.append('company[name]', $(".create-company-name").val());
@@ -183,9 +163,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
 
   $scope.savecompany = function(){
-    var profileImgURL = $scope.thisCompany.profile_image_url;
-    var splashImgURL = $scope.thisCompany.hero_image_url;
-
     var createCompanyFD = new FormData();
     createCompanyFD.append('company[id]', $scope.thisCompany.id);
     createCompanyFD.append('company[user_id]', ownerID);
@@ -228,13 +205,11 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         errorText += response.errors[i] + "\n";
       }
       alert(errorText);
-    });
-
+    })
     $scope.fillCompany($scope.thisCompany);
   }//End Save Company
 
   $scope.saveopportunity = function(){
-
     var companyid = JSON.parse(localStorage.getItem('companyid'));
 
     var opportunity = JSON.stringify({
@@ -286,15 +261,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
   // Close opportunity modal if the wrapper is clicked.
 
   $(".opportunity-cancel-btn").on("click", function(){
-      $(".company-create-opportunity-modal-wrapper").addClass("hidden");
+    $(".company-create-opportunity-modal-wrapper").addClass("hidden");
   })
 
 
   $scope.deleteComp = function(){
     if(confirm("Are you sure you want to delete this company?"))
     {
-      console.log("this company's ID")
-      console.log($scope.thisCompany.id);
       var compID = $scope.thisCompany.id
       var user_info = JSON.stringify({
         "user_info": {
@@ -303,31 +276,27 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       });
 
       var settings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "http://infinite-reef-76606.herokuapp.com/companies/"+compID,
-       "method": "DELETE",
-       "headers": {
-         "content-type": "application/json",
-         "cache-control": "no-cache",
-         "postman-token": "d563f488-7d24-e0be-a811-1b2222d956b5"
-       },
-       "processData": false,
-       "data": user_info
+        "async": true,
+        "crossDomain": true,
+        "url": "http://infinite-reef-76606.herokuapp.com/companies/"+compID,
+        "method": "DELETE",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "postman-token": "d563f488-7d24-e0be-a811-1b2222d956b5"
+        },
+        "processData": false,
+        "data": user_info
       }
 
       $.ajax(settings).done(function (response) {
-       console.log(response);
-       $window.location.href = "#/userprofile";
+        console.log(response);
+        $window.location.href = "#/userprofile";
       });
-
     }//end confirm.
-
   }
 
-
   //Submit reviews for a company
-
   $scope.submitreview = function(){
 
     if (localStorage.user === undefined){
@@ -338,8 +307,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     var reviewtext = $(".company-new-review").val();
     var user = JSON.parse(localStorage.getItem('user'));
     var currentcomp = ourData.borrowData("company");
-    // console.log(user.user_info);
-    // console.log(currentcomp);
 
     var review = JSON.stringify({
         "id": "",
@@ -353,7 +320,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
           "login_token": user.user_info.login_token
         }
     });  //End Review
-    // console.log(review);
 
     var settings = {
       "async": true,
@@ -366,14 +332,13 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       },
       "processData": false,
       "data": review
-       };
+    };
 
-      $.ajax(settings).done(function (data) {
+    $.ajax(settings).done(function (data) {
       console.log(data);
       $(".company-new-review").val("");
       location.reload();
-      });//end ajax.
-
+    });//end ajax.
   }
 
   $scope.fillCompany = function(company){
@@ -418,11 +383,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         $(".media-instagram").parent().attr("href", "//" + company.instagram_link);
       }
     }
-    if (company.website_link != null && company.website_link != ""){
-      if (company.website_link.match(/\/\//) === true){
-        $scope.comapny_website_link = company.website_link
+    $scope.comapny_website_link = company.website_link
+    if ($scope.comapny_website_link != null && $scope.comapny_website_link != ""){
+      if ($scope.comapny_website_link.match(/\/\//) === true){
+        $scope.comapny_website_link = $scope.comapny_website_link
       } else {
-        $scope.comapny_website_link = "//" + company.website_link
+        $scope.comapny_website_link = "//" + $scope.comapny_website_link
       }
     }
     $(".company-description").append(company.description);
@@ -430,11 +396,12 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     // console.log(company.opportunities);
 
     for (var i=0; i<company.upcoming_performances.length; i++){
-      $(".insert-upcoming-performance").append("<div class='company-performance' id='" + company.upcoming_performances[i].id + "'><div class='company-performance-box'><img src='"+ company.upcoming_performances[i].hero_image_url+"' class='performance-image'><div ='performanceInfoWrapper'><div class='company-box-performance-name'><h4>" + company.upcoming_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div></div>");
+
+      $(".insert-upcoming-performance").append("<div class='company-performance' id='" + company.upcoming_performances[i].id + "'><div class='company-performance-box'><div class='company-box-performance-name'><h4>" + company.upcoming_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.past_performances.length; i++){
-      $(".insert-past-performance").append("<div class='company-performance' id='" + company.past_performances[i].id + "''><div class='company-performance-box'><img src='"+ company.past_performances[i].hero_image_url+"' class='performance-image'><div class='company-box-performance-name'><h4>" + company.past_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
+      $(".insert-past-performance").append("<div class='company-performance' id='" + company.past_performances[i].id + "''><div class='company-performance-box'><div class='company-box-performance-name'><h4>" + company.past_performances[i].name + "</h4></div><div class='company-box-company-name'>" + company.name + "</div></div></div>");
     }
 
     for (var i=0; i<company.opportunities.length; i++){
@@ -491,13 +458,6 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       $(".O").removeClass("TabSelected");
     }
   }//end setTabs
-
-  console.log("$scope.show");
-  console.log($scope.show);
-
-  console.log("scope.create");
-  console.log($scope.create);
-
 })
 .directive('profileImageEdit', function ($parse) {
     return {

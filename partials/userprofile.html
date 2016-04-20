@@ -39,7 +39,7 @@
      </div>
    </div><!--
  --><div class="user-header-image-wrapper" ng-hide="show">
-      <img ng-src="{{profileImageUrl}}" width="500" height="500">
+      <img ng-src="{{viewuser.image_url}}" width="500" height="500">
     </div><!--
     --><div class="profile-user-info-wrapper">
         <div class="display-user-name" ng-hide="show">First Name Last Name</div>
@@ -92,7 +92,7 @@
         <div class="associated-company-name" ng-repeat="company in viewuser.companies" ng-click="usercompany()">
           <a href="#/company" ng-click="tocompany('SHOW')">
             <div class="user-company-image-wrapper">
-              <img class="user-company-image" src="{{profile_image_url}}">
+              <img class="user-company-image" ng-src="{{company.profile_image_url}}">
             </div>
             <div class="user-company-name">
               {{company.name}}

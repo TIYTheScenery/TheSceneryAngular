@@ -89,6 +89,7 @@ a{
 }
 
 .this-performance-company-name{
+  cursor: pointer;
   font-size: 20px;
 }
 
@@ -97,7 +98,7 @@ a{
 }
 
 .this-performance-name{
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .this-performance-company-name{
@@ -112,7 +113,7 @@ a{
   width: 80%;
   color: #eee;
   font-size: 16px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
   border-bottom: 1px solid #999;
   padding-bottom: 25px;
   min-height: 170px;
@@ -275,6 +276,10 @@ a{
 
 .AVED-label-reviews{
   margin-left: 45px;
+}
+
+.review-name{
+  color: $burgundy;
 }
 
 .AVED-label-event{

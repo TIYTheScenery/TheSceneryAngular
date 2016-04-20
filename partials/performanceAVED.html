@@ -29,7 +29,7 @@
     <img ng-src="{{thisPerformance.hero_image_url}}" class ="heroImg">
     <div class ="heroImgWordsContainer" ng-hide="tView">
       <div class="this-performance-names">
-        <div class="this-performance-company-name">{{thisPerformance.company_name}} <div>presents</div></div>
+        <div class="this-performance-company-name" ng-click="tocompany()">{{thisPerformance.company_name}}<div>presents</div></div>
         <div class="this-performance-name">{{thisPerformance.name}}</div>
       </div>
       <div class="performanceDescription" ng-hide="tView">

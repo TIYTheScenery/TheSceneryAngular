@@ -15,18 +15,18 @@ $lightBlueish: #92A7BF;
 
 html{
   background: $bgColor;
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .header{
 
   h1{
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 900;
     color: $burgundy;
     text-align:center;
     // font-family: 'park_lane_nfregular';
-    font-family: 'raconteur_nfregular', arial, sans-serif;
+    font-family: 'Oleo Script', arial, sans-serif;
     // font-family: 'Holtwood One SC', serif;
     font-weight: bold;
   }
@@ -88,7 +88,7 @@ a{
 }
 
 .header-user-greeting{
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .header-user-wrapper{

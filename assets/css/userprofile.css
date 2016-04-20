@@ -89,7 +89,8 @@
 .display-user-name {
   text-align: center;
   font-size: 40px;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  font-family: "Holtwood One SC", sans-serif; }
 
 .display-user-titles {
   text-align: center;
@@ -194,6 +195,13 @@
   vertical-align: top;
   margin: 3px 0 0 25px;
   width: 70%; }
+
+.company-opportunity-title {
+  font-size: 25px !important; }
+
+.company-opportunity-date-posted,
+.company-opportunity-poster-name {
+  color: #666; }
 
 .user-review-wrapper {
   width: 43%;

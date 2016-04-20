@@ -414,6 +414,13 @@ TheSceneryapp.controller('perfAVEDcont', function($scope, $http, ourData, $windo
 
   }
 
+  $scope.tocompany = function(){
+    console.log($(this)[0].thisPerformance.company_id);
+    var perfcompid = $(this)[0].thisPerformance.company_id;
+    localStorage.setItem("compID", JSON.stringify(perfcompid));
+    location.href = "#/company";
+  }
+
   $scope.toperformancereviewer = function(){
     // console.log($(this)[0])
     localStorage.setItem("profID", JSON.stringify($(this)[0].review.user_id));

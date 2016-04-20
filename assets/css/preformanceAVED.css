@@ -64,13 +64,14 @@ a {
   font-family: 'Merriweather Sans', sans-serif; }
 
 .this-performance-company-name {
+  cursor: pointer;
   font-size: 20px; }
 
 .presents {
   font-size: 18px; }
 
 .this-performance-name {
-  font-size: 35px; }
+  font-size: 30px; }
 
 .this-performance-company-name div {
   font-size: 16px;
@@ -81,7 +82,7 @@ a {
   width: 80%;
   color: #eee;
   font-size: 16px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
   border-bottom: 1px solid #999;
   padding-bottom: 25px;
   min-height: 170px;
@@ -210,6 +211,9 @@ a {
 
 .AVED-label-reviews {
   margin-left: 45px; }
+
+.review-name {
+  color: #991010; }
 
 .AVED-label-event {
   margin-left: -45px; }

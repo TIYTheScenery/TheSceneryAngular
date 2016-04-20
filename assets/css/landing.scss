@@ -74,6 +74,7 @@ html{
 }
 
 .advanced{
+  font-family: "Merriweather Sans", sans-serif;
   color: white;
   font-size: 20px;
 }
@@ -97,13 +98,14 @@ html{
   }
 
   .landing-search-btn{
+    font-family: "Merriweather Sans", sans-serif;
     width: 152px;
     height: 65px;
     display: inline-block;
     padding: 10px 10px;
     // border: 5px solid $inputBorder;
     background: $inputBG;
-    color: $inputColor;
+    color: $burgundy;
     font-size: 40px;
     // text-align:center;
     vertical-align: middle;
@@ -150,7 +152,7 @@ html{
     font-size: 90px;
     color: $burgundy;
     text-align:center;
-    font-family: 'raconteur_nfregular', arial, sans-serif;
+    font-family: 'Oleo Script', arial, sans-serif;
     // font-family: 'Holtwood One SC', serif;
     //font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
@@ -166,7 +168,7 @@ html{
   }
   h3{
     font-size: 30px;
-    font-family: helvetica, sans-serif;
+    font-family: "Merriweather Sans", sans-serif;
     font-weight: 600;
     text-align:center;
     //black, but bigger than standard text.

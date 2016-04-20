@@ -272,8 +272,10 @@ a {
 
 .new-review {
   width: 70%;
+  max-width: 70%;
   font-size: 18px;
-  height: 140px; }
+  height: 140px;
+  max-height: 140px; }
 
 .AVED-review {
   display: block; }

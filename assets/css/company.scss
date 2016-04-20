@@ -80,7 +80,8 @@ $popCol1: rgb(166, 16, 63);
     font-size: 40px;
     color: $cardColor;
     text-align:center;
-    font-family: 'Holtwood One SC', serif;
+    font-family: 'webfont', arial, sans-serif;
+    // font-family: 'Holtwood One SC', serif;
     //font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
     //burgundy in color
@@ -228,6 +229,8 @@ $popCol1: rgb(166, 16, 63);
   margin: auto;
   border-bottom: 1px solid  $burgundy;
   text-align: center;
+  margin-bottom: -31px;
+  // background: red;
 }
 
 .TabActual{

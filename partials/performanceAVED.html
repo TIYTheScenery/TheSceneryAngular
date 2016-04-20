@@ -42,16 +42,17 @@
           </div>
         </div><!--
         --><div class="performance-trailer-wrapper">
-          <a href="{{viewTrailer}}" target="_blank">
-            <div class="AVED-trailer-link" ng-hide="tView">
+
+          <a href="http://{{thisPerformance.trailer_link}}">
+            <div class="AVED-trailer-link btn" ng-hide="tView">
               View Trailers
             </div>
           </a>
         </div><!--
         --><div class="performance-ticket-wrapper">
-          <a href="{{buyTickets}}" target="_blank">
-            <div class="AVED-ticket-btn" ng-hide="tView">
-              Buy Tickets!!
+          <a href="{{thisPerformance.ticket_link}}">
+            <div class="btn AVED-ticket-btn" ng-hide="tView">
+              Buy Tickets
             </div>
           </a>
         </div>
@@ -154,7 +155,7 @@
             <!-- hide casts for now since they aren't working -->
             <div class="event-adv">
               <div class="cast-wrapper">
-                <label>Cast</label>
+                <!-- <label>Cast</label> -->
                 <ul class="event-cast" ng-repeat="cast in show.cast_members">
                   <li class="cast-member"> <!--ADD ng-repeat!!!-->
                     {{cast.name}} as {{cast.role}}
@@ -239,12 +240,12 @@
             </div>
           </li>
         </ul>
-        <a href=""><div class="submit-review-btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
+        <a href=""><div class="submit-review-btn btn" ng-click="newreview = !newreview" ng-hide="newreview">Add Review</div></a>
         <div class="AVED-new-review-border" ng-show="newreview">
           <div class="AVED-new-review">
             <div class="review-img"><img src="{{review.image_url}}"></div>
             <textarea class="new-review" id = "new-review"></textarea>
-            <a href=""><div class="submit-review-btn" ng-click="submitreview()">Add Review</div></a>
+            <a href=""><div class="submit-review-btn btn" ng-click="submitreview()">Add Review</div></a>
           </div>
         </div>
       </div>

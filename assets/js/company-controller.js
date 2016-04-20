@@ -149,19 +149,25 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
         data: createCompanyFD,
         headers: {'Content-Type': undefined}
       }).then(function successCallback(response){
-        console.log("Created Company");
-        console.log(response);
-        localStorage.setItem('compID', JSON.stringify(response.data.company.id));
-        $scope.thisCompany = response.data.company;
-        ourData.shareData("companyCreate", false);
-        location.reload();
-      }, function errorCallback(response){
-        console.log('Company not created', response);
-        var errorText = "";
-        for(var i = 0; i < response.data.errors.length; i++){
-          errorText += response.data.errors[i] + "\n";
+        if(response.data.success){
+          console.log("Created Company");
+          console.log(response.data);
+          localStorage.setItem('compID', JSON.stringify(response.data.company.id));
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          console.log(JSON.parse(localStorage.getItem('user')));
+          $scope.thisCompany = response.data.company;
+          ourData.shareData("companyCreate", false);
+          location.reload();
+        }else{
+          console.log('Company not created', response);
+          var errorText = "";
+          for(var i = 0; i < response.data.errors.length; i++){
+            errorText += response.data.errors[i] + "\n";
+          }
+          alert(errorText);
         }
-        alert(errorText);
+      }, function errorCallback(response){
+        console.log('company create call failed');
     });
   }//End Create Company
 
@@ -196,19 +202,23 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       data: createCompanyFD,
       headers: {'Content-Type': undefined}
     }).then(function successCallback(response){
-      console.log("Updated company");
-      console.log(response);
-      localStorage.setItem('compID', JSON.stringify(response.data.company.id));
-      $scope.thisCompany = response.data.company;
-      ourData.shareData("companyCreate", false);
-      location.reload();
-    }, function errorCallback(response){
-      console.log('company not updated', response);
-      var errorText = "";
-      for(var i = 0; i < response.errors.length; i++){
-        errorText += response.errors[i] + "\n";
+      if (response.data.success){
+        console.log("Updated company");
+        console.log(response.data);
+        localStorage.setItem('compID', JSON.stringify(response.data.company.id));
+        $scope.thisCompany = response.data.company;
+        ourData.shareData("companyCreate", false);
+        location.reload();
+      }else{
+        console.log('company not updated', response);
+        var errorText = "";
+        for(var i = 0; i < response.data.errors.length; i++){
+          errorText += response.data.errors[i] + "\n";
+        }
+        alert(errorText);
       }
-      alert(errorText);
+    }, function errorCallback(response){
+      console.log('company update call failed');
     })
     $scope.fillCompany($scope.thisCompany);
   }//End Save Company
@@ -282,7 +292,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://infinite-reef-76606.herokuapp.com/companies/"+compID,
+        "url": "https://api.the-scenery.com/companies/"+compID,
         "method": "DELETE",
         "headers": {
           "content-type": "application/json",
@@ -295,7 +305,16 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
 
       $.ajax(settings).done(function (response) {
         console.log(response);
-        $window.location.href = "#/userprofile";
+        if (response.success){
+          localStorage.setItem('user', JSON.stringify(response.user));
+          $window.location.href = "#/userprofile";
+        }else{
+          var errorText = "";
+          for(var i = 0; i < response.errors.length; i++){
+            errorText += response.errors[i] + "\n";
+          }
+          alert(errorText);
+        }
       });
     }//end confirm.
   }
@@ -382,7 +401,7 @@ TheSceneryapp.controller('companyCont', function($scope, $http, ourData, $window
     }
     $scope.company_website_link = company.website_link
     if ($scope.company_website_link != null && $scope.company_website_link != "" && !$scope.company_website_link.match(/\/\//)){
-      $scope.company_website_link = "//" + $scope.company_website_link
+      $scope.company_website_link = "http://" + $scope.company_website_link
     }
     $(".company-description").append(company.description);
 

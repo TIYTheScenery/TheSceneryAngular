@@ -197,17 +197,21 @@ $scope.usercompany = function(){
         data: updatedUserFD,
         headers: {'Content-Type': undefined}
       }).then(function successCallback(response){
-        console.log("Updated User");
-        console.log(response);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        location.reload();
-      }, function errorCallback(response){
-        console.log('user not updated', response);
-        var errorText = "";
-        for(var i = 0; i < response.errors.length; i++){
-          errorText += response.errors[i] + "\n";
+        if(response.data.success){
+          console.log("Updated User");
+          console.log(response);
+          localStorage.setItem('user', JSON.stringify(response.data));
+          location.reload();
+        }else{
+          console.log('user not updated', response);
+          var errorText = "";
+          for(var i = 0; i < response.data.errors.length; i++){
+            errorText += response.data.errors[i] + "\n";
+          }
+          alert(errorText);
         }
-        alert(errorText);
+      }, function errorCallback(response){
+        console.log('user update call failed');
     });
   }
 
